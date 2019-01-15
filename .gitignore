@@ -1,0 +1,12 @@
+# ignore tracking usage data config - we want a different one for each user
+usage-data-config.json
+prototype-01/.env
+.sass-cache
+.DS_Store
+prototype-01/.start.pid
+prototype-01/.port.tmp
+prototype-01/public
+node_modules/*
+.tmuxp.*
+prototype-01/package-lock.json
+prototype-01/node_modules

@@ -1,0 +1,51 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// Import GOV.UK Frontend
+@import "node_modules/govuk-frontend/all";
+
+// Patterns that aren't in Frontend
+@import "patterns/check-your-answers";
+@import "patterns/step-by-step-navigation";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+
+// Map base elements to gov.uk frontent classes 
+h1 {
+	@extend .govuk-heading-xl;
+}
+
+h2 {
+	@extend .govuk-heading-m;
+}
+
+ul {
+	@extend .govuk-list;
+	@extend .govuk-list--bullet;
+}
+
+.app-related-items {
+	ul {
+		@extend .govuk-list;
+		@extend .govuk-body-s;
+	}
+}
+
+// Custom
+.side-nav {
+	border-top: 2px solid #005ea5;
+	padding-top: 1em;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		@extend p;
+	}
+}
