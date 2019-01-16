@@ -34,6 +34,18 @@ router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next
   });
 });
 
+
+router.get('/find-a-report/results', function(req, res) {
+	console.log('=============')
+	console.log(req.app.locals.data)
+	//res.send({ content : JSON.parse(req.app.locals.data) });
+	  res.render('find-a-report/results', {
+    data: req.app.locals.data,
+    count:100
+  });
+});
+
+
 router.get('/mock-api/address-grade', function(req, res, next) {
   var contentType='mock-rest-api'
   var contentId='20e71420-5c9d-4a8e-b9d6-093a0d772dab'
@@ -71,6 +83,7 @@ router.get('/service-start-example', function(req, res, next) {
 	    }
 	});
 });
+
 
 router.get('/find-an-energy-assessor', function(req, res, next) {
   var contentType='service-start'

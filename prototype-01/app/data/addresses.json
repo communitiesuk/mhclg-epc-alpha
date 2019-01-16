@@ -1,0 +1,200 @@
+{
+    "addresses": [{
+            "type": "House",
+            "address": "4 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "D"
+        },
+
+        {
+            "type": "House",
+            "address": "15 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "D"
+        },
+
+        {
+            "type": "House",
+            "address": "16a Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "E"
+        },
+
+        {
+            "type": "House",
+            "address": "16b Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "House",
+            "address": "16c Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "D"
+        },
+
+        {
+            "type": "House",
+            "address": "6b Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "D"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, 6a Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, Bluesky House, 2a Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 2, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 2 Bluesky House, 2a, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 3, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 3 Queens Mansions, 2a, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 4, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 5, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 6, 42 Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 10, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 18, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 24, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 26, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 32, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat A Queens Mansion, 34, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat B Queens Mansion, 24, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat B Queens Mansion, 26, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat B Queens Mansion, 32, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat B Queens Mansion, 40, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat B, Queens Mansion, 34, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 10, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 24, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 32, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 34, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 40, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "C"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat C Queens Mansion, 6, Bloomesbury Road, South Croydon, CR2 6XH",
+            "category": "B"
+        }
+    ]
+}
