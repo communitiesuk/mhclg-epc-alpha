@@ -17,7 +17,7 @@ const moment = require('moment')
 
 router.get('/', function(req, res, next) {
   var contentType='service-start'
-  var contentId='95acc9f8-b0d8-41e9-b8ab-c877bb950c42'
+  var contentId='d7fcda1d-d6d4-43d3-8cf4-b2af1ddce89f'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
 	}, function (error, response, body) {
 	    if (!error && response.statusCode == 200) {
 	      res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
 	    } else {
 	      res.redirect('/error');
 	    }
@@ -34,7 +35,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/article', function(req, res, next) {
   var contentType='article'
-  var contentId='3c941966-ed76-41a5-b091-29b109ab46e2'
+  var contentId='952e678f-3c17-4b13-a16a-ddf2f21267bb'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
