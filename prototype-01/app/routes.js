@@ -15,6 +15,25 @@ const moment = require('moment')
 //   });
 // });
 
+router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next) {
+  request(process.env.EPC_API_URI+'?postcode='+req.params.postcode+'&size=10&from=10', {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.EPC_API_KEY,
+      'Accept': 'application/json'
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(JSON.parse(body));
+        res.send({ content : JSON.parse(body) });
+        // res.render('service-start', { content : JSON.parse(body) });
+        // process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        // res.redirect('/error');
+      }
+  });
+});
+
 router.get('/mock-api/address-grade', function(req, res, next) {
   var contentType='mock-rest-api'
   var contentId='20e71420-5c9d-4a8e-b9d6-093a0d772dab'
