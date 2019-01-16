@@ -15,7 +15,7 @@ const moment = require('moment')
 //   });
 // });
 
-router.get('/', function(req, res, next) {
+router.get('/service-start-example', function(req, res, next) {
   var contentType='service-start'
   var contentId='d7fcda1d-d6d4-43d3-8cf4-b2af1ddce89f'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/article', function(req, res, next) {
+router.get('/article-example', function(req, res, next) {
   var contentType='article'
   var contentId='952e678f-3c17-4b13-a16a-ddf2f21267bb'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
