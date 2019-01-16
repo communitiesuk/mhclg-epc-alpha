@@ -1,0 +1,93 @@
+{% from "table/macro.njk" import govukTable %}
+
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Start page example
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Retrieve an Energy Performance Certificate using the postcode
+      </h1>
+
+<p>Please click on an address below to view or download a report:</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption">Dates and amounts</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Type</th>
+      <th class="govuk-table__header" scope="col">Address</th>
+      <th class="govuk-table__header" scope="col">Grade</th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    {% for item in data %}
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">{{item.type}}</th>
+          <td class="govuk-table__cell">{{item.address}}</td>
+          <td class="govuk-table__cell"><a href="certificate.html">{{item.category}}</a></td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ 
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related Content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="../find-an-energy-assessor">
+                Find an Assessor
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Opt out of the register
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}
