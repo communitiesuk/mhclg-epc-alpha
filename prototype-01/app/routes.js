@@ -34,7 +34,7 @@ router.get('/service-start-example', function(req, res, next) {
 	});
 });
 
-router.get('/find-an-energy-assesor', function(req, res, next) {
+router.get('/find-an-energy-assessor', function(req, res, next) {
   var contentType='service-start'
   var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
