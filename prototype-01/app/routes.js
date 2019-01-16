@@ -34,6 +34,26 @@ router.get('/service-start-example', function(req, res, next) {
 	});
 });
 
+router.get('/find-an-energy-assesor', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/article-example', function(req, res, next) {
   var contentType='article'
   var contentId='952e678f-3c17-4b13-a16a-ddf2f21267bb'
