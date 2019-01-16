@@ -15,6 +15,20 @@ const moment = require('moment')
 //   });
 // });
 
+
+
+router.get('/find-a-report/results', function(req, res) {
+	console.log('=============')
+	console.log(req.app.locals.data)
+	//res.send({ content : JSON.parse(req.app.locals.data) });
+	  res.render('find-a-report/results', {
+    data: req.app.locals.data,
+    count:100
+  });
+});
+
+
+/*
 router.get('/', function(req, res, next) {
   var contentType='service-start'
   var contentId='d7fcda1d-d6d4-43d3-8cf4-b2af1ddce89f'
@@ -33,7 +47,7 @@ router.get('/', function(req, res, next) {
 	    }
 	});
 });
-
+*/
 router.get('/article', function(req, res, next) {
   var contentType='article'
   var contentId='952e678f-3c17-4b13-a16a-ddf2f21267bb'
