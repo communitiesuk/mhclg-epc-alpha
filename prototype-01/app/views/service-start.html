@@ -30,19 +30,19 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{ content.data.ServiceName.iv }}</h1>
+      <h1 class="govuk-heading-xl">{{ content.data.ServiceName.en }}</h1>
 
-      {% markdown %}{{ content.data.Introduction.iv }}{% endmarkdown %}
+      {% markdown %}{{ content.data.Introduction.en }}{% endmarkdown %}
 
       {{ govukButton({
         text: "Start now",
-        href: content.data.StartNowUrl.iv,
+        href: content.data.StartNowUrl.en,
         classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
       }) }}
 
       <h2 class="govuk-heading-m">Before you start</h2>
 
-      {% markdown %}{{ content.data.BeforeYouStart.iv }}{% endmarkdown %}
+      {% markdown %}{{ content.data.BeforeYouStart.en }}{% endmarkdown %}
 
      
     </div>
@@ -53,7 +53,7 @@
 
       <aside class="app-related-items" role="complementary">
 
-        {% markdown %}{{ content.data.Related.iv }}{% endmarkdown %}
+        {% markdown %}{{ content.data.Related.en }}{% endmarkdown %}
 
       </aside>
 
