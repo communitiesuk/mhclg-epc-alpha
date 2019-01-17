@@ -31,7 +31,8 @@
     {{ block "head" . }}
 
 
-		<link rel="stylesheet" media="all" href="{{ .Site.Params.baseURL}} /stylesheets/main.css" }}/>
+		<link rel="stylesheet" media="all" 
+    href="{{ "stylesheets/main.css" | relURL  }}"/>
 
 		{{ end }}
 
