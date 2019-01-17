@@ -16,7 +16,7 @@ const moment = require('moment')
 // });
 
 router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next) {
-  request(process.env.EPC_API_URI+'?postcode='+req.params.postcode+'&size=10&from=10', {
+  request(process.env.EPC_API_URI+'?postcode='+req.params.postcode+'&size=150', {
   method: "GET",
   headers: {
       'Authorization': process.env.EPC_API_KEY,
@@ -24,10 +24,14 @@ router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next
     }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        // console.log(JSON.parse(body));
-        res.send({ content : JSON.parse(body) });
-        // res.render('service-start', { content : JSON.parse(body) });
-        // process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+        if(body) {
+          // console.log(JSON.parse(body));
+          res.send({ content : JSON.parse(body) });
+          // res.render('service-start', { content : JSON.parse(body) });
+          // process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+        } else {
+          res.send('no data');
+        }
       } else {
         // res.redirect('/error');
       }
