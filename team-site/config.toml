@@ -1,4 +1,4 @@
-baseURL = "https://notbinary.github.io/"
+baseURL = "https://notbinary.github.io/mhclg-epc-alpha"
 languageCode = "en-uk"
 title = "EPC Alpha"
 theme = "govuk"
