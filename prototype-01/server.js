@@ -1,5 +1,6 @@
 // Core dependencies
 const path = require('path')
+const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -392,5 +393,15 @@ utils.findAvailablePort(app, function (port) {
     })
   }
 })
+
+
+/*
+  Load all the project data from JSON.
+*/
+var data = JSON.parse(fs.readFileSync(__dirname + '/app/data/addresses.json').toString());
+console.log(data);
+app.locals.data = data.addresses;
+
+
 
 module.exports = app
