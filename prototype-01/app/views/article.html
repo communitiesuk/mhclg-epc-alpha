@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  {{ content.data.Title.en }} - GOV.UK
 {% endblock %}
 
 {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
@@ -10,21 +10,19 @@
 
 {% block beforeContent %}
   {{ super() }}
-  {{ govukBreadcrumbs({
-    items: [
-      {
-        text: "Home",
-        href: "#"
-      },
-      {
-        text: "Section",
-        href: "#"
-      },
-      {
-        text: "Subsection"
-      }
-    ]
-  }) }}
+    <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+    {% for item in content.data.Breadcrumbs.en %}
+      {% if item.Href %}
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="{{ item.Href }}">{{ item.Text }}</a>
+      </li>
+      {% else %}
+      <li class="govuk-breadcrumbs__list-item" aria-current="page">{{ item.Text }}</li>
+      {% endif %}
+    {% endfor %}
+    </ol>
+  </div>
 {% endblock %}
 
 {% block content %}
