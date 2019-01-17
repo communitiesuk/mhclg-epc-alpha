@@ -1,0 +1,5 @@
+<!-- prototype update -->
+<div class="prototype-update-container">
+  {{ with .Get 1 }}<p class="govuk-body govuk-!-font-weight-bold">{{ . }}</p>{{ end }}
+  {{ if gt (len .Inner) 0 }}{{ .Inner | markdownify }}{{ end }}
+</div>
