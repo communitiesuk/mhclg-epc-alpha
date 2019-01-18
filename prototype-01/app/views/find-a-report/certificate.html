@@ -41,17 +41,17 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-      <h2>14 Bloomesbury Road</h2>
+      <h2>{{ data.address }}</h2>
 
-      <p>Date of certificate:   21 August 2015</p>
-      <p>Type:  Mid terrace house</p>
-      <p>Floor area:  135 m2</p>
-      <p>Assessment type: RdSAP assessment</p>
+      <p>Date of certificate:  {{ data.date }}</p>
+      <p>Type:  {{ data.propertyType }}</p>
+      <p>Floor area:  {{ data.floorArea }} m2</p>
+      <p>Assessment type: {{ data.assessmentType }}</p>
 
       </div>
       <div class="govuk-grid-column-one-half">
 
-      <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for 14 Bloomesbury Road">
+      <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
 
       </div>
     </div>
@@ -61,80 +61,39 @@
 
 
       <h2>Energy costs for running this property</h2>
-      {{ govukTable({
-        caption: "These estimates are based on costs assessed in 2015 ",
-        firstCellIsHeader: false,
-        head: [
-          {
-            text: "Energy use"
-          },
-          {
-            text: "Current costs"
-          },
-          {
-            text: "Potential costs"
-          }
-        ],
-        rows: [
-          [
-            {
-              text: "Lighting"
-            },
-            {
-              text: "£ 366"
-            },
-            {
-              text: "£ 243"
-            }
-          ],
-          [
-            {
-              text: "Heating"
-            },
-            {
-              text: "£ 3,255"
-            },
-            {
-              text: "£ 1,925"
-            }
-          ],
-          [
-            {
-              text: "Water"
-            },
-            {
-              text: "£ 387"
-            },
-            {
-              text: "£ 219"
-            }
-          ]
-        ]
-      }) }}
-
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">These estimates are based on costs assessed in 2015 over 3 year period.</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Energy use</th>
+            <th class="govuk-table__header" scope="col">Current costs</th>
+            <th class="govuk-table__header" scope="col">Potential costs</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for item in data.costs %}
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">{{item.energyType}}</th>
+                <td class="govuk-table__cell">{{item.currentCost}}</td>
+                <td class="govuk-table__cell">{{item.futureCost}}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
       <h2>History of certificates for this property</h2>
       <table class="govuk-table">
       <!--   <caption class="govuk-table__caption">Historic records</caption> -->
         <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="row">2015</th>
-            <td class="govuk-table__cell">Current EPC Certificate</td>
-            <td class="govuk-table__cell">C</td>
-            <td class="govuk-table__cell">RdSAP assessment</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="row">2006-2015</th>
-            <td class="govuk-table__cell">PC Certificate issued</td>
-            <td class="govuk-table__cell">D</td>
-            <td class="govuk-table__cell">RdSAP assessment</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="row">2006</th>
-            <td class="govuk-table__cell">First certificate issued</td>
-            <td class="govuk-table__cell"></td>
-            <td class="govuk-table__cell"></td>
-          </tr>
+
+          {% for item in data.history %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.date}}</th>
+              <td class="govuk-table__cell">{{item.event}}</td>
+              <td class="govuk-table__cell">{{item.rating}}</td>
+              <td class="govuk-table__cell">{{item.assessmentType}}</td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
 
