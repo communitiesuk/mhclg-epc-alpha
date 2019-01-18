@@ -39,17 +39,6 @@ router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next
 });
 
 
-router.get('/find-a-report/results', function(req, res) {
-	console.log('=============')
-	console.log(req.app.locals.data)
-	//res.send({ content : JSON.parse(req.app.locals.data) });
-	  res.render('find-a-report/results', {
-    data: req.app.locals.data,
-    count:100
-  });
-});
-
-
 router.get('/mock-api/address-grade', function(req, res, next) {
   var contentType='mock-rest-api'
   var contentId='20e71420-5c9d-4a8e-b9d6-093a0d772dab'
@@ -145,6 +134,39 @@ router.get('/error', function(req, res, next) {
 
   	res.render('error', { content : {error: {message: "Internal server error"}}});
   }
+});
+
+
+router.get('/find-a-report/results', function(req, res) {
+    res.render('find-a-report/results', {
+    data: req.app.locals.data
+  });
+});
+
+
+router.get('/find-a-report/certificate', function(req, res) {
+  // dummy property data
+  var property = {
+    address:"88 Bloomesbury Road",
+    date: "21 August 2017",
+    propertyType: "End terrace house",
+    floorArea:"199",
+    assessmentType:"RdSAP",
+    costs:[
+      {energyType: "Lighting", currentCost:"£ 222", futureCost: "£ 243"},
+      {energyType: "Heating", currentCost:"£ 3,255", futureCost: "£ 1,925"},
+      {energyType: "Water", currentCost:"£ 387", futureCost: "£ 219"}
+    ],
+    history:[
+      {date:"2015",  event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+      {date:"2006-2015",  event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+      {date:"2006",  event:"First certificate issued", rating:"", assessmentType:""}
+    ]
+  };
+
+  res.render('find-a-report/certificate', {
+    data: property
+  });
 });
 
 module.exports = router
