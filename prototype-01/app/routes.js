@@ -146,8 +146,9 @@ router.get('/find-a-report/results', function(req, res) {
 
 router.get('/find-a-report/certificate', function(req, res) {
   // dummy property data
+  var randomNo =Math.floor(Math.random()*100);
   var property = {
-    address:"88 Bloomesbury Road",
+    address: randomNo + " Bloomesbury Road",
     date: "21 August 2017",
     propertyType: "End terrace house",
     floorArea:"199",
