@@ -145,17 +145,6 @@ It&amp;rsquo;s purpose is to assess:
     </item>
     
     <item>
-      <title>Brownfield sites</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/brownfield-sites/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/brownfield-sites/</guid>
-      <description>All local authorities must publish a register of brownfield sites.
-We were interested in learning about how this policy was implemented, the process that local authorities follow to publish the data, and whether there were any tools that we could build to help people collect and maintain the data.
-Prototypes In progress A way of validating the collected data   Our hypothesis Through speaking with local authorities we understood that often times the person responsible for collecting the brownfield site data</description>
-    </item>
-    
-    <item>
       <title>Building age</title>
       <link>https://notbinary.github.io/mhclg-epc-alpha/glossary/building-age/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -180,17 +169,6 @@ Prototypes In progress A way of validating the collected data   Our hypothesis T
       
       <guid>https://notbinary.github.io/mhclg-epc-alpha/glossary/community-infrastructure-levy/</guid>
       <description>The Community Infrastructure Levy (CIL) is a planning charge, introduced by the Planning Act 2008 as a tool for local authorities in England and Wales to help deliver infrastructure to support the development of their area. It came into force on 6 April 2010 through the Community Infrastructure Levy Regulations 2010.</description>
-    </item>
-    
-    <item>
-      <title>Complusory Purchase Orders</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/complusory-purchase-orders/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/complusory-purchase-orders/</guid>
-      <description> Current areas of investigation Upcoming areas of investigation We plan to explore the following by prototyping tools and by testing and consulting with people involved with developer contributions, and responding to your feedback.
-We will regularly add updates to the following issues on github:
- Timeline </description>
     </item>
     
     <item>
@@ -270,42 +248,12 @@ The amount of council tax owed for each band is determined by each local authori
     </item>
     
     <item>
-      <title>Data Maintainer</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/users/data-maintainer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/users/data-maintainer/</guid>
-      <description>Developers complying with regulations, local authorities collecting land and housing data, and others submitting or updating data.</description>
-    </item>
-    
-    <item>
-      <title>Data Modeller</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/users/data-modeller/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/users/data-modeller/</guid>
-      <description>People who create data specifications, such as those commissioned by councils to write the specifications for land and housing datasets.</description>
-    </item>
-    
-    <item>
       <title>Developer contributions</title>
       <link>https://notbinary.github.io/mhclg-epc-alpha/glossary/developer-contributions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://notbinary.github.io/mhclg-epc-alpha/glossary/developer-contributions/</guid>
       <description>Developer contributions is the collective term for Section 106 and CIL, which are levied on developers by local authorities to pay for the local infrastructure necessary for new developments.</description>
-    </item>
-    
-    <item>
-      <title>Developer contributions</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/developer-contributions/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/developer-contributions/</guid>
-      <description>Help us develop a common data format This page documents the alpha phase for developing a format for representing developer contributions as data.
-You can help us improve the format by:
- participating in the discussion on our GitHub issues making comments using our feedback form  We will continue to develop the format as we learn from testing the format with data and the prototypes with users.
-We would particularly like to hear from local planning authorities who are able to make their developer contributions public and would be willing to participate in our user research.</description>
     </item>
     
     <item>
@@ -363,17 +311,6 @@ An EPC contains:
       
       <guid>https://notbinary.github.io/mhclg-epc-alpha/glossary/flood-zone/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Golden thread of building information</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/golden-thread-of-building-information/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/golden-thread-of-building-information/</guid>
-      <description>In the 2018 Independent Review of Building Regulations and Fire Safety there is a recommendation that there is a &amp;lsquo;digital record&amp;rsquo; for buildings. We are working with the Building Safety Programme to understand what a &amp;lsquo;digital record&amp;rsquo; might look like, and how the data could be collected and made available.
-Prototypes We&amp;rsquo;ve not yet started to prototype for this project.
-Next steps  we&amp;rsquo;re meeting with the team from the Building Safety Programme to demo the work we&amp;rsquo;ve done so far around Developer Contributions and Brownfield Sites  Data fields The specification has not yet defined.</description>
     </item>
     
     <item>
@@ -500,16 +437,6 @@ Next steps  we&amp;rsquo;re meeting with the team from the Building Safety Progr
       
       <guid>https://notbinary.github.io/mhclg-epc-alpha/legislation/ukpa-1975-76/</guid>
       <description>An Act to make fresh provision for and in connection with the keeping of local land charges registers and the registration of matters therein.</description>
-    </item>
-    
-    <item>
-      <title>Local Plans</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/local-plans/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/local-plans/</guid>
-      <description>Local plans set out local planning policies and identify how land is used, determining what will be built where. They are a rich source of information, but the equally useful data used to produce them isn’t easily extracted from them.
-The Ministry of Housing, Communities and Local Government is working with local planning authorities to design a data format for publishing local plan data so that it’s easy to find, use and trust.</description>
     </item>
     
     <item>
@@ -687,24 +614,6 @@ As a part of the viability assessment a third party may work with a property dev
     </item>
     
     <item>
-      <title>Policy Maker</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/users/policy-maker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/users/policy-maker/</guid>
-      <description>Government policy professionals who decide what and how data must be supplied and maintained by developers, local authorities and others in the housing sector.</description>
-    </item>
-    
-    <item>
-      <title>PropTech Developers</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/users/proptech/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/users/proptech/</guid>
-      <description>Software developers who create digital tools that use land and housing data to make it easier to develop, buy, sell or rent property.</description>
-    </item>
-    
-    <item>
       <title>Protected View</title>
       <link>https://notbinary.github.io/mhclg-epc-alpha/glossary/protected-view/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -767,18 +676,6 @@ Our aim is to develop a data format and publishing guidance that results in bett
       <guid>https://notbinary.github.io/mhclg-epc-alpha/glossary/section-106/</guid>
       <description>Section 106 is a legal agreement between an property developer and the local planning authority. It is used to mitigate the impact of any new property development to the local community and infrastructure.
 The Section 106 agreement contains one or more developer contributions which support the generation of affordable housing, or contribute towards local infrastructure such as green spaces, schools or highway maintenance.</description>
-    </item>
-    
-    <item>
-      <title>Single register of planning</title>
-      <link>https://notbinary.github.io/mhclg-epc-alpha/project/single-register-of-planning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://notbinary.github.io/mhclg-epc-alpha/project/single-register-of-planning/</guid>
-      <description>Overview here&amp;hellip;
-Prototypes We&amp;rsquo;ve not yet started prototype for this project.
-Next steps Data fields The specification has not yet defined.
-Publications There are no publication for this specification.</description>
     </item>
     
     <item>
