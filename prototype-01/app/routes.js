@@ -153,6 +153,8 @@ router.get('/find-a-report/certificate', function(req, res) {
     propertyType: "End terrace house",
     floorArea:"199",
     assessmentType:"RdSAP",
+    currentRating:"D",
+    potentialRating:"C",
     costs:[
       {energyType: "Lighting", currentCost:"£ 222", futureCost: "£ 243"},
       {energyType: "Heating", currentCost:"£ 3,255", futureCost: "£ 1,925"},

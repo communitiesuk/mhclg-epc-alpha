@@ -20,10 +20,16 @@
         <a class="govuk-breadcrumbs__link" href="/">Home</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+        <a class="govuk-breadcrumbs__link" href="index.html">Retrieve EPC</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
+        <a class="govuk-breadcrumbs__link" href="search.html">EPC search</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="results.html">EPC results</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Certificate</a>
       </li>
     </ol>
   </div>
@@ -39,26 +45,26 @@
       </h1>
 
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-half">
-      <h2>{{ data.address }}</h2>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+        <h2>{{ data.address }}</h2>
 
-      <p>Date of certificate:  {{ data.date }}</p>
-      <p>Type:  {{ data.propertyType }}</p>
-      <p>Floor area:  {{ data.floorArea }} m2</p>
-      <p>Assessment type: {{ data.assessmentType }}</p>
+        <p>Date of certificate:  {{ data.date }}</p>
+        <p>Type:  {{ data.propertyType }}</p>
+        <p>Floor area:  {{ data.floorArea }} m2</p>
+        <p>Assessment type: {{ data.assessmentType }}</p>
+        <p>Current rating: {{ data.currentRating }}</p>
+        <p>Potential rating: {{ data.potentialRating }}</p>
 
+        </div>
+        <div class="govuk-grid-column-one-half">
+
+        <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
+
+        </div>
       </div>
-      <div class="govuk-grid-column-one-half">
-
-      <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
-
-      </div>
-    </div>
  
-
-       
-
+      <hr class="govuk-section-break govuk-section-break--xl ">
 
       <h2>Energy costs for running this property</h2>
       <table class="govuk-table">
@@ -73,13 +79,15 @@
         <tbody class="govuk-table__body">
           {% for item in data.costs %}
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">{{item.energyType}}</th>
+                <td class="govuk-table__cell" >{{item.energyType}}</td>
                 <td class="govuk-table__cell">{{item.currentCost}}</td>
                 <td class="govuk-table__cell">{{item.futureCost}}</td>
               </tr>
           {% endfor %}
         </tbody>
       </table>
+
+      <hr class="govuk-section-break govuk-section-break--xl ">
 
       <h2>History of certificates for this property</h2>
       <table class="govuk-table">
@@ -88,7 +96,7 @@
 
           {% for item in data.history %}
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="row">{{item.date}}</th>
+              <td class="govuk-table__cell" scope="row">{{item.date}}</td>
               <td class="govuk-table__cell">{{item.event}}</td>
               <td class="govuk-table__cell">{{item.rating}}</td>
               <td class="govuk-table__cell">{{item.assessmentType}}</td>
