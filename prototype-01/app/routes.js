@@ -190,4 +190,28 @@ router.get('/find-an-assessor/results', function(req, res) {
   });
 });
 
+
+//Optout
+router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
+  var contentType='article'
+  var contentId='08010463-2f21-49e4-877e-b8b461b0eafe'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log('body:', body);
+        // res.send({ content : JSON.parse(body) });
+        res.render('article', { content : JSON.parse(body) });
+      } else {
+        // console.log('error', error, response && response.statusCode);
+        // res.send('error', error, response && response.statusCode);
+        // return res.sendStatus(500);
+        res.redirect('/error');
+      }
+  });
+});
+
 module.exports = router

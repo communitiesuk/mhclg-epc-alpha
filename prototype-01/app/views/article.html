@@ -37,12 +37,13 @@
     <div class="govuk-grid-column-one-third">
 
       <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
-
+      {% if content.data.Related.en %}
       <aside class="app-related-items" role="complementary">
 
         {% markdown %}{{ content.data.Related.en }}{% endmarkdown %}
 
       </aside>
+      {% endif %}
 
     </div>
   </div>
