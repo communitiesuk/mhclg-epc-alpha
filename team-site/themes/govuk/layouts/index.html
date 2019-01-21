@@ -1,0 +1,40 @@
+{{ define "body_classes" }}with-hero{{ end }}
+
+{{ define "content" }}
+
+	<header class="hero">
+		<div class="hero__content govuk-width-container">
+			<h1 class="govuk-heading-xl">{{ .Title }}</h1>
+			{{ .Content }}
+		</div>
+	</header>
+
+	<main id="content" class="govuk-main-wrapper" role="main">
+
+    <div class="govuk-width-container index-section">
+
+      <h3 class="govuk-heading-l">Resources</h3>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="{{.Site.BaseURL}}/overview">Overview</a>
+              <span class="govuk-caption-m">A brief summary of the challenges of improving EPC Register and our hypotheses.</span></li>
+            <li><a href="{{.Site.BaseURL}}/user-research">User Research</a>
+              <span class="govuk-caption-m">The groups of users the team has identified for digital land services.</span></li>
+            <li><a href="{{.Site.BaseURL}}/prototype">Prototypes</a>
+               <span class="govuk-caption-m">Live prototype applications to test and demonstrate possible solutions.</span></li>
+            <li><a href="{{.Site.BaseURL}}/beta">Beta Requirements</a>
+               <span class="govuk-caption-m">On-going list of requirements for the Beta stage of the project.</span></li>
+            <li><a href="{{.Site.BaseURL}}/guidance-and-standards">Guidance and Standards</a>
+               <span class="govuk-caption-m">Guidance on how to comply with data requirements, mapping data, data definitions and specifications.</span></li>
+            <li><a href="{{.Site.BaseURL}}/week-notes">Week Notes</a>
+               <span class="govuk-caption-m">Blog posts posted by the team.</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+	</main>
+
+{{ end }}
+

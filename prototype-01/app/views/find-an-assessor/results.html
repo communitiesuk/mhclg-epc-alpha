@@ -1,0 +1,97 @@
+{% from "table/macro.njk" import govukTable %}
+
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="index.html">Find an assessor</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="search-for-what.html">Type of search</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="search-for-type.html">Type of property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Results</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Find an energy assessor
+      </h1>
+
+<p>The following assessors are registered near {{data.postcode}}:</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption"></caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">Accredition</th>
+      <th class="govuk-table__header" scope="col">Name</th>
+      <th class="govuk-table__header" scope="col">Status</th>
+      <th class="govuk-table__header" scope="col">Type</th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    {% for item in data.assessor %}
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">{{item.accredition}}</th>
+          <td class="govuk-table__cell">{{item.name}}</td>
+          <td class="govuk-table__cell">{{item.status}}</td>
+          <td class="govuk-table__cell">{{item.type}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ 
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related Content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="../find-a-report/index.html">
+                Find an Energy Performance Certificate
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Opt out of the register
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}
