@@ -1,0 +1,79 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="index.html">Opt In/Out</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="choices.html">Choice</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Id Property</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Identify the property
+      </h1>
+
+      {{ govukInput({
+        label: {
+          text: "Reference Number"
+        },
+        id: "referenceNo",
+        name: "referenceNo"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Address"
+        },
+        id: "address",
+        name: "address"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        id: "postcode",
+        name: "postcode"
+      }) }}
+
+
+      {{ govukButton({
+        text: "Find the Property",
+        href:"confirm-property.html"
+      }) }}
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+    </div>
+  </div>
+{% endblock %}

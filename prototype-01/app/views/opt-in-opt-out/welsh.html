@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Retrieve EPC</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Dod o hyd Tystysgrif Perfformiad Ynni
+      </h1>
+
+      <p>Ddefnyddio'r gwasanaeth hwn i:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Adfer EPC (Tystysgrif Perfformiad Ynni) gan ddefnyddio'r cyfeiriad priodweddau.</li>
+        <li>Adfer EPC ddefnyddio'r 24-digid Cyfeirnod Adroddiad argraffu ar yr adroddiad neu a ddarperir gan yr Asesydd Ynni a'i cynhyrchodd.</li>
+      </ul>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Rhybudd</span>
+          Os bydd y perchennog a / neu ddeiliad yr eiddo wedi dewis gwaredu eiddo o chwiliadau cyffredinol, gall y wybodaeth eiddo yn unig ar gael drwy ddefnyddio'r rhif cyfeirnod ar y dystysgrif.
+        </strong>
+      </div>
+
+      <a href="search.html" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Dechreuwch nawr</a>
+
+      <h2 class="govuk-heading-m">Cyn i chi ddechrau</h2>
+
+      <p>Mae'r canllaw hwn yn esbonio'r <a href="https://www.gov.uk/government/publications/guide-to-the-general-data-protection-regulation">Rheoliad Diogelu Data Cyffredinol (GDPR)</a> i helpu sefydliadau gydymffurfio â'i gofynion.</p>
+
+      <p>Mae'r gwasanaeth ar-lein hefyd ar gael yn <a href="index.html">Saesneg (English)</a>.</p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Gweler Hefyd
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="../find-an-energy-assessor">
+                Dod o hyd i Asesydd
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Eithrio o'r gofrestr
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}

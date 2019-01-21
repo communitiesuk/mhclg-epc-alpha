@@ -1,0 +1,89 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="index.html">Opt In/Out</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="choices.html">Choice</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="id-property.html">Id Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="confirm-property.html">Confirm Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="relationship.html">Relationship</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Personal Details</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Enter your details
+      </h1>
+
+      {{ govukInput({
+        label: {
+          text: "First Name"
+        },
+        id: "first-name",
+        name: "first-name"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Surname"
+        },
+        id: "surname",
+        name: "surname"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address"
+        },
+        id: "email",
+        name: "email"
+      }) }}
+
+
+      {{ govukButton({
+        text: "Continue",
+        href:"confirm-address.html"
+      }) }}
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+{% endblock %}
