@@ -217,16 +217,17 @@ router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
   });
 });
 
-router.get('/opt-in-opt-out/correct-property', function(req, res) {
+router.get('/opt-in-opt-out/confirm-property', function(req, res) {
   // dummy property data
   var randomNo =Math.floor(Math.random()*100);
   var property = {
     address: randomNo + " Deckow Gardens Suite 23",
     issueDate: "21 September 2017",
-    assessmentDate: "21 August 2017"
+    assessmentDate: "21 August 2017",
+    referenceNo:"ABX/213528"
   };
 
-  res.render('opt-in-opt-out/correct-property', {
+  res.render('opt-in-opt-out/confirm-property', {
     data: property
   });
 });
