@@ -40,6 +40,7 @@
       <p>Find energy performance information for your home.</p>
       <p>Enter a postcode, street name, or certificate reference number.</p>
 
+      <form action="results" method="post" class="form">
 
       {{ govukInput({
         label: {
@@ -53,9 +54,10 @@
       }) }}
 
       {{ govukButton({
-        text: "Find an Address",
-        href:"results.html"
+        text: "Find an Address"
       }) }}
+
+      </form>
 
 
     </div>
