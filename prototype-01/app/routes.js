@@ -78,7 +78,7 @@ router.get('/service-start-example', function(req, res, next) {
 });
 
 
-router.get('/find-an-energy-assessor', function(req, res, next) {
+router.get('/find-an-assessor/index.html', function(req, res, next) {
   var contentType='service-start'
   var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
@@ -175,8 +175,11 @@ router.get('/find-a-report/certificate', function(req, res) {
 
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
+  var pcode = req.session.data["address-postcode"];
+
+  console.log(req.app.locals.data);
   var results = {
-    postcode: "CR2 8XH",
+    postcode: pcode,
     assessor:[
         {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
         {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
