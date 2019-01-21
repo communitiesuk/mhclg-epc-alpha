@@ -39,17 +39,6 @@ router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next
 });
 
 
-router.get('/find-a-report/results', function(req, res) {
-	console.log('=============')
-	console.log(req.app.locals.data)
-	//res.send({ content : JSON.parse(req.app.locals.data) });
-	  res.render('find-a-report/results', {
-    data: req.app.locals.data,
-    count:100
-  });
-});
-
-
 router.get('/mock-api/address-grade', function(req, res, next) {
   var contentType='mock-rest-api'
   var contentId='20e71420-5c9d-4a8e-b9d6-093a0d772dab'
@@ -145,6 +134,60 @@ router.get('/error', function(req, res, next) {
 
   	res.render('error', { content : {error: {message: "Internal server error"}}});
   }
+});
+
+
+router.get('/find-a-report/results', function(req, res) {
+    res.render('find-a-report/results', {
+    data: req.app.locals.data
+  });
+});
+
+
+router.get('/find-a-report/certificate', function(req, res) {
+  // dummy property data
+  var randomNo =Math.floor(Math.random()*100);
+  var property = {
+    address: randomNo + " Bloomesbury Road",
+    date: "21 August 2017",
+    propertyType: "End terrace house",
+    floorArea:"199",
+    assessmentType:"RdSAP",
+    currentRating:"D",
+    potentialRating:"C",
+    costs:[
+      {energyType: "Lighting", currentCost:"£ 222", futureCost: "£ 243"},
+      {energyType: "Heating", currentCost:"£ 3,255", futureCost: "£ 1,925"},
+      {energyType: "Water", currentCost:"£ 387", futureCost: "£ 219"}
+    ],
+    history:[
+      {date:"2015",  event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+      {date:"2006-2015",  event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+      {date:"2006",  event:"First certificate issued", rating:"", assessmentType:""}
+    ]
+  };
+
+  res.render('find-a-report/certificate', {
+    data: property
+  });
+});
+
+
+router.get('/find-an-assessor/results', function(req, res) {
+  // dummy assessor data
+  var results = {
+    postcode: "CR2 8XH",
+    assessor:[
+        {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
+        {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
+        {accredition:"ABX/34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
+        {accredition:"ABC/47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
+    ]
+  };
+
+  res.render('find-an-assessor/results', {
+    data: results
+  });
 });
 
 module.exports = router
