@@ -31,8 +31,8 @@
       <h1 class="govuk-heading-xl">
         {{ content.data.Title.en }}
       </h1>
-      {% markdown %}{{ content.data.Introduction.en }}{% endmarkdown %}
-      {% markdown %}{{ content.data.Body.en }}{% endmarkdown %}
+      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
+      {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
     </div>
     <div class="govuk-grid-column-one-third">
 

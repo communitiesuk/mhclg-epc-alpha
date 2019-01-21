@@ -30,7 +30,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">{{ content.data.ServiceName.en }}</h1>
 
-      {% markdown %}{{ content.data.Introduction.en }}{% endmarkdown %}
+      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
 
       {{ govukButton({
         text: "Start now",
@@ -40,7 +40,7 @@
 
       <h2 class="govuk-heading-m">Before you start</h2>
 
-      {% markdown %}{{ content.data.BeforeYouStart.en }}{% endmarkdown %}
+      {% markdown %}{{ content.data.BeforeYouStart.en|safe }}{% endmarkdown %}
 
      
     </div>
