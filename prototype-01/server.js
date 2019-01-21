@@ -123,6 +123,13 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
   watch: true
 })
 
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  headerIds: false
+});
+
 // Register marked extension
 markdown.register(nunjucksAppEnv, marked);
 
