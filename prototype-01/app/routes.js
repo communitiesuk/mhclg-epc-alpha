@@ -172,4 +172,22 @@ router.get('/find-a-report/certificate', function(req, res) {
   });
 });
 
+
+router.get('/find-an-assessor/results', function(req, res) {
+  // dummy assessor data
+  var results = {
+    postcode: "CR2 8XH",
+    assessor:[
+        {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
+        {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
+        {accredition:"ABX/34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
+        {accredition:"ABC/47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
+    ]
+  };
+
+  res.render('find-an-assessor/results', {
+    data: results
+  });
+});
+
 module.exports = router
