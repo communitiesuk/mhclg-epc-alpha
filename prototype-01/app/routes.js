@@ -78,7 +78,7 @@ router.get('/service-start-example', function(req, res, next) {
 });
 
 
-router.get('/find-an-assessor/index.html', function(req, res, next) {
+router.get('/find-an-assessor', function(req, res, next) {
   var contentType='service-start'
   var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
