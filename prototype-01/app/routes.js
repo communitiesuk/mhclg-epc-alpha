@@ -207,7 +207,7 @@ router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
       if (!error && response.statusCode == 200) {
         // console.log('body:', body);
         // res.send({ content : JSON.parse(body) });
-        res.render('article', { content : JSON.parse(body) });
+        res.render('opt-in-opt-out/terms', { content : JSON.parse(body) });
       } else {
         // console.log('error', error, response && response.statusCode);
         // res.send('error', error, response && response.statusCode);
@@ -216,5 +216,20 @@ router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
       }
   });
 });
+
+router.get('/opt-in-opt-out/correct-property', function(req, res) {
+  // dummy property data
+  var randomNo =Math.floor(Math.random()*100);
+  var property = {
+    address: randomNo + " Deckow Gardens Suite 23",
+    issueDate: "21 September 2017",
+    assessmentDate: "21 August 2017"
+  };
+
+  res.render('opt-in-opt-out/correct-property', {
+    data: property
+  });
+});
+
 
 module.exports = router
