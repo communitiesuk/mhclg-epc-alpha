@@ -399,7 +399,6 @@ utils.findAvailablePort(app, function (port) {
   Load all the project data from JSON.
 */
 var data = JSON.parse(fs.readFileSync(__dirname + '/app/data/addresses.json').toString());
-console.log(data);
 app.locals.data = data.addresses;
 
 

@@ -1,0 +1,13 @@
+<li class='prototype-summary-item prototype-summary-item
+  {{- if eq .Params.priority "now" }}--inprogress{{ end }}
+  {{- if eq .Params.priority "next" }}--later{{ end }}'>
+  <h2 class="govuk-heading-s prototype-heading">
+    {{.Title}}
+  </h2>
+  <p class="govuk-body">Hypothesis: {{ .Params.hypothesis }}</p>
+
+  <p> <a href="{{ .Params.absoluteUrl }}" target="_blank">heroku:  {{.Title}} </a>
+  (Opens in a new window)</p>
+
+  <p>Last updated: {{ dateFormat "2 January, 2006" .Lastmod }}</p>
+</li>

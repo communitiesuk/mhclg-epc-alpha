@@ -1,0 +1,7 @@
+<ul id="proposition-links">
+
+  {{ range .Site.Params.propositionlinks }}
+  {{ $newurl :=  .url | relURL}}
+    <li><a href="{{ $newurl }}"> {{ .name }} </a></li>
+  {{ end }}
+</ul>
