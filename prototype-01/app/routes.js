@@ -139,7 +139,7 @@ router.get('/error', function(req, res, next) {
 
 router.get('/find-a-report/results', function(req, res) {
     res.render('find-a-report/results', {
-    data: req.app.locals.data
+    addresses: req.app.locals.data
   });
 });
 
