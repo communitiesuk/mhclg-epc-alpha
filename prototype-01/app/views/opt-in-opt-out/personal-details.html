@@ -1,0 +1,100 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/opt-in-opt-out">Opt In/Out</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="choices.html">Choice</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="id-property.html">Id Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="confirm-property.html">Confirm Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="relationship.html">Relationship</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Personal Details</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="confirm-address" method="post" class="form">
+        {%  set msg = "Enter your details as a " +  data['opt-in-relationship']  %}
+
+        {% call govukFieldset({
+          legend: {
+            text: msg,
+            classes: "govuk-fieldset__legend--xl",
+            isPageHeading: true
+          }
+        }) %}
+
+        {{ govukInput({
+          label: {
+            text: "First Name"
+          },
+          value: data['opt-out-first-name'],
+          id: "opt-out-first-name",
+          name: "opt-out-first-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Surname"
+          },
+          value: data['opt-out-surname'],
+          id: "opt-out-surname",
+          name: "opt-out-surname"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          value: data['opt-out-email'],
+          id: "opt-out-email",
+          name: "opt-out-email"
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        {% endcall %}
+      </form>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+{% endblock %}

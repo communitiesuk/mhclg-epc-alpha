@@ -1,6 +1,5 @@
 {% from "input/macro.njk" import govukInput %}
 {% from "button/macro.njk" import govukButton %}
-{% from "radios/macro.njk" import govukRadios %}
 
 {% extends "layout.html" %}
 
@@ -27,7 +26,7 @@
         <a class="govuk-breadcrumbs__link" href="search-for-what.html">Type of search</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Type of property</a>
+        <a class="govuk-breadcrumbs__link">Check accreditation</a>
       </li>
     </ol>
   </div>
@@ -37,40 +36,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-xl">
+        Check Accreditation
+      </h1>
+      <p>Use the assessor's Accreditation reference to check their details.</p>
 
-      <form action="search" method="post" class="form">
+      <form action="results" method="post" class="form">
+        {{ govukInput({
+          label: {
+            text: "Search for an Energy Assessor"
+          },
+          id: "assessor-reference",
+          name: "assessor-reference",
+          value: "ABX/34225435"
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "changed-name",
-          name: "property-type",
-          fieldset: {
-            legend: {
-              text: "What property will be assessed?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          hint: {
-            text: "There are different assessments for domestic and commercial properties."
-          },
-          items: [
-            {
-              value: "Domestic",
-              text: "Domestic"
-            },
-            {
-              value: "Commercial",
-              text: "Commercial"
-            }
-          ]
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Check an Assessor"
         }) }}
       </form>
-
 
     </div>
 

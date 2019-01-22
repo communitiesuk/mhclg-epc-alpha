@@ -15,6 +15,29 @@ const moment = require('moment')
 //   });
 // });
 
+router.get('/', function(req, res, next) {
+  var contentType='article'
+  var contentId='ba19e506-b5d2-41e7-ab28-17eae0d1d79c'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log('body:', body);
+        // res.send({ content : JSON.parse(body) });
+        res.render('article', { content : JSON.parse(body) });
+      } else {
+        // console.log('error', error, response && response.statusCode);
+        // res.send('error', error, response && response.statusCode);
+        // return res.sendStatus(500);
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next) {
   request(process.env.EPC_API_URI+'?postcode='+req.params.postcode+'&size=150', {
   method: "GET",
@@ -78,7 +101,7 @@ router.get('/service-start-example', function(req, res, next) {
 });
 
 
-router.get('/find-an-energy-assessor', function(req, res, next) {
+router.get('/find-an-assessor', function(req, res, next) {
   var contentType='service-start'
   var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
@@ -137,9 +160,32 @@ router.get('/error', function(req, res, next) {
 });
 
 
+
+//Find certificate
+
+router.get('/find-a-report', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='434d4cc5-41fe-4b5c-b059-41c350f99d21'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/find-a-report/results', function(req, res) {
     res.render('find-a-report/results', {
-    data: req.app.locals.data
+    addresses: req.app.locals.data
   });
 });
 
@@ -176,7 +222,6 @@ router.get('/find-a-report/certificate', function(req, res) {
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var results = {
-    postcode: "CR2 8XH",
     assessor:[
         {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
         {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
@@ -186,8 +231,98 @@ router.get('/find-an-assessor/results', function(req, res) {
   };
 
   res.render('find-an-assessor/results', {
-    data: results
+    addresses: results
   });
 });
+
+// Branching
+router.post('/find-an-assessor/assessor-branch', function (req, res) {
+  // Get the answer from session data
+  // The name between the quotes is the same as the 'name' attribute on the input elements
+  // However in JavaScript we can't use hyphens in variable names
+
+  let assessorSearch = req.session.data['assessor-search-type']
+
+  if (assessorSearch === 'check-assessor') {
+    res.redirect('/find-an-assessor/check')
+  } else {
+    res.redirect('/find-an-assessor/search-for-type')
+  }
+})
+
+//Optout
+
+router.get('/opt-in-opt-out', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='86f589f6-5f51-4976-9104-b2d1801136ec'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
+router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
+  var contentType='article'
+  var contentId='08010463-2f21-49e4-877e-b8b461b0eafe'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log('body:', body);
+        // res.send({ content : JSON.parse(body) });
+        res.render('opt-in-opt-out/terms', { content : JSON.parse(body) });
+      } else {
+        // console.log('error', error, response && response.statusCode);
+        // res.send('error', error, response && response.statusCode);
+        // return res.sendStatus(500);
+        res.redirect('/error');
+      }
+  });
+});
+
+
+router.get('/opt-in-opt-out/confirm-property', function(req, res) {
+  // dummy property data
+  var property = {
+    address: "94 Deckow Gardens Suite 23",
+    issueDate: "21 September 2017",
+    assessmentDate: "21 August 2017",
+    referenceNo: "ABX/213528"
+  };
+
+  res.render('opt-in-opt-out/confirm-property', {
+    property: property
+  });
+});
+
+
+router.get('/opt-in-opt-out/application-complete', function(req, res) {
+  // dummy property data
+  var random1 = Math.floor(Math.random()*10);
+  var random2 = Math.floor(Math.random()*10);
+  var random3 = Math.floor(Math.random()*10);
+  var random4 = Math.floor(Math.random()*10);
+
+  var randomNo = "EPC" + random1 + random1 + random3 + random4 +"X";
+
+  res.render('opt-in-opt-out/application-complete', {
+    applicationReference: randomNo
+  });
+});
+
 
 module.exports = router
