@@ -137,6 +137,29 @@ router.get('/error', function(req, res, next) {
 });
 
 
+
+//Find certificate
+
+router.get('/find-a-report', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='434d4cc5-41fe-4b5c-b059-41c350f99d21'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/find-a-report/results', function(req, res) {
     res.render('find-a-report/results', {
     addresses: req.app.locals.data
