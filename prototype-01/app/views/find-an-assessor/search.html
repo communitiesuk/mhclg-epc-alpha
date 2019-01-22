@@ -42,27 +42,25 @@
       <h1 class="govuk-heading-xl">
         Find an Assessor
       </h1>
-      <p>Searching here for an energy assessor for SELECTED TYPE GOES HERE.</p>
-      <p>The results can be filtered by ...</p>
+      <p>Searching here for an energy assessor for a {{ data['property-type']}} property.</p>
       <p>Enter a postcode.</p>
 
+      <form action="results" method="post" class="form">
+        {{ govukInput({
+          label: {
+            text: "Search for an Energy Assessor"
+          },
+          classes: "govuk-input--width-10",
+          id: "address-postcode",
+          name: "address-postcode",
+          value: "CR2 6XH"
 
-      {{ govukInput({
-        label: {
-          text: "Search for an Energy Assessor"
-        },
-        classes: "govuk-input--width-10",
-        id: "address-postcode",
-        name: "address-postcode",
-        value: "CR2 6XH"
+        }) }}
 
-      }) }}
-
-      {{ govukButton({
-        text: "Find an Assessor",
-        href:"results.html"
-      }) }}
-
+        {{ govukButton({
+          text: "Find an Assessor"
+        }) }}
+      </form>
 
     </div>
 
