@@ -45,40 +45,48 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        Enter your details
-      </h1>
+      <form action="confirm-address" method="post" class="form">
+        {%  set msg = "Enter your details as a " +  data['opt-in-relationship']  %}
 
-      {{ govukInput({
-        label: {
-          text: "First Name"
-        },
-        id: "first-name",
-        name: "first-name"
-      }) }}
+        {% call govukFieldset({
+          legend: {
+            text: msg,
+            classes: "govuk-fieldset__legend--xl",
+            isPageHeading: true
+          }
+        }) %}
 
-      {{ govukInput({
-        label: {
-          text: "Surname"
-        },
-        id: "surname",
-        name: "surname"
-      }) }}
+        {{ govukInput({
+          label: {
+            text: "First Name"
+          },
+          id: "opt-out-first-name",
+          name: "opt-out-first-name"
+        }) }}
 
-      {{ govukInput({
-        label: {
-          text: "Email address"
-        },
-        id: "email",
-        name: "email"
-      }) }}
+        {{ govukInput({
+          label: {
+            text: "Surname"
+          },
+          id: "opt-out-surname",
+          name: "opt-out-surname"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          id: "opt-out-email",
+          name: "opt-out-email"
+        }) }}
 
 
-      {{ govukButton({
-        text: "Continue",
-        href:"confirm-address.html"
-      }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
+        {% endcall %}
+      </form>
 
     </div>
 

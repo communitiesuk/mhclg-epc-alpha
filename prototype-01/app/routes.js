@@ -177,7 +177,6 @@ router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var pcode = req.session.data["address-postcode"];
 
-  console.log(req.app.locals.data);
   var results = {
     postcode: pcode,
     assessor:[
@@ -228,7 +227,21 @@ router.get('/opt-in-opt-out/confirm-property', function(req, res) {
   };
 
   res.render('opt-in-opt-out/confirm-property', {
-    data: property
+    property: property
+  });
+});
+
+router.get('/opt-in-opt-out/application-complete', function(req, res) {
+  // dummy property data
+  var random1 =Math.floor(Math.random()*10);
+  var random2 =Math.floor(Math.random()*10);
+  var random3 =Math.floor(Math.random()*10);
+  var random4 =Math.floor(Math.random()*10);
+  var randomNo = "EPC" + random1 + random1 + random3 + random4 +"X";
+
+
+  res.render('opt-in-opt-out/application-complete', {
+    applicationReference: randomNo
   });
 });
 
