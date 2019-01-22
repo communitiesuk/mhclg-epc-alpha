@@ -51,6 +51,7 @@
             label: {
               text: "Reference Number"
             },
+            value: data['opt-out-referenceNo'],
             id: "referenceNo",
             name: "opt-out-referenceNo"
           }) }}
@@ -59,14 +60,16 @@
             label: {
               text: "Address"
             },
+            value: data['opt-out-street-address'],
             id: "address",
-            name: "opt-out-address"
+            name: "opt-out-street-address"
           }) }}
 
           {{ govukInput({
             label: {
               text: "Postcode"
             },
+            value: data['opt-out-postcode'],
             id: "postcode",
             name: "opt-out-postcode"
           }) }}
