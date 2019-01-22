@@ -23,7 +23,10 @@
         <a class="govuk-breadcrumbs__link" href="/find-an-assessor">Find an assessor</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Type of search</a>
+        <a class="govuk-breadcrumbs__link" href="search-for-what.html">Type of search</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Check accreditation</a>
       </li>
     </ol>
   </div>
@@ -33,37 +36,24 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-xl">
+        Check Accreditation
+      </h1>
+      <p>Use the assessor's Accreditation reference to check their details.</p>
 
-      <form action="assessor-branch" method="post" class="form">
+      <form action="results" method="post" class="form">
+        {{ govukInput({
+          label: {
+            text: "Search for an Energy Assessor"
+          },
+          id: "assessor-reference",
+          name: "assessor-reference",
+          value: "ABX/34225435"
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "assessor-search-type",
-          name: "assessor-search-type",
-          fieldset: {
-            legend: {
-              text: "What would you like to do?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          hint: {
-            text: "You can start by searching here for a list of people accredited to carry out energy assessments, or check that a specific person has been accredited."
-          },
-          items: [
-            {
-              value: "find-assessor",
-              text: "Find a local assessor"
-            },
-            {
-              value: "check-assessor",
-              text: "Check the accreditation of an assessor"
-            }
-          ]
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Check an Assessor"
         }) }}
       </form>
 

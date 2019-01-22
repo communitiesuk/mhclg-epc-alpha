@@ -235,6 +235,20 @@ router.get('/find-an-assessor/results', function(req, res) {
   });
 });
 
+// Branching
+router.post('/find-an-assessor/assessor-branch', function (req, res) {
+  // Get the answer from session data
+  // The name between the quotes is the same as the 'name' attribute on the input elements
+  // However in JavaScript we can't use hyphens in variable names
+
+  let assessorSearch = req.session.data['assessor-search-type']
+
+  if (assessorSearch === 'check-assessor') {
+    res.redirect('/find-an-assessor/check')
+  } else {
+    res.redirect('/find-an-assessor/search-for-type')
+  }
+})
 
 //Optout
 
