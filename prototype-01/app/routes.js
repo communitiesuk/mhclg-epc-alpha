@@ -189,7 +189,7 @@ router.get('/find-an-assessor/results', function(req, res) {
   };
 
   res.render('find-an-assessor/results', {
-    data: results
+    addresses: results
   });
 });
 

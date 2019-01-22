@@ -1,5 +1,6 @@
 {% from "input/macro.njk" import govukInput %}
 {% from "button/macro.njk" import govukButton %}
+{% from "radios/macro.njk" import govukRadios %}
 
 {% extends "layout.html" %}
 
@@ -36,39 +37,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        What property will be assessed?
-      </h1>
-      <p>There are different assessments for domestic and commercial properties.</p>
 
+      <form action="search" method="post" class="form">
 
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "changed-name",
+          name: "property-type",
+          fieldset: {
+            legend: {
+              text: "What property will be assessed?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "There are different assessments for domestic and commercial properties."
+          },
+          items: [
+            {
+              value: "Domestic",
+              text: "Domestic"
+            },
+            {
+              value: "Commercial",
+              text: "Commercial"
+            }
+          ]
+        }) }}
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h3 class="govuk-fieldset__heading">
-              What property will be assessed?
-            </h3>
-          </legend>
-          <div class="govuk-radios govuk-radios--inline">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="changed-name-1" name="changed-name" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="changed-name-1">
-                Domestic
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="changed-name-2">
-                Commercial
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-
-      <a href="search.html" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Continue</a>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
 
 
     </div>
