@@ -81,6 +81,7 @@ router.get('/mock-api/address-grade', function(req, res, next) {
   });
 });
 
+
 router.get('/service-start-example', function(req, res, next) {
   var contentType='service-start'
   var contentId='d7fcda1d-d6d4-43d3-8cf4-b2af1ddce89f'
@@ -182,12 +183,72 @@ router.get('/find-a-report', function(req, res, next) {
   });
 });
 
-
+//https://mhclg-epc-alpha-prototype-01.herokuapp.com/epc-api-proxy/domestic/postcode/sy30es
+/*
 router.get('/find-a-report/results', function(req, res) {
     res.render('find-a-report/results', {
     addresses: req.app.locals.data
   });
 });
+*/
+
+router.get('/find-a-report/results', function(req, res, next) {
+console.log("----- find report ------")
+console.log(req.session.data['address-postcode'])
+
+  if(req.session.data['address-postcode']){
+    var str = req.session.data['address-postcode'];
+    var cleaned = str.split(' ').join('');
+    console.log(str, cleaned);
+
+    //console.log('got postcode |' + cleaned + '|');
+    console.log(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150');
+
+    request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
+    //request(process.env.EPC_API_URI+'?postcode=CR26HX&size=150', {
+      method: "GET",
+      headers: {
+          'Authorization': process.env.EPC_API_KEY,
+          'Accept': 'application/json'
+        }
+      }, function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            if(body) {
+              var result = JSON.parse(body);
+
+              // loop through results and build a simple array
+              var arr = [];
+              for (var i=0;i<result.rows.length;i++){
+                arr[i] = {
+                      "type": result.rows[i]['property-type'],
+                      "address": result.rows[i].address +', '+ result.rows[i].postcode,
+                      "category": result.rows[i]['current-energy-rating']
+                  }
+              }
+              
+              res.render('find-a-report/results', {
+                addresses: arr
+              });
+              
+            } else {
+              console.log('no data');
+              res.render('find-a-report/results', {
+                addresses: []
+              });
+            }
+          } else {
+            console.log(error);
+            res.redirect('/error');
+          }
+      });
+    
+  }else{
+    res.send('no data');
+
+  }
+});
+
+
 
 
 router.get('/find-a-report/certificate', function(req, res) {
