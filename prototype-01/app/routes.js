@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router() 
 const request = require('request')
 const moment = require('moment')
+const _ = require('underscore');
 
+var dataset;
 // request.headers.authorization = process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
 
 // router.get('/test', function(req, res, next) {
@@ -193,19 +195,13 @@ router.get('/find-a-report/results', function(req, res) {
 */
 
 router.get('/find-a-report/results', function(req, res, next) {
-console.log("----- find report ------")
-console.log(req.session.data['address-postcode'])
 
   if(req.session.data['address-postcode']){
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
-    console.log(str, cleaned);
-
-    //console.log('got postcode |' + cleaned + '|');
-    console.log(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150');
+    //console.log(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150');
 
     request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
-    //request(process.env.EPC_API_URI+'?postcode=CR26HX&size=150', {
       method: "GET",
       headers: {
           'Authorization': process.env.EPC_API_KEY,
@@ -214,15 +210,16 @@ console.log(req.session.data['address-postcode'])
       }, function (error, response, body) {
           if (!error && response.statusCode == 200) {
             if(body) {
-              var result = JSON.parse(body);
+              dataset = JSON.parse(body);
 
               // loop through results and build a simple array
               var arr = [];
-              for (var i=0;i<result.rows.length;i++){
+              for (var i=0;i<dataset.rows.length;i++){
                 arr[i] = {
-                      "type": result.rows[i]['property-type'],
-                      "address": result.rows[i].address +', '+ result.rows[i].postcode,
-                      "category": result.rows[i]['current-energy-rating']
+                      "reference": dataset.rows[i]['building-reference-number'],
+                      "type": dataset.rows[i]['property-type'],
+                      "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
+                      "category": dataset.rows[i]['current-energy-rating']
                   }
               }
               
@@ -234,6 +231,7 @@ console.log(req.session.data['address-postcode'])
               console.log('no data');
               res.render('find-a-report/results', {
                 addresses: []
+                //addresses: req.app.locals.data //static dummy data
               });
             }
           } else {
@@ -250,18 +248,24 @@ console.log(req.session.data['address-postcode'])
 
 
 
+router.get('/find-a-report/certificate/:reference', function(req, res) {
+  var idx = 0;
+  var searchStr = req.params.reference;
+  var filtered = _.filter(dataset.rows, function(item) {
+    return (searchStr === item['building-reference-number']);
+  });
+  //assume a filtered array with only a single property result
+  //console.log(filtered);
+  var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
 
-router.get('/find-a-report/certificate', function(req, res) {
-  // dummy property data
-  var randomNo =Math.floor(Math.random()*100);
   var property = {
-    address: randomNo + " Bloomesbury Road",
-    date: "21 August 2017",
-    propertyType: "End terrace house",
-    floorArea:"199",
-    assessmentType:"RdSAP",
-    currentRating:"D",
-    potentialRating:"C",
+    address: filtered[idx]['address'],
+    date: displayDate,
+    propertyType: filtered[idx]['property-type'],
+    floorArea: filtered[idx]['total-floor-area'],
+    assessmentType: "RdSAP (Dummy date)",
+    currentRating: filtered[idx]['current-energy-rating'],
+    potentialRating: "C (Dummy date)",
     costs:[
       {energyType: "Lighting", currentCost:"£ 222", futureCost: "£ 243"},
       {energyType: "Heating", currentCost:"£ 3,255", futureCost: "£ 1,925"},
