@@ -15,6 +15,29 @@ const moment = require('moment')
 //   });
 // });
 
+router.get('/', function(req, res, next) {
+  var contentType='article'
+  var contentId='ba19e506-b5d2-41e7-ab28-17eae0d1d79c'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log('body:', body);
+        // res.send({ content : JSON.parse(body) });
+        res.render('article', { content : JSON.parse(body) });
+      } else {
+        // console.log('error', error, response && response.statusCode);
+        // res.send('error', error, response && response.statusCode);
+        // return res.sendStatus(500);
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/epc-api-proxy/domestic/postcode/:postcode', function(req, res, next) {
   request(process.env.EPC_API_URI+'?postcode='+req.params.postcode+'&size=150', {
   method: "GET",
@@ -214,6 +237,27 @@ router.get('/find-an-assessor/results', function(req, res) {
 
 
 //Optout
+
+router.get('/opt-in-opt-out', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='86f589f6-5f51-4976-9104-b2d1801136ec'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
 router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
   var contentType='article'
   var contentId='08010463-2f21-49e4-877e-b8b461b0eafe'
