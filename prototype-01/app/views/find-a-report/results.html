@@ -62,7 +62,7 @@
     {% for item in addresses %}
         <tr class="govuk-table__row">
           <th class="govuk-table__header" scope="row">{{item.type}}</th>
-          <td class="govuk-table__cell"><a href="certificate.html">{{item.address}}</a></td>
+          <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.address}}</a></td>
           <td class="govuk-table__cell">{{item.category}}</td>
         </tr>
     {% endfor %}
