@@ -20,7 +20,7 @@
         <a class="govuk-breadcrumbs__link" href="/">Home</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="index.html">Retrieve EPC</a>
+        <a class="govuk-breadcrumbs__link" href="/find-a-report">Retrieve EPC</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
         <a class="govuk-breadcrumbs__link">EPC search</a>
@@ -40,6 +40,7 @@
       <p>Find energy performance information for your home.</p>
       <p>Enter a postcode, street name, or certificate reference number.</p>
 
+      <form action="results" method="post" class="form">
 
       {{ govukInput({
         label: {
@@ -53,40 +54,13 @@
       }) }}
 
       {{ govukButton({
-        text: "Find an Address",
-        href:"results.html"
+        text: "Find an Address"
       }) }}
 
+      </form>
+
 
     </div>
 
-    <div class="govuk-grid-column-one-third">
-
-      <aside class="app-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Related Content
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            <li>
-              <a href="../find-an-energy-assessor">
-                Find an Assessor
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Opt out of the register
-              </a>
-            </li>
-            <!-- <li>
-              <a href="#" class="govuk-!-font-weight-bold">
-                More <span class="govuk-visually-hidden">in Subsection</span>
-              </a>
-            </li> -->
-          </ul>
-        </nav>
-      </aside>
-
-    </div>
   </div>
 {% endblock %}

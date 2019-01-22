@@ -1,6 +1,5 @@
 {% from "input/macro.njk" import govukInput %}
 {% from "button/macro.njk" import govukButton %}
-{% from "radios/macro.njk" import govukRadios %}
 
 {% extends "layout.html" %}
 
@@ -21,13 +20,19 @@
         <a class="govuk-breadcrumbs__link" href="/">Home</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/find-an-assessor">Find an assessor</a>
+        <a class="govuk-breadcrumbs__link" href="/opt-in-opt-out">Opt In/Out</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="search-for-what.html">Type of search</a>
+        <a class="govuk-breadcrumbs__link" href="choices.html">Choice</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Type of property</a>
+        <a class="govuk-breadcrumbs__link" href="id-property.html">Id Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="confirm-property.html">Confirm Property</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Relationship</a>
       </li>
     </ol>
   </div>
@@ -37,31 +42,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-      <form action="search" method="post" class="form">
+      <form action="personal-details" method="post" class="form">
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "changed-name",
-          name: "property-type",
+          idPrefix: "opt-in-relationship",
+          name: "opt-in-relationship",
           fieldset: {
             legend: {
-              text: "What property will be assessed?",
+              text: "What is your relationship to the property?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
           hint: {
-            text: "There are different assessments for domestic and commercial properties."
+            text: "You can opt out of the register, or opt back in if you change your mind."
           },
           items: [
             {
-              value: "Domestic",
-              text: "Domestic"
+              value: "Owner",
+              text: "Owner"
             },
             {
-              value: "Commercial",
-              text: "Commercial"
+              value: "Tenant",
+              text: "Tenant"
             }
           ]
         }) }}
@@ -71,8 +75,9 @@
         }) }}
       </form>
 
-
     </div>
 
+    <div class="govuk-grid-column-one-third">
+    </div>
   </div>
 {% endblock %}

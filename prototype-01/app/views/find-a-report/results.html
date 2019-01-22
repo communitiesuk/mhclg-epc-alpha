@@ -20,7 +20,7 @@
         <a class="govuk-breadcrumbs__link" href="/">Home</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="index.html">Retrieve EPC</a>
+        <a class="govuk-breadcrumbs__link" href="/find-a-report">Retrieve EPC</a>
       </li>
       <li class="govuk-breadcrumbs__list-item">
         <a class="govuk-breadcrumbs__link" href="search.html">EPC search</a>
@@ -33,12 +33,14 @@
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Retrieve an Energy Performance Certificate using the postcode
+        Energy Performance Certificates for {{ data['address-postcode'] }}
       </h1>
+      
 
 <p>Please click on an address below to view or download a report:</p>
 
@@ -53,7 +55,7 @@
   </thead>
 
   <tbody class="govuk-table__body">
-    {% for item in data %}
+    {% for item in addresses %}
         <tr class="govuk-table__row">
           <th class="govuk-table__header" scope="row">{{item.type}}</th>
           <td class="govuk-table__cell"><a href="certificate.html">{{item.address}}</a></td>
@@ -74,12 +76,12 @@
         <nav role="navigation" aria-labelledby="subsection-title">
           <ul class="govuk-list govuk-!-font-size-16">
             <li>
-              <a href="../find-an-energy-assessor">
+              <a href="../find-an-assessor">
                 Find an Assessor
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/opt-in-opt-out">
                 Opt out of the register
               </a>
             </li>
