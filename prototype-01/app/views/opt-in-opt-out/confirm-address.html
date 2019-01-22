@@ -50,6 +50,7 @@
 
 
       <form action="confirm-details" method="post" class="form">
+        {%  set address = data['opt-out-street-address'] +", "+  data['opt-out-postcode']  %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
@@ -67,8 +68,8 @@
           },
           items: [
             {
-              value: data.address + " 94 Deckow Gardens Suite",
-              text:  data.address + " 94 Deckow Gardens Suite"
+              value: address,
+              text:  address
             },
             {
               value: "Another address",

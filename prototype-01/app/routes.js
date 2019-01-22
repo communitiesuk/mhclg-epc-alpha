@@ -198,10 +198,7 @@ router.get('/find-a-report/certificate', function(req, res) {
 
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
-  var pcode = req.session.data["address-postcode"];
-
   var results = {
-    postcode: pcode,
     assessor:[
         {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
         {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
@@ -239,14 +236,14 @@ router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
   });
 });
 
+
 router.get('/opt-in-opt-out/confirm-property', function(req, res) {
   // dummy property data
-  var randomNo =Math.floor(Math.random()*100);
   var property = {
-    address: randomNo + " Deckow Gardens Suite 23",
+    address: "94 Deckow Gardens Suite 23",
     issueDate: "21 September 2017",
     assessmentDate: "21 August 2017",
-    referenceNo:"ABX/213528"
+    referenceNo: "ABX/213528"
   };
 
   res.render('opt-in-opt-out/confirm-property', {
@@ -254,14 +251,15 @@ router.get('/opt-in-opt-out/confirm-property', function(req, res) {
   });
 });
 
+
 router.get('/opt-in-opt-out/application-complete', function(req, res) {
   // dummy property data
-  var random1 =Math.floor(Math.random()*10);
-  var random2 =Math.floor(Math.random()*10);
-  var random3 =Math.floor(Math.random()*10);
-  var random4 =Math.floor(Math.random()*10);
-  var randomNo = "EPC" + random1 + random1 + random3 + random4 +"X";
+  var random1 = Math.floor(Math.random()*10);
+  var random2 = Math.floor(Math.random()*10);
+  var random3 = Math.floor(Math.random()*10);
+  var random4 = Math.floor(Math.random()*10);
 
+  var randomNo = "EPC" + random1 + random1 + random3 + random4 +"X";
 
   res.render('opt-in-opt-out/application-complete', {
     applicationReference: randomNo
