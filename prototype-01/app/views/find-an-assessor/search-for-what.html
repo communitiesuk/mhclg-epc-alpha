@@ -33,40 +33,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        What would you like to do?
-      </h1>
-      <p>You can start by searching here for a list of people accredited to carry out energy assessments, or check that a specific person has been accredited.</p>
 
+      <form action="search-for-type" method="post" class="form">
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h3 class="govuk-fieldset__heading">
-              What would you like to do?
-            </h3>
-          </legend>
-          <div class="govuk-radios govuk-radios--inline">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="changed-name-1" name="choose_what" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="changed-name-1">
-                Find a local assessor
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="changed-name-2" name="choose_what" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="changed-name-2">
-                Check the accreditation of an assessor
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "assessor-search-type",
+          name: "assessor-search-type",
+          fieldset: {
+            legend: {
+              text: "What would you like to do?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "You can start by searching here for a list of people accredited to carry out energy assessments, or check that a specific person has been accredited."
+          },
+          items: [
+            {
+              value: "find-assessor",
+              text: "Find a local assessor"
+            },
+            {
+              value: "check-assessor",
+              text: "Check the accreditation of an assessor"
+            }
+          ]
+        }) }}
 
-
-      <a href="search-for-type.html" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Continue</a>
-
-
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
 
     </div>
 

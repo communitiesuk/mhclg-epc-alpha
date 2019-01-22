@@ -44,13 +44,12 @@
         Is this the correct property?
       </h1>
 
-
       <div class="">
-        <h2>{{ data.address }}</h2>
-        <p>Address:  {{ data.address }}</p>
-        <p>Reference Number:  {{ data.referenceNo }}</p>
-        <p>Date of assessment:  {{ data.assessmentDate }}</p>
-        <p>Date of Issue: {{ data.issueDate }}</p>
+        <h2>{{ property.address }}</h2>
+        <p>Address:  {{ data['opt-out-address'] }}, {{ data['opt-out-postcode'] }}</p>
+        <p>Reference Number:  {{ data['opt-out-referenceNo'] }}</p>
+        <p>Date of assessment:  {{ property.assessmentDate }}</p>
+        <p>Date of Issue: {{ property.issueDate }}</p>
       </div>
 
 
