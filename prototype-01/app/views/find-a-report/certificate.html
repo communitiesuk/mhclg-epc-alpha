@@ -49,7 +49,7 @@
       <p>Date of certificate:  {{ data.date }}</p>
       <p>Type:  {{ data.propertyType }}</p>
       <p>Floor area:  {{ data.floorArea }} m2</p>
-      <p>Assessment type: {{ data.assessmentType }}</p>
+      <p>Transaction type: {{ data.transactionType }}</p>
       <p>Current rating: {{ data.currentRating }}</p>
       <p>Potential rating: {{ data.potentialRating }}</p>
 
@@ -57,8 +57,78 @@
       <hr class="govuk-section-break govuk-section-break--xl ">
 
       <h2>Assessment Result</h2> 
+      
       <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
+      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
+      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
 
+
+<!-- 
+      <div class="chart">
+        <div class='bars'>
+          <div class="bar">
+            <div class="col_1"><span class="th">Energy Rating</span></div>
+            <div class="col_2"><span class="th">Current</span></div>
+            <div class="col_3"><span class="th">Potential</span></div>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+          <div class="bar">
+            <small>very energy efficient - lower running costs</small>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_a'><span class='range'>(92+)</span><span class='title'>A</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_b'><span class='range'>(81-91)</span><span class='title'>B</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_c'><span class='range'>(61-80)</span><span class='title'>C</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_d'><span class='range'>(55-60)</span><span class='title'>D</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_e'><span class='range'>(39-54)</span><span class='title'>E</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_f'><span class='range'>(21-38)</span><span class='title'>F</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_g'><span class='range'>(1-20)</span><span class='title'>G</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="pointer current rating_{{ data.currentRating|lower }}" style='{{ data.currentPositionStyle }}'>
+              <span>{{ data.currentEfficiency }}</span>
+            </div>
+            <div class="pointer potential rating_{{ data.potentialRating|lower }}" style='{{ data.potentialPositionStyle }}'>
+              <span>{{ data.potentialEfficiency }}</span>
+            </div>
+        </div>
+      </div>
+ -->
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
@@ -85,7 +155,7 @@
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
-      <h2>History of certificates for this property</h2>
+      <h2>History of certificates for this property (Dummy data)</h2>
       <table class="govuk-table">
       <!--   <caption class="govuk-table__caption">Historic records</caption> -->
         <tbody class="govuk-table__body">

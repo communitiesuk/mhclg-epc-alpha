@@ -216,7 +216,7 @@ router.get('/find-a-report/results', function(req, res, next) {
               var arr = [];
               for (var i=0;i<dataset.rows.length;i++){
                 arr[i] = {
-                      "reference": dataset.rows[i]['building-reference-number'],
+                      "reference": dataset.rows[i]['lmk-key'],
                       "type": dataset.rows[i]['property-type'],
                       "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
                       "category": dataset.rows[i]['current-energy-rating']
@@ -249,38 +249,56 @@ router.get('/find-a-report/results', function(req, res, next) {
 
 
 router.get('/find-a-report/certificate/:reference', function(req, res) {
+
   var idx = 0;
-  var searchStr = req.params.reference;
+  var lmkKey = req.params.reference;
   var filtered = _.filter(dataset.rows, function(item) {
-    return (searchStr === item['building-reference-number']);
+    return (lmkKey === item['lmk-key']);
   });
+
+
   //assume a filtered array with only a single property result
   //console.log(filtered);
   var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
+
+  // hard code style pixel offsets for now
+  // used to position the rating pointed in the chart
+  var offset = {};
+    offset['A'] = 0;
+    offset['B'] = 36;
+    offset['C'] = 72;
+    offset['D'] = 108;
+    offset['E'] = 144;
+    offset['F'] = 180;
+    offset['G'] = 216;
 
   var property = {
     address: filtered[idx]['address'],
     date: displayDate,
     propertyType: filtered[idx]['property-type'],
     floorArea: filtered[idx]['total-floor-area'],
-    assessmentType: "RdSAP (Dummy date)",
+    transactionType: filtered[idx]['transaction-type'],
     currentRating: filtered[idx]['current-energy-rating'],
-    potentialRating: "C (Dummy date)",
+    potentialRating: filtered[idx]['potential-energy-rating'],
+    currentEfficiency: filtered[idx]['current-energy-efficiency'],
+    potentialEfficiency: filtered[idx]['potential-energy-efficiency'],
+    currentPositionStyle: "top: " + offset[ filtered[idx]['current-energy-rating'] ] +"px; left:280px;",
+    potentialPositionStyle: "top: " + offset[ filtered[idx]['potential-energy-rating'] ] +"px; left:350px;",
     costs:[
       {energyType: "Lighting", currentCost:"£ "+filtered[idx]['lighting-cost-current'], futureCost: "£ "+filtered[idx]['lighting-cost-potential']},
       {energyType: "Heating", currentCost:"£ "+filtered[idx]['heating-cost-current'], futureCost: "£ "+filtered[idx]['heating-cost-potential']},
       {energyType: "Water", currentCost:"£ "+filtered[idx]['hot-water-cost-current'], futureCost: "£ "+filtered[idx]['hot-water-cost-potential']}
     ],
     history:[
-      {date:"2015",  event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
-      {date:"2006-2015",  event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
-      {date:"2006",  event:"First certificate issued", rating:"", assessmentType:""}
+      {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+      {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+      {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
     ]
   };
-
   res.render('find-a-report/certificate', {
     data: property
   });
+
 });
 
 
