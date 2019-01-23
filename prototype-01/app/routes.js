@@ -267,9 +267,9 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
     currentRating: filtered[idx]['current-energy-rating'],
     potentialRating: "C (Dummy date)",
     costs:[
-      {energyType: "Lighting", currentCost:"£ 222", futureCost: "£ 243"},
-      {energyType: "Heating", currentCost:"£ 3,255", futureCost: "£ 1,925"},
-      {energyType: "Water", currentCost:"£ 387", futureCost: "£ 219"}
+      {energyType: "Lighting", currentCost:"£ "+filtered[idx]['lighting-cost-current'], futureCost: "£ "+filtered[idx]['lighting-cost-potential']},
+      {energyType: "Heating", currentCost:"£ "+filtered[idx]['heating-cost-current'], futureCost: "£ "+filtered[idx]['heating-cost-potential']},
+      {energyType: "Water", currentCost:"£ "+filtered[idx]['hot-water-cost-current'], futureCost: "£ "+filtered[idx]['hot-water-cost-potential']}
     ],
     history:[
       {date:"2015",  event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
