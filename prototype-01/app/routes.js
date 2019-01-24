@@ -185,6 +185,27 @@ router.get('/find-a-report', function(req, res, next) {
   });
 });
 
+router.get('/find-a-report/search', function(req, res, next) {
+  var contentType='service-user-step'
+  var contentId='01950cf7-e8a9-4c03-861e-ab3ecf83e4e0'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('find-a-report/search', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
+
 //https://mhclg-epc-alpha-prototype-01.herokuapp.com/epc-api-proxy/domestic/postcode/sy30es
 /*
 router.get('/find-a-report/results', function(req, res) {

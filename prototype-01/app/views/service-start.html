@@ -28,7 +28,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{ content.data.ServiceName.en }}</h1>
+      <h1 class="govuk-heading-xl">{{ content.data.ServiceName.en }} - {{ content.data.Breadcrumbs.en[0].Text }}</h1>
 
       {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
 
