@@ -44,26 +44,42 @@
         Energy Performance Information
       </h1>
 
-      <h2>{{ data.address }}</h2>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">{{ data.address }}</caption>
 
-      <p>Date of certificate:  {{ data.date }}</p>
-      <p>Type:  {{ data.propertyType }}</p>
-      <p>Floor area:  {{ data.floorArea }} m2</p>
-      <p>Transaction type: {{ data.transactionType }}</p>
-      <p>Current rating: {{ data.currentRating }}</p>
-      <p>Potential rating: {{ data.potentialRating }}</p>
-
+        <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Date of certificate:</th>
+                <td class="govuk-table__cell">{{ data.date }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Type:</th>
+                <td class="govuk-table__cell">{{ data.propertyType | capitalize }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Floor area:</th>
+                <td class="govuk-table__cell">{{ data.floorArea }} m2</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Transaction type:</th>
+                <td class="govuk-table__cell">{{ data.transactionType | capitalize }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Current rating:</th>
+                <td class="govuk-table__cell">{{ data.currentRating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Potential rating:</th>
+                <td class="govuk-table__cell">{{ data.potentialRating }}</td>
+              </tr>
+        </tbody>
+      </table>
  
       <hr class="govuk-section-break govuk-section-break--xl ">
 
       <h2>Assessment Result</h2> 
-      
-      <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
-      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
-      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
 
 
-<!-- 
       <div class="chart">
         <div class='bars'>
           <div class="bar">
@@ -91,13 +107,13 @@
               <div class="col_3"></div>
             </div>
             <div class="bar">
-              <div class="col_1"><span class='block rating_c'><span class='range'>(61-80)</span><span class='title'>C</span></span>
+              <div class="col_1"><span class='block rating_c'><span class='range'>(69-80)</span><span class='title'>C</span></span>
               </div>
               <div class="col_2"></div>
               <div class="col_3"></div>
             </div>
             <div class="bar">
-              <div class="col_1"><span class='block rating_d'><span class='range'>(55-60)</span><span class='title'>D</span></span>
+              <div class="col_1"><span class='block rating_d'><span class='range'>(55-68)</span><span class='title'>D</span></span>
               </div>
               <div class="col_2"></div>
               <div class="col_3"></div>
@@ -128,7 +144,18 @@
             </div>
         </div>
       </div>
- -->
+
+      <p></p>
+      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
+      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
+      
+     <!-- 
+     <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
+      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
+      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
+       -->
+
+
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
