@@ -186,16 +186,6 @@ router.get('/find-a-report/search', function(req, res, next) {
 });
 
 
-
-//https://mhclg-epc-alpha-prototype-01.herokuapp.com/epc-api-proxy/domestic/postcode/sy30es
-/*
-router.get('/find-a-report/results', function(req, res) {
-    res.render('find-a-report/results', {
-    addresses: req.app.locals.data
-  });
-});
-*/
-
 router.get('/find-a-report/results', function(req, res, next) {
 
   if(req.session.data['address-postcode']){
