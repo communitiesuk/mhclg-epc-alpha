@@ -104,25 +104,6 @@ router.get('/service-start-example', function(req, res, next) {
 });
 
 
-router.get('/find-an-assessor', function(req, res, next) {
-  var contentType='service-start'
-  var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // res.send({ content : JSON.parse(body) });
-        res.render('service-start', { content : JSON.parse(body) });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      } else {
-        res.redirect('/error');
-      }
-  });
-});
-
 
 router.get('/article-example', function(req, res, next) {
   var contentType='article'
@@ -186,8 +167,8 @@ router.get('/find-a-report', function(req, res, next) {
 });
 
 router.get('/find-a-report/search', function(req, res, next) {
-  var contentType='service-user-step'
-  var contentId='01950cf7-e8a9-4c03-861e-ab3ecf83e4e0'
+  var contentType='find-a-report-step'
+  var contentId='70336a96-2d7d-473b-a93e-1d1233f513bb'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
@@ -304,6 +285,27 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
   });
 });
 
+
+// Find an assessor
+
+router.get('/find-an-assessor', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
 
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
