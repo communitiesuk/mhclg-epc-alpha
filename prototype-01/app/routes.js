@@ -263,14 +263,15 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
 
   // hard code style pixel offsets for now
   // used to position the rating pointed in the chart
+  var step = 35;
   var offset = {};
     offset['A'] = 0;
-    offset['B'] = 36;
-    offset['C'] = 72;
-    offset['D'] = 108;
-    offset['E'] = 144;
-    offset['F'] = 180;
-    offset['G'] = 216;
+    offset['B'] = step;
+    offset['C'] = 2*step;
+    offset['D'] = 3*step;
+    offset['E'] = 4*step;
+    offset['F'] = 5*step;
+    offset['G'] = 6*step;
 
   var property = {
     address: filtered[idx]['address'],
