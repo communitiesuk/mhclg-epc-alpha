@@ -328,15 +328,43 @@ router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var results = {
     assessor:[
-        {accredition:"ABS/23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
-        {accredition:"ABC/47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
-        {accredition:"ABX/34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
-        {accredition:"ABC/47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
+        {accredition:"ABS-23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
+        {accredition:"ABC-47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
+        {accredition:"ABX-34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
+        {accredition:"ABC-47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
     ]
   };
 
   res.render('find-an-assessor/results', {
     addresses: results
+  });
+});
+
+router.get('/find-an-assessor/assessor/:reference', function(req, res) {
+  // dummy assessor data
+  var results = {
+
+    assessor:{
+        name:"Barbara Steele",
+        accredition: req.params.reference,
+        "Company name": "Robert Knight Ltd",
+        "Postcode coverage": "WC1V",
+        "Contact address": "25 Krajcik Junctions",
+        "Email": "jared_lamb@gmail.com",
+        "Phone number": "21-188-9870",
+        "Website": "robertknight.com",
+        "Certificate types": "EPC 3; EPC 4"
+      },
+      scheme:{
+        "Contact address": "549 Toni Glens",
+        "Email": "enquires@test1.co.uk",
+        "Phone number": "421-188-9870",
+        "Website": "test1.co.uk"
+      }
+    };
+
+  res.render('find-an-assessor/assessor', {
+    results: results
   });
 });
 
