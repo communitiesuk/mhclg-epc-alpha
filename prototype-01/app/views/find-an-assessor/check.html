@@ -41,16 +41,31 @@
       </h1>
       <p>Use the assessor's Accreditation reference to check their details.</p>
 
-      <form action="results" method="post" class="form">
-        {{ govukInput({
-          label: {
-            text: "Search for an Energy Assessor"
-          },
-          id: "assessor-reference",
-          name: "assessor-reference",
-          value: "ABX-34225435"
+      <form id="main" action="results" method="post" class="form">
+        
+        <div class="govuk-form-group">
+        
+          <div class="govuk-error-summary error-message hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
 
-        }) }}
+              <ul class="govuk-list govuk-error-summary__list messages">
+                
+              </ul>
+            </div>
+          </div>  
+
+
+          <label class="govuk-label" for="assessor-reference">
+            Search for an Energy Assessor
+          </label>
+          <input data-required="true" class="govuk-input" id="assessor-reference" name="assessor-reference" type="text" value="ABX-34225435">
+          
+        </input>
+        </div>
+
 
         {{ govukButton({
           text: "Check an Assessor"
