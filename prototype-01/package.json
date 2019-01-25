@@ -46,6 +46,7 @@
     "require-dir": "^1.0.0",
     "run-sequence": "^2.2.1",
     "sync-request": "^6.0.0",
+    "underscore": "^1.9.1",
     "universal-analytics": "^0.4.16",
     "uuid": "^3.2.1",
     "validate.js": "^0.12.0"

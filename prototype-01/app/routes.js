@@ -184,14 +184,13 @@ router.get('/find-a-report/search', function(req, res, next) {
       }
   });
 });
-
+ 
 
 router.get('/find-a-report/results', function(req, res, next) {
 
   if(req.session.data['address-postcode']){
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
-    //console.log(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150');
 
     request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
       method: "GET",
@@ -248,9 +247,7 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
     return (lmkKey === item['lmk-key']);
   });
 
-
   //assume a filtered array with only a single property result
-  //console.log(filtered);
   var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
 
   // hard code style pixel offsets for now
@@ -335,7 +332,6 @@ router.get('/find-an-assessor/results', function(req, res) {
 router.get('/find-an-assessor/assessor/:reference', function(req, res) {
   // dummy assessor data
   var results = {
-
     assessor:{
         name:"Barbara Steele",
         accredition: req.params.reference,
@@ -376,7 +372,6 @@ router.post('/find-an-assessor/assessor-branch', function (req, res) {
 })
 
 //Optout
-
 router.get('/opt-in-opt-out', function(req, res, next) {
   var contentType='service-start'
   var contentId='86f589f6-5f51-4976-9104-b2d1801136ec'
@@ -426,7 +421,7 @@ router.get('/opt-in-opt-out/confirm-property', function(req, res) {
     address: "94 Deckow Gardens Suite 23",
     issueDate: "21 September 2017",
     assessmentDate: "21 August 2017",
-    referenceNo: "ABX/213528"
+    referenceNo: "ABX-213528"
   };
 
   res.render('opt-in-opt-out/confirm-property', {
