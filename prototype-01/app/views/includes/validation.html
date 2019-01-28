@@ -19,6 +19,30 @@
 
       // These are the constraints used to validate the form
       var constraints = {
+        "opt-out-postcode": {
+          // Is required
+          presence: true,
+          // And must be at least 10 characters long
+          length: {
+            minimum: 10
+          }
+        },
+        "opt-out-address": {
+          // Is required
+          presence: true,
+          // And must be at least 10 characters long
+          length: {
+            minimum: 10
+          }
+        },
+        "opt-out-referenceNo": {
+          // Is required
+          presence: true,
+          // And must be at least 10 characters long
+          length: {
+            minimum: 10
+          }
+        },
         "assessor-reference": {
           // Password is also required
           presence: true,
@@ -26,34 +50,53 @@
           length: {
             minimum: 10
           }
-        }
+        },
       };
 
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
-      var target = form.action;
+      var target;
+      if (form){
+        target = form.action;
 
       form.addEventListener("submit", function(ev) {
+        console.log('submit');
         ev.preventDefault();
         handleFormSubmit(form);
       });
 
+      } 
       // Hook up the inputs to validate on the fly
       var inputs = document.querySelectorAll("input, textarea, select")
       for (var i = 0; i < inputs.length; ++i) {
         inputs.item(i).addEventListener("change", function(ev) {
           var errors = validate(form, constraints) || {};
+          clearForm();
+          console.log('showErrorsForInput');
           showErrorsForInput(this, errors[this.name])
         });
       }
 
+      function clearForm() {
+          console.log('clear form------------');
+        _.each(document.querySelectorAll(".help-block.error"), function(el) {
+          console.log(el);
+          el.parentNode.removeChild(el);
+        });
+      }
+
       function handleFormSubmit(form, input) {
-		// validate the form against the constraints
+		    //validate the form against the constraints
         var errors = validate(form, constraints);
+        console.log('handle form submit');
+        console.log(errors);
+        clearForm();
+
         // then we update the form to reflect the results
         showErrors(form, errors || {});
         
         if (!errors) {
+          console.log('not errors');
           showSuccess();
         }
       }
@@ -65,19 +108,23 @@
         _.each(form.querySelectorAll("input[name], select[name]"), function(input) {
           // Since the errors can be null if no errors were found we need to handle
           // that
+          console.log('loop');
           showErrorsForInput(input, errors && errors[input.name]);
         });
       }
 
       // Shows the errors for a specific input
       function showErrorsForInput(input, errors) {
+        console.log('showErrorsForInput');
         // This is the root of the input
         var formGroup = closestParent(input.parentNode, "govuk-form-group")
           // Find where the error messages will be insert into
           , messages = formGroup.querySelector(".messages");
         // First we remove any old messages and resets the classes
-        resetFormGroup(formGroup);
+        console.log('clear form...');
+        //resetFormGroup(formGroup);
         // If we have errors
+        console.log(errors);
         if (errors) {
           // we first mark the group has having errors
           formGroup.classList.add("has-error");
@@ -89,6 +136,7 @@
           $(".error-message").removeClass("hide");
 
         } else {
+          console.log('no errors?:success');
           // otherwise we simply mark it as success
           //formGroup.classList.add("has-success");
           showSuccess();
@@ -108,6 +156,7 @@
       }
 
       function resetFormGroup(formGroup) {
+        console.log(formGroup);
         // Remove the success and error classes
         formGroup.classList.remove("has-error");
         formGroup.classList.remove("has-success");
@@ -122,7 +171,7 @@
       <li>
       	<a href="#dob-error">Date of birth must be in the past</a>
       </li>
-	  */
+	   */
       function addError(messages, error) {
         var block = document.createElement("li");
         var link = document.createElement("a");
@@ -139,6 +188,7 @@
         console.log("Success!");
         window.location = target;
       }
+
     })();
 </script>
 
