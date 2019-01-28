@@ -17,13 +17,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/find-a-report">Retrieve EPC</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">EPC search</a>
+        <a class="govuk-breadcrumbs__link" href="javascript:history.back()">Back</a>
       </li>
     </ol>
   </div>
@@ -60,5 +54,34 @@
 
     </div>
 
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related Content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="/find-an-assessor">
+                Find an Assessor
+              </a>
+            </li>
+            <li>
+              <a href="/opt-in-opt-out">
+                Opt out of the register
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
   </div>
 {% endblock %}
