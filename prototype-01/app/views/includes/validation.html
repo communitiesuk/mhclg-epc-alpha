@@ -3,7 +3,8 @@
 
     (function() {
 
-
+      var count = 0;
+      var errors = [];
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
 
@@ -13,20 +14,26 @@
           console.log('submit');
           ev.preventDefault();
 
-          showErrorSummary();
+          count++;
+          handleFormSubmit();
+          //
         });
 
       } 
 
+
       function showErrorSummary(){
+        console.log(errors);
         var errorMsg = "Search using a reference number or a postcode.";
         var errorMsg = $('.govuk-error-message').text();
-        console.log(errorMsg);
         $('.govuk-error-summary').removeClass('hide');
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
         $('.govuk-error-message').removeClass('hide');
+      }
 
+
+      function showErrorMessage(errorMsg){
         var messages = document.querySelector(".govuk-error-summary__list");
         var block = document.createElement("li");
         var link = document.createElement("a");
@@ -36,10 +43,52 @@
         link.innerText = errorMsg;
         block.appendChild(link);
         messages.appendChild(block);
-
-        //form.submit();
       }
 
+
+      function handleFormSubmit(){
+        console.log('handleFormSubmit');
+        clearErrorMessages();
+        validateForm();
+      }
+
+
+      function clearErrorMessages() {
+        console.log('clear form------------');
+        $(".help-block.error").each( function( el ){
+          console.log(this);
+          $(this).remove();
+        });
+      }
+
+
+      function validateForm() {
+        console.log('validateForm');
+        errors = [];
+        clearErrorMessages();
+        $("#main input[type=text]").each(function() {
+          //console.log(this.id);
+          if(this.value==="") {
+            console.log("Missing " + this.id);
+            errors.push("Missing " + this.id);
+            showErrorMessage("Missing " + this.id)
+          }
+        });
+
+        if (errors.length>0){
+          showErrorSummary();
+        }else{
+          showSuccess();
+        }
+
+      }
+
+
+      function showSuccess() {
+        // We made it \:D/
+        console.log("Success!");
+        form.submit();
+      }
 
 
     })();
