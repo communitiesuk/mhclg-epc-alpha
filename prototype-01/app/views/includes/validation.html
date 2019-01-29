@@ -35,7 +35,7 @@
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
 
-        // update title
+        // update title if we haven't already
         if(document.title.indexOf("Error")===-1){
           var newTitle = 'Error: ' + document.title;
           $(document).attr("title", newTitle);
@@ -44,14 +44,12 @@
 
 
       function showErrorMessage(error){
-        console.log(error);
+        //console.log(error);
         var messages = document.querySelector(".govuk-error-summary__list");
         var block = document.createElement("li");
         var link = document.createElement("a");
         block.classList.add("help-block");
         block.classList.add("error");
-        console.log('--------------');
-        console.log(error.target);
         link.href = "#"+error.target;
         link.innerText = error.msg;
         block.appendChild(link);
@@ -60,20 +58,20 @@
         // add govuk-input--error class to the offending error input
         $("#" + error.target).addClass('govuk-input--error');
 
-        //reveal the error text for the input
+        // reveal the error text for the input
         $('#' + error.target + '-error').removeClass('hide');
       }
 
 
       function handleFormSubmit(){
-        console.log('handleFormSubmit');
+        //console.log('handleFormSubmit');
         clearErrorMessages();
         validateForm();
       }
 
 
       function clearErrorMessages() {
-        console.log('clear form------------');
+        //console.log('clear form------------');
         $(".help-block.error").each( function( el ){
           $(this).remove();
         });
@@ -87,7 +85,7 @@
 
 
       function validateForm() {
-        console.log('validateForm');
+        //console.log('validateForm');
         var hasRadio = false;   // only display errors for radio button where they are present
         var isChecked = false;
         var name;
@@ -99,7 +97,6 @@
         $("#main input[type=text]").each(function() {
           if(this.value==="") {
             var errorMsg = $('#' + this.id + '-error').text().replace(/(\s)+/g, ' ').trim();
-            console.log("ERROR::" + errorMsg);
             if (!errorMsg) {
               errorMsg = "Missing " + name;
             }
@@ -125,7 +122,6 @@
           }
           errors.push({target:id, msg:errorMsg});
         }
-        console.log(errors);
 
         if (errors.length>0){
           showAllErrors();
@@ -137,7 +133,7 @@
 
       function showSuccess() {
         // We made it \:D/
-        console.log("Success!");
+        //console.log("Success!");
         form.submit();
       }
 
