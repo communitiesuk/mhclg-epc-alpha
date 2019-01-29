@@ -3,28 +3,35 @@
 
     (function() {
 
-      var count = 0;
-      var errors = [];
+      var errors = [];  // store array of error messages
+
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
 
-      // NB Only validate when the form is submittted
+      // NB As per GDS, only validate when the form is submittted
       if (form){
         form.addEventListener("submit", function(ev) {
           console.log('submit');
           ev.preventDefault();
-
-          count++;
           handleFormSubmit();
         });
 
       } 
 
 
+      function showErrors(){
+        var i =0;
+        var len = errors.length;
+        for (i=0; i<len; i++){
+          showErrorMessage(errors[i]);
+        }
+
+        showErrorSummary();
+      }
+
+
       function showErrorSummary(){
         console.log(errors);
-        //var errorMsg = "Search using a reference number or a postcode.";
-        //var errorMsg = $('.govuk-error-message').text();
         $('.govuk-error-summary').removeClass('hide');
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
@@ -55,7 +62,6 @@
       function clearErrorMessages() {
         console.log('clear form------------');
         $(".help-block.error").each( function( el ){
-          console.log(this);
           $(this).remove();
         });
       }
@@ -67,9 +73,7 @@
         clearErrorMessages();
         $("#main input[type=text]").each(function() {
           if(this.value==="") {
-            console.log("Missing " + this.id);
             errors.push("Missing " + this.id);
-            showErrorMessage("Missing " + this.id)
           }
         });
 
@@ -86,14 +90,15 @@
         })
 
         if(hasRadio && !isChecked){
-          errors.push("Missing " + name);
-          //showErrorMessage("Missing " + name)
           var errorMsg = $('.govuk-error-message').text();
-          showErrorMessage(errorMsg)
+          if (!errors) {
+            errorMsg = "Missing " + name;
+          }
+          errors.push(errorMsg);
         }
 
         if (errors.length>0){
-          showErrorSummary();
+          showErrors();
         }else{
           showSuccess();
         }
