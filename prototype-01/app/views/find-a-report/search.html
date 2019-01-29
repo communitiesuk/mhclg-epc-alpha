@@ -32,22 +32,45 @@
       </h1>
       {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
 
-      <form action="{{ content.data.NextStepUrl.en }}" method="post" class="form">
+      <form id="main" action="{{ content.data.NextStepUrl.en }}" method="post" class="form" novalidate>
+        
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
 
-      {{ govukInput({
-        label: {
-          text: "Search for certificate"
-        },
-        classes: "govuk-input--width-10",
-        id: "address-postcode",
-        name: "address-postcode",
-        value: "SW1P 3BU"
+        <div class="govuk-form-group">
+          <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              Search for certificate
+            </h1>
+          </legend> -->
 
-      }) }}
+          <label class="govuk-label" for="assessor-reference">
+            Enter a postcode
+          </label>
+          <span id="hint" class="govuk-hint">
+            Search here for an existing certificate for the property. </span>
+          <span id="error-message" class="govuk-error-message hide">
+            Enter the postcode of the building you wish to check.
+          </span>
+          <input data-required="true" class="govuk-input" id="address-postcode" name="address-postcode" type="text" value="SW1P 3BU">          
+        </div>
 
-      {{ govukButton({
-        text: "Find an Address"
-      }) }}
+        {{ govukButton({
+          text: "Find an Address"
+        }) }}
+      </form>
+
+
+
+
+  
 
       </form>
 

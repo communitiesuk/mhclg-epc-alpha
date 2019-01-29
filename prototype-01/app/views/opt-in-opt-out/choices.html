@@ -27,34 +27,48 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <form id="main" action="id-property" method="post" class="form">
 
-      <form action="id-property" method="post" class="form">
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "opt-out-choice",
-          name: "opt-out-choice",
-          fieldset: {
-            legend: {
-              text: "What would you like to do?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          hint: {
-            text: "You can opt out of the register, or opt back in if you change your mind."
-          },
-          items: [
-            {
-              value: "Opt-in",
-              text: "Opt in"
-            },
-            {
-              value: "Opt-out",
-              text: "Opt out"
-            }
-          ]
-        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                What would you like to do?
+              </h1>
+            </legend>
+            <span id="assessor-search-type-hint" class="govuk-hint">
+              You can opt out of the register, or opt back in if you change your mind.
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Choose to opt in or out of the register.
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-out-choice-1" name="opt-out-choice" type="radio" value="Opt-in">
+                <label class="govuk-label govuk-radios__label" for="opt-out-choice-1">
+                  Opt in
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-out-choice-2" name="opt-out-choice" type="radio" value="Opt-out">
+                <label class="govuk-label govuk-radios__label" for="opt-out-choice-2">
+                  Opt out
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ govukButton({
           text: "Continue"
