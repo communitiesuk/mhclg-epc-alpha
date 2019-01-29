@@ -3,7 +3,7 @@
 
     (function() {
 
-      var errors = [];  // store array of error messages
+      var errors = [];  // store array of error messages: {target, msg}
 
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
@@ -31,7 +31,6 @@
 
 
       function showErrorSummary(){
-        console.log(errors);
         $('.govuk-error-summary').removeClass('hide');
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
@@ -41,14 +40,15 @@
       }
 
 
-      function showErrorMessage(errorMsg){
+      function showErrorMessage(error){
         var messages = document.querySelector(".govuk-error-summary__list");
         var block = document.createElement("li");
         var link = document.createElement("a");
         block.classList.add("help-block");
         block.classList.add("error");
-        link.href = "#error";
-        link.innerText = errorMsg;
+        console.log(error.target.id);
+        link.href = "#"+error.target.id;
+        link.innerText = error.msg;
         block.appendChild(link);
         messages.appendChild(block);
       }
@@ -75,7 +75,7 @@
         clearErrorMessages();
         $("#main input[type=text]").each(function() {
           if(this.value==="") {
-            errors.push("Missing " + this.id);
+            errors.push({target:this, msg:"Missing " + this.id});
           }
         });
 
@@ -96,7 +96,7 @@
           if (!errors) {
             errorMsg = "Missing " + name;
           }
-          errors.push(errorMsg);
+          errors.push({target:this, msg:errorMsg});
         }
 
         if (errors.length>0){
