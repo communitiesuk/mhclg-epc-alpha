@@ -27,50 +27,70 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="confirm-address" method="post" class="form">
+      <form id="main" action="confirm-address" method="post" class="form" >
         {%  set msg = "Enter your details as a " +  data['opt-in-relationship']  %}
 
-        {% call govukFieldset({
-          legend: {
-            text: msg,
-            classes: "govuk-fieldset__legend--xl",
-            isPageHeading: true
-          }
-        }) %}
-
-        {{ govukInput({
-          label: {
-            text: "First Name"
-          },
-          value: data['opt-out-first-name'],
-          id: "opt-out-first-name",
-          name: "opt-out-first-name"
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "Surname"
-          },
-          value: data['opt-out-surname'],
-          id: "opt-out-surname",
-          name: "opt-out-surname"
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "Email address"
-          },
-          value: data['opt-out-email'],
-          id: "opt-out-email",
-          name: "opt-out-email"
-        }) }}
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
 
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+      <div class="govuk-form-group"> 
+        <fieldset class="govuk-fieldset" aria-describedby="nationality-hint nationality-error">
 
-        {% endcall %}
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              {{ msg }}
+            </h1>
+          </legend>
+          <span id="nationality-hint" class="govuk-hint">
+            Enter your first name, surname and email address.
+          </span>
+
+
+          <div class="">
+            <label class="govuk-label" for="opt-out-first-name">
+              First name
+            </label>
+            <span id="opt-out-first-name-error" class="govuk-error-message hide">
+              Enter your first name
+            </span>
+            <input class="govuk-input" id="opt-out-first-name" name="opt-out-first-name" type="text" value="{{data['oopt-out-first-name']}}">
+          </div>
+              
+          <div class="">      
+            <label class="govuk-label" for="opt-out-surname">
+              Surname
+            </label>
+            <span id="opt-out-surname-error" class="govuk-error-message hide">
+              Enter your surname
+            </span>
+            <input data-required="true" class="govuk-input" id="opt-out-surname" name="opt-out-surname" type="text" value="{{data['opt-out-surname']}}">
+          </div>
+          
+          <div class="">
+            <label class="govuk-label" for="opt-out-email">
+              Email
+            </label>
+            <span id="opt-out-email-error" class="govuk-error-message hide">
+              Enter your email address
+            </span>
+            <input data-required="true" class="govuk-input" id="opt-out-email" name="opt-out-email" type="text" value="{{data['opt-out-email']}}">
+          </div>
+          <br/>
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+          </fieldset>
+        </div>
+
       </form>
 
     </div>

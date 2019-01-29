@@ -52,15 +52,18 @@
           <span id="nationality-hint" class="govuk-hint">
             Use the address and postcode or the building reference number if you have one, eg 'XCX-234234'.
           </span>
-          <span id="error-message" class="govuk-error-message hide">
+<!--           <span id="error-message" class="govuk-error-message hide">
             Enter the building reference number, or the address and postcode to identify the building.
-          </span>
+          </span> -->
 
 
           <div class="">
             <label class="govuk-label" for="opt-out-referenceNo">
               Reference Number
             </label>
+            <span id="opt-out-referenceNo-error" class="govuk-error-message hide">
+              Enter your building reference number
+            </span>
             <input class="govuk-input" id="opt-out-referenceNo" name="opt-out-referenceNo" type="text" value="{{data['opt-out-referenceNo']}}">
           </div>
               
@@ -68,6 +71,9 @@
             <label class="govuk-label" for="opt-out-address">
               Address
             </label>
+            <span id="opt-out-address-error" class="govuk-error-message hide">
+              Enter your property address
+            </span>
             <input data-required="true" class="govuk-input" id="opt-out-address" name="opt-out-address" type="text" value="{{data['opt-out-address']}}">
           </div>
           
@@ -75,6 +81,9 @@
             <label class="govuk-label" for="opt-out-postcode">
               Postcode
             </label>
+            <span id="opt-out-postcode-error" class="govuk-error-message hide">
+              Enter your property postcode
+            </span>
             <input data-required="true" class="govuk-input" id="opt-out-postcode" name="opt-out-postcode" type="text" value="{{data['opt-out-postcode']}}">
           </div>
           <br/>
