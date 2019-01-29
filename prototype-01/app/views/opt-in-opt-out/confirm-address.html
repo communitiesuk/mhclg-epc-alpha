@@ -27,40 +27,55 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {%  set address = data['opt-out-address'] +", "+  data['opt-out-postcode']  %}
+      <form id="main" action="confirm-details" method="post" class="form">
 
-      <form action="confirm-details" method="post" class="form">
-        {%  set address = data['opt-out-address'] +", "+  data['opt-out-postcode']  %}
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "opt-out-address",
-          name: "opt-out-address",
-          fieldset: {
-            legend: {
-              text: "What is your address?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          hint: {
-            text: "You can opt out of the register, or opt back in if you change your mind."
-          },
-          items: [
-            {
-              value: address,
-              text:  address
-            },
-            {
-              value: "Another address",
-              text: "Another address"
-            }
-          ]
-        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                What is your address?
+              </h1>
+            </legend>
+            <span id="assessor-search-type-hint" class="govuk-hint">
+              What is your contact address?
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Pick the address we will use to contact you.
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-in-relationship-1" name="opt-in-relationship" type="radio" value="address">
+                <label class="govuk-label govuk-radios__label" for="opt-in-relationship-1">
+                  {{address}}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-in-relationship-2" name="opt-in-relationship" type="radio" value="Another address">
+                <label class="govuk-label govuk-radios__label" for="opt-in-relationship-2">
+                  Another address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ govukButton({
           text: "Continue"
         }) }}
       </form>
+
 
 
     </div>
