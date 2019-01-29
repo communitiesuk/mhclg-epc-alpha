@@ -35,8 +35,7 @@
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
         $('.govuk-error-message').removeClass('hide');
-        // add govuk-input--error class to the offending error input
-        $("#main input[type=text]").addClass('govuk-input--error');
+        
       }
 
 
@@ -53,6 +52,9 @@
         link.innerText = error.msg;
         block.appendChild(link);
         messages.appendChild(block);
+
+        // add govuk-input--error class to the offending error input
+        $("#" + error.target).addClass('govuk-input--error');
       }
 
 
@@ -96,13 +98,12 @@
             isChecked = true;
           }
         })
-console.log(name, id);
+
         if(hasRadio && !isChecked){
           var errorMsg = $('.govuk-error-message').text();
           if (!errors) {
             errorMsg = "Missing " + name;
           }
-console.log(name, id);
           errors.push({target:id, msg:errorMsg});
         }
         console.log(errors);
