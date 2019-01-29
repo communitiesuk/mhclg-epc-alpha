@@ -41,13 +41,15 @@
 
 
       function showErrorMessage(error){
+        console.log(error);
         var messages = document.querySelector(".govuk-error-summary__list");
         var block = document.createElement("li");
         var link = document.createElement("a");
         block.classList.add("help-block");
         block.classList.add("error");
-        console.log(error.target.id);
-        link.href = "#"+error.target.id;
+        console.log('--------------');
+        console.log(error.target);
+        link.href = "#"+error.target;
         link.innerText = error.msg;
         block.appendChild(link);
         messages.appendChild(block);
@@ -75,29 +77,35 @@
         clearErrorMessages();
         $("#main input[type=text]").each(function() {
           if(this.value==="") {
-            errors.push({target:this, msg:"Missing " + this.id});
+            errors.push({target:this.id, msg:"Missing " + this.id});
           }
         });
 
         var hasRadio = false;   // only display errors for radio button where they are present
         var isChecked = false;
         var name;
+        var id;
 
         $("#main input[type=radio]").each(function(){
           hasRadio = true;
-          name = this.name
+          name = this.name;
+          if(!id){
+            id = this.id;
+          }
           if (this.checked){
             isChecked = true;
           }
         })
-
+console.log(name, id);
         if(hasRadio && !isChecked){
           var errorMsg = $('.govuk-error-message').text();
           if (!errors) {
             errorMsg = "Missing " + name;
           }
-          errors.push({target:this, msg:errorMsg});
+console.log(name, id);
+          errors.push({target:id, msg:errorMsg});
         }
+        console.log(errors);
 
         if (errors.length>0){
           showAllErrors();
