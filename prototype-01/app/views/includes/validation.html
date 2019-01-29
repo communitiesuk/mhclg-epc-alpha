@@ -70,6 +70,9 @@
         $(".help-block.error").each( function( el ){
           $(this).remove();
         });
+        $("#main input[type=text]").each(function() {
+          $(this).removeClass('govuk-input--error');
+        });
       }
 
 
