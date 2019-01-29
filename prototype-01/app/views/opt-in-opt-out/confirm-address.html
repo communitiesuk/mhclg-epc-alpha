@@ -29,7 +29,7 @@
 
 
       <form action="confirm-details" method="post" class="form">
-        {%  set address = data['opt-out-street-address'] +", "+  data['opt-out-postcode']  %}
+        {%  set address = data['opt-out-address'] +", "+  data['opt-out-postcode']  %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
