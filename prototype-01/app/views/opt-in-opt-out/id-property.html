@@ -50,9 +50,10 @@
             </h1>
           </legend>
           <span id="nationality-hint" class="govuk-hint">
-            Identify the property using the Building reference number, address or postcode.
+            Use the address and postcode or the building reference number if you have one, eg 'XCX-234234'.
           </span>
-          <span id="error-message" class="govuk-error-message">
+          <span id="error-message" class="govuk-error-message hide">
+            Identify the property using the Building reference number, or the address and postcode.
           </span>
 
 
@@ -60,7 +61,7 @@
             <label class="govuk-label" for="opt-out-referenceNo">
               Reference Number
             </label>
-            <input required class="govuk-input" id="opt-out-referenceNo" name="opt-out-referenceNo" type="text" value="{{data['opt-out-referenceNo']}}">
+            <input class="govuk-input" id="opt-out-referenceNo" name="opt-out-referenceNo" type="text" value="{{data['opt-out-referenceNo']}}">
           </div>
               
           <div class="">      
