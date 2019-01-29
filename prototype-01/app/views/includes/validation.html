@@ -16,7 +16,6 @@
 
           count++;
           handleFormSubmit();
-          //
         });
 
       } 
@@ -24,8 +23,8 @@
 
       function showErrorSummary(){
         console.log(errors);
-        var errorMsg = "Search using a reference number or a postcode.";
-        var errorMsg = $('.govuk-error-message').text();
+        //var errorMsg = "Search using a reference number or a postcode.";
+        //var errorMsg = $('.govuk-error-message').text();
         $('.govuk-error-summary').removeClass('hide');
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
@@ -67,7 +66,6 @@
         errors = [];
         clearErrorMessages();
         $("#main input[type=text]").each(function() {
-          //console.log(this.id);
           if(this.value==="") {
             console.log("Missing " + this.id);
             errors.push("Missing " + this.id);
@@ -75,12 +73,30 @@
           }
         });
 
+        var hasRadio = false;   // only display errors for radio button where they are present
+        var isChecked = false;
+        var name;
+
+        $("#main input[type=radio]").each(function(){
+          hasRadio = true;
+          name = this.name
+          if (this.checked){
+            isChecked = true;
+          }
+        })
+
+        if(hasRadio && !isChecked){
+          errors.push("Missing " + name);
+          //showErrorMessage("Missing " + name)
+          var errorMsg = $('.govuk-error-message').text();
+          showErrorMessage(errorMsg)
+        }
+
         if (errors.length>0){
           showErrorSummary();
         }else{
           showSuccess();
         }
-
       }
 
 
