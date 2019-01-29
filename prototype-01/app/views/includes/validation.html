@@ -55,19 +55,22 @@
 
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
-      var target;
+      //var target;
       if (form){
-        target = form.action;
+        //target = form.action;
 
-      form.addEventListener("submit", function(ev) {
-        console.log('submit');
-        ev.preventDefault();
-        handleFormSubmit(form);
-      });
+
+        form.addEventListener("submit", function(ev) {
+          console.log('submit');
+          ev.preventDefault();
+
+          showErrorSummary();
+          //handleFormSubmit(form);
+        });
 
       } 
       // Hook up the inputs to validate on the fly
-      var inputs = document.querySelectorAll("input, textarea, select")
+      /*var inputs = document.querySelectorAll("input, textarea, select")
       for (var i = 0; i < inputs.length; ++i) {
         inputs.item(i).addEventListener("change", function(ev) {
           var errors = validate(form, constraints) || {};
@@ -76,6 +79,7 @@
           showErrorsForInput(this, errors[this.name])
         });
       }
+*/
 
       function clearForm() {
           console.log('clear form------------');
@@ -112,6 +116,41 @@
           showErrorsForInput(input, errors && errors[input.name]);
         });
       }
+
+
+      function showErrorSummary(){
+        var error = "Search using a reference number or a postcode.";
+        $('.govuk-error-summary').removeClass('hide');
+        $('.govuk-form-group').addClass('govuk-form-group--error');
+        $('.govuk-error-summary__list').removeClass('hide');
+        $('.govuk-error-message').text(error);
+
+        //addError($('.govuk-error-summary__list'), "ERRRORORRORORO")
+
+messages = document.querySelector(".govuk-error-summary__list");
+        var block = document.createElement("li");
+        var link = document.createElement("a");
+        block.classList.add("help-block");
+        block.classList.add("error");
+        link.href = "#error";
+        link.innerText = error;
+        block.appendChild(link);
+        messages.appendChild(block);
+
+        form.submit();
+
+/*
+HIDE: govuk-error-summary and reveal on error
+ADD   CLASS to govuk-form-group
+ADD 'Error' prefix to title
+ADD span message with govuk-error-message CLASS:
+
+    `<span id="nationality-error" class="govuk-error-message">
+      Search using a reference number or a postcode.
+    </span>`
+*/
+      }
+
 
       // Shows the errors for a specific input
       function showErrorsForInput(input, errors) {
@@ -186,7 +225,8 @@
       function showSuccess() {
         // We made it \:D/
         console.log("Success!");
-        window.location = target;
+        form.submit();
+        //window.location = target;
       }
 
     })();
