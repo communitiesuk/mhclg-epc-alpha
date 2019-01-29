@@ -19,7 +19,7 @@
       } 
 
 
-      function showErrors(){
+      function showAllErrors(){
         var i =0;
         var len = errors.length;
         for (i=0; i<len; i++){
@@ -36,6 +36,8 @@
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
         $('.govuk-error-message').removeClass('hide');
+        // add govuk-input--error class to the offending error input
+        $("#main input[type=text]").addClass('govuk-input--error');
       }
 
 
@@ -98,7 +100,7 @@
         }
 
         if (errors.length>0){
-          showErrors();
+          showAllErrors();
         }else{
           showSuccess();
         }
