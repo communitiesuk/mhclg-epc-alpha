@@ -35,7 +35,9 @@
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
         $('.govuk-error-message').removeClass('hide');
-        
+        // update title
+        var newTitle = 'Error: ' + document.title;
+        $(document).attr("title", newTitle);
       }
 
 
@@ -78,18 +80,21 @@
 
       function validateForm() {
         console.log('validateForm');
-        errors = [];
-        clearErrorMessages();
-        $("#main input[type=text]").each(function() {
-          if(this.value==="") {
-            errors.push({target:this.id, msg:"Missing " + this.id});
-          }
-        });
-
         var hasRadio = false;   // only display errors for radio button where they are present
         var isChecked = false;
         var name;
         var id;
+        errors = [];
+
+        clearErrorMessages();
+
+        $("#main input[type=text]").each(function() {
+          if(this.value==="") {
+            var errorMsg = $('.govuk-error-message').text();
+            console.log("ERROR::" + errorMsg);
+            errors.push({target:this.id, msg:"Missing " + this.id});
+          }
+        });
 
         $("#main input[type=radio]").each(function(){
           hasRadio = true;
@@ -104,7 +109,7 @@
 
         if(hasRadio && !isChecked){
           var errorMsg = $('.govuk-error-message').text();
-          if (!errors) {
+          if (!errorMsg) {
             errorMsg = "Missing " + name;
           }
           errors.push({target:id, msg:errorMsg});
