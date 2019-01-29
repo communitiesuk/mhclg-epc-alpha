@@ -34,10 +34,12 @@
         $('.govuk-error-summary').removeClass('hide');
         $('.govuk-form-group').addClass('govuk-form-group--error');
         $('.govuk-error-summary__list').removeClass('hide');
-        $('.govuk-error-message').removeClass('hide');
+
         // update title
-        var newTitle = 'Error: ' + document.title;
-        $(document).attr("title", newTitle);
+        if(document.title.indexOf("Error")===-1){
+          var newTitle = 'Error: ' + document.title;
+          $(document).attr("title", newTitle);
+        }
       }
 
 
@@ -57,6 +59,9 @@
 
         // add govuk-input--error class to the offending error input
         $("#" + error.target).addClass('govuk-input--error');
+
+        //reveal the error text for the input
+        $('#' + error.target + '-error').removeClass('hide');
       }
 
 
@@ -75,6 +80,9 @@
         $("#main input[type=text]").each(function() {
           $(this).removeClass('govuk-input--error');
         });
+        $(".govuk-error-message").each(function() {
+          $(this).addClass('hide');
+        });
       }
 
 
@@ -90,9 +98,12 @@
 
         $("#main input[type=text]").each(function() {
           if(this.value==="") {
-            var errorMsg = $('.govuk-error-message').text();
+            var errorMsg = $('#' + this.id + '-error').text().replace(/(\s)+/g, ' ').trim();
             console.log("ERROR::" + errorMsg);
-            errors.push({target:this.id, msg:"Missing " + this.id});
+            if (!errorMsg) {
+              errorMsg = "Missing " + name;
+            }
+            errors.push({target:this.id, msg:errorMsg});
           }
         });
 
