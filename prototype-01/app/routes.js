@@ -292,6 +292,7 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
 });
 
 
+
 // Find an assessor
 
 router.get('/find-an-assessor', function(req, res, next) {
@@ -388,6 +389,42 @@ router.get('/opt-in-opt-out', function(req, res, next) {
       } else {
         res.redirect('/error');
       }
+  });
+});
+
+
+router.get('/opt-in-opt-out/choices', function(req, res, next) {
+  var data = {
+    isOptedIn: true
+  };
+
+  res.render('opt-in-opt-out/choices', {
+    result: data
+  });
+});
+
+
+router.get('/opt-in-opt-out/select-address', function(req, res, next) {
+  var list = [
+      { address: "Flat 1, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 2, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 4, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 7, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 32, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Second Floor Flat, 40 Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 6, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 42, Great Smith Street, SW1P 3BU", ref:""}
+  ];
+
+
+  res.render('opt-in-opt-out/select-address', {
+    result: {addresses: list}
   });
 });
 

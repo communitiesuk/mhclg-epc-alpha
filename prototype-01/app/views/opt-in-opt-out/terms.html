@@ -35,9 +35,45 @@
       {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
 
 
-      <a href="application-complete.html" role="button" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8">Agree</a>
-      <a href="application-complete.html" role="button" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8">Decline</a>
 
+      <form id="main" action="application-complete" method="post" class="form">
+
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+              </h1>
+            </legend>
+            <span id="assessor-search-type-hint" class="govuk-hint">
+              I agree to the above terms and conditions
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Check the agreement box to continue.
+            </span>
+            <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="agreement" name="agreement" type="checkbox" value="agreement">
+            <label class="govuk-label govuk-checkboxes__label" for="agreement">
+              I agree
+            </label>
+          </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
 
     </div>
     <div class="govuk-grid-column-one-third">
