@@ -54,7 +54,6 @@
             <caption class="govuk-table__caption">Postcode</caption>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row"></th>
                 <td class="govuk-table__cell">{{ data['opt-out-postcode'] }}</td>
                 <td class="govuk-table__cell"><a href="#">Change</a></td>
               </tr>
@@ -77,6 +76,8 @@
               {% endfor %}
             </select>
           </div>
+          <br/>
+          <p><a href='#'>I can't find my address in the list</a></p>
           <br/>
           {{ govukButton({
             text: "Continue"
