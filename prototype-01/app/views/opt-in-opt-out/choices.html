@@ -59,13 +59,13 @@
                 {% set option1text='Yes opt out' %}
                 {% set option2value='opt-in' %}
                 {% set option2text='No stay opted in' %}
-                {{ data['opt-out-postcode'] }} is currently opted in.
+                {{ data['opt-out-address'] }} is currently opted in.
               {% else %}
                 {% set option1value='opt-in' %}
                 {% set option1text='Yes opt in' %}
                 {% set option2value='opt-out' %}
                 {% set option2text='No stay opted out' %}
-                {{ data['opt-out-postcode'] }} is currently opted out.
+                {{ data['opt-out-address'] }} is currently opted out.
               {% endif %}
             </span>
             <span id="error-message" class="govuk-error-message hide">
