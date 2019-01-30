@@ -33,7 +33,15 @@
       </h1>
 
       <table class="govuk-table">
-        <caption class="govuk-table__caption">Contact details</caption>
+        <caption class="govuk-table__caption">
+          {% if data['opt-out-choice']==='opt-out' %}
+            You have chosen to opt out of the register.
+          {% else %}
+            You have chosen to opt in to the register.
+          {% endif %}
+
+
+        </caption>
         <tbody class="govuk-table__body">
 <!--           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="row">First Name</th>

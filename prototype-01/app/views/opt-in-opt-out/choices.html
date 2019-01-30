@@ -58,7 +58,7 @@
                 {% set option1value='opt-out' %}
                 {% set option1text='Yes opt out' %}
                 {% set option2value='opt-in' %}
-                {% set option2text='No stay opt in' %}
+                {% set option2text='No stay opted in' %}
                 {{ data['opt-out-postcode'] }} is currently opted in.
               {% else %}
                 {% set option1value='opt-in' %}
@@ -68,7 +68,7 @@
                 {{ data['opt-out-postcode'] }} is currently opted out.
               {% endif %}
             </span>
-            <span id="opt-out-choice-error" class="govuk-error-message hide">
+            <span id="error-message" class="govuk-error-message hide">
               Select opt out if you want to remove your details from the register.
             </span>
             <div class="govuk-radios govuk-radios--inline">
