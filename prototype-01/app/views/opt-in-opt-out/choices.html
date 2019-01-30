@@ -53,7 +53,7 @@
 
               </h1>
             </legend>
-            <span id="assessor-search-type-hint" class="govuk-hint">
+            <span id="opt-out-choice-hint" class="govuk-hint">
               {% if result.isOptedIn===true %}
                 {% set option1value='opt-out' %}
                 {% set option1text='Yes opt out' %}
@@ -68,7 +68,7 @@
                 {{ data['opt-out-postcode'] }} is currently opted out.
               {% endif %}
             </span>
-            <span id="error-message" class="govuk-error-message hide">
+            <span id="opt-out-choice-error" class="govuk-error-message hide">
               Select opt out if you want to remove your details from the register.
             </span>
             <div class="govuk-radios govuk-radios--inline">

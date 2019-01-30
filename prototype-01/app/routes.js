@@ -422,11 +422,25 @@ router.get('/opt-in-opt-out/select-address', function(req, res, next) {
       { address: "Flat 8, 42, Great Smith Street, SW1P 3BU", ref:""}
   ];
 
-
   res.render('opt-in-opt-out/select-address', {
     result: {addresses: list}
   });
 });
+
+
+router.post('/opt-in-opt-out/confirm-details', function (req, res) {
+  // Get the answer from session data
+  // The name between the quotes is the same as the 'name' attribute on the input elements
+  // However in JavaScript we can't use hyphens in variable names
+
+  let addressChoice = req.session.data['address-choice']
+
+  if (addressChoice !== 'Another address') {
+    res.redirect('/opt-in-opt-out/confirm-details')
+  } else {
+    res.redirect('/opt-in-opt-out/address')
+  }
+})
 
 
 router.get('/opt-in-opt-out/terms-and-conditions', function(req, res, next) {
