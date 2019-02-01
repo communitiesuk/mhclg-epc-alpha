@@ -1,0 +1,49 @@
+<!--  breadcrumbs.html  -->
+<nav>
+
+
+  <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
+    <li class="govuk-header__navigation-item">
+
+      <a href="javascript: window.history.go(-1)" class="govuk-back-link">Back</a>
+
+      
+<!--       <a class="govuk-header__link" href="{{ item.link }}" data-install="{{ item.name }}">
+            {{ item.name }}home
+          </a> -->
+    </li>
+  </ul>
+</nav>
+
+<div class="govuk-breadcrumbs">
+
+<!-- 
+  <ol class="govuk-breadcrumbs__list">
+    {% for item in site.data.breadcrumbs %}
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="{{ item.link }}">{{ item.name }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+   -->
+
+<!-- 
+  {% capture url_parts %} {{ page.url | remove: "/index.html" | replace:'/'," " }}{% endcapture %}
+  {% capture num_parts %}{{ url_parts | number_of_words | minus: 1 }}{% endcapture %}
+  {% assign previous="" %}
+  <ol>
+    {% if num_parts == "0" or num_parts == "-1" %}
+    <li><a href="{{ site.url }}{{ site.baseurl }}">home</a> &nbsp; </li>
+    {% else %}
+    <li><a href="{{ site.url }}{{ site.baseurl }}">home</a> &#187; </li>
+    {% for unused in page.content limit:num_parts %}
+    {% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..."}}{% endcapture %}
+    {% capture previous %}{{ previous }}/{{ first_word }}{% endcapture %}
+    <li><a href="{{ site.url }}{{ site.baseurl }}{{previous}}">{{ first_word }}</a> &#187; </li>
+    {% capture url_parts %}{{ url_parts | remove_first:first_word }}{% endcapture %}
+    {% endfor %}
+    {% endif %}
+  </ol>
+
+   -->
+</div>
