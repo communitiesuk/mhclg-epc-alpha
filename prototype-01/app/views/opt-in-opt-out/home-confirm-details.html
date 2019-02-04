@@ -1,0 +1,73 @@
+{% from "table/macro.njk" import govukTable %}
+
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-xl">
+        Please confirm your details
+      </h1>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">
+          {% if data['opt-out-choice']==='opt-out' %}
+            You have chosen to opt out of the register.
+          {% else %}
+            You have chosen to opt in to the register.
+          {% endif %}
+
+
+        </caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{ data['opt-out-address'] }}</td>
+            <td class="govuk-table__cell"><a href="#">Change</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">
+          Your contact details
+        </caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{ data['home-opt-out-address'] }}</td>
+            <td class="govuk-table__cell"><a href="#">Change</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="terms-and-conditions.html" role="button" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8">Confirm</a>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+    </div>
+  </div>
+{% endblock %}

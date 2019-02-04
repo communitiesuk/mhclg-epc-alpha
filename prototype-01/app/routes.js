@@ -426,6 +426,28 @@ router.get('/opt-in-opt-out/select-address', function(req, res, next) {
     result: {addresses: list}
   });
 });
+router.get('/opt-in-opt-out/home-select-address', function(req, res, next) {
+  var list = [
+      { address: "Flat 1, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 2, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 4, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 7, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 32, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Second Floor Flat, 40 Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 6, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 42, Great Smith Street, SW1P 3BU", ref:""}
+  ];
+
+  res.render('opt-in-opt-out/home-select-address', {
+    result: {addresses: list}
+  });
+});
 
 
 router.post('/opt-in-opt-out/confirm-details', function (req, res) {
@@ -438,7 +460,7 @@ router.post('/opt-in-opt-out/confirm-details', function (req, res) {
   if (addressChoice !== 'Another address') {
     res.redirect('/opt-in-opt-out/confirm-details')
   } else {
-    res.redirect('/opt-in-opt-out/address')
+    res.redirect('/opt-in-opt-out/home-address')
   }
 })
 
