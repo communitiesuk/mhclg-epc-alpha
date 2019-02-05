@@ -145,7 +145,12 @@ router.get('/error', function(req, res, next) {
 
 
 
-//Find certificate
+////////////////////////////////////////////////////////////////////////////
+//
+//  FIND A CERTIFICATE
+//
+////////////////////////////////////////////////////////////////////////////
+
 
 router.get('/find-a-report', function(req, res, next) {
   var contentType='service-start'
@@ -293,7 +298,11 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
 
 
 
-// Find an assessor
+////////////////////////////////////////////////////////////////////////////
+//
+//  FIND AN ASSESSOR
+//
+////////////////////////////////////////////////////////////////////////////
 
 router.get('/find-an-assessor', function(req, res, next) {
   var contentType='service-start'
@@ -372,7 +381,13 @@ router.post('/find-an-assessor/assessor-branch', function (req, res) {
   }
 })
 
-//Optout
+
+////////////////////////////////////////////////////////////////////////////
+//
+//  OPT-IN / OPT OUT
+//
+////////////////////////////////////////////////////////////////////////////
+
 router.get('/opt-in-opt-out', function(req, res, next) {
   var contentType='service-start'
   var contentId='86f589f6-5f51-4976-9104-b2d1801136ec'
@@ -516,6 +531,241 @@ router.get('/opt-in-opt-out/application-complete', function(req, res) {
     applicationReference: randomNo
   });
 });
+
+
+
+////////////////////////////////////////////////////////////////////////////
+//
+//  AUTHORISED USERS
+//  report route: index, search, results, certificate
+//  assessor route: index, search-for-what, search-for-type or check,
+//    search, results, assessor
+//
+//
+////////////////////////////////////////////////////////////////////////////
+
+router.get('/auth-report', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='434d4cc5-41fe-4b5c-b059-41c350f99d21'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+
+router.get('/auth-report/search', function(req, res, next) {
+  var contentType='find-a-report-step'
+  var contentId='70336a96-2d7d-473b-a93e-1d1233f513bb'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('auth-report/search', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+ 
+
+router.get('/auth-report/results', function(req, res, next) {
+  if(req.session.data['address-postcode']){
+    var str = req.session.data['address-postcode'];
+    var cleaned = str.split(' ').join('');
+
+    request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
+      method: "GET",
+      headers: {
+          'Authorization': process.env.EPC_API_KEY,
+          'Accept': 'application/json'
+        }
+      }, function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            if(body) {
+              dataset = JSON.parse(body);
+
+              // loop through results and build a simple array
+              var arr = [];
+              for (var i=0;i<dataset.rows.length;i++){
+                arr[i] = {
+                      "reference": dataset.rows[i]['lmk-key'],
+                      "type": dataset.rows[i]['property-type'],
+                      "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
+                      "category": dataset.rows[i]['current-energy-rating']
+                  }
+              }
+              
+              res.render('auth-report/results', {
+                addresses: arr
+              });
+              
+            } else {
+              console.log('no data');
+              res.render('auth-report/results', {
+                addresses: []
+                //addresses: req.app.locals.data //static dummy data
+              });
+            }
+          } else {
+            console.log(error);
+            res.redirect('/error');
+          }
+      });
+    
+  }else{
+    res.send('no data');
+
+  }
+});
+
+
+
+router.get('/auth-report/certificate/:reference', function(req, res) {
+
+  var idx = 0;
+  var lmkKey = req.params.reference;
+  var filtered = _.filter(dataset.rows, function(item) {
+    return (lmkKey === item['lmk-key']);
+  });
+
+  //assume a filtered array with only a single property result
+  var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
+
+  // hard code style pixel offsets for now
+  // used to position the rating pointed in the chart
+  var step = 35;
+  var offset = {};
+    offset['A'] = 0;
+    offset['B'] = step;
+    offset['C'] = 2*step;
+    offset['D'] = 3*step;
+    offset['E'] = 4*step;
+    offset['F'] = 5*step;
+    offset['G'] = 6*step;
+
+  var property = {
+    address: filtered[idx]['address'],
+    date: displayDate,
+    propertyType: filtered[idx]['property-type'],
+    floorArea: filtered[idx]['total-floor-area'],
+    transactionType: filtered[idx]['transaction-type'],
+    currentRating: filtered[idx]['current-energy-rating'],
+    potentialRating: filtered[idx]['potential-energy-rating'],
+    currentEfficiency: filtered[idx]['current-energy-efficiency'],
+    potentialEfficiency: filtered[idx]['potential-energy-efficiency'],
+    currentPositionStyle: "top: " + offset[ filtered[idx]['current-energy-rating'] ] +"px; left:280px;",
+    potentialPositionStyle: "top: " + offset[ filtered[idx]['potential-energy-rating'] ] +"px; left:350px;",
+    costs:[
+      {energyType: "Lighting", currentCost:"£ "+filtered[idx]['lighting-cost-current'], futureCost: "£ "+filtered[idx]['lighting-cost-potential']},
+      {energyType: "Heating", currentCost:"£ "+filtered[idx]['heating-cost-current'], futureCost: "£ "+filtered[idx]['heating-cost-potential']},
+      {energyType: "Water", currentCost:"£ "+filtered[idx]['hot-water-cost-current'], futureCost: "£ "+filtered[idx]['hot-water-cost-potential']}
+    ],
+    history:[
+      {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+      {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+      {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
+    ]
+  };
+  res.render('auth-report/certificate', {
+    data: property
+  });
+
+});
+
+router.get('/auth-assessor', function(req, res, next) {
+  var contentType='service-start'
+  var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // res.send({ content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+});
+
+router.get('/auth-assessor/results', function(req, res) {
+  // dummy assessor data
+  var results = {
+    assessor:[
+        {accredition:"ABS-23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
+        {accredition:"ABC-47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
+        {accredition:"ABX-34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
+        {accredition:"ABC-47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
+    ]
+  };
+
+  res.render('auth-assessor/results', {
+    addresses: results
+  });
+});
+
+router.get('/auth-assessor/assessor/:reference', function(req, res) {
+  // dummy assessor data
+  var results = {
+    assessor:{
+        name:"Barbara Steele",
+        accredition: req.params.reference,
+        "Company name": "Robert Knight Ltd",
+        "Postcode coverage": "WC1V",
+        "Contact address": "25 Krajcik Junctions",
+        "Email": "jared_lamb@gmail.com",
+        "Phone number": "21-188-9870",
+        "Website": "robertknight.com",
+        "Certificate types": "EPC 3; EPC 4"
+      },
+      scheme:{
+        "Contact address": "549 Toni Glens",
+        "Email": "enquires@test1.co.uk",
+        "Phone number": "421-188-9870",
+        "Website": "test1.co.uk"
+      }
+    };
+
+  res.render('auth-assessor/assessor', {
+    results: results
+  });
+});
+
+// Branching
+router.post('/auth-assessor/assessor-branch', function (req, res) {
+  // Get the answer from session data
+  // The name between the quotes is the same as the 'name' attribute on the input elements
+  // However in JavaScript we can't use hyphens in variable names
+
+  let assessorSearch = req.session.data['assessor-search-type']
+
+  if (assessorSearch === 'check-assessor') {
+    res.redirect('/auth-assessor/check')
+  } else {
+    res.redirect('/auth-assessor/search-for-type')
+  }
+})
+
+
 
 
 module.exports = router

@@ -1,3 +1,6 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -24,6 +27,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-xl">
+        Find an Energy Assessor
+      </h1>
+      
+
       <form id="main" action="results" method="post" class="form" novalidate>
         
         <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
@@ -37,26 +45,19 @@
         </div>
 
         <div class="govuk-form-group">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-            <h1 class="govuk-fieldset__heading">
-              Find an energy assessor
-            </h1>
-          </legend>
-
           <label class="govuk-label" for="assessor-reference">
-            Enter a postcode
+            Assessor Accreditation
           </label>
           <span id="hint" class="govuk-hint">
-            Search here for an energy assessor for a {{ data['property-type']}} property.
+            This reference is on the Certificate for your property. For example, ‘ABX-34225435’. </span>
+          <span id="error-message" class="govuk-error-message hide">
+            Use the assessor's Accreditation reference to check their details.
           </span>
-          <span id="address-postcode-error" class="govuk-error-message hide">
-            Enter the postcode of the area you wish to check.
-          </span>
-          <input data-required="true" class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" value="CR2 6XH">          
+          <input data-required="true" class="govuk-input" id="assessor-reference" name="assessor-reference" type="text" value="ABX-34225435">          
         </div>
 
         {{ govukButton({
-          text: "Find an Assessor"
+          text: "Check an Assessor"
         }) }}
       </form>
 

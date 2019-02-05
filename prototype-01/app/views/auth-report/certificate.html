@@ -1,0 +1,224 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="http://gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Energy performance of buildings register</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Energy Performance Certificate</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-xl">
+        AUTHORISED: Energy Performance Information
+      </h1>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">{{ data.address }}</caption>
+
+        <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Date of certificate</th>
+                <td class="govuk-table__cell">{{ data.date }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Type</th>
+                <td class="govuk-table__cell">{{ data.propertyType | capitalize }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Floor area</th>
+                <td class="govuk-table__cell">{{ data.floorArea }} m2</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Transaction type</th>
+                <td class="govuk-table__cell">{{ data.transactionType | capitalize }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Current rating</th>
+                <td class="govuk-table__cell">{{ data.currentRating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Potential rating</th>
+                <td class="govuk-table__cell">{{ data.potentialRating }}</td>
+              </tr>
+        </tbody>
+      </table>
+ 
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+      <h2>Assessment Result</h2> 
+
+
+      <div class="chart">
+        <div class='bars'>
+          <div class="bar">
+            <div class="col_1"><span class="th">Energy Rating</span></div>
+            <div class="col_2"><span class="th">Current</span></div>
+            <div class="col_3"><span class="th">Potential</span></div>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+          <div class="bar">
+            <small>very energy efficient - lower running costs</small>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_a'><span class='range'>(92+)</span><span class='title'>A</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_b'><span class='range'>(81-91)</span><span class='title'>B</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_c'><span class='range'>(69-80)</span><span class='title'>C</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_d'><span class='range'>(55-68)</span><span class='title'>D</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_e'><span class='range'>(39-54)</span><span class='title'>E</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_f'><span class='range'>(21-38)</span><span class='title'>F</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_g'><span class='range'>(1-20)</span><span class='title'>G</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="pointer current rating_{{ data.currentRating|lower }}" style='{{ data.currentPositionStyle }}'>
+              <span>{{ data.currentEfficiency }}</span>
+            </div>
+            <div class="pointer potential rating_{{ data.potentialRating|lower }}" style='{{ data.potentialPositionStyle }}'>
+              <span>{{ data.potentialEfficiency }}</span>
+            </div>
+        </div>
+      </div>
+
+      <p></p>
+      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
+      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
+      
+     <!-- 
+     <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
+      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
+      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
+       -->
+
+
+
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+      <h2>Energy costs for running this property</h2>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">These estimates are based on costs assessed in 2015 over 3 year period.</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Energy use</th>
+            <th class="govuk-table__header" scope="col">Current costs</th>
+            <th class="govuk-table__header" scope="col">Potential costs</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for item in data.costs %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" >{{item.energyType}}</td>
+                <td class="govuk-table__cell">{{item.currentCost}}</td>
+                <td class="govuk-table__cell">{{item.futureCost}}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+      <h2>History of certificates for this property (*)</h2>
+      <table class="govuk-table">
+      <!--   <caption class="govuk-table__caption">Historic records</caption> -->
+        <tbody class="govuk-table__body">
+
+          {% for item in data.history %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" scope="row">{{item.date}}</td>
+              <td class="govuk-table__cell">{{item.event}}</td>
+              <td class="govuk-table__cell">{{item.rating}}</td>
+              <td class="govuk-table__cell">{{item.assessmentType}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related Content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="/find-an-assessor">
+                Find an Assessor
+              </a>
+            </li>
+            <li>
+              <a href="/opt-in-opt-out">
+                Opt out of the register
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}
