@@ -25,33 +25,41 @@
 
 {% block content %}
 
+
+
+
+
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
+
+
+
+
+    <div class="govuk-grid-column-one-quarter">
       <p>FILTER</p>
-      <ol class="">
-        <li class="govuk__list-item">
-          <a class="govuk" href="#postcodes">Postcodes</a>
-        </li>
-        <li class="govuk__list-item">
-          <a class="govuk" href="#certificates">Certificates</a>
-        </li>
-        <li class="govuk__list-item">
-          <a class="govuk" href="#assessors">Assessors</a>
-        </li>
-      </ol>
+
     </div>
 
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
-      <h1 class="govuk-heading-xl">
+    <div class="govuk-tabs" data-module="tabs">
+      <h2 class="govuk-tabs__title">
         Results for {{ data['address-postcode'] }}
-      </h1>
-
-
-     <h2 class="govuk-heading-m">
-      <a name="postcodes"></a>
-        Properties
       </h2>
+
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#postcodes">Postcodes</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#certificates">Certificates</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#assessors">Assessors</a>
+        </li>
+      </ul>
+
+<section class="govuk-tabs__panel" id="postcodes">
+<h2 class="govuk-heading-l">Properties at {{ data['address-postcode'] }}</h2>
 <!--  Addresses for postcode  -->     
 {% if not response.addresses.length %}
 <p>No addresses found for that postcode</p>
@@ -82,11 +90,11 @@
   </tbody>
 </table>
 {% endif %}
+</section>
 
-     <h2 class="govuk-heading-m">
-      <a name="certificates"></a>
-        Certificates
-      </h2>
+<section class="govuk-tabs__panel" id="certificates">
+<h2 class="govuk-heading-l">Certificates at {{ data['address-postcode'] }}</h2>
+
 <!--  Certificate for postcode  -->     
 {% if not response.certificates.length %}
 <p>No certificates found for that postcode</p>
@@ -117,16 +125,16 @@
   </tbody>
 </table>
 {% endif %}
+</section>
 
-     <h2 class="govuk-heading-m">
-      <a name="assessors"></a>
-        Assessors
-      </h2>
+<section class="govuk-tabs__panel" id="assessors">
+<h2 class="govuk-heading-l">Assessors at {{ data['address-postcode'] }}</h2>
+
 <!--  assessors for postcode  -->     
 {% if not response.certificates.length %}
 <p>No assessors found for that postcode</p>
 {% else %}
-<p>Please click on a assessor below to view further details:</p>
+<p>Please click on an assessor below to view further details:</p>
 <table class="govuk-table">
   <caption class="govuk-table__caption">Local assessors</caption>
   <thead class="govuk-table__head">
@@ -135,7 +143,7 @@
       <th class="govuk-table__cell" scope="col">Assessor Name</th>
       <th class="govuk-table__cell" scope="col">Address</th>
       <th class="govuk-table__cell" scope="col">Telephone Number</th>
-      <th class="govuk-table__cell" scope="col">Distance (miles)</th>
+<!--       <th class="govuk-table__cell" scope="col">Distance (miles)</th> -->
       <th class="govuk-table__cell" scope="col">Status</th>
     </tr>
   </thead>
@@ -143,21 +151,22 @@
   <tbody class="govuk-table__body">
     {% for item in response.assessors %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="assesor/{{item['Accreditation Number']}}">{{item['Accreditation Number']}}</a></td>
+          <td class="govuk-table__cell"><a href="assessor/{{item['Accreditation Number']}}">{{item['Accreditation Number']}}</a></td>
           <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
           <td class="govuk-table__cell">{{item.Address}}</td>
           <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
-          <td class="govuk-table__cell">{{item.Distance}}</td>
+<!--           <td class="govuk-table__cell">{{item.Distance}}</td> -->
           <td class="govuk-table__cell">{{item.Status}}</td>
         </tr>
     {% endfor %}
   </tbody>
 </table>
 {% endif %}
-
+</section>
           
     </div>
 
 
   </div>
+  </div><!--  end of tab sections  -->
 {% endblock %}
