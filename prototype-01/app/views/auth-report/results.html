@@ -26,70 +26,138 @@
 {% block content %}
 
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <p>FILTER</p>
+      <ol class="">
+        <li class="govuk__list-item">
+          <a class="govuk" href="#postcodes">Postcodes</a>
+        </li>
+        <li class="govuk__list-item">
+          <a class="govuk" href="#certificates">Certificates</a>
+        </li>
+        <li class="govuk__list-item">
+          <a class="govuk" href="#assessors">Assessors</a>
+        </li>
+      </ol>
+    </div>
+
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        AUTHORISED: Energy Performance Certificates for {{ data['address-postcode'] }}
+        Results for {{ data['address-postcode'] }}
       </h1>
-      
-{% if not addresses.length %}
-<p>No certicates found for that postcode</p>
 
+
+     <h2 class="govuk-heading-m">
+      <a name="postcodes"></a>
+        Properties
+      </h2>
+<!--  Addresses for postcode  -->     
+{% if not response.addresses.length %}
+<p>No addresses found for that postcode</p>
 {% else %}
-<p>Please click on an address below to view or download a report:</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption">Properties with an EPC*</caption>
+  <caption class="govuk-table__caption">All properties at {{ data['address-postcode'] }}</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="col">Type</th>
-      <th class="govuk-table__header" scope="col">Address</th>
-      <th class="govuk-table__header" scope="col">Grade</th>
+      <th class="govuk-table__header" scope="col">Name</th>
+      <th class="govuk-table__header" scope="col">Number</th>
+      <th class="govuk-table__header" scope="col">Street</th>
+      <th class="govuk-table__header" scope="col">Town</th>
+      <th class="govuk-table__header" scope="col">Postcode</th>
     </tr>
   </thead>
 
   <tbody class="govuk-table__body">
-
-    {% for item in addresses %}
+    {% for item in response.addresses %}
         <tr class="govuk-table__row">
-          <th class="govuk-table__header" scope="row">{{item.type}}</th>
-          <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.address}}</a></td>
-          <td class="govuk-table__cell">{{item.category}}</td>
+          <th class="govuk-table__header" scope="row">{{item.name}}</th>
+          <td class="govuk-table__cell">{{item.number}}</td>
+          <td class="govuk-table__cell">{{item.street}}</td>
+          <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+          <td class="govuk-table__cell">{{item.postcode}}</td>
         </tr>
     {% endfor %}
-
   </tbody>
 </table>
- {% endif %}
+{% endif %}
+
+     <h2 class="govuk-heading-m">
+      <a name="certificates"></a>
+        Certificates
+      </h2>
+<!--  Certificate for postcode  -->     
+{% if not response.certificates.length %}
+<p>No certificates found for that postcode</p>
+{% else %}
+<p>Please click on a certificate below to view or download a report:</p>
+<table class="govuk-table">
+  <caption class="govuk-table__caption">Properties with an EPC*</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__cell" scope="col">Number</th>
+      <th class="govuk-table__cell" scope="col">Name</th>
+      <th class="govuk-table__cell" scope="col">Street</th>
+      <th class="govuk-table__cell" scope="col">Town</th>
+      <th class="govuk-table__cell" scope="col">Postcode</th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    {% for item in response.certificates %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.number}}</a></td>
+          <th class="govuk-table__cell" scope="row">{{item.name}}</th>
+          <td class="govuk-table__cell">{{item.street}}</td>
+          <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+          <td class="govuk-table__cell">{{item.postcode}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+     <h2 class="govuk-heading-m">
+      <a name="assessors"></a>
+        Assessors
+      </h2>
+<!--  assessors for postcode  -->     
+{% if not response.certificates.length %}
+<p>No assessors found for that postcode</p>
+{% else %}
+<p>Please click on a assessor below to view further details:</p>
+<table class="govuk-table">
+  <caption class="govuk-table__caption">Local assessors</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__cell" scope="col">Accreditation Number</th>
+      <th class="govuk-table__cell" scope="col">Assessor Name</th>
+      <th class="govuk-table__cell" scope="col">Address</th>
+      <th class="govuk-table__cell" scope="col">Telephone Number</th>
+      <th class="govuk-table__cell" scope="col">Distance (miles)</th>
+      <th class="govuk-table__cell" scope="col">Status</th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    {% for item in response.assessors %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="assesor/{{item['Accreditation Number']}}">{{item['Accreditation Number']}}</a></td>
+          <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
+          <td class="govuk-table__cell">{{item.Address}}</td>
+          <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
+          <td class="govuk-table__cell">{{item.Distance}}</td>
+          <td class="govuk-table__cell">{{item.Status}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+          
     </div>
 
-    <div class="govuk-grid-column-one-third">
 
-      <aside class="app-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Related Content
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            <li>
-              <a href="/find-an-assessor">
-                Find an Assessor
-              </a>
-            </li>
-            <li>
-              <a href="/opt-in-opt-out">
-                Opt out of the register
-              </a>
-            </li>
-            <!-- <li>
-              <a href="#" class="govuk-!-font-weight-bold">
-                More <span class="govuk-visually-hidden">in Subsection</span>
-              </a>
-            </li> -->
-          </ul>
-        </nav>
-      </aside>
-
-    </div>
   </div>
 {% endblock %}

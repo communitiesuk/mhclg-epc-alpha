@@ -29,27 +29,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        index?AUTHORISED: {{ content.data.Title.en }}
+        {{ content.data.ServiceName.en }}
       </h1>
       {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
-      <p>Use this service to:</p>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Retrieve an EPC (Energy Performance Certificate) using the properties address.</li>
-        <li>Retrieve an EPC using the 24-digit Report Reference Number printed on the report or provided by the Energy Assessor who produced it.</li>
-      </ul>
-
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          If the owner and/or occupier of the property has chosen to remove a property from general searches, the property information can only be found using the reference number on the certificate.
-        </strong>
-      </div>
-
-      !{{ content.data.NextStepUrl.en }}!
-
-      <a href="{{ content.data.NextStepUrl.en }}" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Start now</a>
+      <a href="{{ content.data.StartNowUrl.en }}" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Start now</a>
 
       <h2 class="govuk-heading-m">Before you start</h2>
 

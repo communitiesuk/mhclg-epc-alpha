@@ -407,6 +407,8 @@ utils.findAvailablePort(app, function (port) {
 */
 var data = JSON.parse(fs.readFileSync(__dirname + '/app/data/addresses.json').toString());
 app.locals.data = data.addresses;
+var smartResults = JSON.parse(fs.readFileSync(__dirname + '/app/data/auth_user_results.json').toString());
+app.locals.smartResults = smartResults;
 
 
 

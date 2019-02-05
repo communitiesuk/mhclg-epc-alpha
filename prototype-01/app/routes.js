@@ -566,7 +566,7 @@ router.get('/auth-report', function(req, res, next) {
 
 router.get('/auth-report/search', function(req, res, next) {
   var contentType='find-a-report-step'
-  var contentId='70336a96-2d7d-473b-a93e-1d1233f513bb'
+  var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
@@ -578,6 +578,7 @@ router.get('/auth-report/search', function(req, res, next) {
         res.render('auth-report/search', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
+        console.log(error);
         res.redirect('/error');
       }
   });
@@ -586,48 +587,15 @@ router.get('/auth-report/search', function(req, res, next) {
 
 router.get('/auth-report/results', function(req, res, next) {
   if(req.session.data['address-postcode']){
+
+    // pull in dummy data loaded from static file via server.js
+    console.log(req.app.locals.smartResults);
     var str = req.session.data['address-postcode'];
-    var cleaned = str.split(' ').join('');
-
-    request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
-      method: "GET",
-      headers: {
-          'Authorization': process.env.EPC_API_KEY,
-          'Accept': 'application/json'
-        }
-      }, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            if(body) {
-              dataset = JSON.parse(body);
-
-              // loop through results and build a simple array
-              var arr = [];
-              for (var i=0;i<dataset.rows.length;i++){
-                arr[i] = {
-                      "reference": dataset.rows[i]['lmk-key'],
-                      "type": dataset.rows[i]['property-type'],
-                      "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
-                      "category": dataset.rows[i]['current-energy-rating']
-                  }
-              }
+         
+    res.render('auth-report/results', {
+      response: req.app.locals.smartResults
+    });
               
-              res.render('auth-report/results', {
-                addresses: arr
-              });
-              
-            } else {
-              console.log('no data');
-              res.render('auth-report/results', {
-                addresses: []
-                //addresses: req.app.locals.data //static dummy data
-              });
-            }
-          } else {
-            console.log(error);
-            res.redirect('/error');
-          }
-      });
-    
   }else{
     res.send('no data');
 
