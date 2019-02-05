@@ -151,7 +151,6 @@ router.get('/error', function(req, res, next) {
 //
 ////////////////////////////////////////////////////////////////////////////
 
-
 router.get('/find-a-report', function(req, res, next) {
   var contentType='service-start'
   var contentId='434d4cc5-41fe-4b5c-b059-41c350f99d21'
@@ -546,7 +545,7 @@ router.get('/opt-in-opt-out/application-complete', function(req, res) {
 
 router.get('/auth-report', function(req, res, next) {
   var contentType='service-start'
-  var contentId='434d4cc5-41fe-4b5c-b059-41c350f99d21'
+  var contentId='5bc85eca-8664-4538-b1e1-9cba914bc680'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
@@ -555,6 +554,7 @@ router.get('/auth-report', function(req, res, next) {
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         // res.send({ content : JSON.parse(body) });
+        console.log(JSON.parse(body));
         res.render('service-start', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
@@ -582,7 +582,7 @@ router.get('/auth-report/search', function(req, res, next) {
       }
   });
 });
- 
+
 
 router.get('/auth-report/results', function(req, res, next) {
   if(req.session.data['address-postcode']){

@@ -1,13 +1,14 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Find an Energy Performance Certificate
+  {{ content.data.ServiceName.en }} - GOV.UK
 {% endblock %}
 
-{% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {{ govukHeader() }}
-{% endblock %}
+
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "button/macro.njk" import govukButton %}
+
+
 
 {% block beforeContent %}
 {{ super() }}
@@ -28,9 +29,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        AUTHORISED USER: Find an Energy Performance Certificate
+        index?AUTHORISED: {{ content.data.Title.en }}
       </h1>
-
+      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
       <p>Use this service to:</p>
 
       <ul class="govuk-list govuk-list--bullet">
@@ -46,7 +47,9 @@
         </strong>
       </div>
 
-      <a href="authorised/01-search.html" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Start now</a>
+      !{{ content.data.NextStepUrl.en }}!
+
+      <a href="{{ content.data.NextStepUrl.en }}" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">Start now</a>
 
       <h2 class="govuk-heading-m">Before you start</h2>
 
