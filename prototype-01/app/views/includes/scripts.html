@@ -10,3 +10,16 @@
 {% if useAutoStoreData %}
 <script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+	// trigger hotjar survey:
+	// note that 'survey' is the name given in the hotjar page
+	// page targeting rule set in the actual survey
+	// also hotjar tracking code is set in the head.html
+	// and needs to load before this
+	document.getElementById("feedback").addEventListener("click", function(){
+  		//console.log( "click, click, click" );
+		hj('trigger', 'survey');
+	});
+
+</script>
