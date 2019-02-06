@@ -17,8 +17,14 @@
 	// page targeting rule set in the actual survey
 	// also hotjar tracking code is set in the head.html
 	// and needs to load before this
-	document.getElementById("feedback").addEventListener("click", function(){
+
+	// if we have js remove the href...
+	$('#feedback').attr("href", "");
+
+	// then add a listener
+	$("#feedback").click(function(evt){
   		//console.log( "click, click, click" );
+  		evt.preventDefault();
 		hj('trigger', 'survey');
 	});
 
