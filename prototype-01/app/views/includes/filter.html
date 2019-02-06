@@ -1,0 +1,117 @@
+<div class="govuk">
+  <form id="form" class="" novalidate>
+    <div class="col col--md-12 col--lg-18 margin-bottom">
+      <div class="margin-bottom-md--2 flush-col js-mobile-filters">
+        <div class="background--gallery padding-top-md--2 padding-right-md--1 padding-bottom-md--4 padding-left-sm--1 padding-left-md--1 flush js-mobile-filters__title">
+          <h3 class="inline-block flush">Refine results</h3>
+          <a href="/search?q=gdp" id="clear-search" class="btn btn--primary btn--thin btn--narrow btn--small float-right">Clear all</a>
+        </div>
+        <div class="background--mercury border-top--iron-md padding-top-sm--2 padding-top-md--1 padding-right-sm--1 padding-right-md--1 padding-bottom-sm--2 padding-bottom-md--2 padding-left-sm--1 padding-left-md--1 js-mobile-filters__contents">
+          <div class="filters js-filters">
+            <h4 class="filters__title">Content types to show</h4>
+            <fieldset class="filters__fieldset">
+              <legend class="filters__sub-title">Document type</legend>
+              <div class="js-checkbox-container">
+                <ul class="govuk-list">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-bulletin" class="js-auto-submit__input" type="checkbox" name="filter" value="bulletin">
+                      <label for="checkbox-bulletin">
+                        Domestic EPC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-article" class="js-auto-submit__input" type="checkbox" name="filter" value="article">
+                      <label for="checkbox-article">
+                        Commercial EPC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-compendia" class="js-auto-submit__input" type="checkbox" name="filter" value="compendia">
+                      <label for="checkbox-compendia">
+                        DEC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-compendia" class="js-auto-submit__input" type="checkbox" name="filter" value="compendia">
+                      <label for="checkbox-compendia">
+                        SAP Rd
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+           <!--  <fieldset class="filters__fieldset">
+              <legend class="filters__sub-title">Data</legend>
+              <div class="js-checkbox-container">
+                <ul class="list--neutral margin-top--0 margin-bottom--0">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-timeseries" class="js-auto-submit__input" type="checkbox" name="filter" value="time_series">
+                      <label for="checkbox-timeseries">
+                        Time series (214)
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-dataset" class="js-auto-submit__input" type="checkbox" name="filter" value="datasets">
+                      <label for="checkbox-dataset">
+                        Datasets (79)
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-adhoc" class="js-auto-submit__input" type="checkbox" name="filter" value="user_requested_data">
+                      <label for="checkbox-adhoc">
+                        User requested data (4)
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset> -->
+            <!-- <fieldset class="filters__fieldset">
+              <legend class="filters__sub-title">Other</legend>
+              <div class="js-checkbox-container">
+                <ul class="list--neutral flush-top">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-methodology" class="js-auto-submit__input" type="checkbox" name="filter" value="methodology">
+                      <label for="checkbox-methodology">
+                        Methodology (18)
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-corporate" class="js-auto-submit__input" type="checkbox" name="filter" value="corporate_information">
+                      <label for="checkbox-corporate">
+                        Corporate Information (21)
+                        <br>
+                        (About us, media releases, freedom of information (FOI) requests etc.)
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset> -->
+            <input class="sort__input" type="hidden" name="q" value="gdp">
+          </div>
+          <input type="hidden" name="size" value="10">
+          <input type="hidden" name="sortBy" value="title">
+          <button type="submit" class="btn btn--primary btn--thick margin-top-sm--2 margin-top-md--2 js-submit-button">Filter</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

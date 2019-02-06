@@ -206,7 +206,6 @@ router.get('/find-a-report/results', function(req, res, next) {
           if (!error && response.statusCode == 200) {
             if(body) {
               dataset = JSON.parse(body);
-
               // loop through results and build a simple array
               var arr = [];
               for (var i=0;i<dataset.rows.length;i++){
@@ -586,14 +585,29 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
-  if(req.session.data['address-postcode']){
+  if(req.session.data['search-field']){
 
     // pull in dummy data loaded from static file via server.js
-    console.log(req.app.locals.smartResults);
-    var str = req.session.data['address-postcode'];
-         
+    // arrays fr addresses, certificates and assessors
+    //console.log(req.app.locals.smartResults);
+    var str = req.session.data['search-field'];
+    var response = {};
+
+    if(str.length>20){
+      response.certificates = req.app.locals.smartResults.certificates
+    }
+    if(str.length>=9 && str.length<20){
+      response.assessors = req.app.locals.smartResults.assessors
+    }
+    if(str.length<=9){
+      response.certificates = req.app.locals.smartResults.certificates
+      response.assessors = req.app.locals.smartResults.assessors
+      response.addresses = req.app.locals.smartResults.addresses
+    }
+
+    //console.log(response);
     res.render('auth-report/results', {
-      response: req.app.locals.smartResults
+      response: response
     });
               
   }else{

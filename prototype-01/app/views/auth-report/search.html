@@ -42,7 +42,7 @@
         </div>
 
         <div class="govuk-form-group"> 
-          <fieldset class="govuk-fieldset" aria-describedby="address-postcode-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="search-field-hint">
 
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
@@ -50,18 +50,22 @@
               </h1>
             </legend>
             {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
-            <span id="address-postcode-hint" class="govuk-hint">
+            <span id="search-field-hint" class="govuk-hint">
               Use the address and postcode (eg DY10 1AA, SW1P 3BU)
+              <br/>
+              or Certificate Reference Number: 1234-5678-1234-5678-1234
+              <br/>
+              or Assessor Reference Number: XXX123456
             </span>
 
             <div class="">
-              <label class="govuk-label" for="address-postcode">
+              <label class="govuk-label" for="search-field">
                 Enter a postcode, certificate or assessor reference.
               </label>
-              <span id="address-postcode-error" class="govuk-error-message hide">
+              <span id="search-field-error" class="govuk-error-message hide">
                 Enter the postcode, certificate or assessor reference.
               </span>
-              <input data-required="true" class="govuk-input" id="address-postcode" name="address-postcode" type="text" value=""> 
+              <input data-required="true" class="govuk-input" id="search-field" name="search-field" type="text" value=""> 
             </div>
             <br/>
 
