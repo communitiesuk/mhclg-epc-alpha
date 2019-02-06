@@ -42,7 +42,7 @@
         </div>
 
         <div class="govuk-form-group"> 
-          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint nationality-error">
+          <fieldset class="govuk-fieldset" aria-describedby="address-postcode-hint">
 
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
@@ -50,12 +50,12 @@
               </h1>
             </legend>
             {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
-            <span id="hint" class="govuk-hint">
+            <span id="address-postcode-hint" class="govuk-hint">
               Use the address and postcode (eg DY10 1AA, SW1P 3BU)
             </span>
 
             <div class="">
-              <label class="govuk-label" for="assessor-reference">
+              <label class="govuk-label" for="address-postcode">
                 Enter a postcode, certificate or assessor reference.
               </label>
               <span id="address-postcode-error" class="govuk-error-message hide">
@@ -74,31 +74,7 @@
 
       </form>
 
-
     </div>
 
-    <!-- 
-    <div class="govuk-grid-column-one-third">
-      <aside class="app-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Related Content
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            <li>
-              <a href="/find-an-assessor">
-                Find an Assessor
-              </a>
-            </li>
-            <li>
-              <a href="/opt-in-opt-out">
-                Opt out of the register
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-    </div>
-    -->
   </div>
 {% endblock %}

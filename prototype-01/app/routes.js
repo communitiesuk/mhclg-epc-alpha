@@ -656,6 +656,36 @@ router.get('/auth-report/certificate/:reference', function(req, res) {
 
 });
 
+
+router.get('/auth-report/assessor/:reference', function(req, res) {
+  // dummy assessor data
+  var accredition  = req.params.reference.split("^").join("/")
+  var results = {
+    assessor:{
+        name:"Barbara Steele",
+        accredition: accredition,
+        "Company name": "Robert Knight Ltd",
+        "Postcode coverage": "WC1V",
+        "Contact address": "25 Krajcik Junctions",
+        "Email": "jared_lamb@gmail.com",
+        "Phone number": "21-188-9870",
+        "Website": "robertknight.com",
+        "Certificate types": "EPC 3; EPC 4"
+      },
+      scheme:{
+        "Contact address": "549 Toni Glens",
+        "Email": "enquires@test1.co.uk",
+        "Phone number": "421-188-9870",
+        "Website": "test1.co.uk"
+      }
+    };
+
+  res.render('find-an-assessor/assessor', {
+    results: results
+  });
+});
+
+/*
 router.get('/auth-assessor', function(req, res, next) {
   var contentType='service-start'
   var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
@@ -732,7 +762,7 @@ router.post('/auth-assessor/assessor-branch', function (req, res) {
     res.redirect('/auth-assessor/search-for-type')
   }
 })
-
+*/
 
 
 

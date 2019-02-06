@@ -36,7 +36,6 @@
 
     <div class="govuk-grid-column-one-quarter">
       <p>FILTER</p>
-
     </div>
 
     <div class="govuk-grid-column-three-quarters">
@@ -48,13 +47,13 @@
 
       <ul class="govuk-tabs__list">
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#postcodes">Postcodes</a>
+            <a class="govuk-tabs__tab" href="#postcodes">Postcodes ({{ response.addresses.length }})</a>
         </li>
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#certificates">Certificates</a>
+          <a class="govuk-tabs__tab" href="#certificates">Certificates ({{ response.certificates.length }})</a>
         </li>
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#assessors">Assessors</a>
+          <a class="govuk-tabs__tab" href="#assessors">Assessors ({{ response.assessors.length }})</a>
         </li>
       </ul>
 
@@ -73,7 +72,7 @@
       <th class="govuk-table__header" scope="col">Number</th>
       <th class="govuk-table__header" scope="col">Street</th>
       <th class="govuk-table__header" scope="col">Town</th>
-      <th class="govuk-table__header" scope="col">Postcode</th>
+      <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
     </tr>
   </thead>
 
@@ -84,7 +83,7 @@
           <td class="govuk-table__cell">{{item.number}}</td>
           <td class="govuk-table__cell">{{item.street}}</td>
           <td class="govuk-table__cell">{{item.town | capitalize}}</td>
-          <td class="govuk-table__cell">{{item.postcode}}</td>
+          <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
         </tr>
     {% endfor %}
   </tbody>
@@ -108,7 +107,7 @@
       <th class="govuk-table__cell" scope="col">Name</th>
       <th class="govuk-table__cell" scope="col">Street</th>
       <th class="govuk-table__cell" scope="col">Town</th>
-      <th class="govuk-table__cell" scope="col">Postcode</th>
+      <!-- <th class="govuk-table__cell" scope="col">Postcode</th> -->
     </tr>
   </thead>
 
@@ -119,7 +118,7 @@
           <th class="govuk-table__cell" scope="row">{{item.name}}</th>
           <td class="govuk-table__cell">{{item.street}}</td>
           <td class="govuk-table__cell">{{item.town | capitalize}}</td>
-          <td class="govuk-table__cell">{{item.postcode}}</td>
+          <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
         </tr>
     {% endfor %}
   </tbody>
@@ -151,7 +150,7 @@
   <tbody class="govuk-table__body">
     {% for item in response.assessors %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="assessor/{{item['Accreditation Number']}}">{{item['Accreditation Number']}}</a></td>
+          <td class="govuk-table__cell"><a href="assessor/{{ item['Accreditation Number'] | replace("/", "^") }}">{{item['Accreditation Number']}}</a></td>
           <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
           <td class="govuk-table__cell">{{item.Address}}</td>
           <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
