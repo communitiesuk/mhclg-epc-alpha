@@ -17,7 +17,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="javascript:history.back()">Back</a>
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
       </li>
     </ol>
   </div>
@@ -28,35 +28,33 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Check Accreditation
+        Find an Energy Assessor
       </h1>
-      <p>Use the assessor's Accreditation reference to check their details.</p>
+      
 
-      <form id="main" action="results" method="post" class="form">
+      <form id="main" action="results" method="post" class="form" novalidate>
         
-        <div class="govuk-form-group">
-        
-          <div class="govuk-error-summary error-message hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
-            <h2 class="govuk-error-summary__title" id="error-summary-title">
-              There is a problem
-            </h2>
-            <div class="govuk-error-summary__body">
-
-              <ul class="govuk-list govuk-error-summary__list messages">
-                
-              </ul>
-            </div>
-          </div>  
-
-
-          <label class="govuk-label" for="assessor-reference">
-            Search for an Energy Assessor
-          </label>
-          <input data-required="true" class="govuk-input" id="assessor-reference" name="assessor-reference" type="text" value="ABX-34225435">
-          
-        </input>
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
         </div>
 
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="assessor-reference">
+            Assessor Accreditation
+          </label>
+          <span id="hint" class="govuk-hint">
+            This reference is on the Certificate for your property. For example, ‘ABX-34225435’. </span>
+          <span id="error-message" class="govuk-error-message hide">
+            Use the assessor's Accreditation reference to check their details.
+          </span>
+          <input data-required="true" class="govuk-input" id="assessor-reference" name="assessor-reference" type="text" value="ABX-34225435">          
+        </div>
 
         {{ govukButton({
           text: "Check an Assessor"

@@ -1,0 +1,41 @@
+---
+layout: default
+title: Week Notes
+---
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body-l"></p>
+
+    <h2 class="govuk-heading-m">Week Notes</h2>
+    <div class="markdown-output">
+      <ul class="govuk-list govuk-list--bullet">
+        <li>cult of #weeknotes</li>
+        <li>fans of the gif</li>
+      </ul>
+    </div>
+
+
+    {% for note in site.weeknotes reversed %}
+    <h2 class="govuk-heading-m">
+      <a href="{{ note.url| prepend: site.baseurl  }}">
+        {{ note.title }}
+      </a>
+    </h2>
+    <h3 class="govuk-caption-m" >
+      {{ note.dateCreated }}
+    </h3>
+    <p>{{ note.content | markdownify }}</p>
+    {% endfor %}
+
+    <!-- 
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="https://notbinary.github.io/mhclg-epc-alpha/week-notes/week-02/">Week 02</a>
+        </li>
+        <li>
+          <a href="https://notbinary.github.io/mhclg-epc-alpha/week-notes/week-01/">Week 01</a>
+        </li>
+      </ul>
+ -->
+  </div>
+</div>

@@ -17,7 +17,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="javascript:history.back()">Back</a>
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
       </li>
     </ol>
   </div>
@@ -31,6 +31,24 @@
       <h1 class="govuk-heading-xl">
         Please confirm your details
       </h1>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">
+          {% if data['opt-out-choice']==='opt-out' %}
+            You have chosen to opt out of the register.
+          {% else %}
+            You have chosen to opt in to the register.
+          {% endif %}
+
+
+        </caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{ data['opt-out-address'] }}</td>
+            <td class="govuk-table__cell"><a href="#">Change</a></td>
+          </tr>
+        </tbody>
+      </table>
 
       <table class="govuk-table">
         <caption class="govuk-table__caption">Personal details</caption>
@@ -57,7 +75,6 @@
           </tr>
         </tbody>
       </table>
-
 
       <a href="terms-and-conditions.html" role="button" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8">Confirm</a>
 

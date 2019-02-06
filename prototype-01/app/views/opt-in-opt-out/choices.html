@@ -17,7 +17,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="javascript:history.back()">Back</a>
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
       </li>
     </ol>
   </div>
@@ -27,34 +27,66 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <form id="main" action="personal-details" method="post" class="form">
 
-      <form action="id-property" method="post" class="form">
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "opt-out-choice",
-          name: "opt-out-choice",
-          fieldset: {
-            legend: {
-              text: "What would you like to do?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          hint: {
-            text: "You can opt out of the register, or opt back in if you change your mind."
-          },
-          items: [
-            {
-              value: "Opt-in",
-              text: "Opt in"
-            },
-            {
-              value: "Opt-out",
-              text: "Opt out"
-            }
-          ]
-        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+
+              {% if result.isOptedIn===true %}
+                Would you like to opt out?
+              {% else %}
+                Would you like to opt in?
+              {% endif %}
+
+              </h1>
+            </legend>
+            <span id="opt-out-choice-hint" class="govuk-hint">
+              {% if result.isOptedIn===true %}
+                {% set option1value='opt-out' %}
+                {% set option1text='Yes opt out' %}
+                {% set option2value='opt-in' %}
+                {% set option2text='No stay opted in' %}
+                {{ data['opt-out-address'] }} is currently opted in.
+              {% else %}
+                {% set option1value='opt-in' %}
+                {% set option1text='Yes opt in' %}
+                {% set option2value='opt-out' %}
+                {% set option2text='No stay opted out' %}
+                {{ data['opt-out-address'] }} is currently opted out.
+              {% endif %}
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Select opt out if you want to remove your details from the register.
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-out-choice-1" name="opt-out-choice" type="radio" value="{{ option1value }}">
+                <label class="govuk-label govuk-radios__label" for="opt-out-choice-1">
+                  {{ option1text }}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="opt-out-choice-2" name="opt-out-choice" type="radio" value="{{ option2value }}">
+                <label class="govuk-label govuk-radios__label" for="opt-out-choice-2">
+                  {{ option2text }}
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ govukButton({
           text: "Continue"

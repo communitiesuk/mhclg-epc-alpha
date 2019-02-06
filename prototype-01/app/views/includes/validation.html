@@ -2,192 +2,140 @@
 <script>
 
     (function() {
-      // Before using it we must add the parse and format functions
-      // Here is a sample implementation using moment.js
-      validate.extend(validate.validators.datetime, {
-        // The value is guaranteed not to be null or undefined but otherwise it
-        // could be anything.
-        /*parse: function(value, options) {
-          return (value);
-        },
-        // Input is a unix timestamp
-        format: function(value, options) {
-          var format = options.dateOnly ? "YYYY-MM-DD" : "YYYY-MM-DD hh:mm:ss";
-          return value;
-        }*/
-      });
 
-      // These are the constraints used to validate the form
-      var constraints = {
-        "opt-out-postcode": {
-          // Is required
-          presence: true,
-          // And must be at least 10 characters long
-          length: {
-            minimum: 10
-          }
-        },
-        "opt-out-address": {
-          // Is required
-          presence: true,
-          // And must be at least 10 characters long
-          length: {
-            minimum: 10
-          }
-        },
-        "opt-out-referenceNo": {
-          // Is required
-          presence: true,
-          // And must be at least 10 characters long
-          length: {
-            minimum: 10
-          }
-        },
-        "assessor-reference": {
-          // Password is also required
-          presence: true,
-          // And must be at least 10 characters long
-          length: {
-            minimum: 10
-          }
-        },
-      };
+      var errors = [];  // store array of error messages: {target, msg}
 
       // Hook up the form so we can prevent it from being posted
       var form = document.querySelector("form#main");
-      var target;
-      if (form){
-        target = form.action;
 
-      form.addEventListener("submit", function(ev) {
-        console.log('submit');
-        ev.preventDefault();
-        handleFormSubmit(form);
-      });
+      // NB As per GDS, only validate when the form is submittted
+      if (form){
+        form.addEventListener("submit", function(ev) {
+          ev.preventDefault();
+          handleFormSubmit();
+        });
 
       } 
-      // Hook up the inputs to validate on the fly
-      var inputs = document.querySelectorAll("input, textarea, select")
-      for (var i = 0; i < inputs.length; ++i) {
-        inputs.item(i).addEventListener("change", function(ev) {
-          var errors = validate(form, constraints) || {};
-          clearForm();
-          console.log('showErrorsForInput');
-          showErrorsForInput(this, errors[this.name])
-        });
+
+
+      function showAllErrors(){
+        var i =0;
+        var len = errors.length;
+        for (i=0; i<len; i++){
+          showErrorMessage(errors[i]);
+        }
+
+        showErrorSummary();
       }
 
-      function clearForm() {
-          console.log('clear form------------');
-        _.each(document.querySelectorAll(".help-block.error"), function(el) {
-          console.log(el);
-          el.parentNode.removeChild(el);
-        });
-      }
 
-      function handleFormSubmit(form, input) {
-		    //validate the form against the constraints
-        var errors = validate(form, constraints);
-        console.log('handle form submit');
-        console.log(errors);
-        clearForm();
+      function showErrorSummary(){
+        $('.govuk-error-summary').removeClass('hide');
+        $('.govuk-form-group').addClass('govuk-form-group--error');
+        $('.govuk-error-summary__list').removeClass('hide');
 
-        // then we update the form to reflect the results
-        showErrors(form, errors || {});
-        
-        if (!errors) {
-          console.log('not errors');
-          showSuccess();
+        // update title if we haven't already
+        if(document.title.indexOf("Error")===-1){
+          var newTitle = 'Error: ' + document.title;
+          $(document).attr("title", newTitle);
         }
       }
 
 
-      // Updates the inputs with the validation errors
-      function showErrors(form, errors) {
-        // We loop through all the inputs and show the errors for that input
-        _.each(form.querySelectorAll("input[name], select[name]"), function(input) {
-          // Since the errors can be null if no errors were found we need to handle
-          // that
-          console.log('loop');
-          showErrorsForInput(input, errors && errors[input.name]);
-        });
-      }
-
-      // Shows the errors for a specific input
-      function showErrorsForInput(input, errors) {
-        console.log('showErrorsForInput');
-        // This is the root of the input
-        var formGroup = closestParent(input.parentNode, "govuk-form-group")
-          // Find where the error messages will be insert into
-          , messages = formGroup.querySelector(".messages");
-        // First we remove any old messages and resets the classes
-        console.log('clear form...');
-        //resetFormGroup(formGroup);
-        // If we have errors
-        console.log(errors);
-        if (errors) {
-          // we first mark the group has having errors
-          formGroup.classList.add("has-error");
-          // then we append all the errors
-          _.each(errors, function(error) {
-            addError(messages, error);
-          });
-          // show the error message
-          $(".error-message").removeClass("hide");
-
-        } else {
-          console.log('no errors?:success');
-          // otherwise we simply mark it as success
-          //formGroup.classList.add("has-success");
-          showSuccess();
-        }
-      }
-
-      // Recusively finds the closest parent that has the specified class
-      function closestParent(child, className) {
-        if (!child || child == document) {
-          return null;
-        }
-        if (child.classList.contains(className)) {
-          return child;
-        } else {
-          return closestParent(child.parentNode, className);
-        }
-      }
-
-      function resetFormGroup(formGroup) {
-        console.log(formGroup);
-        // Remove the success and error classes
-        formGroup.classList.remove("has-error");
-        formGroup.classList.remove("has-success");
-        // and remove any old messages
-        _.each(formGroup.querySelectorAll(".help-block.error"), function(el) {
-          el.parentNode.removeChild(el);
-        });
-      }
-
-      // Adds the specified error with the following markup
-      /*
-      <li>
-      	<a href="#dob-error">Date of birth must be in the past</a>
-      </li>
-	   */
-      function addError(messages, error) {
+      function showErrorMessage(error){
+        //console.log(error);
+        var messages = document.querySelector(".govuk-error-summary__list");
         var block = document.createElement("li");
         var link = document.createElement("a");
         block.classList.add("help-block");
         block.classList.add("error");
-        link.href = "#error";
-        link.innerText = error;
+        link.href = "#"+error.target;
+        link.innerText = error.msg;
         block.appendChild(link);
         messages.appendChild(block);
+
+        // add govuk-input--error class to the offending error input
+        $("#" + error.target).addClass('govuk-input--error');
+
+        // reveal the error text for the input
+        $('#' + error.target + '-error').removeClass('hide');
       }
+
+
+      function handleFormSubmit(){
+        //console.log('handleFormSubmit');
+        clearErrorMessages();
+        validateForm();
+      }
+
+
+      function clearErrorMessages() {
+        //console.log('clear form------------');
+        $(".help-block.error").each( function( el ){
+          $(this).remove();
+        });
+        $("#main input[type=text]").each(function() {
+          $(this).removeClass('govuk-input--error');
+        });
+        $(".govuk-error-message").each(function() {
+          $(this).addClass('hide');
+        });
+      }
+
+
+      function validateForm() {
+        //console.log('validateForm');
+        var hasRadio = false;   // only display errors for radio button where they are present
+        var isChecked = false;
+        var name;
+        var id;
+        errors = [];
+
+        clearErrorMessages();
+
+        $("#main input[type=text]").each(function() {
+          if(this.value==="") {
+            var errorMsg = $('#' + this.id + '-error').text().replace(/(\s)+/g, ' ').trim();
+            if (!errorMsg) {
+              errorMsg = "Missing " + name;
+            }
+            errors.push({target:this.id, msg:errorMsg});
+          }
+        });
+
+        $("#main input[type=radio]").each(function(){
+          hasRadio = true;
+          name = this.name;
+          if(!id){
+            id = this.id;
+          }
+          if (this.checked){
+            isChecked = true;
+          }
+        })
+
+        if(hasRadio && !isChecked){
+          var errorMsg = $('.govuk-error-message').text();
+          if (!errorMsg) {
+            errorMsg = "Missing " + name;
+          }
+          errors.push({target:id, msg:errorMsg});
+        }
+
+        if (errors.length>0){
+          showAllErrors();
+        }else{
+          showSuccess();
+        }
+      }
+
 
       function showSuccess() {
         // We made it \:D/
-        console.log("Success!");
-        window.location = target;
+        //console.log("Success!");
+        form.submit();
       }
+
 
     })();
 </script>

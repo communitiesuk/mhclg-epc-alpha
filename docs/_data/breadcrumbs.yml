@@ -1,0 +1,6 @@
+- name: Home
+  link: /
+- name: Weeknotes
+  link: /weeknotes.html
+- name: Week One
+  link: /weeknotes/week01.html

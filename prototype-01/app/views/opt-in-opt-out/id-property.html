@@ -17,7 +17,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="javascript:history.back()">Back</a>
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
       </li>
     </ol>
   </div>
@@ -28,51 +28,78 @@
     <div class="govuk-grid-column-two-thirds">
 
 
+      <form id="main" action="confirm-property" method="post" class="form" >
 
-      <form id="main" action="confirm-property" method="post" class="form">
-        
-        <div class="govuk-form-group">
-        
-          <div class="govuk-error-summary error-message hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
-            <h2 class="govuk-error-summary__title" id="error-summary-title">
-              There is a problem
-            </h2>
-            <div class="govuk-error-summary__body">
+      <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+        <h2 class="govuk-error-summary__title " id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+          </ul>
+        </div>
+      </div>
 
-              <ul class="govuk-list govuk-error-summary__list messages">
-                
-              </ul>
-            </div>
-          </div>  
 
-<!-- 
-          <label class="govuk-label" for="assessor-reference">
-            Search for an Energy Assessor
-          </label>
-          <input data-required="true" class="govuk-input" id="assessor-reference" name="assessor-reference" type="text" value="ABX-34225435"> -->
+      <div class="govuk-form-group"> 
+        <fieldset class="govuk-fieldset" aria-describedby="nationality-hint nationality-error">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              Identify the property
+            </h1>
+          </legend>
+          <span id="nationality-hint" class="govuk-hint">
+            Use the address and postcode or the building reference number if you have one, eg 'XCX-234234'.
+          </span>
+<!--           <span id="error-message" class="govuk-error-message hide">
+            Enter the building reference number, or the address and postcode to identify the building.
+          </span> -->
+
+
+          <div class="">
+            <label class="govuk-label" for="opt-out-referenceNo">
+              Reference Number
+            </label>
+            <span id="opt-out-referenceNo-error" class="govuk-error-message hide">
+              Enter your building reference number
+            </span>
+            <input class="govuk-input" id="opt-out-referenceNo" name="opt-out-referenceNo" type="text" value="{{data['opt-out-referenceNo']}}">
+          </div>
+              
+          <div class="">      
+            <label class="govuk-label" for="opt-out-address">
+              Address
+            </label>
+            <span id="opt-out-address-error" class="govuk-error-message hide">
+              Enter your property address
+            </span>
+            <input data-required="true" class="govuk-input" id="opt-out-address" name="opt-out-address" type="text" value="{{data['opt-out-address']}}">
+          </div>
           
-          <label class="govuk-label" for="opt-out-referenceNo">
-            Reference Number
-          </label>
-          <input data-required="true" class="govuk-input" id="opt-out-referenceNo" name="opt-out-referenceNo" type="text" value="{{data['opt-out-referenceNo']}}">
-                    
-          <label class="govuk-label" for="opt-out-address">
-            Address
-          </label>
-          <input data-required="true" class="govuk-input" id="opt-out-address" name="opt-out-address" type="text" value="{{data['opt-out-address']}}">
-                    
-          <label class="govuk-label" for="opt-out-postcode">
-            Postcode
-          </label>
-          <input data-required="true" class="govuk-input" id="opt-out-postcode" name="opt-out-postcode" type="text" value="{{data['opt-out-postcode']}}">
-          
+          <div class="">
+            <label class="govuk-label" for="opt-out-postcode">
+              Postcode
+            </label>
+            <span id="opt-out-postcode-error" class="govuk-error-message hide">
+              Enter your property postcode
+            </span>
+            <input data-required="true" class="govuk-input govuk-input--width-10" id="opt-out-postcode" name="opt-out-postcode" type="text" value="{{data['opt-out-postcode']}}">
+          </div>
+          <br/>
+          {{ govukButton({
+            text: "Find the property"
+          }) }}
+
+          </fieldset>
         </div>
 
-
-        {{ govukButton({
-          text: "Check an Assessor"
-        }) }}
       </form>
+
+
+        
+
+
 
           
 
