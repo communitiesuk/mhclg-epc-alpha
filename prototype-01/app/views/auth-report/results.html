@@ -94,13 +94,14 @@ Find an Energy Performance Certificate
 
 
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="postcodes">
-        <h2 class="govuk-heading-l">Properties at {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Properties for {{ data['search-field'] }}</h2>
         <!--  Addresses for postcode  -->
         {% if not response.addresses.length %}
         <p>No addresses found for that postcode</p>
         {% else %}
         <table class="govuk-table">
-          <caption class="govuk-table__caption">All properties at {{ data['search-field'] }}</caption>
+          <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
+          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col">Name</th>
@@ -125,14 +126,15 @@ Find an Energy Performance Certificate
         {% endif %}
       </section>
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="certificates">
-        <h2 class="govuk-heading-l">Certificates at {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Certificates for {{ data['search-field'] }}</h2>
         <!--  Certificate for postcode  -->
         {% if not response.certificates.length %}
         <p>No certificates found for that postcode</p>
         {% else %}
         <p>Please click on a certificate below to view or download a report:</p>
         <table class="govuk-table">
-          <caption class="govuk-table__caption">Properties with an EPC*</caption>
+          <caption class="govuk-table__caption">All certificates for {{ data['search-field'] }}:
+          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__cell" scope="col">Number</th>
@@ -157,7 +159,7 @@ Find an Energy Performance Certificate
         {% endif %}
       </section>
       <section class="govuk-tabs__panel" id="assessors">
-        <h2 class="govuk-heading-l">Assessors at {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Assessors for {{ data['search-field'] }}</h2>
         <!--  assessors for postcode  -->
         {% if not response.assessors.length %}
         <p>No assessors found for that postcode</p>

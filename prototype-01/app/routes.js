@@ -626,15 +626,20 @@ router.get('/auth-report/results', function(req, res, next) {
     var response = {};
 
     if(str.length>20){
-      response.certificates = req.app.locals.smartResults.certificates
+      response.addresses = [];
+      response.certificates = req.app.locals.smartResults.certificates;
+      // show 1 random assessor
+      response.assessors = [ req.app.locals.smartResults.assessors[Math.round(Math.random()*req.app.locals.smartResults.assessors.length)] ];
     }
-    if(str.length>=9 && str.length<20){
-      response.assessors = req.app.locals.smartResults.assessors
+    if(str.length>8 && str.length<20){
+      response.addresses = [];
+      response.certificates = [];
+      response.assessors = req.app.locals.smartResults.assessors;
     }
-    if(str.length<=9){
-      response.certificates = req.app.locals.smartResults.certificates
-      response.assessors = req.app.locals.smartResults.assessors
-      response.addresses = req.app.locals.smartResults.addresses
+    if(str.length<=8){
+      response.addresses = req.app.locals.smartResults.addresses;
+      response.certificates = req.app.locals.smartResults.certificates;
+      response.assessors = req.app.locals.smartResults.assessors;
     }
 
     //console.log(response);
