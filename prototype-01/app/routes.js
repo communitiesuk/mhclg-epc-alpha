@@ -90,17 +90,17 @@ router.get('/service-start-example', function(req, res, next) {
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
-	    'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-	  }
-	}, function (error, response, body) {
-	    if (!error && response.statusCode == 200) {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
         // res.send({ content : JSON.parse(body) });
-	      res.render('service-start', { content : JSON.parse(body) });
+        res.render('service-start', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-	    } else {
-	      res.redirect('/error');
-	    }
-	});
+      } else {
+        res.redirect('/error');
+      }
+  });
 });
 
 
@@ -111,20 +111,20 @@ router.get('/article-example', function(req, res, next) {
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
-	    'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-	  }
-	}, function (error, response, body) {
-	    if (!error && response.statusCode == 200) {
-	      // console.log('body:', body);
-	      // res.send({ content : JSON.parse(body) });
-	      res.render('article', { content : JSON.parse(body) });
-	    } else {
-	      // console.log('error', error, response && response.statusCode);
-	      // res.send('error', error, response && response.statusCode);
-	      // return res.sendStatus(500);
-	      res.redirect('/error');
-	    }
-	});
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log('body:', body);
+        // res.send({ content : JSON.parse(body) });
+        res.render('article', { content : JSON.parse(body) });
+      } else {
+        // console.log('error', error, response && response.statusCode);
+        // res.send('error', error, response && response.statusCode);
+        // return res.sendStatus(500);
+        res.redirect('/error');
+      }
+  });
 });
 
 router.get('/error', function(req, res, next) {
@@ -134,12 +134,12 @@ router.get('/error', function(req, res, next) {
 
   if (moment(today).isAfter(tokenExpiryDate)){
 
-  	res.render('error', { content : {error: {message: "Contomic trial expired"}}});
+    res.render('error', { content : {error: {message: "Contomic trial expired"}}});
   } else if (!process.env.CONTOMIC_ACCESS_TOKEN_DATE){
-  		res.render('error', { content : {error: {message: "CONTOMIC_ACCESS_TOKEN_DATE missing"}}});
+      res.render('error', { content : {error: {message: "CONTOMIC_ACCESS_TOKEN_DATE missing"}}});
   } else {
 
-  	res.render('error', { content : {error: {message: "Internal server error"}}});
+    res.render('error', { content : {error: {message: "Internal server error"}}});
   }
 });
 
@@ -206,11 +206,13 @@ router.get('/find-a-report/results', function(req, res, next) {
           if (!error && response.statusCode == 200) {
             if(body) {
               dataset = JSON.parse(body);
+              //console.log(dataset);
               // loop through results and build a simple array
               var arr = [];
               for (var i=0;i<dataset.rows.length;i++){
+                //console.log(dataset.rows[i]['certificate-hash']);
                 arr[i] = {
-                      "reference": dataset.rows[i]['lmk-key'],
+                      "reference": dataset.rows[i]['certificate-hash'],
                       "type": dataset.rows[i]['property-type'],
                       "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
                       "category": dataset.rows[i]['current-energy-rating']
@@ -222,14 +224,14 @@ router.get('/find-a-report/results', function(req, res, next) {
               });
               
             } else {
-              console.log('no data');
+              //console.log('no data');
               res.render('find-a-report/results', {
                 addresses: []
                 //addresses: req.app.locals.data //static dummy data
               });
             }
           } else {
-            console.log(error);
+            //console.log(error);
             res.redirect('/error');
           }
       });
@@ -243,20 +245,14 @@ router.get('/find-a-report/results', function(req, res, next) {
 
 
 router.get('/find-a-report/certificate/:reference', function(req, res) {
+console.log('cert' + req.params.reference);
+  if(req.params.reference){
+    var certHash = req.params.reference;
+    // hard code style pixel offsets for now
+    // used to position the rating pointed in the chart
+    var step = 35;
+    var offset = {};
 
-  var idx = 0;
-  var lmkKey = req.params.reference;
-  var filtered = _.filter(dataset.rows, function(item) {
-    return (lmkKey === item['lmk-key']);
-  });
-
-  //assume a filtered array with only a single property result
-  var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
-
-  // hard code style pixel offsets for now
-  // used to position the rating pointed in the chart
-  var step = 35;
-  var offset = {};
     offset['A'] = 0;
     offset['B'] = step;
     offset['C'] = 2*step;
@@ -265,33 +261,69 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
     offset['F'] = 5*step;
     offset['G'] = 6*step;
 
-  var property = {
-    address: filtered[idx]['address'],
-    date: displayDate,
-    propertyType: filtered[idx]['property-type'],
-    floorArea: filtered[idx]['total-floor-area'],
-    transactionType: filtered[idx]['transaction-type'],
-    currentRating: filtered[idx]['current-energy-rating'],
-    potentialRating: filtered[idx]['potential-energy-rating'],
-    currentEfficiency: filtered[idx]['current-energy-efficiency'],
-    potentialEfficiency: filtered[idx]['potential-energy-efficiency'],
-    currentPositionStyle: "top: " + offset[ filtered[idx]['current-energy-rating'] ] +"px; left:280px;",
-    potentialPositionStyle: "top: " + offset[ filtered[idx]['potential-energy-rating'] ] +"px; left:350px;",
-    costs:[
-      {energyType: "Lighting", currentCost:"£ "+filtered[idx]['lighting-cost-current'], futureCost: "£ "+filtered[idx]['lighting-cost-potential']},
-      {energyType: "Heating", currentCost:"£ "+filtered[idx]['heating-cost-current'], futureCost: "£ "+filtered[idx]['heating-cost-potential']},
-      {energyType: "Water", currentCost:"£ "+filtered[idx]['hot-water-cost-current'], futureCost: "£ "+filtered[idx]['hot-water-cost-potential']}
-    ],
-    history:[
-      {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
-      {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
-      {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
-    ]
-  };
-  res.render('find-a-report/certificate', {
-    data: property
-  });
+    var property = {};
 
+
+    request(process.env.EPC_CERT_API_URI + '/' + certHash, {
+        method: "GET",
+        headers: {
+            'Authorization': process.env.EPC_API_KEY,
+            'Accept': 'application/json'
+          }
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+              if(body) {
+                var dataset = JSON.parse(body);
+                //console.log(dataset);
+                var item = dataset.rows[0];
+
+                // pull out results and build a simple array
+                var displayDate = moment(item['lodgement-date']).format("Do MMMM YYYY");
+
+                property = {
+                  address: item['address'],
+                  date: displayDate,
+                  propertyType: item['property-type'],
+                  floorArea: item['total-floor-area'],
+                  transactionType: item['transaction-type'],
+                  currentRating: item['current-energy-rating'],
+                  potentialRating: item['potential-energy-rating'],
+                  currentEfficiency: item['current-energy-efficiency'],
+                  potentialEfficiency: item['potential-energy-efficiency'],
+                  currentPositionStyle: "top: " + offset[ item['current-energy-rating'] ] +"px; left:280px;",
+                  potentialPositionStyle: "top: " + offset[ item['potential-energy-rating'] ] +"px; left:350px;",
+                  costs:[
+                    {energyType: "Lighting", currentCost:"£ "+item['lighting-cost-current'], futureCost: "£ "+item['lighting-cost-potential']},
+                    {energyType: "Heating", currentCost:"£ "+item['heating-cost-current'], futureCost: "£ "+item['heating-cost-potential']},
+                    {energyType: "Water", currentCost:"£ "+item['hot-water-cost-current'], futureCost: "£ "+item['hot-water-cost-potential']}
+                  ],
+                  history:[
+                    {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+                    {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+                    {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
+                  ]
+                };
+
+                res.render('find-a-report/certificate', {
+                  data: property
+                });
+
+            } else {
+              //console.log('no data');
+              res.render('find-a-report/certificate', {
+                addresses: req.app.locals.data //static dummy data
+              });
+            }
+          } else {
+            //console.log("error");
+            //console.log(response);
+            res.redirect('/error');
+          }
+      });
+  } else {
+    //console.log("no cert hash");
+    res.redirect('/error');
+  }
 });
 
 
