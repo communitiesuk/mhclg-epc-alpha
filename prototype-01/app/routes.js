@@ -245,7 +245,7 @@ router.get('/find-a-report/results', function(req, res, next) {
 
 
 router.get('/find-a-report/certificate/:reference', function(req, res) {
-console.log('cert' + req.params.reference);
+
   if(req.params.reference){
     var certHash = req.params.reference;
     // hard code style pixel offsets for now
@@ -585,7 +585,7 @@ router.get('/auth-report', function(req, res, next) {
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         // res.send({ content : JSON.parse(body) });
-        console.log(JSON.parse(body));
+        //console.log(JSON.parse(body));
         res.render('service-start', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
@@ -609,7 +609,7 @@ router.get('/auth-report/search', function(req, res, next) {
         res.render('auth-report/search', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
-        console.log(error);
+        //console.log(error);
         res.redirect('/error');
       }
   });
