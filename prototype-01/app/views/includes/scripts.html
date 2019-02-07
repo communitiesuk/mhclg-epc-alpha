@@ -13,17 +13,17 @@
 
 <script>
 	// trigger hotjar survey:
-	// note that 'survey' is the name given in the hotjar page
+	// note that 'mysurvey' is the name given in the hotjar page
 	// page targeting rule set in the actual survey
 	// also hotjar tracking code is set in the head.html
 	// and needs to load before this
-
+	// NB remember to clear the cache
 
 	// then add a listener
 	$("#feedback").click(function(evt){
 		hj('trigger', 'mysurvey');
-  		console.log( "click, click, click" );
-  		// prevent click propogation mailto;
+  		//console.log( "click, click, click" );
+  		// prevent click propagation mailto;
   		evt.preventDefault();
 	});
 
