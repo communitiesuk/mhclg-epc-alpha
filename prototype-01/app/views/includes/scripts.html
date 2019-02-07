@@ -18,14 +18,13 @@
 	// also hotjar tracking code is set in the head.html
 	// and needs to load before this
 
-	// if we have js remove the href...
-	$('#feedback').attr("href", "");
 
 	// then add a listener
 	$("#feedback").click(function(evt){
-  		//console.log( "click, click, click" );
+		hj('trigger', 'mysurvey');
+  		console.log( "click, click, click" );
+  		// prevent click propogation mailto;
   		evt.preventDefault();
-		hj('trigger', 'survey');
 	});
 
 </script>
