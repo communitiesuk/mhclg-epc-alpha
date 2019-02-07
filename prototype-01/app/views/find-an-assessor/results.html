@@ -37,7 +37,7 @@
         <caption class="govuk-table__caption"></caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Accredition</th>
+            <th class="govuk-table__header" scope="col">Accreditation</th>
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header" scope="col">Status</th>
             <th class="govuk-table__header" scope="col">Type</th>
@@ -48,11 +48,11 @@
         <tbody class="govuk-table__body">
           {% for item in addresses.assessor %}
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">{{item.accredition}}</th>
-                <td class="govuk-table__cell">{{item.name}}</td>
-                <td class="govuk-table__cell">{{item.status}}</td>
+                <th class="govuk-table__header" scope="row">{{item['Accreditation Number']}}</th>
+                <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
+                <td class="govuk-table__cell">{{item.Status}}</td>
                 <td class="govuk-table__cell">{{item.type}}</td>
-                <td class="govuk-table__cell"><a href="assessor/{{item.accredition}}">View</a></td>
+                <td class="govuk-table__cell"><a href="assessor/{{item.base64ref}}">View</a></td>
               </tr>
           {% endfor %}
         </tbody>

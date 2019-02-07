@@ -247,6 +247,7 @@ router.get('/find-a-report/results', function(req, res, next) {
 router.get('/find-a-report/certificate/:reference', function(req, res) {
 
   if(req.params.reference){
+
     var certHash = req.params.reference;
     // hard code style pixel offsets for now
     // used to position the rating pointed in the chart
@@ -355,13 +356,24 @@ router.get('/find-an-assessor', function(req, res, next) {
 
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
+  //req.app.locals.smartResults.assessors
+  var assessors = req.app.locals.smartResults.assessors;
+  for ( var i=0; i<assessors.length; i++){
+
+    var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
+    req.app.locals.smartResults.assessors[i].base64ref  = base;
+    console.log(assessors[i]['Accreditation Number'], base);
+  }
+
   var results = {
-    assessor:[
+
+    assessor:assessors
+    /*assessor:[
         {accredition:"ABS-23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
         {accredition:"ABC-47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
         {accredition:"ABX-34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
         {accredition:"ABC-47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
-    ]
+    ]*/
   };
 
   res.render('find-an-assessor/results', {
@@ -371,29 +383,40 @@ router.get('/find-an-assessor/results', function(req, res) {
 
 router.get('/find-an-assessor/assessor/:reference', function(req, res) {
   // dummy assessor data
-  var results = {
-    assessor:{
-        name:"Barbara Steele",
-        accredition: req.params.reference,
-        "Company name": "Robert Knight Ltd",
-        "Postcode coverage": "WC1V",
-        "Contact address": "25 Krajcik Junctions",
-        "Email": "jared_lamb@gmail.com",
-        "Phone number": "21-188-9870",
-        "Website": "robertknight.com",
-        "Certificate types": "EPC 3; EPC 4"
-      },
-      scheme:{
-        "Contact address": "549 Toni Glens",
-        "Email": "enquires@test1.co.uk",
-        "Phone number": "421-188-9870",
-        "Website": "test1.co.uk"
-      }
-    };
+  if(req.params.reference){
+    var certHash = req.params.reference;
+    // convert back from base64
+    var accredition  = Buffer.from(certHash, 'base64').toString();
 
-  res.render('find-an-assessor/assessor', {
-    results: results
-  });
+    var results = {
+      assessor:{
+          name:"Barbara Steele",
+          accredition: accredition,
+          "Company name": "Robert Knight Ltd",
+          "Postcode coverage": "WC1V",
+          "Contact address": "25 Krajcik Junctions",
+          "Email": "jared_lamb@gmail.com",
+          "Phone number": "21-188-9870",
+          "Website": "robertknight.com",
+          "Certificate types": "EPC 3; EPC 4"
+        },
+        scheme:{
+          "Contact address": "549 Toni Glens",
+          "Email": "enquires@test1.co.uk",
+          "Phone number": "421-188-9870",
+          "Website": "test1.co.uk"
+        }
+      };
+
+    res.render('find-an-assessor/assessor', {
+      results: results
+    });
+  } else {
+    //console.log("no cert hash");
+    res.redirect('/error');
+  }
+
+
 });
 
 // Branching
@@ -720,12 +743,10 @@ router.get('/auth-report/certificate/:reference', function(req, res) {
 router.get('/auth-report/assessor/:reference', function(req, res) {
   // dummy assessor data
 
-    //if(req.params.reference){
-    var certHash = req.params.reference;
-    // convert back from base64
-    var accredition  = Buffer.from(certHash, 'base64').toString();
-console.log(accredition);
-  //var accredition  = req.params.reference.split("^").join("/")
+  var certHash = req.params.reference;
+  // convert back from base64
+  var accredition  = Buffer.from(certHash, 'base64').toString();
+
   var results = {
     assessor:{
         name:"Barbara Steele",
