@@ -201,7 +201,9 @@ Find an Energy Performance Certificate
           <tbody class="govuk-table__body">
             {% for item in response.assessors %}
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a href="assessor/{{ item['Accreditation Number'] | replace("/", "^") }}">{{item['Accreditation Number']}}</a></td>
+              <td class="govuk-table__cell">
+                <a href="assessor/{{ item['base64ref'] }}">{{item['Accreditation Number']}}
+                </a></td>
               <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
               <td class="govuk-table__cell">{{item.Address}}</td>
               <td class="govuk-table__cell">{{item['Telephone Number']}}</td>

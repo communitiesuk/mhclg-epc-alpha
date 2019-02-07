@@ -625,6 +625,15 @@ router.get('/auth-report/results', function(req, res, next) {
     var str = req.session.data['search-field'];
     var response = {};
 
+    //base64 encode the assessor ref num
+    var assessors = req.app.locals.smartResults.assessors;
+    for ( var i=0; i<assessors.length; i++){
+
+      var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
+      req.app.locals.smartResults.assessors[i].base64ref  = base;
+      console.log(assessors[i]['Accreditation Number'], base);
+    }
+
     if(str.length>20){
       response.addresses = [];
       response.certificates = req.app.locals.smartResults.certificates;
@@ -657,7 +666,7 @@ router.get('/auth-report/results', function(req, res, next) {
 
 router.get('/auth-report/certificate/:reference', function(req, res) {
 
-  var idx = 0;
+
   var lmkKey = req.params.reference;
   var filtered = _.filter(dataset.rows, function(item) {
     return (lmkKey === item['lmk-key']);
@@ -710,7 +719,13 @@ router.get('/auth-report/certificate/:reference', function(req, res) {
 
 router.get('/auth-report/assessor/:reference', function(req, res) {
   // dummy assessor data
-  var accredition  = req.params.reference.split("^").join("/")
+
+    //if(req.params.reference){
+    var certHash = req.params.reference;
+    // convert back from base64
+    var accredition  = Buffer.from(certHash, 'base64').toString();
+console.log(accredition);
+  //var accredition  = req.params.reference.split("^").join("/")
   var results = {
     assessor:{
         name:"Barbara Steele",
