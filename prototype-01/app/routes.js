@@ -362,7 +362,7 @@ router.get('/find-an-assessor/results', function(req, res) {
 
     var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
     req.app.locals.smartResults.assessors[i].base64ref  = base;
-    console.log(assessors[i]['Accreditation Number'], base);
+    //console.log(assessors[i]['Accreditation Number'], base);
   }
 
   var results = {
@@ -388,15 +388,19 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
     // convert back from base64
     var accredition  = Buffer.from(certHash, 'base64').toString();
 
+    var filtered = _.filter(req.app.locals.smartResults.assessors, function(item) {
+      return (accredition === item['Accreditation Number']);
+    });
+
     var results = {
       assessor:{
-          name:"Barbara Steele",
+          name: filtered[0]['Assessor Name'],
           accredition: accredition,
           "Company name": "Robert Knight Ltd",
           "Postcode coverage": "WC1V",
-          "Contact address": "25 Krajcik Junctions",
+          "Contact address": filtered[0]['Address'],
           "Email": "jared_lamb@gmail.com",
-          "Phone number": "21-188-9870",
+          "Phone number": filtered[0]['Telephone Number'],
           "Website": "robertknight.com",
           "Certificate types": "EPC 3; EPC 4"
         },
@@ -408,9 +412,12 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
         }
       };
 
+
     res.render('find-an-assessor/assessor', {
       results: results
     });
+
+
   } else {
     //console.log("no cert hash");
     res.redirect('/error');
@@ -651,10 +658,8 @@ router.get('/auth-report/results', function(req, res, next) {
     //base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
     for ( var i=0; i<assessors.length; i++){
-
       var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
       req.app.locals.smartResults.assessors[i].base64ref  = base;
-      console.log(assessors[i]['Accreditation Number'], base);
     }
 
     if(str.length>20){
