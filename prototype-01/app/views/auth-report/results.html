@@ -82,11 +82,11 @@ Find an Energy Performance Certificate
           Postcodes ({{ response.addresses.length }})</a>
         </li>
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#certificates">
+          <a class="govuk-tabs__tab" href="#certificates">
           Certificates ({{ response.certificates.length }})</a>
         </li>
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#assessors">
+          <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#assessors">
           Assessors ({{ response.assessors.length }})</a>
         </li>
       </ul>
@@ -166,23 +166,24 @@ Find an Energy Performance Certificate
         {% else %}
         <p>Please click on an assessor below to view further details:</p>
 
-        <form id="form-sort" class="js-auto-submit__form">
+        <form id="form-sort" class="js-auto-submit__form" action="results" method="post" >
           <input type="hidden" name=":uri" value="search">
           <input type="hidden" name="size" value="10">
           <input type="hidden" name="q" value="gdp" class="js-auto-submit__input">
           <div class="js-mobile-filters__sort">
             <label for="sort" class="sort__label">Sort by
               <select class="input select select--thin width-auto js-auto-submit__input" id="sort" name="sortBy">
-                <option class="sort__option" value="relevance">Relevance
+                <option class="sort__option" value="number_desc">Number desc
                 </option>
-                <option class="sort__option" value="release_date" selected>Release date
+                <option class="sort__option" value="number_asc">Number asc
                 </option>
-                <option class="sort__option" value="title">
-                  Title
+                <option class="sort__option" value="name_desc">Name desc
+                </option>
+                <option class="sort__option" value="name_asc">Name asc
                 </option>
               </select>
             </label>
-            <button type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
+            <button id="filterBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
           </div>
         </form>
 
@@ -218,4 +219,7 @@ Find an Energy Performance Certificate
     </div>
   </div>
 </div><!--  end of tab sections  -->
+
+
+
 {% endblock %}

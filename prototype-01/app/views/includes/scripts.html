@@ -27,4 +27,15 @@
   		evt.preventDefault();
 	});
 
+  $("select#sort").change(function(){
+		console.log( "click, click, click" );
+		console.log( $( "#sort" ).val() );
+		//location.reload();
+		//var $form = $(this).closest('form');
+    	//$form.find('input[type=submit]').click();
+
+    	$('#filterBtn').click();
+  });
+
+
 </script>

@@ -647,6 +647,9 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
+
+
+  //console.log(sort);
   if(req.session.data['search-field']){
 
     // pull in dummy data loaded from static file via server.js
@@ -657,26 +660,55 @@ router.get('/auth-report/results', function(req, res, next) {
 
     //base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
+    
+
     for ( var i=0; i<assessors.length; i++){
       var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
       req.app.locals.smartResults.assessors[i].base64ref  = base;
+    }
+
+      var sort = 'name_desc'
+    if(req.session.data['sortBy']){
+      sort = req.session.data['sortBy'];
+    }
+
+    if (sort==='name_desc'){
+      console.log('sort name down');
+      assessors = _.sortBy(req.app.locals.smartResults.assessors, 'Assessor Name').reverse();
+    } else if (sort==='name_asc'){
+      console.log('sort name up');
+      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Assessor Name');
+
+    } else if (sort==='number_desc'){
+      console.log('nsort umber down');
+      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number').reverse();
+
+    } else if (sort==='number_asc'){
+      console.log('sort number_asc up');
+      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number');
+
+    }
+    console.log(sort);
+    if(assessors){
+        console.log(sort, assessors[0]);
+      
     }
 
     if(str.length>20){
       response.addresses = [];
       response.certificates = req.app.locals.smartResults.certificates;
       // show 1 random assessor
-      response.assessors = [ req.app.locals.smartResults.assessors[Math.round(Math.random()*req.app.locals.smartResults.assessors.length)] ];
+      //response.assessors = [ req.app.locals.smartResults.assessors[Math.round(Math.random()*req.app.locals.smartResults.assessors.length)] ];
     }
     if(str.length>8 && str.length<20){
       response.addresses = [];
       response.certificates = [];
-      response.assessors = req.app.locals.smartResults.assessors;
+      response.assessors = assessors;
     }
     if(str.length<=8){
       response.addresses = req.app.locals.smartResults.addresses;
       response.certificates = req.app.locals.smartResults.certificates;
-      response.assessors = req.app.locals.smartResults.assessors;
+      response.assessors = assessors;
     }
 
     //console.log(response);
