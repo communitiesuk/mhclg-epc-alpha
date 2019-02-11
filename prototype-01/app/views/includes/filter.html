@@ -9,38 +9,75 @@
         <div class="background--mercury border-top--iron-md padding-top-sm--2 padding-top-md--1 padding-right-sm--1 padding-right-md--1 padding-bottom-sm--2 padding-bottom-md--2 padding-left-sm--1 padding-left-md--1 js-mobile-filters__contents">
           <div class="filters js-filters">
             <h4 class="filters__title">Content types to show</h4>
+
+            <fieldset class="filters__fieldset govuk-fieldset" aria-describedby="filter-type-hint">
+              <legend class="filters__sub-title">Result Type</legend>
+              <span id="filter-type-hint" class="govuk-hint">
+                Select the type of document you want to see.
+              </span>
+              <div class="js-checkbox-container">
+                <ul class="govuk-list">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-certificate" class="js-auto-submit__input" type="checkbox" name="filter-type" value="certificate">
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-certificate">
+                        Certificates
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-assessor" class="js-auto-submit__input" type="checkbox" name="filter-type" value="assessor">
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-assessor">
+                        Assessors
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-address" class="js-auto-submit__input" type="checkbox" name="filter-type" value="address">
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-address">
+                        Addresses
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+
+
             <fieldset class="filters__fieldset">
               <legend class="filters__sub-title">Document type</legend>
               <div class="js-checkbox-container">
                 <ul class="govuk-list">
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-bulletin" class="js-auto-submit__input" type="checkbox" name="filter" value="bulletin">
-                      <label for="checkbox-bulletin">
+                      <input id="checkbox-domestic" class="js-auto-submit__input" type="checkbox" name="filter" value="domestic">
+                      <label for="checkbox-domestic">
                         Domestic EPC
                       </label>
                     </div>
                   </li>
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-article" class="js-auto-submit__input" type="checkbox" name="filter" value="article">
-                      <label for="checkbox-article">
+                      <input id="checkbox-commercial" class="js-auto-submit__input" type="checkbox" name="filter" value="commercial">
+                      <label for="checkbox-commercial">
                         Commercial EPC
                       </label>
                     </div>
                   </li>
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-compendia" class="js-auto-submit__input" type="checkbox" name="filter" value="compendia">
-                      <label for="checkbox-compendia">
+                      <input id="checkbox-dec" class="js-auto-submit__input" type="checkbox" name="filter" value="dec">
+                      <label for="checkbox-dec">
                         DEC
                       </label>
                     </div>
                   </li>
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-compendia" class="js-auto-submit__input" type="checkbox" name="filter" value="compendia">
-                      <label for="checkbox-compendia">
+                      <input id="checkbox-sap-rd" class="js-auto-submit__input" type="checkbox" name="filter" value="sap-rd">
+                      <label for="checkbox-sap-rd">
                         SAP Rd
                       </label>
                     </div>
@@ -48,6 +85,8 @@
                 </ul>
               </div>
             </fieldset>
+
+
            <!--  <fieldset class="filters__fieldset">
               <legend class="filters__sub-title">Data</legend>
               <div class="js-checkbox-container">
@@ -104,11 +143,11 @@
                 </ul>
               </div>
             </fieldset> -->
-            <input class="sort__input" type="hidden" name="q" value="gdp">
+            <!-- <input class="sort__input" type="hidden" name="q" value="gdp"> -->
           </div>
-          <input type="hidden" name="size" value="10">
-          <input type="hidden" name="sortBy" value="title">
-          <button type="submit" class="btn btn--primary btn--thick margin-top-sm--2 margin-top-md--2 js-submit-button">Filter</button>
+          <!-- <input type="hidden" name="size" value="10">
+          <input type="hidden" name="sortBy" value="title"> -->
+          <button type="button" class="" id="filterBtn" name="filterBtn">Filter</button>
         </div>
       </div>
 

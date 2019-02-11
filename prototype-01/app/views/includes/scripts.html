@@ -28,13 +28,20 @@
 	});
 
   $("select#sort").change(function(){
-		console.log( "click, click, click" );
+		console.log( "sort, sort, sort" );
 		console.log( $( "#sort" ).val() );
-		//location.reload();
-		//var $form = $(this).closest('form');
-    	//$form.find('input[type=submit]').click();
 
-    	$('#filterBtn').click();
+    	$('#sortBtn').click();
+  });
+
+  $("#filterBtn").click(function(){
+		console.log( "click, click, click" );
+  		// prevent click propagation mailto;
+  		evt.preventDefault();
+
+		console.log(results);
+
+    	//$('#filterBtn').click();
   });
 
 

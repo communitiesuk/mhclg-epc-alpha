@@ -354,19 +354,16 @@ router.get('/find-an-assessor', function(req, res, next) {
   });
 });
 
+
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
-  //req.app.locals.smartResults.assessors
   var assessors = req.app.locals.smartResults.assessors;
   for ( var i=0; i<assessors.length; i++){
-
     var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
     req.app.locals.smartResults.assessors[i].base64ref  = base;
-    //console.log(assessors[i]['Accreditation Number'], base);
   }
 
   var results = {
-
     assessor:assessors
     /*assessor:[
         {accredition:"ABS-23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
@@ -380,6 +377,7 @@ router.get('/find-an-assessor/results', function(req, res) {
     addresses: results
   });
 });
+
 
 router.get('/find-an-assessor/assessor/:reference', function(req, res) {
   // dummy assessor data
@@ -647,8 +645,6 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
-
-
   //console.log(sort);
   if(req.session.data['search-field']){
 
@@ -667,7 +663,7 @@ router.get('/auth-report/results', function(req, res, next) {
       req.app.locals.smartResults.assessors[i].base64ref  = base;
     }
 
-      var sort = 'name_desc'
+    var sort = 'name_desc'
     if(req.session.data['sortBy']){
       sort = req.session.data['sortBy'];
     }
@@ -688,10 +684,9 @@ router.get('/auth-report/results', function(req, res, next) {
       assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number');
 
     }
-    console.log(sort);
+    //console.log(sort);
     if(assessors){
-        console.log(sort, assessors[0]);
-      
+       // console.log(sort, assessors[0]);
     }
 
     if(str.length>20){

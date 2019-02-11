@@ -78,6 +78,10 @@ Find an Energy Performance Certificate
       </h2>
       <ul class="govuk-tabs__list">
         <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#all">
+          All ({{ (response.addresses.length+response.certificates.length+ response.assessors.length) }})</a>
+        </li>
+        <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#postcodes">
           Postcodes ({{ response.addresses.length }})</a>
         </li>
@@ -183,7 +187,7 @@ Find an Energy Performance Certificate
                 </option>
               </select>
             </label>
-            <button id="filterBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
+            <button id="sortBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
           </div>
         </form>
 
@@ -220,6 +224,53 @@ Find an Energy Performance Certificate
   </div>
 </div><!--  end of tab sections  -->
 
-
-
 {% endblock %}
+  {% block scripts %}
+    <script>
+      console.log('page script');
+      var btn = document.getElementById("filterBtn");
+      console.log(btn);
+var results = [];//{{ response.assessors }};
+var obj;
+
+// is there a way to pass this object into js?
+// load the js in order to be able to filter and sort in the page
+{% for item in response.assessors %}
+obj = {
+    "Accreditation Number": "{{item['Accreditation Number']}}",
+    "Assessor Name": "{{item['Assessor Name']}}",
+    "Address": "{{item.Address}}",
+    "Telephone Number": "{{item['Telephone Number']}}",
+    "Distance": "{{item.Distance}}",
+    "Status": "{{item.Status}}",
+    "type":"{{item.type}}"
+  }
+results.push(obj)
+{% endfor %} 
+{% for item in response.certificates %}
+var obj = {
+    "name": "{{item.name}}",
+    "number": "{{item.number}}",
+    "street": "{{item.street}}",
+    "town": "{{item.town | capitalize}}",
+    "postcode": "{{item.postcode}}",
+    "type":"certificate"
+  }
+results.push(obj)
+{% endfor %} 
+{% for item in response.addresses %}
+var obj = {
+    "name": "{{item.name}}",
+    "number": "{{item.number}}",
+    "street": "{{item.street}}",
+    "town": "{{item.town | capitalize}}",
+    "postcode": "{{item.postcode}}",
+    "type":"{{item.type}}"
+  }
+results.push(obj)
+{% endfor %} 
+console.log(results);
+    </script>
+
+
+  {% endblock %}
