@@ -685,9 +685,9 @@ router.get('/auth-report/results', function(req, res, next) {
 
     }
     //console.log(sort);
-    if(assessors){
+    //if(assessors){
        // console.log(sort, assessors[0]);
-    }
+    //}
 
     if(str.length>20){
       response.addresses = [];
