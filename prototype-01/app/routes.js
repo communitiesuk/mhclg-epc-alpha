@@ -654,6 +654,11 @@ router.get('/auth-report/results', function(req, res, next) {
     //console.log(req.app.locals.smartResults);
     var str = req.session.data['search-field'];
     var response = {};
+    //set some empty arrays for zero count
+
+    response.addresses = [];
+    response.certificates = [];
+    response.assessors = [];
     //base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
     
