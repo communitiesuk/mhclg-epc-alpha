@@ -206,16 +206,16 @@ Find an Energy Performance Certificate
           <input type="hidden" name=":uri" value="search">
           <input type="hidden" name="size" value="10">
           <input type="hidden" name="q" value="gdp" class="js-auto-submit__input">
-          <div class="js-mobile-filters__sort">
+          <div class="js-mobile-filters__sort">            
             <label for="sort" class="sort__label">Sort by
               <select class="input select select--thin width-auto js-auto-submit__input" id="sort" name="sortBy">
-                <option class="sort__option" value="number_desc">Number desc
+                <option class="sort__option" value="number_desc" {% if (data['sortBy']==="number_desc") %} selected="selected" {% endif %}>Number desc
                 </option>
-                <option class="sort__option" value="number_asc">Number asc
+                <option class="sort__option" value="number_asc"{% if (data['sortBy']==="number_asc") %} selected="selected" {% endif %}>Number asc
                 </option>
-                <option class="sort__option" value="name_desc">Name desc
+                <option class="sort__option" value="name_desc"{% if (data['sortBy']==="name_desc") %} selected="selected" {% endif %}>Name desc
                 </option>
-                <option class="sort__option" value="name_asc">Name asc
+                <option class="sort__option" value="name_asc" {% if (data['sortBy']==="name_asc") %} selected="selected" {% endif %}>Name asc
                 </option>
               </select>
             </label>
@@ -267,7 +267,7 @@ Find an Energy Performance Certificate
   {% block pageScripts %}
   <script>
 
-    console.log("+++++++++++ PAGE SCRIPTS +++++++++++");
+    // console.log("+++++++++++ PAGE SCRIPTS +++++++++++");
 
     var results = [];
     var obj;
