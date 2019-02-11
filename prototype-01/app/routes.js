@@ -645,7 +645,8 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
-  //console.log(sort);
+  console.log( req.session.data['filter-type'] );
+
   if(req.session.data['search-field']){
 
     // pull in dummy data loaded from static file via server.js
@@ -653,7 +654,6 @@ router.get('/auth-report/results', function(req, res, next) {
     //console.log(req.app.locals.smartResults);
     var str = req.session.data['search-field'];
     var response = {};
-
     //base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
     
@@ -684,11 +684,26 @@ router.get('/auth-report/results', function(req, res, next) {
       assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number');
 
     }
-    //console.log(sort);
-    //if(assessors){
-       // console.log(sort, assessors[0]);
-    //}
 
+    var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
+    if(req.session.data['filter-type']){
+      checkboxes = req.session.data['filter-type'];
+    }
+    console.log(checkboxes);
+    var total =0;
+    var filterType = {};
+
+    _.each(checkboxes, function (element, index, list) {
+        var output = 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length;
+        console.log(output, '#eacharraysunderscore');
+        response[element] = req.app.locals.smartResults[element];
+        total += response[element].length;
+        filterType[element] = true;
+    });
+
+    console.log(filterType);
+
+    /*
     if(str.length>20){
       response.addresses = [];
       response.certificates = req.app.locals.smartResults.certificates;
@@ -705,10 +720,15 @@ router.get('/auth-report/results', function(req, res, next) {
       response.certificates = req.app.locals.smartResults.certificates;
       response.assessors = assessors;
     }
+    */
+
+    response.filterType = filterType;
+
 
     //console.log(response);
     res.render('auth-report/results', {
-      response: response
+      response: response,
+      count:total   
     });
               
   }else{

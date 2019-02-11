@@ -79,7 +79,7 @@ Find an Energy Performance Certificate
       <ul class="govuk-tabs__list">
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#all">
-          All ({{ (response.addresses.length+response.certificates.length+ response.assessors.length) }})</a>
+          All ({{ count }})</a>
         </li>
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#postcodes">
@@ -100,12 +100,12 @@ Find an Energy Performance Certificate
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="all">
         <h2 class="govuk-heading-l">All results for {{ data['search-field'] }}</h2>
         <!--  Addresses for postcode  -->
-        {% if not response.addresses.length %}
-        <p>No addresses found for that postcode</p>
+        {% if not response.certificates.length %}
+        <p>No certificates found for that search ({{ data['search-field'] }})</p>
         {% else %}
         <table class="govuk-table">
           <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
-          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
+          {{response.certificates[0].street}}, {{response.certificates[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col">Name</th>
@@ -116,7 +116,7 @@ Find an Energy Performance Certificate
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            {% for item in response.addresses %}
+            {% for item in response.certificates %}
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="row">{{item.name}}</th>
               <td class="govuk-table__cell">{{item.number}}</td>

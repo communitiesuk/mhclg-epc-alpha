@@ -1,5 +1,5 @@
 <div class="govuk">
-  <form id="form" class="" novalidate>
+  <form id="form" class="" action="results" method="post" novalidate>
     <div class="col col--md-12 col--lg-18 margin-bottom">
       <div class="margin-bottom-md--2 flush-col js-mobile-filters">
         <div class="background--gallery padding-top-md--2 padding-right-md--1 padding-bottom-md--4 padding-left-sm--1 padding-left-md--1 flush js-mobile-filters__title">
@@ -19,7 +19,7 @@
                 <ul class="govuk-list">
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-certificate" class="js-auto-submit__input" type="checkbox" name="filter-type" value="certificate">
+                      <input id="checkbox-certificate" class="js-auto-submit__input" type="checkbox" name="filter-type" value="certificates" {% if (response['filterType']['certificates']) %} checked {% endif %}>
                       <label class="govuk-label govuk-checkboxes__label"  for="checkbox-certificate">
                         Certificates
                       </label>
@@ -27,7 +27,7 @@
                   </li>
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-assessor" class="js-auto-submit__input" type="checkbox" name="filter-type" value="assessor">
+                      <input id="checkbox-assessor" class="js-auto-submit__input" type="checkbox" name="filter-type" value="assessors" {% if (response['filterType']['assessors']) %} checked {% endif %}>
                       <label class="govuk-label govuk-checkboxes__label"  for="checkbox-assessor">
                         Assessors
                       </label>
@@ -35,9 +35,9 @@
                   </li>
                   <li class="filters__item">
                     <div class="filters__field">
-                      <input id="checkbox-address" class="js-auto-submit__input" type="checkbox" name="filter-type" value="address">
+                      <input id="checkbox-address" class="js-auto-submit__input" type="checkbox" name="filter-type" value="addresses" {% if (response['filterType']['addresses']) %} checked {% endif %}>
                       <label class="govuk-label govuk-checkboxes__label"  for="checkbox-address">
-                        Addresses
+                        Addresses:{{response['filterType']['assessors']}}:
                       </label>
                     </div>
                   </li>
