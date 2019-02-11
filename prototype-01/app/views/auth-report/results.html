@@ -97,6 +97,38 @@ Find an Energy Performance Certificate
 
 
 
+      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="all">
+        <h2 class="govuk-heading-l">All results for {{ data['search-field'] }}</h2>
+        <!--  Addresses for postcode  -->
+        {% if not response.addresses.length %}
+        <p>No addresses found for that postcode</p>
+        {% else %}
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
+          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Name</th>
+              <th class="govuk-table__header" scope="col">Number</th>
+              <th class="govuk-table__header" scope="col">Street</th>
+              <th class="govuk-table__header" scope="col">Town</th>
+              <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in response.addresses %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </section>
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="postcodes">
         <h2 class="govuk-heading-l">Properties for {{ data['search-field'] }}</h2>
         <!--  Addresses for postcode  -->
@@ -190,6 +222,11 @@ Find an Energy Performance Certificate
             <button id="sortBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
           </div>
         </form>
+<!-- 
+        <button id="sortBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button> -->
+
+        <button type="button" class="" id="filterBtn" name="filterBtn">Filter</button>
+       
 
         <table class="govuk-table">
           <caption class="govuk-table__caption">Local assessors</caption>
@@ -225,52 +262,55 @@ Find an Energy Performance Certificate
 </div><!--  end of tab sections  -->
 
 {% endblock %}
-  {% block scripts %}
-    <script>
-      console.log('page script');
-      var btn = document.getElementById("filterBtn");
-      console.log(btn);
-var results = [];//{{ response.assessors }};
-var obj;
 
-// is there a way to pass this object into js?
-// load the js in order to be able to filter and sort in the page
-{% for item in response.assessors %}
-obj = {
-    "Accreditation Number": "{{item['Accreditation Number']}}",
-    "Assessor Name": "{{item['Assessor Name']}}",
-    "Address": "{{item.Address}}",
-    "Telephone Number": "{{item['Telephone Number']}}",
-    "Distance": "{{item.Distance}}",
-    "Status": "{{item.Status}}",
-    "type":"{{item.type}}"
-  }
-results.push(obj)
-{% endfor %} 
-{% for item in response.certificates %}
-var obj = {
-    "name": "{{item.name}}",
-    "number": "{{item.number}}",
-    "street": "{{item.street}}",
-    "town": "{{item.town | capitalize}}",
-    "postcode": "{{item.postcode}}",
-    "type":"certificate"
-  }
-results.push(obj)
-{% endfor %} 
-{% for item in response.addresses %}
-var obj = {
-    "name": "{{item.name}}",
-    "number": "{{item.number}}",
-    "street": "{{item.street}}",
-    "town": "{{item.town | capitalize}}",
-    "postcode": "{{item.postcode}}",
-    "type":"{{item.type}}"
-  }
-results.push(obj)
-{% endfor %} 
-console.log(results);
-    </script>
 
+  {% block pageScripts %}
+  <script>
+
+    console.log("+++++++++++ PAGE SCRIPTS +++++++++++");
+
+    var results = [];
+    var obj;
+
+    // is there a way to pass this object into js?
+    // load the js in order to be able to filter and sort in the page
+    {% for item in response.assessors %}
+    obj = {
+        "Accreditation Number": "{{item['Accreditation Number']}}",
+        "Assessor Name": "{{item['Assessor Name']}}",
+        "Address": "{{item.Address}}",
+        "Telephone Number": "{{item['Telephone Number']}}",
+        "Distance": "{{item.Distance}}",
+        "Status": "{{item.Status}}",
+        "type":"{{item.type}}"
+      }
+    results.push(obj)
+    {% endfor %} 
+    {% for item in response.certificates %}
+    var obj = {
+        "name": "{{item.name}}",
+        "number": "{{item.number}}",
+        "street": "{{item.street}}",
+        "town": "{{item.town | capitalize}}",
+        "postcode": "{{item.postcode}}",
+        "type":"certificate"
+      }
+    results.push(obj)
+    {% endfor %} 
+    {% for item in response.addresses %}
+    var obj = {
+        "name": "{{item.name}}",
+        "number": "{{item.number}}",
+        "street": "{{item.street}}",
+        "town": "{{item.town | capitalize}}",
+        "postcode": "{{item.postcode}}",
+        "type":"{{item.type}}"
+      }
+    results.push(obj)
+    {% endfor %} 
+    console.log(results);
+  </script>
 
   {% endblock %}
+
+

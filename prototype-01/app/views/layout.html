@@ -92,14 +92,14 @@
 {% endif %}
 
 {% block bodyEnd %}
+
   {% block scripts %}
     {% include "includes/scripts.html" %}
-    {% block pageScripts %}{% endblock %}
- 
-  {# temp remove validation #}
-  {% include "includes/validation.html" %} 
+    {% include "includes/validation.html" %} 
+  {% endblock %}
 
-
+  {% block pageScripts %}
+  <!-- ++++++ page scripts block -->
   {% endblock %}
   <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
 {% endblock %}
