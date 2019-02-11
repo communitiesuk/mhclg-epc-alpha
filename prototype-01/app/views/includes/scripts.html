@@ -22,27 +22,27 @@
 	// then add a listener
 	$("#feedback").click(function(evt){
 		hj('trigger', 'mysurvey');
-  		//console.log( "click, click, click" );
-  		// prevent click propagation mailto;
-  		evt.preventDefault();
+		console.log( "click, click, click" );
+		// prevent click propagation mailto;
+		evt.preventDefault();
 	});
 
-  $("select#sort").change(function(){
+	$("select#sort").change(function(){
 		console.log( "sort, sort, sort" );
 		console.log( $( "#sort" ).val() );
 
-    	$('#sortBtn').click();
-  });
+		$('#sortBtn').click();
+	});
 
-  $("#filterBtn").click(function(){
+	$("#filterBtn").click(function(){
 		console.log( "click, click, click" );
-  		// prevent click propagation mailto;
-  		evt.preventDefault();
-
+		// prevent click propagation mailto;
+		evt.preventDefault();
 		console.log(results);
 
-    	//$('#filterBtn').click();
-  });
+		//$('#filterBtn').click();
+	});
+
 
 
 </script>
