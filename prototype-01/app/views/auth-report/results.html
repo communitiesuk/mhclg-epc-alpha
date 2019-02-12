@@ -289,8 +289,12 @@ Find an Energy Performance Certificate
 
 
     $(".govuk-tabs__tab").click(function(evt){
-      var urlSplit = document.URL.split("#");
-      $('#anchor').val(urlSplit[1] );
+      // extract anchor from tab id
+      var anchorTab = this.id.split("_");
+
+      // set hidden input for when the page refreshes      
+      $('#anchor').val( anchorTab[1] );
+
       // prevent click propagation
       evt.preventDefault();
     });    
