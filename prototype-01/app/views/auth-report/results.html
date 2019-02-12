@@ -106,7 +106,7 @@ Find an Energy Performance Certificate
 
 
 
-      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="all">
+      <section class="govuk-tabs__panel govuk-tabs__panel" id="all">
         <h2 class="govuk-heading-l">All results for {{ data['search-field'] }}</h2>
         <!--  Addresses for postcode  -->
         {% if not response.certificates.length %}
@@ -134,6 +134,30 @@ Find an Energy Performance Certificate
               <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
             </tr>
             {% endfor %}
+
+            {% for item in response.addresses %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+
+            {% for item in response.assessors %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <a href="assessor/{{ item['base64ref'] }}">{{item['number']}}
+                </a></td>
+              <td class="govuk-table__cell">{{item['name']}}</td>
+              <td class="govuk-table__cell">{{item.Address}}</td>
+              <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
+              <!-- <td class="govuk-table__cell">{{item.Distance}}</td> -->
+              <td class="govuk-table__cell">{{item.Status}}</td>
+            </tr>
+            {% endfor %}
+
           </tbody>
         </table>
         {% endif %}
@@ -211,7 +235,6 @@ Find an Energy Performance Certificate
         {% else %}
         <p>Please click on an assessor below to view further details:</p>
 
-       
 
         <table class="govuk-table">
           <caption class="govuk-table__caption">Local assessors</caption>
@@ -221,7 +244,7 @@ Find an Energy Performance Certificate
               <th class="govuk-table__cell" scope="col">Name</th>
               <th class="govuk-table__cell" scope="col">Address</th>
               <th class="govuk-table__cell" scope="col">Telephone</th>
-              <!--       <th class="govuk-table__cell" scope="col">Distance (miles)</th> -->
+              <!--  <th class="govuk-table__cell" scope="col">Distance (miles)</th> -->
               <th class="govuk-table__cell" scope="col">Status</th>
             </tr>
           </thead>
@@ -229,12 +252,12 @@ Find an Energy Performance Certificate
             {% for item in response.assessors %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">
-                <a href="assessor/{{ item['base64ref'] }}">{{item['Accreditation Number']}}
+                <a href="assessor/{{ item['base64ref'] }}">{{item['number']}}
                 </a></td>
-              <td class="govuk-table__cell">{{item['Assessor Name']}}</td>
+              <td class="govuk-table__cell">{{item['name']}}</td>
               <td class="govuk-table__cell">{{item.Address}}</td>
               <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
-              <!--           <td class="govuk-table__cell">{{item.Distance}}</td> -->
+              <!--  <td class="govuk-table__cell">{{item.Distance}}</td> -->
               <td class="govuk-table__cell">{{item.Status}}</td>
             </tr>
             {% endfor %}
@@ -254,9 +277,9 @@ Find an Energy Performance Certificate
 
     // console.log("+++++++++++ PAGE SCRIPTS +++++++++++");
 
+/*
     var results = [];
     var obj;
-
     // is there a way to pass this object into js?
     // load the js in order to be able to filter and sort in the page
     {% for item in response.assessors %}
@@ -293,7 +316,7 @@ Find an Energy Performance Certificate
       }
     results.push(obj)
     {% endfor %} 
-    console.log(results);
+*/
   </script>
 
   {% endblock %}

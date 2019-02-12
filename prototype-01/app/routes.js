@@ -645,35 +645,38 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
-  console.log( req.session.data['filter-type'] );
+  console.log( 'filter:' + req.session.data['filter-type'] );
+  console.log( 'search-field:' + req.session.data['search-field'] );
 
   if(req.session.data['search-field']){
 
     // pull in dummy data loaded from static file via server.js
     // arrays fr addresses, certificates and assessors
-    //console.log(req.app.locals.smartResults);
+    // console.log(req.app.locals.smartResults);
     var str = req.session.data['search-field'];
     var response = {};
-    //set some empty arrays for zero count
+    // set some empty arrays for zero count
 
     response.addresses = [];
     response.certificates = [];
     response.assessors = [];
-    //base64 encode the assessor ref num
+    // base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
     
-
     for ( var i=0; i<assessors.length; i++){
-      var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
+      console.log(assessors[i]['number']);
+      var base = Buffer.from(assessors[i]['number']).toString('base64')
       req.app.locals.smartResults.assessors[i].base64ref  = base;
     }
 
-    var sort = 'name_desc'
+    var sort = 'name_desc';
     if(req.session.data['sortBy']){
       sort = req.session.data['sortBy'];
     }
 
-
+    console.log('sort:' + sort);
+    console.log('filter ' + checkboxes);
+    console.log('checkbox ' + checkboxes);
     var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
     // todo refactor this to make more sense
     // get filter type from original search: if its 'all' then use all three types
@@ -684,9 +687,10 @@ router.get('/auth-report/results', function(req, res, next) {
         checkboxes = req.session.data['filter-type'];
       }
     }
-    console.log(checkboxes);
-    var total =0;
+    var total = 0;
     var filterType = {};
+
+    console.log();
 
     // loop through each group by type
     // if slected add to reponse
@@ -696,22 +700,23 @@ router.get('/auth-report/results', function(req, res, next) {
         var output = req.app.locals.smartResults[element];
         var sortedOutput;
 
-
+console.log(element);
+console.log(output);
         console.log('sort ' +sort);
         if (sort==='name_desc'){
           console.log('sort name down');
-          sortedOutput = _.sortBy(output, 'Assessor Name').reverse();
+          sortedOutput = _.sortBy(output, 'name').reverse();
         } else if (sort==='name_asc'){
           console.log('sort name up');
-          sortedOutput =_.sortBy(output, 'Assessor Name');
+          sortedOutput =_.sortBy(output, 'name');
 
         } else if (sort==='number_desc'){
           console.log('nsort umber down');
-          sortedOutput =_.sortBy(output, 'Accreditation Number').reverse();
+          sortedOutput =_.sortBy(output, 'number').reverse();
 
         } else if (sort==='number_asc'){
           console.log('sort number_asc up');
-          sortedOutput =_.sortBy(output, 'Accreditation Number');
+          sortedOutput =_.sortBy(output, 'number');
 
         }
         response[element] = sortedOutput;
