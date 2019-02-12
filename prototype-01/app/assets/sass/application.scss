@@ -16,6 +16,10 @@ $govuk-global-styles: true;
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+.govuk-select{
+  padding:0;
+}
+
 body{
   font-family: 'nta';
 }

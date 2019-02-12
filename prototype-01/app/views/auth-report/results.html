@@ -52,7 +52,16 @@ Find an Energy Performance Certificate
               <span id="search-field-error" class="govuk-error-message hide">
                 Enter the postcode, certificate or assessor reference.
               </span>
-              <input data-required="true" class="govuk-input" id="search-field" name="search-field" type="text" value="{{ data['search-field'] }}"> 
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="search-field" type="text" value="{{ data['search-field'] }}"> 
+              <!-- <label class="govuk-label" for="filter-type">
+                Sort by
+              </label> -->
+              <select class="govuk-select" id="filter-type" name="filter-type">
+                <option value="all" selected>All</option>
+                <option value="certificates" >Certificate</option>
+                <option value="assessors">Assessors</option>
+                <option value="addresses">Addresses</option>
+              </select>
             </div>
           </fieldset>
         </div>
@@ -202,26 +211,6 @@ Find an Energy Performance Certificate
         {% else %}
         <p>Please click on an assessor below to view further details:</p>
 
-        <form id="form-sort" class="js-auto-submit__form" action="results" method="post" >
-          <input type="hidden" name=":uri" value="search">
-          <input type="hidden" name="size" value="10">
-          <input type="hidden" name="q" value="gdp" class="js-auto-submit__input">
-          <div class="js-mobile-filters__sort">            
-            <label for="sort" class="sort__label">Sort by
-              <select class="input select select--thin width-auto js-auto-submit__input" id="sort" name="sortBy">
-                <option class="sort__option" value="number_desc" {% if (data['sortBy']==="number_desc") %} selected="selected" {% endif %}>Number desc
-                </option>
-                <option class="sort__option" value="number_asc"{% if (data['sortBy']==="number_asc") %} selected="selected" {% endif %}>Number asc
-                </option>
-                <option class="sort__option" value="name_desc"{% if (data['sortBy']==="name_desc") %} selected="selected" {% endif %}>Name desc
-                </option>
-                <option class="sort__option" value="name_asc" {% if (data['sortBy']==="name_asc") %} selected="selected" {% endif %}>Name asc
-                </option>
-              </select>
-            </label>
-            <button id="sortBtn" type="submit" class="btn btn--primary btn--thin btn--small js--hide">Sort</button>
-          </div>
-        </form>
        
 
         <table class="govuk-table">

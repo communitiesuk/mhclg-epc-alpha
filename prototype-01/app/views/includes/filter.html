@@ -4,9 +4,37 @@
       <div class="margin-bottom-md--2 flush-col js-mobile-filters">
         <div class="background--gallery padding-top-md--2 padding-right-md--1 padding-bottom-md--4 padding-left-sm--1 padding-left-md--1 flush js-mobile-filters__title">
           <h3 class="inline-block flush">Refine results</h3>
-          <a href="/search?q=gdp" id="clear-search" class="btn btn--primary btn--thin btn--narrow btn--small float-right">Clear all</a>
+
+
+        <form id="form-sort" class="" action="results" method="post" >
+          <input type="hidden" name=":uri" value="search">
+          <input type="hidden" name="size" value="10">
+          
+          <div class="">            
+            <label for="sort" class="">Sort by
+              <select class="govuk-select" id="sort" name="sortBy">
+                <option class="" value="number_desc" {% if (data['sortBy']==="number_desc") %} selected="selected" {% endif %}>Number desc
+                </option>
+                <option class="" value="number_asc"{% if (data['sortBy']==="number_asc") %} selected="selected" {% endif %}>Number asc
+                </option>
+                <option class="" value="name_desc"{% if (data['sortBy']==="name_desc") %} selected="selected" {% endif %}>Name desc
+                </option>
+                <option class="" value="name_asc" {% if (data['sortBy']==="name_asc") %} selected="selected" {% endif %}>Name asc
+                </option>
+              </select>
+            </label>
+            <button id="sortBtn"  type="hidden" class="">Sort</button>
+          </div>
+        </form>
+
+
+          <a href="/search?q=gdp" id="clear-search" class="float-right">Reset All</a>
         </div>
-        <div class="background--mercury border-top--iron-md padding-top-sm--2 padding-top-md--1 padding-right-sm--1 padding-right-md--1 padding-bottom-sm--2 padding-bottom-md--2 padding-left-sm--1 padding-left-md--1 js-mobile-filters__contents">
+        <div class="">
+
+
+
+
           <div class="filters js-filters">
             <h4 class="filters__title">Content types to show</h4>
 

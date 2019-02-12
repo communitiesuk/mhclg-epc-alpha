@@ -673,35 +673,48 @@ router.get('/auth-report/results', function(req, res, next) {
       sort = req.session.data['sortBy'];
     }
 
-    if (sort==='name_desc'){
-      console.log('sort name down');
-      assessors = _.sortBy(req.app.locals.smartResults.assessors, 'Assessor Name').reverse();
-    } else if (sort==='name_asc'){
-      console.log('sort name up');
-      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Assessor Name');
-
-    } else if (sort==='number_desc'){
-      console.log('nsort umber down');
-      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number').reverse();
-
-    } else if (sort==='number_asc'){
-      console.log('sort number_asc up');
-      assessors =_.sortBy(req.app.locals.smartResults.assessors, 'Accreditation Number');
-
-    }
 
     var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
+    // todo refactor this to make more sense
+    // get filter type from original search: if its 'all' then use all three types
     if(req.session.data['filter-type']){
-      checkboxes = req.session.data['filter-type'];
+      console.log('-------');
+      console.log(req.session.data['filter-type'])
+      if(req.session.data['filter-type']!== 'all'){
+        checkboxes = req.session.data['filter-type'];
+      }
     }
     console.log(checkboxes);
     var total =0;
     var filterType = {};
 
+    // loop through each group by type
+    // if slected add to reponse
+    // change sort order if required
     _.each(checkboxes, function (element, index, list) {
-        var output = 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length;
-        console.log(output, '#eacharraysunderscore');
-        response[element] = req.app.locals.smartResults[element];
+        //var output = 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length;
+        var output = req.app.locals.smartResults[element];
+        var sortedOutput;
+
+
+        console.log('sort ' +sort);
+        if (sort==='name_desc'){
+          console.log('sort name down');
+          sortedOutput = _.sortBy(output, 'Assessor Name').reverse();
+        } else if (sort==='name_asc'){
+          console.log('sort name up');
+          sortedOutput =_.sortBy(output, 'Assessor Name');
+
+        } else if (sort==='number_desc'){
+          console.log('nsort umber down');
+          sortedOutput =_.sortBy(output, 'Accreditation Number').reverse();
+
+        } else if (sort==='number_asc'){
+          console.log('sort number_asc up');
+          sortedOutput =_.sortBy(output, 'Accreditation Number');
+
+        }
+        response[element] = sortedOutput;
         total += response[element].length;
         filterType[element] = true;
     });

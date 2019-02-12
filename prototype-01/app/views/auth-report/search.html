@@ -58,14 +58,25 @@
               or Assessor Reference Number: XXX123456
             </span>
 
-            <div class="">
+              
+
+            <div class="govuk-form-group">
               <label class="govuk-label" for="search-field">
                 Enter a postcode, certificate or assessor reference.
               </label>
               <span id="search-field-error" class="govuk-error-message hide">
                 Enter the postcode, certificate or assessor reference.
               </span>
-              <input data-required="true" class="govuk-input" id="search-field" name="search-field" type="text" value=""> 
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="search-field" type="text" value="">
+              <!-- <label class="govuk-label" for="filter-type">
+                Sort by
+              </label> -->
+              <select class="govuk-select" id="filter-type" name="filter-type">
+                <option value="all" selected>All</option>
+                <option value="certificates" >Certificate</option>
+                <option value="assessors">Assessors</option>
+                <option value="addresses">Addresses</option>
+              </select>
             </div>
             <br/>
 
