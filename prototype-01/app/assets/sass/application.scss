@@ -20,6 +20,10 @@ $govuk-global-styles: true;
   padding:0;
 }
 
+.hidden{
+  display:none;
+}
+
 body{
   font-family: 'nta';
 }

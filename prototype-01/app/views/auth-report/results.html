@@ -77,7 +77,7 @@ Find an Energy Performance Certificate
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
-    <p>FILTER</p>
+    
     {% include "includes/filter.html" %}
   </div>
   <div class="govuk-grid-column-three-quarters">
@@ -91,8 +91,8 @@ Find an Energy Performance Certificate
           All ({{ count }})</a>
         </li>
         <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#postcodes">
-          Postcodes ({{ response.addresses.length }})</a>
+          <a class="govuk-tabs__tab" href="#addresses">
+          Addresses ({{ response.addresses.length }})</a>
         </li>
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#certificates">
@@ -113,7 +113,7 @@ Find an Energy Performance Certificate
         <p>No certificates found for that search ({{ data['search-field'] }})</p>
         {% else %}
         <table class="govuk-table">
-          <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
+          <caption class="govuk-table__caption">All addresses for {{ data['search-field'] }}:
           {{response.certificates[0].street}}, {{response.certificates[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -162,8 +162,8 @@ Find an Energy Performance Certificate
         </table>
         {% endif %}
       </section>
-      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="postcodes">
-        <h2 class="govuk-heading-l">Properties for {{ data['search-field'] }}</h2>
+      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="addresses">
+        <h2 class="govuk-heading-l">Addresses for {{ data['search-field'] }}</h2>
         <!--  Addresses for postcode  -->
         {% if not response.addresses.length %}
         <p>No addresses found for that postcode</p>
