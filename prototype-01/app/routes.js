@@ -645,11 +645,8 @@ router.get('/auth-report/search', function(req, res, next) {
 
 
 router.get('/auth-report/results', function(req, res, next) {
-  //console.log( 'filter:' + req.session.data['filter-type'] );
-  //console.log( 'search-field:' + req.session.data['search-field'] );
 
   if(req.session.data['search-field']){
-
     // pull in dummy data loaded from static file via server.js
     // arrays fr addresses, certificates and assessors
     // console.log(req.app.locals.smartResults);
@@ -673,15 +670,10 @@ router.get('/auth-report/results', function(req, res, next) {
       sort = req.session.data['sortBy'];
     }
 
-    //console.log('sort:' + sort);
-    //console.log('filter ' + checkboxes);
-    //console.log('checkbox ' + checkboxes);
     var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
     // todo refactor this to make more sense
     // get filter type from original search: if its 'all' then use all three types
     if(req.session.data['filter-type']){
-      //console.log('-------');
-      //console.log(req.session.data['filter-type'])
       if(req.session.data['filter-type']!== 'all'){
         checkboxes = req.session.data['filter-type'];
       }
@@ -691,16 +683,13 @@ router.get('/auth-report/results', function(req, res, next) {
 
 
     // loop through each group by type
-    // if slected add to reponse
+    // if selected, add to response
     // change sort order if required
     _.each(checkboxes, function (element, index, list) {
         //var output = 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length;
         var output = req.app.locals.smartResults[element];
         var sortedOutput;
 
-//console.log(element);
-//console.log(output);
-        console.log('sort ' +sort);
         if (sort==='name_desc'){
           //console.log('sort name down');
           sortedOutput = _.sortBy(output, 'name').reverse();
@@ -749,12 +738,13 @@ router.get('/auth-report/results', function(req, res, next) {
     //console.log(response);
     res.render('auth-report/results', {
       response: response,
+      anchor: req.session.data['anchor'],
       count:total   
     });
               
   }else{
     res.send('no data');
-
+    //res.render('auth-report/search');
   }
 });
 
