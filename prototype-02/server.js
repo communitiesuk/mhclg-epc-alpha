@@ -9,6 +9,11 @@ const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
+const ClientOAuth2 = require('client-oauth2')
+
+//add markdown parser
+const markdown = require('nunjucks-markdown')
+const marked = require('marked')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -103,6 +108,17 @@ var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
+
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  headerIds: false
+});
+
+// Register marked extension
+markdown.register(nunjucksAppEnv, marked);
+
 
 // Set views engine
 app.set('view engine', 'html')
