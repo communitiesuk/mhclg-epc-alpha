@@ -6,3 +6,5 @@ For this exercise we take the address in the new file and calculate the number o
 Expected to be the slowest and least accurate method - does not require training or a model, works by iterating through the data. 
 Does not currently take into account mis-matches of order of components of the address.  Does not consider additional fields - ie wrong if there is an additional field.  
 Needs a method for counting correct matches and wrong matches.  
+
+This appears to be an impreovement on the method used by Hufton 
