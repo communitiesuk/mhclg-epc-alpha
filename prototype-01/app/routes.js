@@ -659,10 +659,16 @@ router.get('/auth-report/results', function(req, res, next) {
     response.assessors = [];
     // base64 encode the assessor ref num
     var assessors = req.app.locals.smartResults.assessors;
+    var certificates = req.app.locals.smartResults.certificates;
     
     for ( var i=0; i<assessors.length; i++){
       var base = Buffer.from(assessors[i]['number']).toString('base64')
-      req.app.locals.smartResults.assessors[i].base64ref  = base;
+      assessors[i].base64ref = base;
+    }
+    //create fake reference for dummy data
+    for ( var i=0; i<certificates.length; i++){
+      var base = Buffer.from("0000_" +i).toString('base64')
+      certificates[i].reference = base;
     }
 
     var sort = 'name_desc';
@@ -707,38 +713,44 @@ router.get('/auth-report/results', function(req, res, next) {
 
         }
         response[element] = sortedOutput;
-        total += response[element].length;
         filterType[element] = true;
     });
 
     //console.log(filterType);
 
-    /*
+    // set the page tab anchor
+    var anchor = req.session.data['anchor'];
+
+    // certificate
     if(str.length>20){
       response.addresses = [];
-      response.certificates = req.app.locals.smartResults.certificates;
+      response.certificates = [ response.certificates[Math.round(Math.random()*response.certificates.length)] ];
       // show 1 random assessor
-      //response.assessors = [ req.app.locals.smartResults.assessors[Math.round(Math.random()*req.app.locals.smartResults.assessors.length)] ];
-    }
+      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+      anchor = "certificates";
+    }else
+    // ASSESSOR : 1 assessor and multiple certificates
     if(str.length>8 && str.length<20){
       response.addresses = [];
-      response.certificates = [];
-      response.assessors = assessors;
-    }
+      response.certificates = response.certificates;
+      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+      anchor = "assessors";
+    }else
     if(str.length<=8){
-      response.addresses = req.app.locals.smartResults.addresses;
-      response.certificates = req.app.locals.smartResults.certificates;
+      response.addresses = response.addresses;
+      response.certificates = response.certificates;
       response.assessors = assessors;
+      anchor = "all";
     }
-    */
+    
 
+    total = response.addresses.length + response.certificates.length + response.assessors.length;
     response.filterType = filterType;
-
 
     //console.log(response);
     res.render('auth-report/results', {
       response: response,
-      anchor: req.session.data['anchor'],
+      anchor: anchor,
       count:total   
     });
               
@@ -752,12 +764,26 @@ router.get('/auth-report/results', function(req, res, next) {
 
 router.get('/auth-report/certificate/:reference', function(req, res) {
 
+console.log(req.params.reference);
+  var certHash = req.params.reference;
+  // convert back from base64
+  var ref  = Buffer.from(certHash, 'base64').toString();
 
+  ref = ref.split("_")[1];
+
+/*
   var lmkKey = req.params.reference;
   var filtered = _.filter(dataset.rows, function(item) {
     return (lmkKey === item['lmk-key']);
   });
+*/
 
+console.log('got ref ' +ref);
+var filtered = [ req.app.locals.smartResults.certificates[ref] ];
+
+//there is only one result
+var idx = 0;
+console.log(filtered);
   //assume a filtered array with only a single property result
   var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
 
