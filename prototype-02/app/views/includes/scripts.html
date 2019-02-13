@@ -4,7 +4,6 @@
 <script src="/public/javascripts/application.js"></script>
 
 <!-- Third party validation -->
-<script src="/public/javascripts/underscore.js"></script>
 <script src="/public/javascripts/validate.js"></script>
 
 {% if useAutoStoreData %}
@@ -36,26 +35,7 @@
 
 	$("#filterBtn").click(function(evt){
 		//console.log( "click, click, click" );
-		console.log('stuff here');
-
-		/*
-		var filteredResults = [];
-
-		$("input:checkbox[name='filter-type']:checked").each(function () {
-            console.log("Id: " + $(this).attr("id") + " Value: " + $(this).val());
-            var type = $(this).val()
-            //filteredResults[ $(this).val() ] = response[ $(this).val() ];
-            // loop through array of results and find entry with matching type
-            $.each(results, function(index, val){
-            	if( type === val.type ){
-	            	console.log(type, val.type);
-	            	filteredResults.push( val );
-            	}
-            });
-        });
-
-		console.log(filteredResults);
-		*/
+		console.log('filterBtn here');
 		$('#form').submit();
 	});
 
