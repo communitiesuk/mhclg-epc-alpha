@@ -123,8 +123,8 @@ Find an Energy Performance Certificate
           {{response.certificates[0].street}}, {{response.certificates[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col">Name</th>
               <th class="govuk-table__header" scope="col">Number</th>
+              <th class="govuk-table__header" scope="col">Name</th>
               <th class="govuk-table__header" scope="col">Street</th>
               <th class="govuk-table__header" scope="col">Town</th>
               <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
@@ -133,8 +133,8 @@ Find an Energy Performance Certificate
           <tbody class="govuk-table__body">
             {% for item in response.certificates %}
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="row">{{item.name}}</th>
-              <td class="govuk-table__cell">{{item.number}}</td>
+              <th class="govuk-table__header" scope="row">{{item.number}}</th>
+              <td class="govuk-table__cell">{{item.name}}</td>
               <td class="govuk-table__cell">{{item.street}}</td>
               <td class="govuk-table__cell">{{item.town | capitalize}}</td>
               <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
@@ -143,8 +143,8 @@ Find an Energy Performance Certificate
 
             {% for item in response.addresses %}
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="row">{{item.name}}</th>
-              <td class="govuk-table__cell">{{item.number}}</td>
+              <th class="govuk-table__header" scope="row">{{item.number}}</th>
+              <td class="govuk-table__cell">{{item.name}}</td>
               <td class="govuk-table__cell">{{item.street}}</td>
               <td class="govuk-table__cell">{{item.town | capitalize}}</td>
               <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
@@ -154,9 +154,9 @@ Find an Energy Performance Certificate
             {% for item in response.assessors %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">
-                <a href="assessor/{{ item['base64ref'] }}">{{item['number']}}
+                <a href="assessor/{{ item['base64ref'] }}">{{item.number}}
                 </a></td>
-              <td class="govuk-table__cell">{{item['name']}}</td>
+              <td class="govuk-table__cell">{{item.name}}</td>
               <td class="govuk-table__cell">{{item.Address}}</td>
               <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
               <!-- <td class="govuk-table__cell">{{item.Distance}}</td> -->
@@ -179,8 +179,8 @@ Find an Energy Performance Certificate
           {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col">Name</th>
               <th class="govuk-table__header" scope="col">Number</th>
+              <th class="govuk-table__header" scope="col">Name</th>
               <th class="govuk-table__header" scope="col">Street</th>
               <th class="govuk-table__header" scope="col">Town</th>
               <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
@@ -189,8 +189,8 @@ Find an Energy Performance Certificate
           <tbody class="govuk-table__body">
             {% for item in response.addresses %}
             <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="row">{{item.name}}</th>
-              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__header">{{item.number}}</td>
+              <th class="govuk-table__cell" scope="row">{{item.name}}</th>
               <td class="govuk-table__cell">{{item.street}}</td>
               <td class="govuk-table__cell">{{item.town | capitalize}}</td>
               <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
