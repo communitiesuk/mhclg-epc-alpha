@@ -67,7 +67,11 @@
 {% block bodyEnd %}
   {% block scripts %}
     {% include "includes/scripts.html" %}
-    {% block pageScripts %}{% endblock %}
+    {% include "includes/validation.html" %} 
+    {% block pageScripts %}
+    <!-- page scripts block -->
+
+    {% endblock %}
   {% endblock %}
   <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
 {% endblock %}
