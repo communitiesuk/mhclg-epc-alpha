@@ -1,0 +1,787 @@
+{
+  "addresses":[
+  {
+    "name": "-",
+    "number": "Unit 2",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "-",
+    "number": "Unit 3",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "-",
+    "number": "Unit 4",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "-",
+    "number": "Unit 13",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "-",
+    "number": "Unit 14",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "-",
+    "number": "Unit 18-19",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Boots the Chemists Ltd",
+    "number": "Unit 15",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Caffe Nero",
+    "number": "Unit 5",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Clinton Cards plc",
+    "number": "Unit 7-8",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Debenhams plc",
+    "number": "Slingfield Mill",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Frankie & Bennys",
+    "number": "The Pump House",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Greggs",
+    "number": "Unit 6",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "J J B Fitness Club",
+    "number": "-",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "McDonalds",
+    "number": "Unit 20B",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "New Look",
+    "number": "Unit 10",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Next Retail Ltd",
+    "number": "Unit 17",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Pizza Hut (UK) Ltd",
+    "number": "Unit 20A",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Robin Brown Ltd",
+    "number": "Unit 20B",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Savers",
+    "number": "Unit 9",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Sports World",
+    "number": "Unit 16",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "Starbucks",
+    "number": "-",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "T H Baker",
+    "number": "Unit 1",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "T K Maxx",
+    "number": "Unit 11",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "The Academy",
+    "number": "Piano Building",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  },
+  {
+    "name": "The Academy At Kidderminster",
+    "number": "Piano Building",
+    "street": "Weavers Wharf",
+    "town": "Kidderminster",
+    "postcode": "DY10 1AA",
+    "type":"address"
+  }
+],
+  "assessors": [
+  {
+    "number": "EES/0201993",
+    "name": "Mrs. Shirley Wells",
+    "Address": "93-94 Coventry Street, Kidderminster, DY10 2BH",
+    "Telephone Number": "01562616722",
+    "Distance": 0,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/018804",
+    "name": "Mr. Eugene Silva",
+    "Address": "C/O Zipster Systems Ltd, 16 St Johns Business Park, Lutterworth, LE17 4HB",
+    "Telephone Number": "07585785438",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/013941",
+    "name": "Mr. Joe McCoy",
+    "Address": "15 Batham Road, Kidderminster, DY10 2TN",
+    "Telephone Number": "07936142525",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO0129486",
+    "name": "Joe McCoy",
+    "Address": "15 Batham Road, Kidderminster, DY10 2TN",
+    "Telephone Number": "07936142525",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO011968",
+    "name": "Karen Salazar",
+    "Address": "25 Shaw Avenue, Worcestershire, DY10 3YX",
+    "Telephone Number": "01562224121",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO019428",
+    "name": "Eugene Silva",
+    "Address": "9 Stokesay Close, Kidderminster, DY10 1YB",
+    "Telephone Number": "07585785438",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO039388",
+    "name": "Nicole Marshall",
+    "Address": "6 Lawrence Grove, Kidderminster, DY11 7DR",
+    "Telephone Number": "07811145720",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "ECMK309466",
+    "name": "Jose Bishop",
+    "Address": "6, CHARLES AVENUE, KIDDERMINSTER, DY10 2YN",
+    "Telephone Number": "07480456156",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO029598",
+    "name": "Donna Russell",
+    "Address": "124 Linnet Rise, Kidderminster, DY10 4TU",
+    "Telephone Number": "01299 864660",
+    "Distance": 1,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "STRO024933",
+    "name": "Eric Garza",
+    "Address": "77 Mostyn Road, Stourport-On-Severn, DY13 8PN",
+    "Telephone Number": "01299573200",
+    "Distance": 3,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/019936",
+    "name": "Ms. Karen Aguilar",
+    "Address": "13 Muskoka, Bewdley, DY12 2BJ",
+    "Telephone Number": "07990 089666",
+    "Distance": 3,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/015979",
+    "name": "Mrs. Teresa Pena",
+    "Address": "18 Birchfield Drive, Stourport-On-Severn, DY13 8UE",
+    "Telephone Number": "01299 789 946",
+    "Distance": 3,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "ECMK309113",
+    "name": "Alexander Mendez",
+    "Address": "4, ELMFIELD ROAD, KIDDERMINSTER, DY11 7LA",
+    "Telephone Number": "07429865914",
+    "Distance": 4,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "ECMK309633",
+    "name": "Phillip Hart",
+    "Address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
+    "Telephone Number": "07821736181",
+    "Distance": 5,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "ECMK309900",
+    "name": "Phillip Hart",
+    "Address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
+    "Telephone Number": "07821736181",
+    "Distance": 5,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/001945",
+    "name": "Mr. Phillip Hart",
+    "Address": "2 Birch Dale, Hagley, Stourbridge, DY8 2YA",
+    "Telephone Number": "07821736181",
+    "Distance": 5,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/024915",
+    "name": "Mr. Jack Bennett",
+    "Address": "7 Arley Drive, Stourbridge, DY8 3BH",
+    "Telephone Number": "0121 717 5573",
+    "Distance": 6,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/001952",
+    "name": "Mrs. Beverly Hoffman",
+    "Address": "14 Albemarle Road, Stourbridge, DY8 2BG",
+    "Telephone Number": "07793 017538",
+    "Distance": 6,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "ECMK303945",
+    "name": "Beverly Hoffman",
+    "Address": "14, ALBEMARLE ROAD, STOURBRIDGE, DY8 2BG",
+    "Telephone Number": "07793017538",
+    "Distance": 6,
+    "Status": "Registered",
+    "type":"assessor"
+  },
+  {
+    "number": "EES/019915",
+    "name": "Ms. Pamela Cole",
+    "Address": "Green Cottage, Holy Cross Green, Clent, DY9 0HG",
+    "Telephone Number": "-",
+    "Distance": "-",
+    "Status": "-",
+    "type":"assessor"
+  }
+],
+"certificates":[
+  {
+    "number": "UNIT 3",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Debenhams",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 5",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "16 VICAR STREET",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 15",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 1",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 2",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Starbucks",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 12",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 17",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 10",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 14",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 10",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "The Pump House",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "THE PUMP HOUSE",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 9",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "D W Sports",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 20A",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 17",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 9",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 6",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 11",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 18&19",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA"
+  },
+  {
+    "number": "UNIT 6",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 7&8",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 7-8",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 16",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 4",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "THE OLD PIANO BUILDING",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 1",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 16",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 13",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 14",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 11",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Birmingham Metropolitan College, Kidderminster Academy",
+    "name": "Piano Building",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 20b",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Premier Inn",
+    "name": "Slingfield Mill",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 20a",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 13",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 15",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "THE NEW PIANO BUILDING",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 4",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 11a",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 20B",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 5",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "SLINGFIELD MILL, TOP THREE FLOORS",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 2B",
+    "name": "Henderson Retail Warehouse Fund",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "UNIT 12 AND FIRST FLOOR UNIT 11",
+    "name": "Unit 12",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 3",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  },
+  {
+    "number": "Unit 18-19",
+    "name": "-",
+    "street": "Weavers Wharf",
+    "town": "KIDDERMINSTER",
+    "postcode": "DY10 1AA",
+    "type":"certificate"
+  }
+]
+}

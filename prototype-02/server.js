@@ -1,5 +1,6 @@
 // Core dependencies
 const path = require('path')
+const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -352,6 +353,14 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.send(err.message)
 })
+
+
+/*
+  Load dummy project data from JSON.
+*/
+var smartResults = JSON.parse(fs.readFileSync(__dirname + '/app/data/auth_user_results.json').toString());
+app.locals.smartResults = smartResults;
+
 
 console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')

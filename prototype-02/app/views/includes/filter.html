@@ -1,0 +1,134 @@
+<div class="govuk">
+
+  <form id="form" class="" action="results" method="post" novalidate>
+    <div class="">
+      <div class="">
+        <div class="">
+
+        <form id="form-sort" class="" action="results" method="post" >
+          <input type="hidden" name=":uri" value="search">
+          <input type="hidden" name="size" value="10">
+          <input type="hidden" id="anchor" name="anchor" value="all">
+          <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
+              <legend class="govuk-heading-s">Sort options</legend>
+              <label class="govuk-label" for="sort">
+                Sort by
+              </label>
+              <span id="sort-hint" class="govuk-hint">
+                Order the search results.
+              </span>           
+             <!--  <label for="sort" class=""></label> -->
+                <select class="govuk-select" id="sort" name="sortBy">
+                  <option class="" value="number_desc" {% if (data['sortBy']==="number_desc") %} selected="selected" {% endif %}>Number desc
+                  </option>
+                  <option class="" value="number_asc"{% if (data['sortBy']==="number_asc") %} selected="selected" {% endif %}>Number asc
+                  </option>
+                  <option class="" value="name_desc"{% if (data['sortBy']==="name_desc") %} selected="selected" {% endif %}>Name desc
+                  </option>
+                  <option class="" value="name_asc" {% if (data['sortBy']==="name_asc") %} selected="selected" {% endif %}>Name asc
+                  </option>
+                </select>
+              <button id="sortBtn" type="hidden" class="hidden">Sort</button>
+            </fieldset>
+
+        </form>
+        <!--   <a href="/search?q=gdp" id="clear-search" class="float-right">Reset All</a> -->
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+        <div class="">
+
+          <div class="">
+            <fieldset class="govuk-fieldset" aria-describedby="filter-type-hint">
+              <legend class="govuk-heading-s">Filter Document Type</legend>
+              <span id="filter-type-hint" class="govuk-hint">
+                Select the type of document you want to see.
+              </span>
+              <div class="">
+                <ul class="govuk-list">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-certificate" class="" type="checkbox" name="filter-type" value="certificates" {% if (response['filterType']['certificates']) %} checked {% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-certificate">
+                        Certificates
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-assessor" class="" type="checkbox" name="filter-type" value="assessors" {% if (response['filterType']['assessors']) %} checked {% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-assessor">
+                        Assessors
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-address" class="" type="checkbox" name="filter-type" value="addresses" {% if (response['filterType']['addresses']) %} checked {% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label"  for="checkbox-address">
+                        Addresses
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+            <button type="button" class="govuk-button" id="filterBtn" name="filterBtn">Filter</button>
+
+<!-- 
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+            <fieldset class="">
+              <legend class="">Document type</legend>
+              <div class="">
+                <ul class="govuk-list">
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-domestic" class="js-auto-submit__input" type="checkbox" name="filter" value="domestic">
+                      <label for="checkbox-domestic">
+                        Domestic EPC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-commercial" class="" type="checkbox" name="filter" value="commercial">
+                      <label for="checkbox-commercial">
+                        Commercial EPC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-dec" class="" type="checkbox" name="filter" value="dec">
+                      <label for="checkbox-dec">
+                        DEC
+                      </label>
+                    </div>
+                  </li>
+                  <li class="filters__item">
+                    <div class="filters__field">
+                      <input id="checkbox-sap-rd" class="" type="checkbox" name="filter" value="sap-rd">
+                      <label for="checkbox-sap-rd">
+                        SAP Rd
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+
+          <br/>
+          <button type="button" class="govuk-button" id="documentFilterBtn" name="documentFilterBtn">Filter</button>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+          
+ -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

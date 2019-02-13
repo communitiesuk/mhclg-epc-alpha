@@ -1,0 +1,142 @@
+<!-- Form validation  -->
+<script>
+
+    (function() {
+
+      var errors = [];  // store array of error messages: {target, msg}
+
+      // Hook up the form so we can prevent it from being posted
+      var form = document.querySelector("form#main");
+
+      // NB As per GDS, only validate when the form is submittted
+      if (form){
+        form.addEventListener("submit", function(ev) {
+          ev.preventDefault();
+          handleFormSubmit();
+        });
+
+      } 
+
+
+      function showAllErrors(){
+        var i =0;
+        var len = errors.length;
+        for (i=0; i<len; i++){
+          showErrorMessage(errors[i]);
+        }
+
+        showErrorSummary();
+      }
+
+
+      function showErrorSummary(){
+        $('.govuk-error-summary').removeClass('hide');
+        $('.govuk-form-group').addClass('govuk-form-group--error');
+        $('.govuk-error-summary__list').removeClass('hide');
+
+        // update title if we haven't already
+        if(document.title.indexOf("Error")===-1){
+          var newTitle = 'Error: ' + document.title;
+          $(document).attr("title", newTitle);
+        }
+      }
+
+
+      function showErrorMessage(error){
+        //console.log(error);
+        var messages = document.querySelector(".govuk-error-summary__list");
+        var block = document.createElement("li");
+        var link = document.createElement("a");
+        block.classList.add("help-block");
+        block.classList.add("error");
+        link.href = "#"+error.target;
+        link.innerText = error.msg;
+        block.appendChild(link);
+        messages.appendChild(block);
+
+        // add govuk-input--error class to the offending error input
+        $("#" + error.target).addClass('govuk-input--error');
+
+        // reveal the error text for the input
+        $('#' + error.target + '-error').removeClass('hide');
+      }
+
+
+      function handleFormSubmit(){
+        //console.log('handleFormSubmit');
+        clearErrorMessages();
+        validateForm();
+      }
+
+
+      function clearErrorMessages() {
+        //console.log('clear form------------');
+        $(".help-block.error").each( function( el ){
+          $(this).remove();
+        });
+        $("#main input[type=text]").each(function() {
+          $(this).removeClass('govuk-input--error');
+        });
+        $(".govuk-error-message").each(function() {
+          $(this).addClass('hide');
+        });
+      }
+
+
+      function validateForm() {
+        //console.log('validateForm');
+        var hasRadio = false;   // only display errors for radio button where they are present
+        var isChecked = false;
+        var name;
+        var id;
+        errors = [];
+
+        clearErrorMessages();
+
+        $("#main input[type=text]").each(function() {
+          if(this.value==="") {
+            var errorMsg = $('#' + this.id + '-error').text().replace(/(\s)+/g, ' ').trim();
+            if (!errorMsg) {
+              errorMsg = "Missing " + name;
+            }
+            errors.push({target:this.id, msg:errorMsg});
+          }
+        });
+
+        $("#main input[type=radio]").each(function(){
+          hasRadio = true;
+          name = this.name;
+          if(!id){
+            id = this.id;
+          }
+          if (this.checked){
+            isChecked = true;
+          }
+        })
+
+        if(hasRadio && !isChecked){
+          var errorMsg = $('.govuk-error-message').text();
+          if (!errorMsg) {
+            errorMsg = "Missing " + name;
+          }
+          errors.push({target:id, msg:errorMsg});
+        }
+
+        if (errors.length>0){
+          showAllErrors();
+        }else{
+          showSuccess();
+        }
+      }
+
+
+      function showSuccess() {
+        // We made it \:D/
+        //console.log("Success!");
+        form.submit();
+      }
+
+
+    })();
+</script>
+

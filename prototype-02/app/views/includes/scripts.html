@@ -3,6 +3,62 @@
 <script src="/node_modules/govuk-frontend/all.js"></script>
 <script src="/public/javascripts/application.js"></script>
 
+<!-- Third party validation -->
+<script src="/public/javascripts/underscore.js"></script>
+<script src="/public/javascripts/validate.js"></script>
+
 {% if useAutoStoreData %}
-  <script src="/public/javascripts/auto-store-data.js"></script>
+<script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+	// trigger hotjar survey:
+	// note that 'mysurvey' is the name given in the hotjar page
+	// page targeting rule set in the actual survey
+	// also hotjar tracking code is set in the head.html
+	// and needs to load before this
+	// NB remember to clear the cache
+
+	// then add a listener
+	$("#feedback").click(function(evt){
+		hj('trigger', 'mysurvey');
+		console.log( "click, click, click" );
+		// prevent click propagation mailto;
+		evt.preventDefault();
+	});
+
+	$("select#sort").change(function(){
+		console.log( "sort, sort, sort" );
+		console.log( $( "#sort" ).val() );
+
+		$('#sortBtn').click();
+	});
+
+	$("#filterBtn").click(function(evt){
+		//console.log( "click, click, click" );
+		console.log('stuff here');
+
+		/*
+		var filteredResults = [];
+
+		$("input:checkbox[name='filter-type']:checked").each(function () {
+            console.log("Id: " + $(this).attr("id") + " Value: " + $(this).val());
+            var type = $(this).val()
+            //filteredResults[ $(this).val() ] = response[ $(this).val() ];
+            // loop through array of results and find entry with matching type
+            $.each(results, function(index, val){
+            	if( type === val.type ){
+	            	console.log(type, val.type);
+	            	filteredResults.push( val );
+            	}
+            });
+        });
+
+		console.log(filteredResults);
+		*/
+		$('#form').submit();
+	});
+
+
+
+</script>

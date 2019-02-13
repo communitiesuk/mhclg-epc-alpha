@@ -1,0 +1,306 @@
+{% from "table/macro.njk" import govukTable %}
+{% extends "layout.html" %}
+{% block pageTitle %}
+Find an Energy Performance Certificate
+{% endblock %}
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+{% block beforeContent %}
+{{ super() }}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+     <form id="main" action="{{ content.data.NextStepUrl.en }}" method="post" class="form" novalidate>
+        
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group"> 
+          <fieldset class="govuk-fieldset" aria-describedby="search-field-hint">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                Search results for {{ data['search-field'] }}
+              </h1>
+            </legend>
+            
+            <span id="search-field-hint" class="govuk-hint">
+              Use the address and postcode (eg DY10 1AA, SW1P 3BU)
+            </span>
+
+            <div class="">
+              <label class="govuk-label" for="search-field">
+                Enter a postcode, certificate or assessor reference.
+              </label>
+              <span id="search-field-error" class="govuk-error-message hide">
+                Enter the postcode, certificate or assessor reference.
+              </span>
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="search-field" type="text" value="{{ data['search-field'] }}"> 
+              <!-- <label class="govuk-label" for="filter-type">
+                Sort by
+              </label> 
+              <select class="govuk-select" id="filter-type" name="filter-type">
+                <option value="all" selected>All</option>
+                <option value="certificates" >Certificate</option>
+                <option value="assessors">Assessors</option>
+                <option value="addresses">Addresses</option>
+              </select>-->
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Find the property"
+        }) }}
+
+      </form>
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    
+    {% include "includes/filter.html" %}
+  </div>
+  <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-tabs" data-module="tabs">
+      <h2 class="govuk-tabs__title">
+        Results for {{ data['search-field'] }}
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#all">
+          All ({{ count }})</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#addresses">
+          Addresses ({{ response.addresses.length }})</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#certificates">
+          Certificates ({{ response.certificates.length }})</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#assessors">
+          Assessors ({{ response.assessors.length }})</a>
+        </li>
+      </ul>
+
+
+
+      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="all">
+        <h2 class="govuk-heading-l">All results for {{ data['search-field'] }}</h2>
+        <!--  Addresses for postcode  -->
+        {% if not response.certificates.length %}
+        <p>No certificates found for ({{ data['search-field'] }})</p>
+        {% endif %}
+        {% if not response.assessors.length %}
+        <p>No assessors found for ({{ data['search-field'] }})</p>
+        {% endif %}
+        {% if not response.addresses.length %}
+        <p>No addresses found for ({{ data['search-field'] }})</p>
+        {% endif %}
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">All addresses for {{ data['search-field'] }}:
+          {{response.certificates[0].street}}, {{response.certificates[0].town | capitalize}}</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Name</th>
+              <th class="govuk-table__header" scope="col">Number</th>
+              <th class="govuk-table__header" scope="col">Street</th>
+              <th class="govuk-table__header" scope="col">Town</th>
+              <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in response.certificates %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+
+            {% for item in response.addresses %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+
+            {% for item in response.assessors %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <a href="assessor/{{ item['base64ref'] }}">{{item['number']}}
+                </a></td>
+              <td class="govuk-table__cell">{{item['name']}}</td>
+              <td class="govuk-table__cell">{{item.Address}}</td>
+              <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
+              <!-- <td class="govuk-table__cell">{{item.Distance}}</td> -->
+              <td class="govuk-table__cell">{{item.Status}}</td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+        
+      </section>
+      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="addresses">
+        <h2 class="govuk-heading-l">Addresses for {{ data['search-field'] }}</h2>
+        <!--  Addresses for postcode  -->
+        {% if not response.addresses.length %}
+        <p>No addresses found for that postcode</p>
+        {% else %}
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
+          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Name</th>
+              <th class="govuk-table__header" scope="col">Number</th>
+              <th class="govuk-table__header" scope="col">Street</th>
+              <th class="govuk-table__header" scope="col">Town</th>
+              <!-- <th class="govuk-table__header" scope="col">Postcode</th> -->
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in response.addresses %}
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.number}}</td>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </section>
+      <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="certificates">
+        <h2 class="govuk-heading-l">Certificates for {{ data['search-field'] }}</h2>
+        <!--  Certificate for postcode  -->
+        {% if not response.certificates.length %}
+        <p>No certificates found for that postcode</p>
+        {% else %}
+        <p>Please click on a certificate below to view or download a report:</p>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">All certificates for {{ data['search-field'] }}:
+          {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell" scope="col">Number</th>
+              <th class="govuk-table__cell" scope="col">Name</th>
+              <th class="govuk-table__cell" scope="col">Street</th>
+              <th class="govuk-table__cell" scope="col">Town</th>
+              <!-- <th class="govuk-table__cell" scope="col">Postcode</th> -->
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in response.certificates %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.number}}</a></td>
+              <th class="govuk-table__cell" scope="row">{{item.name}}</th>
+              <td class="govuk-table__cell">{{item.street}}</td>
+              <td class="govuk-table__cell">{{item.town | capitalize}}</td>
+              <!-- <td class="govuk-table__cell">{{item.postcode}}</td> -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </section>
+      <section class="govuk-tabs__panel" id="assessors">
+        <h2 class="govuk-heading-l">Assessors for {{ data['search-field'] }}</h2>
+        <!--  assessors for postcode  -->
+        {% if not response.assessors.length %}
+        <p>No assessors found for that postcode</p>
+        {% else %}
+        <p>Please click on an assessor below to view further details:</p>
+
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption">Local assessors</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell" scope="col">Accreditation</th>
+              <th class="govuk-table__cell" scope="col">Name</th>
+              <th class="govuk-table__cell" scope="col">Address</th>
+              <th class="govuk-table__cell" scope="col">Telephone</th>
+              <!--  <th class="govuk-table__cell" scope="col">Distance (miles)</th> -->
+              <th class="govuk-table__cell" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for item in response.assessors %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <a href="assessor/{{ item['base64ref'] }}">{{item['number']}}
+                </a></td>
+              <td class="govuk-table__cell">{{item['name']}}</td>
+              <td class="govuk-table__cell">{{item.Address}}</td>
+              <td class="govuk-table__cell">{{item['Telephone Number']}}</td>
+              <!--  <td class="govuk-table__cell">{{item.Distance}}</td> -->
+              <td class="govuk-table__cell">{{item.Status}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div><!--  end of tab sections  -->
+
+{% endblock %}
+
+
+  {% block pageScripts %}
+  <script>
+
+    // redirect to anchor if present
+    var urlSplit = document.URL.split("#");
+    if (!urlSplit[1]) {
+        location.href = "#{{ anchor }}";
+    }
+
+
+    $(".govuk-tabs__tab").click(function(evt){
+      // extract anchor from tab id
+      var anchorTab = this.id.split("_");
+
+      // set hidden input for when the page refreshes      
+      $('#anchor').val( anchorTab[1] );
+
+      // prevent click propagation
+      evt.preventDefault();
+    });    
+
+  </script>
+
+  {% endblock %}
+
+
