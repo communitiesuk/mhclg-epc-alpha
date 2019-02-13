@@ -1,0 +1,48 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ content.data.Title.en }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ super() }}
+    <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+    {% for item in content.data.Breadcrumbs.en %}
+      {% if item.Href %}
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="{{ item.Href }}">{{ item.Text }}</a>
+      </li>
+      {% else %}
+      <li class="govuk-breadcrumbs__list-item" aria-current="page">{{ item.Text }}</li>
+      {% endif %}
+    {% endfor %}
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ content.data.Title.en }}
+      </h1>
+      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
+      {% markdown %}{{ content.data.Body.en|safe }}{% endmarkdown %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+      <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+      {% if content.data.Related.en %}
+      <aside class="app-related-items" role="complementary">
+
+        {% markdown %}{{ content.data.Related.en }}{% endmarkdown %}
+
+      </aside>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
