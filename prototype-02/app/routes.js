@@ -222,6 +222,18 @@ router.get('/certificate/:reference', function(req, res) {
 	//there is only one result
 	var idx = 0;
 	console.log(filtered);
+	// add dummy data
+	  filtered[idx]['address'] = '';
+    displayDate = '';
+    filtered[idx]['property-type'] = 'Fake Property';
+    filtered[idx]['total-floor-area'] = '200';
+    filtered[idx]['transaction-type'] = 'Commercial';
+    filtered[idx]['current-energy-rating'] = 'G';
+    filtered[idx]['potential-energy-rating'] = 'E';
+    filtered[idx]['current-energy-efficiency'] = 19;
+    filtered[idx]['potential-energy-efficiency'] = 51;
+
+
   //assume a filtered array with only a single property result
   var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
 
