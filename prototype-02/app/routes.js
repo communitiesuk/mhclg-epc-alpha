@@ -44,7 +44,7 @@ router.get('/error', function(req, res, next) {
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//  SERVICE START
+//  AUTHORISED USERS
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -114,7 +114,7 @@ router.get('/results', function(req, res, next) {
     }
     //create fake reference for dummy data
     for ( var i=0; i<certificates.length; i++){
-      var base = Buffer.from("0000_" +i).toString('base64')
+      var base = Buffer.from("0000_" +i).toString('base64');// has to be a string...
       certificates[i].reference = base;
     }
 
@@ -163,8 +163,6 @@ router.get('/results', function(req, res, next) {
         filterType[element] = true;
     });
 
-    //console.log(filterType);
-
     // set the page tab anchor
     var anchor = req.session.data['anchor'];
 
@@ -183,6 +181,7 @@ router.get('/results', function(req, res, next) {
       response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
       anchor = "assessors";
     }else
+    // postcode so all results
     if(str.length<=8){
       response.addresses = response.addresses;
       response.certificates = response.certificates;
@@ -190,11 +189,9 @@ router.get('/results', function(req, res, next) {
       anchor = "all";
     }
     
-
     total = response.addresses.length + response.certificates.length + response.assessors.length;
     response.filterType = filterType;
 
-    //console.log(response);
     res.render('auth/results', {
       response: response,
       anchor: anchor,
@@ -211,26 +208,20 @@ router.get('/results', function(req, res, next) {
 
 router.get('/certificate/:reference', function(req, res) {
 
-console.log(req.params.reference);
+	console.log(req.params.reference);
   var certHash = req.params.reference;
   // convert back from base64
   var ref  = Buffer.from(certHash, 'base64').toString();
-
+  // and extract the number at the end
   ref = ref.split("_")[1];
 
-/*
-  var lmkKey = req.params.reference;
-  var filtered = _.filter(dataset.rows, function(item) {
-    return (lmkKey === item['lmk-key']);
-  });
-*/
+	console.log('got ref ' +ref);
+	// store as an array
+	var filtered = [ req.app.locals.smartResults.certificates[ref] ];
 
-console.log('got ref ' +ref);
-var filtered = [ req.app.locals.smartResults.certificates[ref] ];
-
-//there is only one result
-var idx = 0;
-console.log(filtered);
+	//there is only one result
+	var idx = 0;
+	console.log(filtered);
   //assume a filtered array with only a single property result
   var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
 
