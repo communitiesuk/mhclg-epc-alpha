@@ -4,7 +4,6 @@ const request = require('request');
 const moment = require('moment');
 const _ = require('underscore');
 
-// Add your routes here - above the module.exports line
 
 
 // call start page from contomic CMS
@@ -58,8 +57,6 @@ router.get('/start', function(req, res, next) {
     }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        // res.send({ content : JSON.parse(body) });
-        //console.log(JSON.parse(body));
         res.render('service-start', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
@@ -80,7 +77,6 @@ router.get('/search', function(req, res, next) {
     }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        // res.send({ content : JSON.parse(body) });
         res.render('auth/search', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
@@ -96,7 +92,6 @@ router.get('/results', function(req, res, next) {
   if(req.session.data['search-field']){
     // pull in dummy data loaded from static file via server.js
     // arrays fr addresses, certificates and assessors
-    // console.log(req.app.locals.smartResults);
     var str = req.session.data['search-field'];
     var response = {};
     // set some empty arrays for zero count
@@ -104,10 +99,8 @@ router.get('/results', function(req, res, next) {
     response.addresses = [];
     response.certificates = [];
     response.assessors = [];
-    // base64 encode the assessor ref num
-    //var assessors = req.app.locals.smartResults.assessors;
-    //var certificates = req.app.locals.smartResults.certificates;
     
+    // base64 encode the assessor ref num
     for ( var i=0; i<req.app.locals.smartResults.assessors.length; i++){
       var base = Buffer.from(req.app.locals.smartResults.assessors[i]['number']).toString('base64')
       req.app.locals.smartResults.assessors[i].base64ref = base;
@@ -131,15 +124,15 @@ router.get('/results', function(req, res, next) {
         checkboxes = req.session.data['filter-type'];
       }
     }
+
     var total = 0;
     var filterType = {};
-
 
     // loop through each group by type from the raw data
     // if selected, add to response
     // change sort order if required
     _.each(checkboxes, function (element, index, list) {
-        //var output = 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length;
+        // console.log( 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length);
         var output = req.app.locals.smartResults[element];
         var sortedOutput;
 
@@ -205,7 +198,6 @@ router.get('/results', function(req, res, next) {
               
   }else{
     res.send('no data');
-    //res.render('auth/search');
   }
 });
 
@@ -213,20 +205,20 @@ router.get('/results', function(req, res, next) {
 
 router.get('/certificate/:reference', function(req, res) {
 
-	console.log(req.params.reference);
+	//console.log(req.params.reference);
   var certHash = req.params.reference;
   // convert back from base64
   var ref  = Buffer.from(certHash, 'base64').toString();
   // and extract the number at the end
   ref = ref.split("_")[1];
 
-	console.log('got ref ' +ref);
+	//console.log('got ref ' +ref);
 	// store as an array
 	var filtered = [ req.app.locals.smartResults.certificates[ref] ];
 
 	//there is only one result
 	var idx = 0;
-	console.log(filtered);
+	//console.log(filtered);
 	// add dummy data
 	  filtered[idx]['address'] = '';
     displayDate = '';
