@@ -105,17 +105,17 @@ router.get('/results', function(req, res, next) {
     response.certificates = [];
     response.assessors = [];
     // base64 encode the assessor ref num
-    var assessors = req.app.locals.smartResults.assessors;
-    var certificates = req.app.locals.smartResults.certificates;
+    //var assessors = req.app.locals.smartResults.assessors;
+    //var certificates = req.app.locals.smartResults.certificates;
     
-    for ( var i=0; i<assessors.length; i++){
-      var base = Buffer.from(assessors[i]['number']).toString('base64')
-      assessors[i].base64ref = base;
+    for ( var i=0; i<req.app.locals.smartResults.assessors.length; i++){
+      var base = Buffer.from(req.app.locals.smartResults.assessors[i]['number']).toString('base64')
+      req.app.locals.smartResults.assessors[i].base64ref = base;
     }
     //create fake reference for dummy data
-    for ( var i=0; i<certificates.length; i++){
+    for ( var i=0; i<req.app.locals.smartResults.certificates.length; i++){
       var base = Buffer.from("0000_" +i).toString('base64');// has to be a string...
-      certificates[i].reference = base;
+      req.app.locals.smartResults.certificates[i].reference = base;
     }
 
     var sort = 'name_desc';
@@ -135,7 +135,7 @@ router.get('/results', function(req, res, next) {
     var filterType = {};
 
 
-    // loop through each group by type
+    // loop through each group by type from the raw data
     // if selected, add to response
     // change sort order if required
     _.each(checkboxes, function (element, index, list) {
@@ -177,16 +177,21 @@ router.get('/results', function(req, res, next) {
     // ASSESSOR : 1 assessor and multiple certificates
     if(str.length>8 && str.length<20){
       response.addresses = [];
-      response.certificates = response.certificates;
+      //response.certificates = response.certificates;
       response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
       anchor = "assessors";
     }else
     // postcode so all results
     if(str.length<=8){
-      response.addresses = response.addresses;
-      response.certificates = response.certificates;
-      response.assessors = assessors;
+      //response.addresses = response.addresses;
+      //response.certificates = response.certificates;
+      //response.assessors = response.assessors;
       anchor = "all";
+    }
+
+    // if there is a tab selected already
+    if(req.session.data['anchor']){
+    	anchor = req.session.data['anchor']
     }
     
     total = response.addresses.length + response.certificates.length + response.assessors.length;
