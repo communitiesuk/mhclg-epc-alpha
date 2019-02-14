@@ -105,7 +105,7 @@ router.get('/results', function(req, res, next) {
       var base = Buffer.from(req.app.locals.smartResults.assessors[i]['number']).toString('base64')
       req.app.locals.smartResults.assessors[i].base64ref = base;
     }
-    //create fake reference for dummy data
+    // create fake reference for dummy data
     for ( var i=0; i<req.app.locals.smartResults.certificates.length; i++){
       var base = Buffer.from("0000_" +i).toString('base64');// has to be a string...
       req.app.locals.smartResults.certificates[i].reference = base;
@@ -166,16 +166,12 @@ router.get('/results', function(req, res, next) {
       // show 1 random assessor
       response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
       anchor = "certificates";
-    }else
-    // ASSESSOR : 1 assessor and multiple certificates
-    if(str.length>8 && str.length<20){
+    }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
       response.addresses = [];
       //response.certificates = response.certificates;
       response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
       anchor = "assessors";
-    }else
-    // postcode so all results
-    if(str.length<=8){
+    }else if(str.length<=8){ // postcode so all results
       //response.addresses = response.addresses;
       //response.certificates = response.certificates;
       //response.assessors = response.assessors;
