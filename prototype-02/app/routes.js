@@ -358,4 +358,32 @@ res.render('lodgement/index', { sectionTitles: sectionTitles });
 });
 
 
+router.get('/accordian', function(req, res, next) {
+
+	var sectionTitles = [
+	'Property Description',
+	'Dimensions',
+	'Conservatory',
+	'Walls',
+	'Roofs',
+	'Floors',
+	'Main Building',
+	'Openings',
+	'Ventilation & Cooling',
+	'Lighting',
+	'Water Heating',
+	'New Technologies',
+	'Recommendations',
+	'Addenda',
+	'Outstanding Photos',
+	'Supporting Notes',
+	'Results Overview',
+	'Input Summary'
+	];
+
+res.render('lodgement/accordian', { sectionTitles: sectionTitles });
+
+});
+
+
 module.exports = router

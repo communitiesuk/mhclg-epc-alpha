@@ -1,0 +1,171 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">
+        EPC lodgement
+      </h1>
+
+      <div class="govuk-accordion" data-module="accordion" id="accordion-with-summary-sections">
+{% for item in sectionTitles %}
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+          {{item}}
+        </span>
+      </h2>
+      <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+        {{item}} features.
+      </div>
+    </div>
+    <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-1">
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">Agile and government services: an introduction</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Agile methods: an introduction</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Core principles of agile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-2">
+          Working with agile methods
+        </span>
+      </h2>
+      <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-2">
+        Workspaces, tools and techniques, user stories, planning.
+      </div>
+    </div>
+    <div id="accordion-with-summary-sections-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-2">
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">Creating an agile working environment</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Agile tools and techniques</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Set up a team wall</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Writing user stories</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Planning in agile</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Deciding on priorities</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Developing a roadmap</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3">
+          Governing agile services
+        </span>
+      </h2>
+      <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-3">
+        Principles, measuring progress, spending money.
+      </div>
+    </div>
+    <div id="accordion-with-summary-sections-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-3">
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">Governance principles for agile service delivery</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Measuring and reporting progress</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Spend controls: check if you need approval to spend money on a service</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Spend controls: apply for approval to spend money on a service</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Spend controls: the new pipeline process</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Working across organisational boundaries</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-4">
+          Phases of an agile project
+        </span>
+      </h2>
+      <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-4">
+        Discovery, alpha, beta, live and retirement.
+      </div>
+    </div>
+    <div id="accordion-with-summary-sections-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-4">
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">How the discovery phase works</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">How the alpha phase works</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">How the beta phase works</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">How the live phase works</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Retiring your service</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+    </div>
+
+  </div>
+{% endblock %}
