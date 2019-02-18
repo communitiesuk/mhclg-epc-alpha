@@ -26,39 +26,38 @@
 {% block content %}
   <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl">
-        EPC lodgement
-      </h1>
+    <h1 class="govuk-heading-xl">
+      EPC lodgement
+    </h1>
 
       <div class="govuk-accordion" data-module="accordion" id="accordion-with-summary-sections">
-{% for item in sectionTitles %}
-  <div class="govuk-accordion__section ">
-    <div class="govuk-accordion__section-header">
-      <h2 class="govuk-accordion__section-heading">
-        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
-          {{item}}
-        </span>
-      </h2>
-      <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
-        {{item}} features.
-      </div>
-    </div>
-    <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-1">
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="#">Agile and government services: an introduction</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="#">Agile methods: an introduction</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="#">Core principles of agile</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  {% endfor %}
+      {% for item in sectionTitles %}
+        <div class="govuk-accordion__section ">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+                {{item}}
+              </span>
+            </h2>
+            <!-- <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+              {{item}} features.
+            </div> -->
+          </div>
+          <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-1">
+            <ul class="govuk-list">
+              <li>
+                <a class="govuk-link" href="#">Agile and government services: an introduction</a>
+              </li>
+              <li>
+                <a class="govuk-link" href="#">Agile methods: an introduction</a>
+              </li>
+              <li>
+                <a class="govuk-link" href="#">Core principles of agile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
 
   <div class="govuk-accordion__section ">
     <div class="govuk-accordion__section-header">
@@ -165,7 +164,7 @@
 
 </div>
 
-    </div>
+
 
   </div>
 {% endblock %}
