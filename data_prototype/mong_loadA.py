@@ -9,12 +9,14 @@ db = client.test
 if db:
 	print('connected')
 
-collection = db.test.collection
 
 data = open('data.txt').read()
 post = json.loads(data)
 
 posts = db.posts
+collection = db.test.collection1
+posts.insert_one(post)
+collection = db.test.collection2
 posts.insert_one(post)
 
 import pprint
