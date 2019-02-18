@@ -312,10 +312,7 @@ router.get('/assessor/:reference', function(req, res) {
 //  LODGEMENT
 //
 ////////////////////////////////////////////////////////////////////////////
-
-router.get('/lodgement', function(req, res, next) {
-
-	var sectionTitles = [
+var sectionTitles = [
 	'Property Description',
 	'Dimensions',
 	'Conservatory',
@@ -335,6 +332,9 @@ router.get('/lodgement', function(req, res, next) {
 	'Results Overview',
 	'Input Summary'
 	];
+
+router.get('/lodgement', function(req, res, next) {
+
 /*
   var contentType='service-start';
   var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
@@ -359,30 +359,11 @@ res.render('lodgement/index', { sectionTitles: sectionTitles });
 
 
 router.get('/accordian', function(req, res, next) {
+	res.render('lodgement/accordian', { sectionTitles: sectionTitles });
+});
 
-	var sectionTitles = [
-	'Property Description',
-	'Dimensions',
-	'Conservatory',
-	'Walls',
-	'Roofs',
-	'Floors',
-	'Main Building',
-	'Openings',
-	'Ventilation & Cooling',
-	'Lighting',
-	'Water Heating',
-	'New Technologies',
-	'Recommendations',
-	'Addenda',
-	'Outstanding Photos',
-	'Supporting Notes',
-	'Results Overview',
-	'Input Summary'
-	];
-
-res.render('lodgement/accordian', { sectionTitles: sectionTitles });
-
+router.get('/leftnav', function(req, res, next) {
+	res.render('lodgement/left-nav', { sectionTitles: sectionTitles });
 });
 
 

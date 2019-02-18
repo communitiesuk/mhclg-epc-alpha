@@ -25,6 +25,87 @@ $govuk-global-styles: true;
 body{
   font-family: 'nta';
 }
+
+
+/////////////////////////////////////////////////////////////////////
+
+.pagination__link-title {
+    display: block;
+}
+.pagination__link-text{
+  text-decoration: none;
+  color: #005ea5;
+  font-size:19px;
+  font-weight: 700;
+
+  margin-left: 10px;
+}
+
+.pagination__link-label{
+  font-size:16px;
+  display: inline-block;
+  text-decoration: underline;
+  margin-left: 30px;
+}
+
+.pagination__link {
+margin-left;0;
+padding-left:0;
+}
+
+.pagination__link {
+    display: block;
+    padding: 15px;
+    margin-left: 0px;
+    text-decoration: none;
+}
+.pagination__item{
+  list-style-type: none;
+  list-style: none;
+}
+.pagination__link-icon {
+    font-size: 24px;
+    line-height: 1.25;
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    display: inline-block;
+    margin-bottom: 1px;
+    height: .482em;
+    width: .63em;
+}
+
+.pagination__item {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 18px;
+    line-height: 1.4;
+    list-style: none;
+}
+.pagination__link-divider {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+}
+.visually-hidden, .visuallyhidden {
+    position: absolute;
+    left: -9999em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/////////////////////////////////////////////////////////////////////
 // Map base elements to gov.uk frontend classes 
 h1 {
 	@extend .govuk-heading-xl;

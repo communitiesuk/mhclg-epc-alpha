@@ -1,0 +1,225 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    EPC Lodgement
+  </h1>
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="main" action="{{ content.data.NextStepUrl.en }}" method="post" class="form" novalidate>
+        
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group"> 
+
+          <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Property Description
+            </h1>
+          </legend>
+          <span id="search-field-error" class="govuk-error-message hide">
+            Enter the property description fields as required.
+          </span>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="reference">
+              Reference Number
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="reference" name="reference" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="region">
+              Regulations region
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="region" name="region" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="language">
+              EPC language
+            </label>
+            <span id="language-hint" class="govuk-hint">
+              Is this report in English or Welsh?
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="language-1" name="language" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="language-1">
+                  English
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="language-2" name="language" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="language-2">
+                  Welsh
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="isNewLodgement">
+              Lodgement required
+            </label>
+            <span id="cisNewLodgement-hint" class="govuk-hint">
+              Is this a new lodgement?
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="isNewLodgement-1" name="isNewLodgement" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="isNewLodgement-1">
+                  Yes, create a new lodgement
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="isNewLodgement-2" name="isNewLodgement" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="isNewLodgement-2">
+                  No, update an existing lodgement
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-postcode">
+              Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-number">
+              House name/number
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-number" name="address-number" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-street">
+              Street
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-street" name="address-street" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-locality">
+              Locality
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-locality" name="address-locality" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-region">
+              Region
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-region" name="address-region" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-town">
+              Town
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-county">
+              County
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-county" name="address-county" type="text">
+          </div>
+        </fieldset>
+        </div>
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+<nav class="pagination" role="navigation" aria-label="Pagination">
+  <ul class="pagination__list" data-module="track-click">
+      <li class="pagination__item pagination__item--previous">
+        <a href="/youth-crime-prevention-programmes" class="pagination__link" rel="prev" data-track-category="contentsClicked" data-track-action="previous" data-track-label="/youth-crime-prevention-programmes" data-track-dimension="previous" data-track-dimension-index="29">
+          <span class="pagination__link-title">
+            <svg class="pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="pagination__link-text">
+              Previous
+            </span>
+          </span>
+            <span class="pagination__link-divider visually-hidden">:</span>
+            <span class="pagination__link-label">Overview</span>
+        </a>
+      </li>
+      <li class="pagination__item pagination__item--next">
+        <a href="/youth-crime-prevention-programmes/what-these-programmes-are-and-how-they-work" class="pagination__link" rel="next" data-track-category="contentsClicked" data-track-action="next" data-track-label="/youth-crime-prevention-programmes/what-these-programmes-are-and-how-they-work" data-track-dimension="next" data-track-dimension-index="29">
+          <span class="pagination__link-title">
+            <svg class="pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m10.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="pagination__link-text">
+              Next
+            </span>
+          </span>
+            <span class="pagination__link-divider visually-hidden">:</span>
+            <span class="pagination__link-label">What these programmes are and how they work</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+      <h2>Sections</h2>
+    <ul class="govuk-list">
+      {% for item in sectionTitles %}
+        <li>
+          <a class="govuk-link" href="#">{{item}}</a>
+        </li>                
+      {% endfor %}
+    </ul>
+
+  </div>
+
+
+
+  </div>
+{% endblock %}
