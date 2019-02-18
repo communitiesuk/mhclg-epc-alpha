@@ -313,6 +313,7 @@ router.get('/assessor/:reference', function(req, res) {
 //
 ////////////////////////////////////////////////////////////////////////////
 var sectionTitles = [
+	'Property Details',
 	'Property Description',
 	'Dimensions',
 	'Conservatory',
