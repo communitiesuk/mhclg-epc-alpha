@@ -307,4 +307,55 @@ router.get('/assessor/:reference', function(req, res) {
 
 
 
+////////////////////////////////////////////////////////////////////////////
+//
+//  LODGEMENT
+//
+////////////////////////////////////////////////////////////////////////////
+
+router.get('/lodgement', function(req, res, next) {
+
+	var sectionTitles = [
+	'Property Description',
+	'Dimensions',
+	'Conservatory',
+	'Walls',
+	'Roofs',
+	'Floors',
+	'Main Building',
+	'Openings',
+	'Ventilation & Cooling',
+	'Lighting',
+	'Water Heating',
+	'New Technologies',
+	'Recommendations',
+	'Addenda',
+	'Outstanding Photos',
+	'Supporting Notes',
+	'Results Overview',
+	'Input Summary'
+	];
+/*
+  var contentType='service-start';
+  var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
+  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
+  method: "GET",
+  headers: {
+      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+    }
+  }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.render('lodgement/index', { content : JSON.parse(body) });
+        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      } else {
+        res.redirect('/error');
+      }
+  });
+*/
+
+res.render('lodgement/index', { sectionTitles: sectionTitles });
+
+});
+
+
 module.exports = router
