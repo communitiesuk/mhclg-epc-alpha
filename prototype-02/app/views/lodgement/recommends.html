@@ -38,25 +38,30 @@
 
     <table class="govuk-table">
       <caption class="govuk-table__caption">Recommendations</caption>
-<!--       <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th class="govuk-table__cell" scope="col">Accreditation</th>
-          <th class="govuk-table__cell" scope="col">Name</th>
-          <th class="govuk-table__cell" scope="col">Address</th>
-          <th class="govuk-table__cell" scope="col">Telephone</th>
-          <th class="govuk-table__cell" scope="col">Status</th>
-        </tr>
-      </thead> -->
+
       <tbody class="govuk-table__body">
         {% for item in recommends %}
+        {% if response[loop.index]==='Recommended' %}
         <tr class="govuk-table__row">
-          <th class="app-colour-list-column app-colour-list-column--name">
-            <span class="app-swatch " style="background-color:{{colour[loop.index]}}"></span>
-          </th>
-
           <td class="govuk-table__cell">{{item}}</td>
           <td class="govuk-table__cell">{{response[loop.index]}}</td>
         </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+ 
+    <table class="govuk-table">
+      <caption class="govuk-table__caption">Other</caption>
+
+      <tbody class="govuk-table__body">
+        {% for item in recommends %}
+        {% if response[loop.index]!=='Recommended' %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{item}}</td>
+          <td class="govuk-table__cell">{{response[loop.index]}}</td>
+        </tr>
+        {% endif %}
         {% endfor %}
       </tbody>
     </table>

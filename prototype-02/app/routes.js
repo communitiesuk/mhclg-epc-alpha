@@ -389,7 +389,7 @@ var recommends = [
 	'Room-in-roof insulation',
 	'Cavity wall insulation',
 	'Solid wall insulation',
-	'Floor insulaiton (solid floor)',
+	'Floor insulation (solid floor)',
 	'Hot water cylinder insulation',
 	'Draught proofing',
 	'Low energy lighting',
@@ -407,27 +407,27 @@ var recommends = [
 ];
 router.get('/recommends', function(req, res, next) {
 	var options = ['Recommended', 'Not applicable', 'Already installed'];
-	var colours = ['#006435', '#bfc1c3', '#6f777b'];
+	//var colours = ['#006435', '#bfc1c3', '#6f777b'];
 	var response = [];
-	var colour = [];
+	//var colour = [];
 
-	for ( var i=0;i<recommends.length; i++){
+	for ( var i=0;i<=recommends.length; i++){
 		var ran = Math.random();
 		var ref = 2;
 		if (ran<0.7){
 			ref = 1;
 		}
-		if (ran<0.4){
+		if (ran<0.3){
 			ref = 0;
 		}
 		response.push(options[ref]);
-		colour.push(colours[ref]);
+		//colour.push(colours[ref]);
 	}
 	res.render('lodgement/recommends', { 
 		sectionTitles: sectionTitles,
 		recommends: recommends,
 		response: response,
-		colour: colour,
+		//colour: colour,
 		pageIndex: 1	// pass a page index to set page title, prev and next pages
 	});
 });
