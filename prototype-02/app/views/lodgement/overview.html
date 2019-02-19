@@ -1,0 +1,246 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    EPC Lodgement
+  </h1>
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-m">
+      Overview
+    </h2>
+
+    <h3 class="govuk-heading-sm">
+      Details
+    </h3>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">{{ property.address }}</caption>
+
+        <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Ref Number</th>
+                <td class="govuk-table__cell">{{ property.reference }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">RRN</th>
+                <td class="govuk-table__cell">{{ property.rrn }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">UPRN</th>
+                <td class="govuk-table__cell">{{ property.uprn }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Address</th>
+                <td class="govuk-table__cell">{{ property.address }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Transaction Type</th>
+                <td class="govuk-table__cell">{{ property.transactionType }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Process date</th>
+                <td class="govuk-table__cell">{{ property.processDate }}</td>
+              </tr>
+        </tbody>
+      </table>
+ 
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+    <h3 class="govuk-heading-sm">
+      Energy Performance
+    </h3>
+
+      <div class="chart">
+        <div class='bars'>
+          <div class="bar">
+            <div class="col_1"><span class="th">Energy Efficiency Rating</span></div>
+            <div class="col_2"><span class="th">Current</span></div>
+            <div class="col_3"><span class="th">Potential</span></div>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+          <div class="bar">
+            <small>very energy efficient - lower running costs</small>
+          </div>
+        </div>
+        <div class='bars noborder_bottom'>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_a'><span class='range'>(92+)</span><span class='title'>A</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_b'><span class='range'>(81-91)</span><span class='title'>B</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_c'><span class='range'>(69-80)</span><span class='title'>C</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_d'><span class='range'>(55-68)</span><span class='title'>D</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_e'><span class='range'>(39-54)</span><span class='title'>E</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_f'><span class='range'>(21-38)</span><span class='title'>F</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="bar">
+              <div class="col_1"><span class='block rating_g'><span class='range'>(1-20)</span><span class='title'>G</span></span>
+              </div>
+              <div class="col_2"></div>
+              <div class="col_3"></div>
+            </div>
+            <div class="pointer current rating_{{ property.current_energy_rating|lower }}" style='{{ property.currentPositionStyle }}'>
+              <span>{{ property.current_energy_efficiency }}</span>
+            </div>
+            <div class="pointer potential rating_{{ property.potential_energy_rating|lower }}" style='{{ property.potentialPositionStyle }}'>
+              <span>{{ property.potential_energy_efficiency }}</span>
+            </div>
+        </div>
+      </div>
+
+      <p></p>
+
+
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Current SAP rating</th>
+                <td class="govuk-table__cell">{{ property.current_SAP_Rating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Current EI rating</th>
+                <td class="govuk-table__cell">{{ property.current_EI_Rating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Potential SAP rating</th>
+                <td class="govuk-table__cell">{{ property.potential_SAP_Rating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Potential EI rating</th>
+                <td class="govuk-table__cell">{{ property.potential_EI_Rating }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Emissions</th>
+                <td class="govuk-table__cell">{{ property.emissions }}</td>
+              </tr>
+              
+        </tbody>
+      </table>
+
+<hr class="govuk-section-break govuk-section-break--l">
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption">Recommendations</caption>
+
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">Recommended measures</th>
+          <th class="govuk-table__header" scope="col">Typical savings per year</th>
+          <th class="govuk-table__header" scope="col">Rating after improvement</th>
+          <th class="govuk-table__header" scope="col">Green deal finance</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+        {% for item in response %}
+        {% if item.option==='Recommended' %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{item.recommends}}</td>
+          <td class="govuk-table__cell">{{item.savings}}</td>
+          <td class="govuk-table__cell">{{item.rating}}</td>
+          <td class="govuk-table__cell">{{item.isGreenDeal}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>  
+  
+
+    <nav class="pagination" role="navigation" aria-label="Pagination">
+      <ul class="pagination__list" data-module="track-click">
+
+
+          <li class="pagination__item pagination__item--previous">
+            <a href="recommends" class="pagination__link" rel="prev">
+              <span class="pagination__link-title">
+                <svg class="pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+                  <path fill="currentColor" d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="pagination__link-text">
+                  Previous
+                </span>
+              </span>
+                <span class="pagination__link-divider visually-hidden">:</span>
+                <span class="pagination__link-label">{{ sectionTitles[pageIndex-1] }}</span>
+            </a>
+          </li>
+
+
+      </ul>
+    </nav>
+
+
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+      <h2>Sections</h2>
+    <ul class="govuk-list">
+      {% for item in sectionTitles %}
+        <li>
+          <a class="govuk-link govuk-!-font-size-16" href="#">{{item}}</a>
+        </li>                
+      {% endfor %}
+    </ul>
+
+  </div>
+
+
+
+  </div>
+{% endblock %}

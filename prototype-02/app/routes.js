@@ -405,11 +405,11 @@ var recommends = [
 	'Solar photovoltaic panels',
 	'Wind turbine'
 ];
+
+
 router.get('/recommends', function(req, res, next) {
 	var options = ['Recommended', 'Not applicable', 'Already installed'];
-	//var colours = ['#006435', '#bfc1c3', '#6f777b'];
 	var response = [];
-	//var colour = [];
 
 	for ( var i=0;i<=recommends.length; i++){
 		var ran = Math.random();
@@ -421,14 +421,110 @@ router.get('/recommends', function(req, res, next) {
 			ref = 0;
 		}
 		response.push(options[ref]);
-		//colour.push(colours[ref]);
 	}
 	res.render('lodgement/recommends', { 
 		sectionTitles: sectionTitles,
 		recommends: recommends,
 		response: response,
-		//colour: colour,
-		pageIndex: 1	// pass a page index to set page title, prev and next pages
+		pageIndex: 2	// pass a page index to set page title, prev and next pages
+	});
+});
+
+
+router.get('/overview', function(req, res, next) {
+	//there is only one result
+	var idx = 0;
+	var filtered =[];
+	filtered[idx] = {};
+	//console.log(filtered);
+	// add dummy data
+	  filtered[idx]['address'] = '';
+    displayDate = '';
+    filtered[idx]['property-type'] = 'Fake Property';
+    filtered[idx]['total-floor-area'] = '200';
+    filtered[idx]['transaction-type'] = 'Commercial';
+    filtered[idx]['current-energy-rating'] = 'G';
+    filtered[idx]['potential-energy-rating'] = 'E';
+    filtered[idx]['current-energy-efficiency'] = 19;
+    filtered[idx]['potential-energy-efficiency'] = 51;
+
+
+  //assume a filtered array with only a single property result
+  var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
+
+  // hard code style pixel offsets for now
+  // used to position the rating pointed in the chart
+  var step = 35;
+  var offset = {};
+    offset['A'] = 0;
+    offset['B'] = step;
+    offset['C'] = 2*step;
+    offset['D'] = 3*step;
+    offset['E'] = 4*step;
+    offset['F'] = 5*step;
+    offset['G'] = 6*step;
+
+  var property = {
+  	reference: '1234-5678-9012-3456-7890',
+  	rrn:'7189c25a-91d7-4b71-90fe-aa4578c1406b',
+  	uprn:'6137522468',
+    address: '16 St John\'s Business Park, Lutterworth, Leicestershire, LE17 4HB',
+    transactionType: 'Marketed sale',
+    processDate: '02/03/2017',
+    current_SAP_Rating: '19 G',
+    current_EI_Rating: '21 F',
+    potential_SAP_Rating: '51 E',
+    potential_EI_Rating: '52 E',
+    current_energy_efficiency: 19,
+    current_energy_rating: 'G',
+    potential_energy_efficiency: 51,
+    potential_energy_rating: 'E',
+    emissions: Math.round(Math.random()*1000)/100 + ' tonnes',
+    currentPositionStyle: "top: " + offset[ filtered[idx]['current-energy-rating'] ] +"px; left:280px;",
+    potentialPositionStyle: "top: " + offset[ filtered[idx]['potential-energy-rating'] ] +"px; left:350px;",
+    costs:[
+      {energyType: "Lighting", currentCost:"£ "+filtered[idx]['lighting-cost-current'], futureCost: "£ "+filtered[idx]['lighting-cost-potential']},
+      {energyType: "Heating", currentCost:"£ "+filtered[idx]['heating-cost-current'], futureCost: "£ "+filtered[idx]['heating-cost-potential']},
+      {energyType: "Water", currentCost:"£ "+filtered[idx]['hot-water-cost-current'], futureCost: "£ "+filtered[idx]['hot-water-cost-potential']}
+    ],
+    history:[
+      {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
+      {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
+      {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
+    ]
+  };
+
+  var options = ['Recommended', 'Not applicable', 'Already installed'];
+	var response = [];
+
+	for ( var i=0;i<recommends.length; i++){
+		var obj = {};
+		var ran = Math.random();
+		var ref = 2;
+		if (ran<0.7){
+			ref = 1;
+		}
+		if (ran<0.3){
+			ref = 0;
+		}
+		obj.recommends = recommends[i];
+		obj.option = options[ref];
+		obj.savings = '£ ' + Math.round(Math.random()*100)*10;
+		obj.rating = Math.round(Math.random()*60 + 40);
+
+		obj.isGreenDeal = 'Y';
+		if( Math.random()>0.5) {
+			obj.isGreenDeal = '-';
+		}
+
+		response.push(obj);
+	}
+
+	res.render('lodgement/overview', { 
+		sectionTitles: sectionTitles,
+		//recommends: recommends,
+		response: response,
+    property: property
 	});
 });
 
