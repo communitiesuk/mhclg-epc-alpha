@@ -364,7 +364,12 @@ router.get('/accordian', function(req, res, next) {
 });
 
 router.get('/leftnav', function(req, res, next) {
-	res.render('lodgement/left-nav', { sectionTitles: sectionTitles });
+	res.render('lodgement/left-nav', 
+		{ 
+			sectionTitles: sectionTitles,
+			pageIndex: 1	// pass a page index to set page title, prev and next pages
+		 }
+		);
 });
 
 

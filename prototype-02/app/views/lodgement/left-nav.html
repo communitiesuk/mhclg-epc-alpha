@@ -49,7 +49,7 @@
           <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h1 class="govuk-fieldset__heading">
-              Property Description
+              {{ sectionTitles[pageIndex] }}
             </h1>
           </legend>
           <span id="search-field-error" class="govuk-error-message hide">
@@ -182,7 +182,7 @@
             </span>
           </span>
             <span class="pagination__link-divider visually-hidden">:</span>
-            <span class="pagination__link-label">Overview</span>
+            <span class="pagination__link-label">{{ sectionTitles[pageIndex-1] }}</span>
         </a>
       </li>
       <li class="pagination__item pagination__item--next">
@@ -196,7 +196,7 @@
             </span>
           </span>
             <span class="pagination__link-divider visually-hidden">:</span>
-            <span class="pagination__link-label">What these programmes are and how they work</span>
+            <span class="pagination__link-label">{{ sectionTitles[pageIndex+1] }}</span>
         </a>
       </li>
   </ul>
