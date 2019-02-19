@@ -354,22 +354,63 @@ router.get('/lodgement', function(req, res, next) {
   });
 */
 
-res.render('lodgement/index', { sectionTitles: sectionTitles });
+	res.render('lodgement/index', { 
+		sectionTitles: sectionTitles
+	});
 
 });
 
 
 router.get('/accordian', function(req, res, next) {
-	res.render('lodgement/accordian', { sectionTitles: sectionTitles });
+	res.render('lodgement/accordian', {
+		sectionTitles: sectionTitles
+	});
 });
 
-router.get('/leftnav', function(req, res, next) {
-	res.render('lodgement/left-nav', 
-		{ 
-			sectionTitles: sectionTitles,
-			pageIndex: 1	// pass a page index to set page title, prev and next pages
-		 }
-		);
+// example left nav pages
+router.get('/details', function(req, res, next) {
+	res.render('lodgement/propertyDetails', { 
+		sectionTitles: sectionTitles,
+		pageIndex: 0	// pass a page index to set page title, prev and next pages
+	});
+});
+
+
+router.get('/description', function(req, res, next) {
+	res.render('lodgement/propertyDescription', { 
+		sectionTitles: sectionTitles,
+		pageIndex: 1	// pass a page index to set page title, prev and next pages
+	});
+});
+
+var recommends = [
+	'Loft insulation',
+	'Flat roof insulation',
+	'Room-in-roof insulation',
+	'Cavity wall insulation',
+	'Solid wall insulation',
+	'Floor insulaiton (solid floor)',
+	'Hot water cylinder insulation',
+	'Draught proofing',
+	'Low energy lighting',
+	'Cylinder thermostat',
+	'Heating controls for wet central heating',
+	'Upgrade boiler, same fuel',
+	'Change heating to gas condensing boiler (fuel switch)',
+	'Flue gas heat recovery in conjunction with new boiler',
+	'Solar water heating',
+	'Heat recovery system for mixer showers',
+	'Double glazed windows',
+	'Insulated doors',
+	'Solar photovoltaic panels',
+	'Wind turbine'
+];
+router.get('/recommends', function(req, res, next) {
+	res.render('lodgement/recommends', { 
+		sectionTitles: sectionTitles,
+		recommends: recommends,
+		pageIndex: 1	// pass a page index to set page title, prev and next pages
+	});
 });
 
 

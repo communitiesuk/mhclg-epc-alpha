@@ -1,0 +1,265 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    EPC Lodgement
+  </h1>
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="main" action="{{ content.data.NextStepUrl.en }}" method="post" class="form" novalidate>
+        
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group"> 
+          <h2>Property</h2>
+          <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Property Description
+            </h1>
+          </legend>
+          <span id="search-field-error" class="govuk-error-message hide">
+            Enter the property description fields as required.
+          </span>
+
+
+
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+              Property type
+            </label>
+            <span id="home-opt-out-address-hint" class="govuk-hint">
+              
+            </span>
+            <span id="opt-out-address-error" class="govuk-error-message hide">
+              Enter your property postcode
+            </span>
+            
+            <select class="govuk-select govuk-!-width-two-thirds" id="detachmentType" name="detachmentType">
+              {% set list = [
+                { index:' ', title:'Property Type'},
+                { index:0, title:'House'},
+                { index:1, title:'Bungalow'},
+                { index:2, title:'Flat'},
+                { index:3, title:'Maisonette'},
+                { index:4, title:'Park home'}
+                ]%}
+              {% for item in list %}
+              <option value="{{item.index}}">{{item.title}}</option>
+              {% endfor %}
+            </select>
+          </div>
+            
+ 
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="detachmentType">
+              Detachment type
+            </label>
+            <select class="govuk-select govuk-!-width-two-thirds" id="detachmentType" name="detachmentType">
+              {% set list = [
+                { index:'-', title:'Detachment Type'},
+                { index:1, title:'Detached'},
+                { index:2, title:'Semi-Detached'},
+                { index:3, title:'End-Terrace'},
+                { index:4, title:'Mid-Terrace'},
+                { index:5, title:'Enclosed End-Terrace'},
+                { index:6, title:'Enclosed Mid-Terrace'},
+                { index:0, title: 'Not Recorded'}
+                ]%}
+              {% for item in list %}
+              <option value="{{item.index}}">{{item.title}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+
+          <h2>Structure</h2>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-postcode">
+              Number of storeys
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-number">
+              Habitable rooms
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-number" name="address-number" type="text">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-street">
+              Heated habitable rooms
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-street" name="address-street" type="text">
+          </div>
+
+<h2></h2>
+
+           <fieldset class="govuk-fieldset" aria-describedby="passport-issued-hint" role="group">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading ">
+                Date built
+              </h1>
+            </legend>
+            <span id="passport-issued-hint" class="govuk-hint">
+              Main Building
+            </span>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+            </div>
+  
+            <span id="passport-issued-hint" class="govuk-hint">
+              First Extension
+            </span>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="number" pattern="[0-9]*">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+        </fieldset>
+        </div>
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+<nav class="pagination" role="navigation" aria-label="Pagination">
+  <ul class="pagination__list" data-module="track-click">
+      <li class="pagination__item pagination__item--previous">
+        <a href="/details" class="pagination__link" rel="prev" >
+          <span class="pagination__link-title">
+            <svg class="pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="pagination__link-text">
+              Previous
+            </span>
+          </span>
+            <span class="pagination__link-divider visually-hidden">:</span>
+            <span class="pagination__link-label">{{ sectionTitles[pageIndex-1] }}</span>
+        </a>
+      </li>
+      <li class="pagination__item pagination__item--next">
+        <a href="/recommends" class="pagination__link" rel="next" >
+          <span class="pagination__link-title">
+            <svg class="pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+              <path fill="currentColor" d="m10.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="pagination__link-text">
+              Next
+            </span>
+          </span>
+            <span class="pagination__link-divider visually-hidden">:</span>
+            <span class="pagination__link-label">{{ sectionTitles[pageIndex+1] }}</span>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+      <h2>Sections</h2>
+    <ul class="govuk-list">
+      {% for item in sectionTitles %}
+        <li>
+          <a class="govuk-link" href="#">{{item}}</a>
+        </li>                
+      {% endfor %}
+    </ul>
+
+  </div>
+
+
+
+  </div>
+{% endblock %}
