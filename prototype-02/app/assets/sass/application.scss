@@ -27,6 +27,21 @@ body{
   font-family: 'nta';
 }
 
+.app-colour-list-column {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+}
+.app-swatch {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
 
 // Map base elements to gov.uk frontend classes 
 h1 {

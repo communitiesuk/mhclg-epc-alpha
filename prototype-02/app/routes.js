@@ -406,9 +406,28 @@ var recommends = [
 	'Wind turbine'
 ];
 router.get('/recommends', function(req, res, next) {
+	var options = ['Recommended', 'Not applicable', 'Already installed'];
+	var colours = ['#006435', '#bfc1c3', '#6f777b'];
+	var response = [];
+	var colour = [];
+
+	for ( var i=0;i<recommends.length; i++){
+		var ran = Math.random();
+		var ref = 2;
+		if (ran<0.7){
+			ref = 1;
+		}
+		if (ran<0.4){
+			ref = 0;
+		}
+		response.push(options[ref]);
+		colour.push(colours[ref]);
+	}
 	res.render('lodgement/recommends', { 
 		sectionTitles: sectionTitles,
 		recommends: recommends,
+		response: response,
+		colour: colour,
 		pageIndex: 1	// pass a page index to set page title, prev and next pages
 	});
 });
