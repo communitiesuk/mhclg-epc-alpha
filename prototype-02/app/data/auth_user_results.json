@@ -205,182 +205,231 @@
   {
     "number": "EES/0201993",
     "name": "Mrs. Shirley Wells",
-    "Address": "93-94 Coventry Street, Kidderminster, DY10 2BH",
-    "Telephone Number": "01562616722",
+    "address": "93-94 Coventry Street, Kidderminster, DY10 2BH",
+    "telephone": "01562616722",
     "Distance": 0,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "EES/018804",
     "name": "Mr. Eugene Silva",
-    "Address": "C/O Zipster Systems Ltd, 16 St Johns Business Park, Lutterworth, LE17 4HB",
-    "Telephone Number": "07585785438",
+    "address": "C/O Zipster Systems Ltd, 16 St Johns Business Park, Lutterworth, LE17 4HB",
+    "telephone": "07585785438",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":2
   },
   {
     "number": "EES/013941",
     "name": "Mr. Joe McCoy",
-    "Address": "15 Batham Road, Kidderminster, DY10 2TN",
-    "Telephone Number": "07936142525",
+    "address": "15 Batham Road, Kidderminster, DY10 2TN",
+    "telephone": "07936142525",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":3
   },
   {
     "number": "STRO0129486",
     "name": "Joe McCoy",
-    "Address": "15 Batham Road, Kidderminster, DY10 2TN",
-    "Telephone Number": "07936142525",
+    "address": "15 Batham Road, Kidderminster, DY10 2TN",
+    "telephone": "07936142525",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY9", "DY10", "DY11", "DY15"],
+    "scheme":4
   },
   {
     "number": "STRO011968",
     "name": "Karen Salazar",
-    "Address": "25 Shaw Avenue, Worcestershire, DY10 3YX",
-    "Telephone Number": "01562224121",
+    "address": "25 Shaw Avenue, Worcestershire, DY10 3YX",
+    "telephone": "01562224121",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10"],
+    "scheme":5
   },
   {
     "number": "STRO019428",
     "name": "Eugene Silva",
-    "Address": "9 Stokesay Close, Kidderminster, DY10 1YB",
-    "Telephone Number": "07585785438",
+    "address": "9 Stokesay Close, Kidderminster, DY10 1YB",
+    "telephone": "07585785438",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "STRO039388",
     "name": "Nicole Marshall",
-    "Address": "6 Lawrence Grove, Kidderminster, DY11 7DR",
-    "Telephone Number": "07811145720",
+    "address": "6 Lawrence Grove, Kidderminster, DY11 7DR",
+    "telephone": "07811145720",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":2
   },
   {
     "number": "ECMK309466",
     "name": "Jose Bishop",
-    "Address": "6, CHARLES AVENUE, KIDDERMINSTER, DY10 2YN",
-    "Telephone Number": "07480456156",
+    "address": "6, CHARLES AVENUE, KIDDERMINSTER, DY10 2YN",
+    "telephone": "07480456156",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":3
   },
   {
     "number": "STRO029598",
     "name": "Donna Russell",
-    "Address": "124 Linnet Rise, Kidderminster, DY10 4TU",
-    "Telephone Number": "01299 864660",
+    "address": "124 Linnet Rise, Kidderminster, DY10 4TU",
+    "telephone": "01299 864660",
     "Distance": 1,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY9", "DY10", "DY11", "DY15"],
+    "scheme":4
   },
   {
     "number": "STRO024933",
     "name": "Eric Garza",
-    "Address": "77 Mostyn Road, Stourport-On-Severn, DY13 8PN",
-    "Telephone Number": "01299573200",
+    "address": "77 Mostyn Road, Stourport-On-Severn, DY13 8PN",
+    "telephone": "01299573200",
     "Distance": 3,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10"],
+    "scheme":5
   },
   {
     "number": "EES/019936",
     "name": "Ms. Karen Aguilar",
-    "Address": "13 Muskoka, Bewdley, DY12 2BJ",
-    "Telephone Number": "07990 089666",
+    "address": "13 Muskoka, Bewdley, DY12 2BJ",
+    "telephone": "07990 089666",
     "Distance": 3,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "EES/015979",
     "name": "Mrs. Teresa Pena",
-    "Address": "18 Birchfield Drive, Stourport-On-Severn, DY13 8UE",
-    "Telephone Number": "01299 789 946",
+    "address": "18 Birchfield Drive, Stourport-On-Severn, DY13 8UE",
+    "telephone": "01299 789 946",
     "Distance": 3,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":2
   },
   {
     "number": "ECMK309113",
     "name": "Alexander Mendez",
-    "Address": "4, ELMFIELD ROAD, KIDDERMINSTER, DY11 7LA",
-    "Telephone Number": "07429865914",
+    "address": "4, ELMFIELD ROAD, KIDDERMINSTER, DY11 7LA",
+    "telephone": "07429865914",
     "Distance": 4,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":3
   },
   {
     "number": "ECMK309633",
     "name": "Phillip Hart",
-    "Address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
-    "Telephone Number": "07821736181",
+    "address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
+    "telephone": "07821736181",
     "Distance": 5,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY9", "DY10", "DY11", "DY15"],
+    "scheme":4
   },
   {
     "number": "ECMK309900",
     "name": "Phillip Hart",
-    "Address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
-    "Telephone Number": "07821736181",
+    "address": "2, BIRCH DALE, STOURBRIDGE, DY8 2YA",
+    "telephone": "07821736181",
     "Distance": 5,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10"],
+    "scheme":5
   },
   {
     "number": "EES/001945",
     "name": "Mr. Phillip Hart",
-    "Address": "2 Birch Dale, Hagley, Stourbridge, DY8 2YA",
-    "Telephone Number": "07821736181",
+    "address": "2 Birch Dale, Hagley, Stourbridge, DY8 2YA",
+    "telephone": "07821736181",
     "Distance": 5,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "EES/024915",
     "name": "Mr. Jack Bennett",
-    "Address": "7 Arley Drive, Stourbridge, DY8 3BH",
-    "Telephone Number": "0121 717 5573",
+    "address": "7 Arley Drive, Stourbridge, DY8 3BH",
+    "telephone": "0121 717 5573",
     "Distance": 6,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "EES/001952",
     "name": "Mrs. Beverly Hoffman",
-    "Address": "14 Albemarle Road, Stourbridge, DY8 2BG",
-    "Telephone Number": "07793 017538",
+    "address": "14 Albemarle Road, Stourbridge, DY8 2BG",
+    "telephone": "07793 017538",
     "Distance": 6,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":2
   },
   {
     "number": "ECMK303945",
     "name": "Beverly Hoffman",
-    "Address": "14, ALBEMARLE ROAD, STOURBRIDGE, DY8 2BG",
-    "Telephone Number": "07793017538",
+    "address": "14, ALBEMARLE ROAD, STOURBRIDGE, DY8 2BG",
+    "telephone": "07793017538",
     "Distance": 6,
     "Status": "Registered",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY1", "DY2", "DY3", "DY4", "DY5", "DY6", 
+      "DY7", "DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":1
   },
   {
     "number": "EES/019915",
     "name": "Ms. Pamela Cole",
-    "Address": "Green Cottage, Holy Cross Green, Clent, DY9 0HG",
-    "Telephone Number": "-",
+    "address": "Green Cottage, Holy Cross Green, Clent, DY9 0HG",
+    "telephone": "-",
     "Distance": "-",
     "Status": "-",
-    "type":"assessor"
+    "type":"assessor",
+    "postcode coverage": ["DY8", "DY9", "DY10", "DY11", "DY12", "DY13", "DY14", "DY15"],
+    "scheme":2
   }
 ],
 "certificates":[
@@ -783,5 +832,48 @@
     "postcode": "DY10 1AA",
     "type":"certificate"
   }
+],
+  "schemes":[
+
+      {
+        "name": "EPC Scheme One",
+        "address": "100 Windsor Gardens",
+        "email": "enquires@test1.co.uk",
+        "telephone": "421-188-9870",
+        "website": "test1.co.uk",
+        "certificate types": ["EPC 3", "EPC 4"]
+      },
+      {
+        "name": "Acme Energy Scheme",
+        "address": "549 Higher Heath",
+        "email": "epc@acme-energy.co.uk",
+        "telephone": "555-348-6868",
+        "website": "www.acme-energy.co.uk",
+        "certificate types": ["EPC 1", "EPC 2", "EPC 3", "EPC 4"]
+      },
+      {
+        "name": "API Surveys",
+        "address": "1 Smithfield Road",
+        "email": "survey@surveys.co.uk",
+        "telephone": "555-808-9999",
+        "website": "surveys.co.uk",
+        "certificate types": ["EPC 2", "EPC 3"]
+      },
+      {
+        "name": "New Energy",
+        "address": "84 Lansdown Road",
+        "email": "admin@newenergy.net",
+        "telephone": "555-824-1234",
+        "website": "newenergy.net",
+        "certificate types": ["DEC 1", "EPC 3", "EPC 4"]
+      },
+      {
+        "name": "Eco Energy",
+        "address": "84 Lansdown Road",
+        "email": "eco@eco.org",
+        "telephone": "555-176-5445",
+        "website": "www.eco.org",
+        "certificate types": ["DEC 1", "DEC 2", "EPC 1", "EPC 2"]
+      }
 ]
 }

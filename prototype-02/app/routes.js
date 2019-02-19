@@ -277,26 +277,32 @@ router.get('/assessor/:reference', function(req, res) {
 
   var certHash = req.params.reference;
   // convert back from base64
-  var accredition  = Buffer.from(certHash, 'base64').toString();
+  var accreditation  = Buffer.from(certHash, 'base64').toString();
 
+  var filtered = _.filter(req.app.locals.smartResults.assessors, function(item) {
+    return (accreditation === item['number']);
+  });
+
+
+console.log(accreditation);
+console.log(filtered[0]);
+var item = filtered[0];
+
+var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
+//req.app.locals.smartResults
   var results = {
     assessor:{
-        name:"Barbara Steele",
-        accredition: accredition,
-        "Company name": "Robert Knight Ltd",
-        "Postcode coverage": "WC1V",
-        "Contact address": "25 Krajcik Junctions",
-        "Email": "jared_lamb@gmail.com",
-        "Phone number": "21-188-9870",
-        "Website": "robertknight.com",
-        "Certificate types": "EPC 3; EPC 4"
+        name:item.name,
+        "accredition number": item.number,
+        "Company name": scheme.name,
+        "Postcode coverage": item['postcode coverage'].join(' '),
+        "Contact address": item.address,
+        "Email": scheme.email,
+        "Phone number": item.telephone,
+        "Website": scheme.website,
+        "Certificate types": scheme['certificate types'].join('; ')
       },
-      scheme:{
-        "Contact address": "549 Toni Glens",
-        "Email": "enquires@test1.co.uk",
-        "Phone number": "421-188-9870",
-        "Website": "test1.co.uk"
-      }
+      scheme:scheme
     };
 
   res.render('auth/assessor', {
