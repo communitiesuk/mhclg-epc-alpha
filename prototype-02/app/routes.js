@@ -274,7 +274,6 @@ router.get('/certificate/:reference', function(req, res) {
 
 router.get('/assessor/:reference', function(req, res) {
   // dummy assessor data
-
   var certHash = req.params.reference;
   // convert back from base64
   var accreditation  = Buffer.from(certHash, 'base64').toString();
@@ -283,13 +282,9 @@ router.get('/assessor/:reference', function(req, res) {
     return (accreditation === item['number']);
   });
 
-
-console.log(accreditation);
-console.log(filtered[0]);
-var item = filtered[0];
-
-var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
-//req.app.locals.smartResults
+	var item = filtered[0];
+	var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
+	
   var results = {
     assessor:{
         name:item.name,
