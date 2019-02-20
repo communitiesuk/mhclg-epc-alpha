@@ -5,9 +5,57 @@ const moment = require('moment');
 const _ = require('underscore');
 
 
+var links = [
+  {},
+  {title:'Find a certificate', link:'#'},
+  {title:'Find an assessor', link:'#'},
+  {title:'Find address', link:'#'},
+  {title:'Request new address', link:'#'},
+  {title:'Lodge EPC data', link:'#'},
+  {title:'Get EPC data', link:'#'}
+];
+
 
 // call start page from contomic CMS
 router.get('/', function(req, res, next) {
+  res.render( 'auth/index', {});
+});
+
+
+router.get('/user', function(req, res, next) {
+  //console.log(req);
+  console.log(req.query);
+  var available = [];
+  var renderPath = 'auth/user';
+  //check for user in url query string
+  if(req.query.user){
+
+    var user = req.query.user.toLowerCase();
+    if(user!=='assessor' && user!=='scheme' && user!=='gov' && user!=='local-gov'
+      && user!=='epc' && user!=='service-provider'){
+      user = 'none';
+      renderPath='/auth/index';
+
+    }
+console.log(renderPath);
+    if(user==='assessor' || user==='scheme'){
+      available = [ links[5], links[6] ];
+    }else
+    if(user==='gov'){
+      available = [ links[1], links[2], links[3] ];
+    }else
+    if(user==='local-gov'){
+      available = [ links[1], links[2], links[3], links[6] ];
+    }else
+    if(user==='epc'){
+      available = [ links[1], links[2], links[3], links[4], links[5], links[6] ];
+    }else
+    if(user==='service-provider'){
+      available = [ links[1], links[2], links[3], links[4], links[5] ];
+    }
+  }
+  console.log(available);
+
   var contentType='article'
   var contentId='257e91e7-29c2-4f32-8715-e9dab644f96d'
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
@@ -17,7 +65,12 @@ router.get('/', function(req, res, next) {
     }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.render('article', { content : JSON.parse(body) });
+        res.render( renderPath, { 
+          content : JSON.parse(body),
+          user: user,
+          links: available,
+          users:['assessor','scheme','gov','local-gov','epc','service-provider']
+           });
       } else {
         res.redirect('/error');
       }
@@ -64,7 +117,6 @@ router.get('/start', function(req, res, next) {
       }
   });
 });
-
 
 
 router.get('/search', function(req, res, next) {

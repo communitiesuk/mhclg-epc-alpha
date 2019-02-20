@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ content.data.ServiceName.en }} - GOV.UK
+{% endblock %}
+
+
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "button/macro.njk" import govukButton %}
+
+
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ content.data.ServiceName.en }}
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        ACCESS FOR {{ user | upper }}.
+      </h3>
+      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
+
+
+* [Authorised users search](/start)
+* [Certificate lodgement (Step-by-step)](/lodgement)
+* [Certificate lodgement (accordian)](/accordian)
+* [Certificate lodgement (left hand nav)](/details)
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Useful links
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            {% for item in links %}
+            <li>
+              <a href="/{{item.link}}" class="{{item}}">
+                {{item.title}}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </aside>
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Demo links to user types
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            {% for item in users %}
+            <li>
+              <a href="/user?user={{item}}" class="{{item}}">
+                {{item | capitalize}}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}
