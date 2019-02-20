@@ -182,7 +182,7 @@ router.get('/find-a-report/search', function(req, res, next) {
       if (!error && response.statusCode == 200) {
         // res.send({ content : JSON.parse(body) });
         res.render('find-a-report/search', { content : JSON.parse(body) });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+        //process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
         res.redirect('/error');
       }
@@ -206,25 +206,30 @@ router.get('/find-a-report/results', function(req, res, next) {
           if (!error && response.statusCode == 200) {
             if(body) {
               dataset = JSON.parse(body);
-              //console.log(dataset);
+
+              // sort by second property then first property
+              // sort by house number as main order then flat number
+              var sortedArray = _.chain(dataset.rows)
+                .sortBy('address1')
+                .sortBy('address2')
+                .value();
+
               // loop through results and build a simple array
               var arr = [];
-              for (var i=0;i<dataset.rows.length;i++){
-                //console.log(dataset.rows[i]['certificate-hash']);
+              for (var i=0;i<sortedArray.length;i++){
                 arr[i] = {
-                      "reference": dataset.rows[i]['certificate-hash'],
-                      "type": dataset.rows[i]['property-type'],
-                      "address": dataset.rows[i].address +', '+ dataset.rows[i].postcode,
-                      "category": dataset.rows[i]['current-energy-rating']
+                      "reference": sortedArray[i]['certificate-hash'],
+                      "type": sortedArray[i]['property-type'],
+                      "address": sortedArray[i].address +', '+ dataset.rows[i].postcode,
+                      "category": sortedArray[i]['current-energy-rating']
                   }
-              }
-              
+              }              
+
               res.render('find-a-report/results', {
                 addresses: arr
               });
               
             } else {
-              //console.log('no data');
               res.render('find-a-report/results', {
                 addresses: []
                 //addresses: req.app.locals.data //static dummy data

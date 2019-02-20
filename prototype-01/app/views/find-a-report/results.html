@@ -29,7 +29,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Energy Performance Certificates for {{ data['address-postcode'] }}
+        Energy Performance Certificates for {{ data['address-postcode'] | upper}}
       </h1>
       
 {% if not addresses.length %}
