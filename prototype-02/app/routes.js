@@ -12,7 +12,10 @@ var links = [
   {title:'Find address', link:'#'},
   {title:'Request new address', link:'#'},
   {title:'Lodge EPC data', link:'#'},
-  {title:'Get EPC data', link:'#'}
+  {title:'Get EPC data', link:'#'},
+  {title:'Get duplicate address', link:'#'},
+  {title:'Add address', link:'#'},
+  {title:'Process opt in/out', link:'#'},
 ];
 
 
@@ -48,10 +51,10 @@ console.log(renderPath);
       available = [ links[1], links[2], links[3], links[6] ];
     }else
     if(user==='epc'){
-      available = [ links[1], links[2], links[3], links[4], links[5], links[6] ];
+      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='service-provider'){
-      available = [ links[1], links[2], links[3], links[4], links[5] ];
+      available = [ links[1], links[2], links[3], links[4], links[7], links[8] ];
     }
   }
   console.log(available);
