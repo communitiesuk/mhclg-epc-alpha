@@ -364,7 +364,7 @@ router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var assessors = req.app.locals.smartResults.assessors;
   for ( var i=0; i<assessors.length; i++){
-    var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
+    var base = Buffer.from(assessors[i]['number']).toString('base64')
     req.app.locals.smartResults.assessors[i].base64ref  = base;
   }
 
@@ -387,12 +387,12 @@ router.get('/find-an-assessor/results', function(req, res) {
 router.get('/find-an-assessor/assessor/:reference', function(req, res) {
   // dummy assessor data
   if(req.params.reference){
-    var certHash = req.params.reference;
+    //var certHash = req.params.reference;
     // convert back from base64
-    var accredition  = Buffer.from(certHash, 'base64').toString();
+/*    var accredition  = Buffer.from(certHash, 'base64').toString();
 
     var filtered = _.filter(req.app.locals.smartResults.assessors, function(item) {
-      return (accredition === item['Accreditation Number']);
+      return (accredition === item['number']);
     });
 
     var results = {
@@ -414,8 +414,33 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
           "Website": "test1.co.uk"
         }
       };
+*/
 
+  var certHash = req.params.reference;
+  // convert back from base64
+  var accreditation  = Buffer.from(certHash, 'base64').toString();
+  var filtered = _.filter(req.app.locals.smartResults.assessors, function(item) {
+    return (accreditation === item.number);
+  });
 
+  var item = filtered[0];
+  var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
+  
+  var results = {
+    assessor:{
+        name:item.name,
+        "accredition number": item.number,
+        "Contact address": item.address,
+        "Phone number": item.telephone,
+        "Company name": scheme.name,
+        //"Email": scheme.email,
+        //"Website": scheme.website,
+        "status": "registered",
+        "Postcode coverage": item['postcode coverage'].join(' '),
+        "Certificate types": scheme['certificate types'].join('; ')
+      },
+      scheme:scheme
+    };
     res.render('find-an-assessor/assessor', {
       results: results
     });
