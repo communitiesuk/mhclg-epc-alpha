@@ -37,7 +37,11 @@ Find an Energy Performance Certificate
 
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
+                {% if data['q'] %}
                 Search results for {{ data['q'] }}
+                {% else %}
+                No results
+                {% endif %}
               </h1>
             </legend>
             
@@ -52,7 +56,7 @@ Find an Energy Performance Certificate
               <span id="search-field-error" class="govuk-error-message hide">
                 Enter the postcode, certificate or assessor reference.
               </span>
-              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="q" type="text" value="{{ data['search-field'] }}"> 
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="q" type="text" value="{{ data['q'] }}"> 
               <!-- <label class="govuk-label" for="filter-type">
                 Sort by
               </label> 
@@ -83,7 +87,7 @@ Find an Energy Performance Certificate
   <div class="govuk-grid-column-three-quarters">
     <div class="govuk-tabs" data-module="tabs">
       <h2 class="govuk-tabs__title">
-        Results for {{ data['search-field'] }}
+        Results for {{ data['q'] }}
       </h2>
       <ul class="govuk-tabs__list">
         <li class="govuk-tabs__list-item">
@@ -107,19 +111,19 @@ Find an Energy Performance Certificate
 
 
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="all">
-        <h2 class="govuk-heading-l">All results for {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">All results for {{ data['q'] }}</h2>
         <!--  Addresses for postcode  -->
         {% if not response.certificates.length %}
-        <p>No certificates found for ({{ data['search-field'] }})</p>
+        <p>No certificates found for ({{ data['q'] }})</p>
         {% endif %}
         {% if not response.assessors.length %}
-        <p>No assessors found for ({{ data['search-field'] }})</p>
+        <p>No assessors found for ({{ data['q'] }})</p>
         {% endif %}
         {% if not response.addresses.length %}
-        <p>No addresses found for ({{ data['search-field'] }})</p>
+        <p>No addresses found for ({{ data['q'] }})</p>
         {% endif %}
         <table class="govuk-table">
-          <caption class="govuk-table__caption">All addresses for {{ data['search-field'] }}:
+          <caption class="govuk-table__caption">All addresses for {{ data['q'] }}:
           {{response.certificates[0].street}}, {{response.certificates[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -169,13 +173,13 @@ Find an Energy Performance Certificate
         
       </section>
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="addresses">
-        <h2 class="govuk-heading-l">Addresses for {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Addresses for {{ data['q'] }}</h2>
         <!--  Addresses for postcode  -->
         {% if not response.addresses.length %}
         <p>No addresses found for that postcode</p>
         {% else %}
         <table class="govuk-table">
-          <caption class="govuk-table__caption">All properties for {{ data['search-field'] }}:
+          <caption class="govuk-table__caption">All properties for {{ data['q'] }}:
           {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -201,14 +205,14 @@ Find an Energy Performance Certificate
         {% endif %}
       </section>
       <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="certificates">
-        <h2 class="govuk-heading-l">Certificates for {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Certificates for {{ data['q'] }}</h2>
         <!--  Certificate for postcode  -->
         {% if not response.certificates.length %}
         <p>No certificates found for that postcode</p>
         {% else %}
         <p>Please click on a certificate below to view or download a report:</p>
         <table class="govuk-table">
-          <caption class="govuk-table__caption">All certificates for {{ data['search-field'] }}:
+          <caption class="govuk-table__caption">All certificates for {{ data['q'] }}:
           {{response.addresses[0].street}}, {{response.addresses[0].town | capitalize}}</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -234,7 +238,7 @@ Find an Energy Performance Certificate
         {% endif %}
       </section>
       <section class="govuk-tabs__panel" id="assessors">
-        <h2 class="govuk-heading-l">Assessors for {{ data['search-field'] }}</h2>
+        <h2 class="govuk-heading-l">Assessors for {{ data['q'] }}</h2>
         <!--  assessors for postcode  -->
         {% if not response.assessors.length %}
         <p>No assessors found for that postcode</p>
@@ -280,13 +284,17 @@ Find an Energy Performance Certificate
 
   {% block pageScripts %}
   <script>
-
+    
     // redirect to anchor if present
     var urlSplit = document.URL.split("#");
     if (!urlSplit[1]) {
         location.href = "#{{ anchor }}";
     }
-
+    
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("filter");
+    console.log(c);
 
     $(".govuk-tabs__tab").click(function(evt){
       // extract anchor from tab id

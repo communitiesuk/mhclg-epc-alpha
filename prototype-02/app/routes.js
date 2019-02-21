@@ -226,30 +226,35 @@ router.get('/results', function(req, res, next) {
     var anchor = req.session.data['anchor'];
 
     // certificate
-    if(str.length>20){
-      response.addresses = [];
-      response.certificates = [ response.certificates[Math.round(Math.random()*response.certificates.length)] ];
-      // show 1 random assessor
-      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
-      anchor = "certificates";
-    }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
-      response.addresses = [];
-      //response.certificates = response.certificates;
-      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
-      anchor = "assessors";
-    }else if(str.length<=8){ // postcode so all results
-      //response.addresses = response.addresses;
-      //response.certificates = response.certificates;
-      //response.assessors = response.assessors;
-      anchor = "all";
+    if(str){
+      if(str.length>20){
+        response.addresses = [];
+        response.certificates = [ response.certificates[Math.round(Math.random()*response.certificates.length)] ];
+        // show 1 random assessor
+        response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+        anchor = "certificates";
+      }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
+        response.addresses = [];
+        //response.certificates = response.certificates;
+        response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+        anchor = "assessors";
+      }else if(str.length<=8){ // postcode so all results
+        //response.addresses = response.addresses;
+        //response.certificates = response.certificates;
+        //response.assessors = response.assessors;
+        anchor = "all";
+      }
+      total = response.addresses.length + response.certificates.length + response.assessors.length;
+    
+    }else{
+      
     }
 
     // if there is a tab selected already
     if(req.session.data['anchor']){
-    	anchor = req.session.data['anchor']
+      anchor = req.session.data['anchor']
     }
     
-    total = response.addresses.length + response.certificates.length + response.assessors.length;
     response.filterType = filterType;
 
     res.render('auth/results', {
