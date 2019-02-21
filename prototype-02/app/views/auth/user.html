@@ -1,13 +1,8 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  {{ content.data.ServiceName.en }} - GOV.UK
+  Energy performance of buildings register - GOV.UK
 {% endblock %}
-
-
-{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
-{% from "button/macro.njk" import govukButton %}
-
 
 
 {% block beforeContent %}
@@ -26,21 +21,37 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Data Access: {{user | upper}}
+        EPC Register Auth Access: {{user | upper}}
       </h1>
 
       <p>The {{user | upper}} account grants access to the following features:</p>
 
-      {% for item in links %}
-      <div>
-        <a href="{{item.link}}" class="{{item}}">
-          {{item.title}}
-        </a>
-      </div>
-      {% endfor %}
+    
 
+
+
+
+
+      <ul>
+      {% for item in links %}
+      <li>
+        <!-- <a href="{{item.link}}" class="{{item}}"> -->
+          {{item.copy}}
+        <!-- </a> -->
+      </li>
+      {% endfor %}
+      </ul>
+
+      <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      If the owner and/or occupier of the property has chosen to remove a property from general searches, the property information can only be found using the reference number on the certificate.
+      </strong>
+      </div>
 
     </div>
+
 
     <div class="govuk-grid-column-one-third">
 

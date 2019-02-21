@@ -7,15 +7,15 @@ const _ = require('underscore');
 
 var links = [
   {},
-  {title:'Find a certificate', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
-  {title:'Find an assessor', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
-  {title:'Find address', link:'/search'},
-  {title:'Request new address', link:'/new-address'},
-  {title:'Lodge EP data', link:'/lodge-data/'},
-  {title:'Get EP data', link:'#'},
-  {title:'Get duplicate address', link:'#'},
-  {title:'Add address', link:'#'},
-  {title:'Process opt in/out', link:'#'},
+  {title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
+  {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
+  {title:'Find address', copy:'Find an address', link:'/search'},
+  {title:'Request new address', copy:'Request new address', link:'/new-address'},
+  {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
+  {title:'Get EP data', copy:'Download EPC data', link:'#'},
+  {title:'Get duplicate address', copy:'Resolve duplicate address data', link:'#'},
+  {title:'Add address', copy:'Add a new address', link:'#'},
+  {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'#'},
 ];
 
 
@@ -26,8 +26,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/user', function(req, res, next) {
-  //console.log(req);
-  //console.log(req.query);
+
   var available = [];
   var renderPath = 'auth/user';
   //check for user in url query string
@@ -39,7 +38,6 @@ router.get('/user', function(req, res, next) {
       && user!=='epc' && user!=='service-provider'){
       user = 'none';
       renderPath='auth/index';
-
     }
 
     if(user==='assessor'){
@@ -49,10 +47,10 @@ router.get('/user', function(req, res, next) {
       available = [ links[1], links[2], links[3], links[5], links[6] ];
     }else
     if(user==='local-gov'){
-      available = [ links[1], links[2], links[3], links[6] ];
+      available = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='gov'){
-      available = [ links[1], links[2], links[3], links[6] ];
+      available = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='service-provider'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
@@ -67,13 +65,14 @@ router.get('/user', function(req, res, next) {
 
   }
 
-  var contentType='article'
-  var contentId='257e91e7-29c2-4f32-8715-e9dab644f96d'
+  var contentType='article';
+  var contentId='257e91e7-29c2-4f32-8715-e9dab644f96d';
+
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
+    method: "GET",
+    headers: {
+        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         res.render( renderPath, { 
@@ -90,16 +89,16 @@ router.get('/user', function(req, res, next) {
 
 
 router.get('/error', function(req, res, next) {
-  var today = moment(Date.now()).format('YYYY-MM-DD')
-  var tokenCreatedDate = moment(process.env.CONTOMIC_ACCESS_TOKEN_DATE, 'DD/MM/YYYY') 
-  var tokenExpiryDate = moment(tokenCreatedDate).add(30, 'days').format('YYYY-MM-DD')
+  var today = moment(Date.now()).format('YYYY-MM-DD');
+  var tokenCreatedDate = moment(process.env.CONTOMIC_ACCESS_TOKEN_DATE, 'DD/MM/YYYY');
+  var tokenExpiryDate = moment(tokenCreatedDate).add(30, 'days').format('YYYY-MM-DD');
 
   if (moment(today).isAfter(tokenExpiryDate)){
     res.render('error', { content : {error: {message: "Contomic trial expired"}}});
   } else if (!process.env.CONTOMIC_ACCESS_TOKEN_DATE){
   	res.render('error', { content : {error: {message: "CONTOMIC_ACCESS_TOKEN_DATE missing"}}});
   } else {
-	res.render('error', { content : {error: {message: "Internal server error"}}});
+	  res.render('error', { content : {error: {message: "Internal server error"}}});
   }
 });
 
@@ -114,11 +113,12 @@ router.get('/error', function(req, res, next) {
 router.get('/start', function(req, res, next) {
   var contentType='service-start';
   var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
+
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
+    method: "GET",
+    headers: {
+        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         res.render('service-start', { content : JSON.parse(body) });
@@ -135,10 +135,10 @@ router.get('/search', function(req, res, next) {
   var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324';
 
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
+    method: "GET",
+    headers: {
+        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
+      }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         res.render('auth/search', { content : JSON.parse(body) });
