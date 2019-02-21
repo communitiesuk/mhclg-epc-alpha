@@ -7,11 +7,11 @@ const _ = require('underscore');
 
 var links = [
   {},
-  {title:'Find a certificate', link:'find-a-report'},
-  {title:'Find an assessor', link:'find-an-assessor'},
-  {title:'Find address', link:'find-address'},
-  {title:'Request new address', link:'new-address'},
-  {title:'Lodge EP data', link:'lodge-data'},
+  {title:'Find a certificate', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
+  {title:'Find an assessor', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
+  {title:'Find address', link:'/search'},
+  {title:'Request new address', link:'/new-address'},
+  {title:'Lodge EP data', link:'/lodge-data'},
   {title:'Get EP data', link:'#'},
   {title:'Get duplicate address', link:'#'},
   {title:'Add address', link:'#'},
