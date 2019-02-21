@@ -35,10 +35,14 @@
       {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
 
 
-* [Authorised users search](/start)
-* [Certificate lodgement (Step-by-step)](/lodgement)
-* [Certificate lodgement (accordian)](/accordian)
-* [Certificate lodgement (left hand nav)](/details)
+      {% for item in links %}
+      <div>
+        <a href="/{{item.link}}" class="{{item}}">
+          {{item.title}}
+        </a>
+      </div>
+      {% endfor %}
+
 
     </div>
 
@@ -57,6 +61,18 @@
               </a>
             </li>
             {% endfor %}
+            <li>
+              <br/><br/>
+              <a href="/search" class="">
+                Search
+              </a>
+            </li>
+            <li>
+              <a href="/lodge-data" class="">
+                Certificate lodgement
+              </a>
+            </li>
+
           </ul>
         </nav>
       </aside>

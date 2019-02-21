@@ -7,12 +7,12 @@ const _ = require('underscore');
 
 var links = [
   {},
-  {title:'Find a certificate', link:'#'},
-  {title:'Find an assessor', link:'#'},
-  {title:'Find address', link:'#'},
-  {title:'Request new address', link:'#'},
-  {title:'Lodge EPC data', link:'#'},
-  {title:'Get EPC data', link:'#'},
+  {title:'Find a certificate', link:'find-a-report'},
+  {title:'Find an assessor', link:'find-an-assessor'},
+  {title:'Find address', link:'find-address'},
+  {title:'Request new address', link:'new-address'},
+  {title:'Lodge EP data', link:'lodge-data'},
+  {title:'Get EP data', link:'#'},
   {title:'Get duplicate address', link:'#'},
   {title:'Add address', link:'#'},
   {title:'Process opt in/out', link:'#'},
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/user', function(req, res, next) {
   //console.log(req);
-  console.log(req.query);
+  //console.log(req.query);
   var available = [];
   var renderPath = 'auth/user';
   //check for user in url query string
@@ -40,15 +40,18 @@ router.get('/user', function(req, res, next) {
       renderPath='/auth/index';
 
     }
-console.log(renderPath);
-    if(user==='assessor' || user==='scheme'){
+
+    if(user==='assessor'){
       available = [ links[5], links[6] ];
     }else
-    if(user==='gov'){
-      available = [ links[1], links[2], links[3] ];
+    if(user==='scheme'){
+      available = [ links[5], links[6], links[3] ];
     }else
     if(user==='local-gov'){
-      available = [ links[1], links[2], links[3], links[6] ];
+      available = [ links[1], links[2], links[3], links[4] ];
+    }else
+    if(user==='gov'){
+      available = [ links[1], links[2], links[3], links[4], links[6] ];
     }else
     if(user==='epc'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
@@ -57,7 +60,6 @@ console.log(renderPath);
       available = [ links[1], links[2], links[3], links[4], links[7], links[8] ];
     }
   }
-  console.log(available);
 
   var contentType='article'
   var contentId='257e91e7-29c2-4f32-8715-e9dab644f96d'
@@ -425,6 +427,14 @@ router.get('/accordian', function(req, res, next) {
 
 // example left nav pages
 router.get('/details', function(req, res, next) {
+  res.render('lodgement/propertyDetails', { 
+    sectionTitles: sectionTitles,
+    pageIndex: 0  // pass a page index to set page title, prev and next pages
+  });
+});
+
+// example left nav pages
+router.get('/lodge-data', function(req, res, next) {
 	res.render('lodgement/propertyDetails', { 
 		sectionTitles: sectionTitles,
 		pageIndex: 0	// pass a page index to set page title, prev and next pages
