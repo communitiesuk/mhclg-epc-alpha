@@ -34,10 +34,11 @@ router.get('/user', function(req, res, next) {
   if(req.query.user){
 
     var user = req.query.user.toLowerCase();
+
     if(user!=='assessor' && user!=='scheme' && user!=='gov' && user!=='local-gov'
       && user!=='epc' && user!=='service-provider'){
       user = 'none';
-      renderPath='/auth/index';
+      renderPath='auth/index';
 
     }
 
@@ -59,6 +60,11 @@ router.get('/user', function(req, res, next) {
     if(user==='epc'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }
+
+  }else{
+      user = 'none';
+      renderPath='auth/index';
+
   }
 
   var contentType='article'
@@ -247,7 +253,7 @@ router.get('/results', function(req, res, next) {
       total = response.addresses.length + response.certificates.length + response.assessors.length;
     
     }else{
-      
+
     }
 
     // if there is a tab selected already
