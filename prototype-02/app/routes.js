@@ -35,7 +35,7 @@ router.get('/user', function(req, res, next) {
     var user = req.query.user.toLowerCase();
 
     if(user!=='assessor' && user!=='scheme' && user!=='gov' && user!=='local-gov'
-      && user!=='epc' && user!=='service-provider'){
+      && user!=='epc' && user!=='service-provider' && user!=='bank'){
       user = 'none';
       renderPath='auth/index';
     }
@@ -53,6 +53,9 @@ router.get('/user', function(req, res, next) {
       available = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='service-provider'){
+      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+    }else
+    if(user==='bank'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='epc'){
@@ -79,7 +82,7 @@ router.get('/user', function(req, res, next) {
           content : JSON.parse(body),
           user: user,
           links: available,
-          users:['assessor','scheme','local-gov','gov','service-provider','epc']
+          users:['assessor','scheme','local-gov','gov','service-provider','epc','bank']
            });
       } else {
         res.redirect('/error');
