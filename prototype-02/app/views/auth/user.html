@@ -26,14 +26,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        {{ content.data.ServiceName.en }}
+        Data Access: {{user | upper}}
       </h1>
 
-      <h2 class="govuk-heading-m">
-        ACCESS FOR {{ user | upper }}.
-      </h3>
-      {% markdown %}{{ content.data.Introduction.en|safe }}{% endmarkdown %}
-
+      <p></p>
 
       {% for item in links %}
       <div>

@@ -29,7 +29,7 @@
     <div class="govuk-grid-column-two-thirds">
       
 
-      <form id="main" action="{{ content.data.NextStepUrl.en }}" method="post" class="form" novalidate>
+      <form id="main" action="{{ content.data.NextStepUrl.en }}" method="get" class="form" novalidate>
         
         <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
           <h2 class="govuk-error-summary__title " id="error-summary-title">
@@ -67,7 +67,7 @@
               <span id="search-field-error" class="govuk-error-message hide">
                 Enter the postcode, certificate or assessor reference.
               </span>
-              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="search-field" type="text" value="">
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="q" type="text" value="">
               <!-- <label class="govuk-label" for="filter-type">
                 Sort by
               </label> 

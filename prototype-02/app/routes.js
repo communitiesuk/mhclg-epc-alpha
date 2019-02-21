@@ -11,7 +11,7 @@ var links = [
   {title:'Find an assessor', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
   {title:'Find address', link:'/search'},
   {title:'Request new address', link:'/new-address'},
-  {title:'Lodge EP data', link:'/lodge-data'},
+  {title:'Lodge EP data', link:'/lodge-data/'},
   {title:'Get EP data', link:'#'},
   {title:'Get duplicate address', link:'#'},
   {title:'Add address', link:'#'},
@@ -53,11 +53,11 @@ router.get('/user', function(req, res, next) {
     if(user==='gov'){
       available = [ links[1], links[2], links[3], links[4], links[6] ];
     }else
-    if(user==='epc'){
-      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
-    }else
     if(user==='service-provider'){
       available = [ links[1], links[2], links[3], links[4], links[7], links[8] ];
+    }else
+    if(user==='epc'){
+      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }
   }
 
@@ -74,7 +74,7 @@ router.get('/user', function(req, res, next) {
           content : JSON.parse(body),
           user: user,
           links: available,
-          users:['assessor','scheme','gov','local-gov','epc','service-provider']
+          users:['assessor','scheme','local-gov','gov','service-provider','epc']
            });
       } else {
         res.redirect('/error');
@@ -125,8 +125,9 @@ router.get('/start', function(req, res, next) {
 
 
 router.get('/search', function(req, res, next) {
-  var contentType='find-a-report-step'
-  var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324'
+  var contentType='find-a-report-step';
+  var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324';
+
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
   method: "GET",
   headers: {
@@ -145,11 +146,19 @@ router.get('/search', function(req, res, next) {
 
 
 router.get('/results', function(req, res, next) {
+  var str;
 
+  if(req.query.q){
+    str = req.query.q.toLowerCase();
+  }
+/*
   if(req.session.data['search-field']){
+    str = req.session.data['search-field'];
+  }*/
+
+
     // pull in dummy data loaded from static file via server.js
-    // arrays fr addresses, certificates and assessors
-    var str = req.session.data['search-field'];
+    // arrays from addresses, certificates and assessors
     var response = {};
     // set some empty arrays for zero count
 
@@ -249,9 +258,9 @@ router.get('/results', function(req, res, next) {
       count:total   
     });
               
-  }else{
+/*  }else{
     res.send('no data');
-  }
+  }*/
 });
 
 
@@ -392,9 +401,10 @@ var sectionTitles = [
 	'Input Summary'
 	];
 
-router.get('/lodgement', function(req, res, next) {
+
 
 /*
+router.get('/lodge-data', function(req, res, next) {
   var contentType='service-start';
   var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
   request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
@@ -404,38 +414,39 @@ router.get('/lodgement', function(req, res, next) {
     }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.render('lodgement/index', { content : JSON.parse(body) });
+        res.render('lodge-data/index', { content : JSON.parse(body) });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
         res.redirect('/error');
       }
   });
-*/
-
-	res.render('lodgement/index', { 
-		sectionTitles: sectionTitles
-	});
+  res.render('lodge-data/index', { 
+    sectionTitles: sectionTitles
+  });
 
 });
+*/
 
 
 router.get('/accordian', function(req, res, next) {
-	res.render('lodgement/accordian', {
+	res.render('lodge-data/accordian', {
 		sectionTitles: sectionTitles
 	});
 });
 
+
 // example left nav pages
 router.get('/details', function(req, res, next) {
-  res.render('lodgement/propertyDetails', { 
+  res.render('lodge-data/propertyDetails', { 
     sectionTitles: sectionTitles,
     pageIndex: 0  // pass a page index to set page title, prev and next pages
   });
 });
 
+
 // example left nav pages
 router.get('/lodge-data', function(req, res, next) {
-	res.render('lodgement/propertyDetails', { 
+	res.render('lodge-data/propertyDetails', { 
 		sectionTitles: sectionTitles,
 		pageIndex: 0	// pass a page index to set page title, prev and next pages
 	});
@@ -443,7 +454,7 @@ router.get('/lodge-data', function(req, res, next) {
 
 
 router.get('/description', function(req, res, next) {
-	res.render('lodgement/propertyDescription', { 
+	res.render('lodge-data/propertyDescription', { 
 		sectionTitles: sectionTitles,
 		pageIndex: 1	// pass a page index to set page title, prev and next pages
 	});
@@ -488,7 +499,7 @@ router.get('/recommends', function(req, res, next) {
 		}
 		response.push(options[ref]);
 	}
-	res.render('lodgement/recommends', { 
+	res.render('lodge-data/recommends', { 
 		sectionTitles: sectionTitles,
 		recommends: recommends,
 		response: response,
@@ -516,7 +527,7 @@ router.get('/overview', function(req, res, next) {
 
 
   //assume a filtered array with only a single property result
-  var displayDate = moment(filtered[idx]['lodgement-date']).format("Do MMMM YYYY");
+  var displayDate = moment(filtered[idx]['lodge-data-date']).format("Do MMMM YYYY");
 
   // hard code style pixel offsets for now
   // used to position the rating pointed in the chart
@@ -586,7 +597,7 @@ router.get('/overview', function(req, res, next) {
 		response.push(obj);
 	}
 
-	res.render('lodgement/overview', { 
+	res.render('lodge-data/overview', { 
 		sectionTitles: sectionTitles,
 		//recommends: recommends,
 		response: response,
