@@ -56,7 +56,7 @@ router.get('/user', function(req, res, next) {
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='bank'){
-      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+      available = [ links[6] ];
     }else
     if(user==='epc'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
