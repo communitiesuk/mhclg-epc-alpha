@@ -65,29 +65,15 @@ router.get('/user', function(req, res, next) {
   }else{
       user = 'none';
       renderPath='auth/index';
-
   }
 
-  var contentType='article';
-  var contentId='257e91e7-29c2-4f32-8715-e9dab644f96d';
 
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-    method: "GET",
-    headers: {
-        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.render( renderPath, { 
-          content : JSON.parse(body),
-          user: user,
-          links: available,
-          users:['assessor','scheme','local-gov','gov','service-provider','epc','bank']
-           });
-      } else {
-        res.redirect('/error');
-      }
-  });
+  res.render( renderPath, { 
+      user: user,
+      links: available,
+      users:['assessor','scheme','local-gov','gov','service-provider','epc','bank']
+    });
+
 });
 
 
