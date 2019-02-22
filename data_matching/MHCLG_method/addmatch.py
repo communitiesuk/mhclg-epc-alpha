@@ -5,7 +5,7 @@ Matches a single address against AddressBase, following Peter Hufton's method.
 Author: nigel1@notbinary.co.uk
 Created: February 14th 2019, 17:15
 To do: 
-1.  Complete buildno filters. 
+ 
 2.  Token matching
 3.  Duplicate Tokens
 4.  Find set of tokens in both ref. address and input address
@@ -15,33 +15,59 @@ To do:
 
 
 import pandas as pd
+import numpy as np
 import re
+import psycopg2
 
+# parameters for connecting to addressbase
+params = {
+    'dbname': 'addbase',
+    'user': 'adb_user',
+    'password': 'addbase',
+    'host': 'ec2-3-8-40-91.eu-west-2.compute.amazonaws.com',
+    'port': '5432'
+}
+
+# punctuation to be removed
 punct = [',', '.', ':', ';', '?']
 
+# counties to be removed
 counties = ['Avon', 'Berkshire', 'Cambs', 'Cornwall', 'Devon', 'Essex', ',Greater Manchester', 'Hertfordshire', 'Lancashire', 'Lincolnshire', 'Middx', 'North Humberside', 'Oxfordshire', 'S Yorkshire', 'South Yorkshire', 'Surrey', 'W Yorkshire', 'West Sussex', 'Worcestershire', 'Bedfordshire', 'Buckinghamshire', 'Cheshire', 'County Durham', 'Dorset', 'Glos', 'Hampshire', 'Herts', 'Lancs', 'Lincs', 'N Humberside', 'North Yorkshire', 'Northumberland', 'Oxon', 'Shropshire', 'Staffordshire', 'Tyne and Wear', 'Warks', 'West Yorkshire', 'Worcs', 'Beds', 'Bucks', 'Cleveland', 'Cumbria', 'E Sussex', 'Gloucestershire', 'Hants', 'Isle of Wight', 'Leicestershire', 'Merseyside', 'N Yorkshire', 'Northamptonshire', 'Nottinghamshire', 'Powys', 'Somerset', 'Staffs', 'W Midlands', 'Warwickshire', 'Wilts', 'Berks', 'Cambridgeshire', 'Co Durham', 'Derbyshire', 'East Sussex', 'Greater London', 'Herefordshire', 'Kent', 'Leics', 'Middlesex', 'Norfolk', 'Northants', 'Notts', 'S Humberside', 'South Humberside', 'Suffolk', 'W Sussex', 'West Midlands', 'Wiltshire']
 
+# regex for extracting postcodes
 pcodereg = r'([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? [0-9][A-Za-z]{2}|[Gg][Ii][Rr] 0[Aa]{2})'
 
+# regex for extracting building numbers
 bnoreg1 = r'([0-9][0-9])'
 bnoreg2 = r'([0-9][0-9][A-Za-z])'
 
+def getaddress(exeter, i):
+    add = add + exeter.iloc[i, 1]
+    if !np.isnan(exeter.iloc[i, 2]):
+        add = add + exeter.iloc[i, 2]
+    if !np.isnan(exeter.iloc[i, 3]):
+        add = add + exeter.iloc[i, 3]
+    add = add + exeter.iloc[i, 4]
+    return add
+
 class AddMatch():
 
-	def __init__(self):
-        #self.adb = [addressbase] - need to query addressbase to create a table of addressses to match against
+    def __init__(self):
+        # connect to addressbase
+        self.c_adb = psycopg2.connect(**params)
+        # create a cursor in addressbase
         self.add = address
         return self
 
-    def clean_add(self):
+    def clean_add(self, address):
         # Remove punctuation and capitalize all words.  
-        add = add.split()
+        add = address.split()
         add2 = []
         for word in add:
-        	word2 = ''
-        	for c in word: 
-        		if c in punct:
-        			c= ''
+            word2 = ''
+            for c in word: 
+                if c in punct:
+                    c= ''
                 word2 = word2 + c
             if len(word2) > 0:
             	word2.capitalize()
@@ -51,17 +77,16 @@ class AddMatch():
 
     def remove_counties(self):
         # remove postal county from the input as these have been deprecated
-    	add = self.add2
-    	add2 = add
-    	add2.pop(0)
-    	add2.pop(0)
-    	add2.pop(0)
-    	i = 0
-    	for word in add2:
-    		if word in counties:
+        add2 = self.add2
+        add2.pop(0)
+        add2.pop(0)
+        add2.pop(0)
+        i = 0
+        for word in add2:
+            if word in counties:
                 del a[2+i]
             i += 1
-    	self.add2 = add
+        self.add2 = add2
         return True
 
     def extract_pcode(self):
@@ -72,33 +97,47 @@ class AddMatch():
             add2 = add + ' ' + x
         pcode =  re.findall(pcodereg, add2)
         # search adb table - filter to pcode = adbp
+        adb = psycopg2.connect(**params)
+        c_adb = adb.cursor()
+        adbp = c_adb.execute('''SELECT * FROM ADB WHERE POSTCODE = ''' + pcode)
         self.adbp = adbp
         self.add2 = add2
         return True
 
     def extract_buildno(self):
-    	# use regex to get the building number and order when more than one number. 
-    	adb = self.adbp
+        # use regex to get the building number and order when more than one number. 
+        adb = self.adbp
         add2 = self.add2
         buildno = re.findall(bnoreg1, add2)
         buildno2 = re.findall(bnoreg2, add2)
+        conn = self.c_adb
+        cursor = self.adbcur
+        adbp = self.adbp
         if len(buildno) == 1:
-            # search in adb for that buildno	
+            command = '''SELECT * FROM '''+ adbp +''' where 'BUILDING_NUMBER' = ''' + buildno
+            building = cursor.execute(command)
+            conn.commit()
         elif len(buildno) > 1:
-            # search in adb for those buildnos in that order
+            command = '''SELECT * FROM '''+ adbp +''' where 'BUILDING_NUMBER' = ''' + buildno
+            building = cursor.execute(command)
+            conn.commit()
         elif len(buildno) == 0 and len(buildno2) == 1:
-        	# search in adb for that buildno2 - with a letter after the number 
+            command = '''SELECT * FROM '''+adbp +''' where 'BUILDING_NUMBER' = ''' + buildno2
+            building = cursor.execute(command)
+            conn.commit() 
         elif len(buildno) == 0 and len(buildno) == 0:
             # search in adb for addresses with no buildno - house name??
+            pass
         # search result = adb2
-        self.adb = adb2
+        self.adb = building
         return True
     
     def compstring(self):
-    	# compare string: get number of words that are the same. 
-    	# this depends on having carried out the same data cleaning on the target addresses as on the input
-    	addi = self.add2
-    	targ = []
+        # compare string: get number of words that are the same. 
+        # this depends on having carried out the same data cleaning on the target addresses as on the input
+        addi = self.add2
+        target = self.adb
+        targ = []
         for addt in target: # target address set
             i = len(addi)
             t = len(addt)
@@ -106,21 +145,27 @@ class AddMatch():
                 j = 0
                 k = 0
                 while j < i:
-                	if addt[j] == addt[j]:
-                		k += 1
+                    if addt[j] == addi[j]:
+                        k += 1
                 targ.append(k)
-        
-            return True
-
-
-
-
-
-
-
-
-
-
+        lt = len(targ)
+        if lt = 1:
+            # get text of adb record. 
+        if lt > 1:
+            maxind = values.index(max(targ))
+            # atching address is the nth record in adb. 
+        return True
 
 
 if __name__ == '__main__':
+    match = AddMatch()
+    exeter = pd.read_csv('exeter.csv')
+    i = 0
+    exlen = len(exeter)
+    while i < exlen:
+        add = getaddress(exeter, i)
+        match.clean_add(add)
+        match.remove_counties()
+        match.extract_pcode()
+        match.extract_buildno()
+        match.compstring()
