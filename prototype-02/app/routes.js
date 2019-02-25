@@ -19,7 +19,7 @@ var links = [
   {title:'Get EP data', copy:'Download EPC data', link:'#'},
   {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'#'},
 ];
-
+var availableOptions = [];
 
 // call start page from contomic CMS
 router.get('/', function(req, res, next) {
@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/user', function(req, res, next) {
 
-  var available = [];
+  
   var renderPath = 'auth/user';
 
   //check for user in url query string
@@ -47,25 +47,25 @@ router.get('/user', function(req, res, next) {
 
 
     if(user==='assessor'){
-      available = [ links[1], links[2], links[3], links[5], links[6] ];
+      availableOptions = [ links[1], links[2], links[3], links[5], links[6] ];
     }else
     if(user==='scheme'){
-      available = [ links[1], links[2], links[3], links[5], links[6] ];
+      availableOptions = [ links[1], links[2], links[3], links[5], links[6] ];
     }else
     if(user==='local-gov' || user==='local'){
-      available = [ links[1], links[2], links[3], links[4] ];
+      availableOptions = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='gov'){
-      available = [ links[1], links[2], links[3], links[4] ];
+      availableOptions = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='service-provider'|| user==='service'|| user==='sp'){
-      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='bank'){
-      available = [ links[6] ];
+      availableOptions = [ links[6] ];
     }else
     if(user==='epc'){
-      available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }
 
   }else{
@@ -76,7 +76,7 @@ router.get('/user', function(req, res, next) {
 
   res.render( renderPath, { 
       user: user,
-      links: available,
+      links: availableOptions,
       users:['assessor','scheme','local-gov','gov','service-provider','epc','bank']
     });
 
@@ -385,6 +385,7 @@ router.get('/assessor/:reference', function(req, res) {
 router.get('/find-address', function(req, res) {
 
   res.render('auth/find-address', {
+    links: availableOptions
     //results: results
   });
 });
@@ -392,6 +393,7 @@ router.get('/find-address', function(req, res) {
 router.get('/add-address', function(req, res) {
 
   res.render('auth/edit-address', {
+    links: availableOptions
     //results: results
   });
 });
@@ -400,19 +402,19 @@ router.get('/add-address', function(req, res) {
 router.get('/edit-address', function(req, res) {
   //split out selected address to edit
   //var str =  "Flat 1, 28, Great Smith Street, SW1P 3BU";
-  console.log(req.session.data.address);
+  //console.log(req.session.data.address);
   //console.log(req.session.data.sort);
 
   var address = req.session.data.address.split(', ');
 
-console.log(address);
+  //console.log(address);
   res.render('auth/edit-address', {
-    data: {
-
-    'address-name': address[0],
-    'address-number': address[1],
-    'address-street': address[2],
-    'address-postcode': address[3]
+    links: availableOptions,
+    address: {
+    'name': address[0],
+    'number': address[1],
+    'street': address[2],
+    'postcode': address[3]
     }
   });
 
@@ -421,8 +423,18 @@ console.log(address);
 
 router.get('/confirm-address', function(req, res) {
 
+  var name = req.session.data['address-name'];
+  var number = req.session.data['address-number'];
+  var street = req.session.data['address-street'];
+  var postcode = req.session.data['address-postcode'];
+
+  var address = name + ', ' + number + ', ' + street + ', ' + postcode;
+
+  //get form fields and stitch them together
+  console.log(req.session.data.address);
   res.render('auth/confirm-address', {
-    //results: results
+    links: availableOptions,
+    address: address
   });
 });
 
@@ -446,6 +458,8 @@ router.get('/select-address', function(req, res) {
   ];
 
   res.render('auth/select-address', {
+
+    links: availableOptions,
     result: {addresses: list}
   });
 });

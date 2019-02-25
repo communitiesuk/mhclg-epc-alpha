@@ -29,25 +29,25 @@
     </h1>
     
         <table class="govuk-table">
-        <caption class="govuk-table__caption">{{ data.address }}</caption>
+        <caption class="govuk-table__caption">{{ address }}</caption>
 
         <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">Name</th>
-                <td class="govuk-table__cell">{{ data['address-name'] }}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">Number</th>
-                <td class="govuk-table__cell">{{ data['address-number'] }}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">Street</th>
-                <td class="govuk-table__cell">{{ data['address-street'] }}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">Postcode</th>
-                <td class="govuk-table__cell">{{ data['address-postcode'] | upper }}</td>
-              </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">Name</th>
+              <td class="govuk-table__cell">{{ data['address-name'] }}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">Number</th>
+              <td class="govuk-table__cell">{{ data['address-number'] }}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">Street</th>
+              <td class="govuk-table__cell">{{ data['address-street'] }}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="row">Postcode</th>
+              <td class="govuk-table__cell">{{ data['address-postcode'] | upper }}</td>
+            </tr>
         </tbody>
       </table>
       <!-- 
@@ -100,7 +100,7 @@
       </form>
 -->
       <div>
-        <a class="link secondary-action" href="#">Change Address</a>
+        <a class="link secondary-action" href="edit-address">Change Address</a>
         </div>
 
     </div>

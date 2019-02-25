@@ -58,7 +58,7 @@
             <span id="address-name-error" class="govuk-error-message hide">
               Enter the property name
             </span>
-            <input class="govuk-input" id="address-name" name="address-name" type="text" value="{{data['address-name']}}">
+            <input class="govuk-input" id="address-name" name="address-name" type="text" value="{{address['name']}}">
           </div>
               
           <div class="">      
@@ -68,7 +68,7 @@
             <span id="address-number-error" class="govuk-error-message hide">
               Enter the property number
             </span>
-            <input data-required="true" class="govuk-input" id="address-number" name="address-number" type="text" value="{{data['address-number']}}">
+            <input data-required="true" class="govuk-input" id="address-number" name="address-number" type="text" value="{{address['number']}}">
           </div>
           
           <div class="">
@@ -78,7 +78,7 @@
             <span id="address-street-error" class="govuk-error-message hide">
               Enter the street address
             </span>
-            <input data-required="true" class="govuk-input" id="address-street" name="address-street" type="text" value="{{data['address-street']}}">
+            <input data-required="true" class="govuk-input" id="address-street" name="address-street" type="text" value="{{address['street']}}">
           </div>
 
           <div class="">
@@ -88,7 +88,7 @@
             <span id="address-postcode-error" class="govuk-error-message hide">
               Enter the property postcode
             </span>
-            <input data-required="true" class="govuk-input" id="address-postcode" name="address-postcode" type="text" value="{{data['address-postcode']}}">
+            <input data-required="true" class="govuk-input" id="address-postcode" name="address-postcode" type="text" value="{{address['postcode']}}">
           </div>
           <br/>
           {{ govukButton({
