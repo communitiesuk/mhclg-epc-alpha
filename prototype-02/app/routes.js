@@ -29,16 +29,20 @@ router.get('/user', function(req, res, next) {
 
   var available = [];
   var renderPath = 'auth/user';
+
   //check for user in url query string
   if(req.query.user){
 
     var user = req.query.user.toLowerCase();
 
-    if(user!=='assessor' && user!=='scheme' && user!=='gov' && user!=='local-gov'
-      && user!=='epc' && user!=='service-provider' && user!=='bank'){
+    if(user!=='assessor' && user!=='scheme' && user!=='gov' 
+      && user!=='local-gov' && user!=='local'
+      && user!=='service-provider' && user!=='service' && user!=='sp' 
+      && user!=='epc' && user!=='bank'){
       user = 'none';
       renderPath='auth/index';
     }
+
 
     if(user==='assessor'){
       available = [ links[1], links[2], links[3], links[5], links[6] ];
@@ -46,13 +50,13 @@ router.get('/user', function(req, res, next) {
     if(user==='scheme'){
       available = [ links[1], links[2], links[3], links[5], links[6] ];
     }else
-    if(user==='local-gov'){
+    if(user==='local-gov' || user==='local'){
       available = [ links[1], links[2], links[3], links[4] ];
     }else
     if(user==='gov'){
       available = [ links[1], links[2], links[3], links[4] ];
     }else
-    if(user==='service-provider'){
+    if(user==='service-provider'|| user==='service'|| user==='sp'){
       available = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='bank'){
