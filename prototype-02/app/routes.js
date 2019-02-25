@@ -421,7 +421,7 @@ router.get('/confirm-address', function(req, res) {
   var name = req.session.data['address-name'];
   var number = req.session.data['address-number'];
   var street = req.session.data['address-street'];
-  var postcode = req.session.data['address-postcode'];
+  var postcode = req.session.data['address-postcode'].toUpperCase();
   var address = name + ', ' + number + ', ' + street + ', ' + postcode;
 
   //get form fields and stitch them together
