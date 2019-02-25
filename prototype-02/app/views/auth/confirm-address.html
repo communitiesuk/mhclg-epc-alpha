@@ -1,6 +1,3 @@
-{% from "input/macro.njk" import govukInput %}
-{% from "button/macro.njk" import govukButton %}
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -30,7 +27,29 @@
     <h1 class="govuk-heading-xl">
       The property address has been updated
     </h1>
-      
+    
+        <table class="govuk-table">
+        <caption class="govuk-table__caption">{{ data.address }}</caption>
+
+        <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Name</th>
+                <td class="govuk-table__cell">{{ data['address-name'] }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Number</th>
+                <td class="govuk-table__cell">{{ data['address-number'] }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Street</th>
+                <td class="govuk-table__cell">{{ data['address-street'] }}</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">Postcode</th>
+                <td class="govuk-table__cell">{{ data['address-postcode'] | upper }}</td>
+              </tr>
+        </tbody>
+      </table>
       <!-- 
       <form id="main" action="edit-address" method="post" class="form">
 
@@ -87,6 +106,7 @@
     </div>
 
     <div class="govuk-grid-column-one-third">
+      {% include "includes/auth_side_nav.html" %}
     </div>
   </div>
 {% endblock %}

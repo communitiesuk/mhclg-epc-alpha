@@ -392,11 +392,11 @@ router.get('/find-address', function(req, res) {
 
 router.get('/edit-address', function(req, res) {
   //split out selected address to edit
-  var str =  "Flat 1, 28, Great Smith Street, SW1P 3BU";
-  //console.log(req.session.data.address);
+  //var str =  "Flat 1, 28, Great Smith Street, SW1P 3BU";
+  console.log(req.session.data.address);
   //console.log(req.session.data.sort);
 
-  var address = str.split(', ');
+  var address = req.session.data.address.split(', ');
 
 console.log(address);
   res.render('auth/edit-address', {
