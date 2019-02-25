@@ -9,12 +9,14 @@ var links = [
   {},
   {title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
   {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
+  
   {title:'Find address', copy:'Find an address', link:'/search'},
+  {title:'Add address', copy:'Add a new address', link:'/add-address'},
   {title:'Request new address', copy:'Request new address', link:'/new-address'},
+  {title:'Edit (duplicate) address', copy:'Resolve duplicate address data', link:'/find-address'},
+  
   {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
   {title:'Get EP data', copy:'Download EPC data', link:'#'},
-  {title:'Get duplicate address', copy:'Resolve duplicate address data', link:'#'},
-  {title:'Add address', copy:'Add a new address', link:'#'},
   {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'#'},
 ];
 
@@ -352,9 +354,9 @@ router.get('/assessor/:reference', function(req, res) {
     return (accreditation === item['number']);
   });
 
-	var item = filtered[0];
-	var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
-	
+  var item = filtered[0];
+  var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
+  
   var results = {
     assessor:{
         name:item.name,
@@ -372,6 +374,72 @@ router.get('/assessor/:reference', function(req, res) {
 
   res.render('auth/assessor', {
     results: results
+  });
+});
+
+
+// [As an] Assessor [I want to] be able to specify when I want 
+// to add a new address, amend an existing address and get the 
+// full details of an existing address [so] that I can lodge the 
+// certificate to the correct property #136
+router.get('/find-address', function(req, res) {
+
+  res.render('auth/find-address', {
+    //results: results
+  });
+});
+
+
+router.get('/edit-address', function(req, res) {
+  //split out selected address to edit
+  var str =  "Flat 1, 28, Great Smith Street, SW1P 3BU";
+  //console.log(req.session.data.address);
+  //console.log(req.session.data.sort);
+
+  var address = str.split(', ');
+
+console.log(address);
+  res.render('auth/edit-address', {
+    data: {
+
+    'address-name': address[0],
+    'address-number': address[1],
+    'address-street': address[2],
+    'address-postcode': address[3]
+    }
+  });
+
+});
+
+
+router.get('/confirm-address', function(req, res) {
+
+  res.render('auth/confirm-address', {
+    //results: results
+  });
+});
+
+
+router.get('/select-address', function(req, res) {
+  var list = [
+      { address: "Flat 1, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 2, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 4, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 7, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 28, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 32, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Second Floor Flat, 40 Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 1, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 3, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 5, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 6, 42, Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Flat 8, 42, Great Smith Street, SW1P 3BU", ref:""}
+  ];
+
+  res.render('auth/select-address', {
+    result: {addresses: list}
   });
 });
 

@@ -55,34 +55,8 @@
 
     <div class="govuk-grid-column-one-third">
 
-      <aside class="app-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Useful links
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            {% for item in links %}
-            <li>
-              <a href="{{item.link}}" class="{{item}}">
-                {{item.title}}
-              </a>
-            </li>
-            {% endfor %}
-            <li>
-              <br/><br/>
-              <a href="/search" class="">
-                Search
-              </a>
-            </li>
-            <li>
-              <a href="/lodge-data" class="">
-                Certificate lodgement
-              </a>
-            </li>
+      {% include "includes/auth_side_nav.html" %}
 
-          </ul>
-        </nav>
-      </aside>
 
       <aside class="app-related-items" role="complementary">
         <h2 class="govuk-heading-m" id="subsection-title">
