@@ -1,0 +1,91 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form id="main" action="select-address" method="post" class="form" novalidate>
+
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+      <div class="govuk-form-group"> 
+        <fieldset class="govuk-fieldset" aria-describedby="postcode-hint">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              What is the address?
+            </h1>
+          </legend>
+                  
+          <div class="">
+            <label class="govuk-label" for="postcode">
+              Enter your postcode
+            </label>
+            <span id="postcode-hint" class="govuk-hint">
+              Search here for the address of your property (eg SW1P 3BU).
+            </span>
+            <span id="opt-out-postcode-error" class="govuk-error-message hide">
+              Enter your property postcode
+            </span>
+            <input data-required="true" class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" value="{{data['postcode']}}">
+          </div>
+        </fieldset> 
+
+
+        </div>
+        <br/>
+
+        {{ govukButton({
+          text: "Find address"
+        }) }}
+
+      </form>
+
+
+        
+
+
+
+          
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      
+      {% include "includes/auth_side_nav.html" %}
+    </div>
+
+  </div>
+{% endblock %}

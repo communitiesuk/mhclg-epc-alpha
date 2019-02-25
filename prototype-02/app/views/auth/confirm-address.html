@@ -1,0 +1,92 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      The property address has been updated
+    </h1>
+      
+      <!-- 
+      <form id="main" action="edit-address" method="post" class="form">
+
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="address-choice-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                The property address has been updated
+              </h1>
+            </legend>
+            <span id="address-choice-hint" class="govuk-hint">
+              What is your contact address?
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Pick the address we will use to contact you.
+            </span>
+            <div class="govuk-radios govuk-radios--inline">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="address-choice-1" name="address-choice" type="radio" value="address">
+                <label class="govuk-label govuk-radios__label" for="address-choice-1">
+                  {{ data['opt-out-address'] }}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="address-choice-2" name="address-choice" type="radio" value="Another address">
+                <label class="govuk-label govuk-radios__label" for="address-choice-2">
+                  Another address
+                </label>
+              </div>
+            </div> 
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Change address"
+        }) }}
+      </form>
+-->
+      <div>
+        <a class="link secondary-action" href="#">Change Address</a>
+        </div>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+    </div>
+  </div>
+{% endblock %}
