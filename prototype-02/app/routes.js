@@ -270,23 +270,19 @@ router.get('/results', function(req, res, next) {
 });
 
 
-
 router.get('/certificate/:reference', function(req, res) {
-
-	//console.log(req.params.reference);
   var certHash = req.params.reference;
   // convert back from base64
   var ref  = Buffer.from(certHash, 'base64').toString();
   // and extract the number at the end
   ref = ref.split("_")[1];
 
-	//console.log('got ref ' +ref);
 	// store as an array
 	var filtered = [ req.app.locals.smartResults.certificates[ref] ];
 
 	//there is only one result
 	var idx = 0;
-	//console.log(filtered);
+
 	// add dummy data
 	  filtered[idx]['address'] = '';
     displayDate = '';
@@ -378,36 +374,28 @@ router.get('/assessor/:reference', function(req, res) {
 });
 
 
-// [As an] Assessor [I want to] be able to specify when I want 
-// to add a new address, amend an existing address and get the 
-// full details of an existing address [so] that I can lodge the 
-// certificate to the correct property #136
 router.get('/find-address', function(req, res) {
 
   res.render('auth/find-address', {
     links: availableOptions
-    //results: results
   });
 });
+
 
 router.get('/add-address', function(req, res) {
 
   res.render('auth/edit-address', {
     links: availableOptions
-    //results: results
   });
 });
 
 
 router.get('/edit-address', function(req, res) {
-  //split out selected address to edit
-  //var str =  "Flat 1, 28, Great Smith Street, SW1P 3BU";
-  //console.log(req.session.data.address);
-  //console.log(req.session.data.sort);
+  var address = ["","","",""];
+  if(req.session.data.address){
+    address = req.session.data.address.split(', ')
+  }
 
-  var address = req.session.data.address.split(', ');
-
-  //console.log(address);
   res.render('auth/edit-address', {
     links: availableOptions,
     address: {
@@ -422,16 +410,13 @@ router.get('/edit-address', function(req, res) {
 
 
 router.get('/confirm-address', function(req, res) {
-
   var name = req.session.data['address-name'];
   var number = req.session.data['address-number'];
   var street = req.session.data['address-street'];
   var postcode = req.session.data['address-postcode'];
-
   var address = name + ', ' + number + ', ' + street + ', ' + postcode;
 
   //get form fields and stitch them together
-  console.log(req.session.data.address);
   res.render('auth/confirm-address', {
     links: availableOptions,
     address: address
@@ -458,7 +443,6 @@ router.get('/select-address', function(req, res) {
   ];
 
   res.render('auth/select-address', {
-
     links: availableOptions,
     result: {addresses: list}
   });
