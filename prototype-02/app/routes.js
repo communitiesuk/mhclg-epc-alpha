@@ -11,7 +11,7 @@ var links = [
   {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
   
   {title:'Find address', copy:'Find an address', link:'/search'},
-  {title:'Add address', copy:'Add a new address', link:'/edit-address'},
+  {title:'Add address', copy:'Add a new address', link:'/add-address'},
   {title:'Request new address', copy:'Request new address', link:'/new-address'},
   {title:'Edit (duplicate) address', copy:'Resolve duplicate address data', link:'/find-address'},
   
@@ -384,25 +384,33 @@ router.get('/find-address', function(req, res) {
 
 router.get('/add-address', function(req, res) {
 
-  res.render('auth/edit-address', {
+  res.render('auth/add-address', {
     links: availableOptions
   });
 });
 
 
-router.get('/edit-address', function(req, res) {
+router.get('/new-address', function(req, res) {
+
+  res.render('auth/add-address', {
+    links: availableOptions
+  });
+});
+
+
+router.get('/add-address', function(req, res) {
   var address = ["","","",""];
   if(req.session.data.address){
     address = req.session.data.address.split(', ')
   }
 
-  res.render('auth/edit-address', {
+  res.render('auth/add-address', {
     links: availableOptions,
     address: {
-    'name': address[0],
-    'number': address[1],
-    'street': address[2],
-    'postcode': address[3]
+      'name': address[0],
+      'number': address[1],
+      'street': address[2],
+      'postcode': address[3]
     }
   });
 
@@ -447,8 +455,6 @@ router.get('/select-address', function(req, res) {
     result: {addresses: list}
   });
 });
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////
