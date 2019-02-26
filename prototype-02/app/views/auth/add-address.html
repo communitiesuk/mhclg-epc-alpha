@@ -43,7 +43,11 @@
 
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading">
+              {% if title !="Edit" %}
               Add the property details
+              {% else %}
+              Edit the property details
+              {% endif %}
             </h1>
           </legend>
           <span id="nationality-hint" class="govuk-hint">
@@ -52,11 +56,21 @@
 
 
           <div class="">
-            <label class="govuk-label" for="address-name">
-              Name
+            <label class="govuk-label" for="address-company-name">
+              Company Name
             </label>
             <span id="address-name-error" class="govuk-error-message hide">
-              Enter the property name
+              Enter the company name
+            </span>
+            <input class="govuk-input" id="address-company-name" name="address-company-name" type="text" value="{{address['company-name']}}">
+          </div>
+
+          <div class="">
+            <label class="govuk-label" for="address-name">
+              Property Name
+            </label>
+            <span id="address-name-error" class="govuk-error-message hide">
+              Enter the property name, Flat 3
             </span>
             <input class="govuk-input" id="address-name" name="address-name" type="text" value="{{address['name']}}">
           </div>

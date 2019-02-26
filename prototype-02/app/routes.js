@@ -12,8 +12,8 @@ var links = [
   
   {title:'Find address', copy:'Find an address', link:'/search'},
   {title:'Add address', copy:'Add a new address', link:'/add-address'},
-  {title:'Request new address', copy:'Request new address', link:'/new-address'},
-  {title:'Edit (duplicate) address', copy:'Resolve duplicate address data', link:'/find-address'},
+  /*{title:'Request new address', copy:'Request new address', link:'/new-address'},*/
+  {title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
   {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
   {title:'Get EP data', copy:'Download EPC data', link:'#'},
@@ -393,32 +393,40 @@ router.get('/find-address', function(req, res) {
   });
 });
 
-
+/*
 router.get('/add-address', function(req, res) {
 
   res.render('auth/add-address', {
     links: availableOptions
   });
 });
+*/
 
-
-router.get('/new-address', function(req, res) {
+router.get('/add-address', function(req, res) {
 
   res.render('auth/add-address', {
+    title:"Add",
     links: availableOptions
   });
 });
 
 
-router.get('/add-address', function(req, res) {
+
+router.get('/edit-address', function(req, res) {
   var address = ["","","",""];
+  var companyName = "";
   if(req.session.data.address){
-    address = req.session.data.address.split(', ')
+    address = req.session.data.address.split(', ');
+  }
+  if(req.session.data['address-company-name']){
+    companyName = req.session.data['address-company-name'];
   }
 
   res.render('auth/add-address', {
+    title:"Edit",
     links: availableOptions,
     address: {
+      'company-name': companyName,
       'name': address[0],
       'number': address[1],
       'street': address[2],
@@ -430,11 +438,12 @@ router.get('/add-address', function(req, res) {
 
 
 router.get('/confirm-address', function(req, res) {
+  var companyName = req.session.data['address-company-name'];
   var name = req.session.data['address-name'];
   var number = req.session.data['address-number'];
   var street = req.session.data['address-street'];
   var postcode = req.session.data['address-postcode'].toUpperCase();
-  var address = name + ', ' + number + ', ' + street + ', ' + postcode;
+  var address = companyName + ', ' + name + ', ' + number + ', ' + street + ', ' + postcode;
 
   //get form fields and stitch them together
   res.render('auth/confirm-address', {
