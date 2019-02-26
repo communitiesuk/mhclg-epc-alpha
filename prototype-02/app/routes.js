@@ -293,6 +293,12 @@ router.get('/certificate/:reference', function(req, res) {
     filtered[idx]['potential-energy-rating'] = 'E';
     filtered[idx]['current-energy-efficiency'] = 19;
     filtered[idx]['potential-energy-efficiency'] = 51;
+    filtered[idx]['lighting-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['heating-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['hot-water-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['lighting-cost-potential'] = Math.round( filtered[idx]['lighting-cost-current'] * Math.random() );
+    filtered[idx]['heating-cost-potential'] = Math.round( filtered[idx]['heating-cost-current'] * Math.random() )
+    filtered[idx]['hot-water-cost-potential'] = Math.round( filtered[idx]['hot-water-cost-current'] * Math.random() );
 
 
   //assume a filtered array with only a single property result
@@ -613,6 +619,12 @@ router.get('/overview', function(req, res, next) {
     filtered[idx]['potential-energy-rating'] = 'E';
     filtered[idx]['current-energy-efficiency'] = 19;
     filtered[idx]['potential-energy-efficiency'] = 51;
+    filtered[idx]['lighting-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['heating-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['hot-water-cost-current'] = Math.round(Math.random()*100) * 10;
+    filtered[idx]['lighting-cost-potential'] = Math.round( filtered[idx]['lighting-cost-current'] * Math.random() );
+    filtered[idx]['heating-cost-potential'] = Math.round( filtered[idx]['heating-cost-current'] * Math.random() )
+    filtered[idx]['hot-water-cost-potential'] = Math.round( filtered[idx]['hot-water-cost-current'] * Math.random() );
 
 
   //assume a filtered array with only a single property result
