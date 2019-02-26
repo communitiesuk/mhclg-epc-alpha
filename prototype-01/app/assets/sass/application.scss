@@ -24,6 +24,13 @@ $govuk-global-styles: true;
   display:none;
 }
 
+.documentImage{
+  float:left;
+  border:1px solid #dee0e2;
+  margin: 1px;
+  margin-top:10px;
+}
+
 body{
   font-family: 'nta';
 }

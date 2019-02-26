@@ -307,16 +307,21 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
                     {date:"2015", event:"Current EPC Certificate", rating:"C", assessmentType:"RdSAP assessment"},
                     {date:"2006-2015", event:"PC Certificate issued", rating:"D", assessmentType:"RdSAP assessment"},
                     {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
+                  ],
+                  documents:[
+                    {date:"23 January 2015", address:"Flat 3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"C", assessmentType:"RdSAP assessment", type:"PDF, 210kb, 5 pages"},
+                    {date:"8 May 2009", address:"Flat 3, 3 Leonora Tyson Mews, Croxted Road, London, SE21 8GA", rating:"D", assessmentType:"RdSAP assessment", type:"PDF, 207kb, 5 pages"},
+                    {date:"1 October 2006", address:"3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"D", assessmentType:"", type:"PDF, 190kb, 4 pages"}
                   ]
                 };
 
-                res.render('find-a-report/certificate', {
+                res.render('find-a-report/certificatePlus', {
                   data: property
                 });
 
             } else {
               //console.log('no data');
-              res.render('find-a-report/certificate', {
+              res.render('find-a-report/certificatePlus', {
                 addresses: req.app.locals.data //static dummy data
               });
             }
