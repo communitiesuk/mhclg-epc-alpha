@@ -15,8 +15,8 @@ var links = [
   {title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
   {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
-  {title:'Get EP data', copy:'Download EPC data', link:'#'},
-  {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'#'},
+  {title:'Get EP data', copy:'Download EPC data', link:'/get-data'},
+  {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
 ];
 var availableOptions = [];
 
@@ -52,12 +52,14 @@ router.get('/user', function(req, res, next) {
       availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
     }else
     if(user==='local-gov' || user==='local'){
+      user = 'local-gov';
       availableOptions = [ links[1], links[2], links[3], links[7] ];
     }else
     if(user==='gov'){
       availableOptions = [ links[1], links[2], links[3], links[7] ];
     }else
     if(user==='service-provider'|| user==='service'|| user==='sp'){
+      user = 'service-provider';
       availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
     }else
     if(user==='bank'){
@@ -532,6 +534,13 @@ router.get('/lodge-data', function(req, res, next) {
 
 });
 */
+
+
+router.get('/get-data', function(req, res, next) {
+  res.render('lodge-data/get-data', {
+    links: availableOptions
+  });
+});
 
 
 router.get('/accordian', function(req, res, next) {
