@@ -9,10 +9,9 @@ var links = [
   {},
   {title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
   {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
-  
   {title:'Find address', copy:'Find an address', link:'/search'},
+  
   {title:'Add address', copy:'Add a new address', link:'/add-address'},
-  /*{title:'Request new address', copy:'Request new address', link:'/new-address'},*/
   {title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
   {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
@@ -47,25 +46,25 @@ router.get('/user', function(req, res, next) {
 
 
     if(user==='assessor'){
-      availableOptions = [ links[1], links[2], links[3], links[5], links[6] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
     }else
     if(user==='scheme'){
-      availableOptions = [ links[1], links[2], links[3], links[5], links[6] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
     }else
     if(user==='local-gov' || user==='local'){
-      availableOptions = [ links[1], links[2], links[3], links[4] ];
+      availableOptions = [ links[1], links[2], links[3], links[7] ];
     }else
     if(user==='gov'){
-      availableOptions = [ links[1], links[2], links[3], links[4] ];
+      availableOptions = [ links[1], links[2], links[3], links[7] ];
     }else
     if(user==='service-provider'|| user==='service'|| user==='sp'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
     }else
     if(user==='bank'){
-      availableOptions = [ links[6] ];
+      availableOptions = [ links[7] ];
     }else
     if(user==='epc'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
     }
 
   }else{
