@@ -467,7 +467,7 @@ router.get('/select-address', function(req, res) {
       { address: "Flat 7, 28, Great Smith Street, SW1P 3BU", ref:""},
       { address: "Flat 8, 28, Great Smith Street, SW1P 3BU", ref:""},
       { address: "Flat 1, 32, Great Smith Street, SW1P 3BU", ref:""},
-      { address: "Second Floor Flat, 40 Great Smith Street, SW1P 3BU", ref:""},
+      { address: "Second Floor Flat, 40, Great Smith Street, SW1P 3BU", ref:""},
       { address: "Flat 1, 42, Great Smith Street, SW1P 3BU", ref:""},
       { address: "Flat 3, 42, Great Smith Street, SW1P 3BU", ref:""},
       { address: "Flat 5, 42, Great Smith Street, SW1P 3BU", ref:""},
