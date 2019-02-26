@@ -137,7 +137,10 @@ router.get('/search', function(req, res, next) {
       }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.render('auth/search', { content : JSON.parse(body) });
+        res.render('auth/search', {
+          links: availableOptions,
+          content : JSON.parse(body)
+        });
         process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
       } else {
         //console.log(error);
