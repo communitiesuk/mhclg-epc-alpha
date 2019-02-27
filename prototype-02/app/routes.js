@@ -11,7 +11,7 @@ var links = [
   {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
   {title:'Find address', copy:'Find an address', link:'/search'},
   
-  {title:'Add address', copy:'Add a new address', link:'/add-address'},
+  {title:'Request new address', copy:'Add a new address', link:'/add-address'},
   {title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
   {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
