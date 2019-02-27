@@ -7,16 +7,17 @@ const _ = require('underscore');
 
 var links = [
   {},
-  {title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
-  {title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
-  {title:'Find address', copy:'Find an address', link:'/search'},
+  {id:1, title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
+  {id:2, title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
+  {id:3, title:'Find address', copy:'Find an address', link:'/search'},
   
-  {title:'Request new address', copy:'Add a new address', link:'/add-address'},
-  {title:'Edit address', copy:'Update company address data', link:'/find-address'},
+  {id:4, title:'Request new address', copy:'Add a new address', link:'/add-address'},
+  {id:5, title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
-  {title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
-  {title:'Get EP data', copy:'Download EPC data', link:'/get-data'},
-  {title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
+  {id:6, title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
+  {id:7, title:'Get EP data', copy:'Download EPC data', link:'/get-data'},
+  {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
+  {id:9, title:'Manage access', copy:'Download EPC data', link:'/manage-accounts'},
 ];
 var availableOptions = [];
 
@@ -60,7 +61,7 @@ router.get('/user', function(req, res, next) {
     }else
     if(user==='service-provider'|| user==='service'|| user==='sp'){
       user = 'service-provider';
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
     }else
     if(user==='bank'){
       availableOptions = [ links[7] ];
@@ -537,6 +538,14 @@ router.get('/lodge-data', function(req, res, next) {
 
 });
 */
+
+
+router.get('/manage-accounts', function(req, res, next) {
+  res.render('lodge-data/manage-accounts', {
+    links: availableOptions
+  });
+});
+
 
 
 router.get('/get-data', function(req, res, next) {
