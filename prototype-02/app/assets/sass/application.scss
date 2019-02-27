@@ -30,6 +30,17 @@ $govuk-global-styles: true;
   margin-top:10px;
 }
 
+.app-task-list__items {
+    padding-left: 5px;
+}
+
+.app-task-list__task-title {
+    margin-left: 15px;
+}
+.app-task-list__task-name {
+    float: left;
+    width: 100%;
+}
 body{
   font-family: 'nta';
 }

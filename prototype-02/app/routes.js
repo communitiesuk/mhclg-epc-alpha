@@ -485,6 +485,42 @@ router.get('/select-address', function(req, res) {
   });
 });
 
+var filters = [
+  {id:1, title:"Date range", link:"filter-date"},
+  {id:2, title:"Location", link:"filter-location"},
+  {id:3, title:"Assessor", link:"filter-date"},
+  {id:4, title:"Scheme", link:"filter-date"},
+  {id:5, title:"Rating", link:"filter-date"},
+  {id:6, title:"Property type", link:"filter-date"},
+  {id:7, title:"Property total size", link:"filter-date"},
+  {id:8, title:"Lodgement reason", link:"filter-date"},
+  {id:9, title:"Type", link:"filter-date"},
+  {id:10, title:"Status", link:"filter-date"},
+  {id:11, title:"Number of rooms", link:"filter-date"}
+];
+
+
+router.get('/filter', function(req, res, next) {
+
+  res.render('auth/filter', {
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/manage-accounts', function(req, res, next) {
+  res.render('auth/manage-accounts', {
+    links: availableOptions
+  });
+});
+
+
+router.get('/get-data', function(req, res, next) {
+  res.render('auth/get-data', {
+    links: availableOptions
+  });
+});
 
 ////////////////////////////////////////////////////////////////////////////
 //
@@ -512,47 +548,6 @@ var sectionTitles = [
 	'Results Overview',
 	'Input Summary'
 	];
-
-
-
-/*
-router.get('/lodge-data', function(req, res, next) {
-  var contentType='service-start';
-  var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.render('lodge-data/index', { content : JSON.parse(body) });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      } else {
-        res.redirect('/error');
-      }
-  });
-  res.render('lodge-data/index', { 
-    sectionTitles: sectionTitles
-  });
-
-});
-*/
-
-
-router.get('/manage-accounts', function(req, res, next) {
-  res.render('lodge-data/manage-accounts', {
-    links: availableOptions
-  });
-});
-
-
-
-router.get('/get-data', function(req, res, next) {
-  res.render('lodge-data/get-data', {
-    links: availableOptions
-  });
-});
 
 
 router.get('/accordian', function(req, res, next) {
