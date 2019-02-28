@@ -4,6 +4,8 @@ const request = require('request');
 const moment = require('moment');
 const _ = require('underscore');
 
+// capture the user type login
+var user ='';
 
 var links = [
   {},
@@ -35,7 +37,7 @@ router.get('/user', function(req, res, next) {
   //check for user in url query string
   if(req.query.user){
 
-    var user = req.query.user.toLowerCase();
+    user = req.query.user.toLowerCase();
 
     if(user!=='assessor' && user!=='scheme' && user!=='gov' 
       && user!=='local-gov' && user!=='local'
@@ -501,60 +503,95 @@ var filters = [
 
 
 router.get('/filter', function(req, res, next) {
+  var filteredArray = [];
 
+  // TODO: Extract this fucntion out and check for query string for each page?
+  // check for user in url query string
+  if(req.query.user){
+
+    user = req.query.user.toLowerCase();
+
+    if(user!=='assessor' && user!=='scheme' && user!=='gov' 
+      && user!=='local-gov' && user!=='local'
+      && user!=='service-provider' && user!=='service' && user!=='sp' 
+      && user!=='epc' && user!=='bank'){
+      user = 'none';
+      renderPath='auth/index';
+    }
+
+
+    if(user==='assessor'){
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
+    }else
+    if(user==='scheme'){
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
+    }else
+    if(user==='local-gov' || user==='local'){
+      user = 'local-gov';
+      availableOptions = [ links[1], links[2], links[3], links[7] ];
+    }else
+    if(user==='gov'){
+      availableOptions = [ links[1], links[2], links[3], links[7] ];
+    }else
+    if(user==='service-provider'|| user==='service'|| user==='sp'){
+      user = 'service-provider';
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
+    }else
+    if(user==='bank'){
+      availableOptions = [ links[7] ];
+    }else
+    if(user==='epc'){
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
+    }
+
+  }
+
+
+
+  filteredArray =  filters.slice();
+  switch (user) {
+    case 'epc': 
+      filteredArray = _.without(filteredArray, _.findWhere(filters, {
+        id: 6
+      })); 
+      filteredArray = _.without(filteredArray, _.findWhere(filters, {
+        id: 7
+      })); 
+      filteredArray = _.without(filteredArray, _.findWhere(filters, {
+        id: 11
+      }));
+    case 'assessor': 
+      filteredArray = _.without(filteredArray, _.findWhere(filters, {
+        id: 3
+      }));
+    case 'local-gov': 
+      filteredArray = _.without(filteredArray, _.findWhere(filters, {
+        id: 2
+      }));
+
+    default:
+      break;
+
+  }
   res.render('auth/filter', {
-    filterList:filters,
+    filterList:filteredArray,
     links: availableOptions
   });
 });
 
 router.get('/filter-date', function(req, res, next) {
  var itemList = [
-    {
-      value: "2018",
-      text: "2018"
-    },
-    {
-      value: "2017",
-      text: "2017"
-    },
-    {
-      value: "2016",
-      text: "2016"
-    },
-    {
-      value: "2015",
-      text: "2015"
-    },
-    {
-      value: "2014",
-      text: "2014"
-    },
-    {
-      value: "2013",
-      text: "2013"
-    },
-    {
-      value: "2013",
-      text: "2013"
-    },
-    {
-      value: "2012",
-      text: "2012"
-    },
-    {
-      value: "2011",
-      text: "2011"
-    },
-    {
-      value: "2010",
-      text: "2010"
-    },
-    {
-      value: "2009",
-      text: "2009"
-    }
-
+    { value: "2018", text: "2018"},
+    { value: "2017", text: "2017"},
+    { value: "2016", text: "2016"},
+    { value: "2015", text: "2015"},
+    { value: "2014", text: "2014"},
+    { value: "2013", text: "2013"},
+    { value: "2013", text: "2013"},
+    { value: "2012", text: "2012"},
+    { value: "2011", text: "2011"},
+    { value: "2010", text: "2010"},
+    { value: "2009", text: "2009"}
   ]
 
   res.render('auth/filter-date', {
