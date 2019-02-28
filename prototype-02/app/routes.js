@@ -6,6 +6,7 @@ const _ = require('underscore');
 
 // capture the user type login
 var user ='';
+var availableOptions = [];
 
 var links = [
   {},
@@ -21,9 +22,8 @@ var links = [
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
   {id:9, title:'Manage access', copy:'Manage user accounts', link:'/manage-accounts'},
 ];
-var availableOptions = [];
 
-// call start page from contomic CMS
+// static start page 
 router.get('/', function(req, res, next) {
   res.render( 'auth/index', {});
 });
@@ -488,22 +488,40 @@ router.get('/select-address', function(req, res) {
 });
 
 var filters = [
-  {id:1, title:"Date range", link:"filter-date"},
-  {id:2, title:"Location", link:"filter-location"},
-  {id:3, title:"Assessor", link:"filter-date"},
-  {id:4, title:"Scheme", link:"filter-scheme"},
-  {id:5, title:"Rating", link:"filter-date"},
-  {id:6, title:"Property type", link:"filter-date"},
-  {id:7, title:"Property total size", link:"filter-date"},
-  {id:8, title:"Lodgement reason", link:"filter-date"},
-  {id:9, title:"Type", link:"filter-date"},
-  {id:10, title:"Status", link:"filter-date"},
-  {id:11, title:"Number of rooms", link:"filter-date"}
+
+  {id:1, ref:'date', title:"Date range", link:"filter-date", results:'Nothing added'},
+  {id:2, ref:'location', title:"Location", link:"filter-location", results:'Nothing added'},
+  {id:3, ref:'assessor', title:"Assessor", link:"filter-assessor", results:'Nothing added'},
+  {id:4, ref:'schemes', title:"Scheme", link:"filter-scheme", results:'Nothing added'},
+  {id:5, ref:'rating', title:"Rating", link:"filter-rating", results:'Nothing added'},
+  {id:6, ref:'propType', title:"Property type", link:"filter-prop-type", results:'Nothing added'},
+  {id:7, ref:'propSize', title:"Property total size", link:"filter-prop-size", results:'Nothing added'},
+  {id:8, ref:'reason', title:"Lodgement reason", link:"filter-reason", results:'Nothing added'},
+  {id:9, ref:'certType', title:"Type", link:"filter-type", results:'Nothing added'},
+  {id:10, ref:'status', title:"Status", link:"filter-status", results:'Nothing added'},
+  {id:11, ref:'rooms', title:"Number of rooms", link:"filter-rooms", results:'Nothing added'}
 ];
 
 
 router.get('/filter', function(req, res, next) {
   var filteredArray = [];
+  // get returned data
+  console.log(req.session.data);
+
+  //populate filter list with returned values
+  for (item in req.session.data){
+    // find filter with the matching ref value
+    var refObj = _.findWhere(filters, {
+        ref: item
+      })
+
+    if(refObj){
+      refObj.results = req.session.data[item];
+    }
+  
+    console.log(item, refObj);
+  }
+
 
   // TODO: Extract this fucntion out and check for query string for each page?
   // check for user in url query string
@@ -595,15 +613,13 @@ router.get('/filter-date', function(req, res, next) {
     { value: "2009", text: "2009"}
   ]
 
-  res.render('auth/filter-date', {
-    title:"Date",
+  res.render('auth/filter-checkbox', {
+    title:"date",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
   });
 });
-
-
 
 
 router.get('/filter-scheme', function(req, res, next) {
@@ -616,8 +632,24 @@ router.get('/filter-scheme', function(req, res, next) {
     { value: "ECMK", text: "ECMK"}
   ]
 
-  res.render('auth/filter-scheme', {
-    title:"Schemes",
+  res.render('auth/filter-checkbox', {
+    title:"schemes",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-status', function(req, res, next) {
+ var itemList = [
+    { value: "Active", text: "Active"},
+    { value: "Retired", text: "Retired"},
+    { value: "Not for issue", text: "Not for issue"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"status",
     itemList:itemList,
     filterList:filters,
     links: availableOptions

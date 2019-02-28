@@ -46,8 +46,8 @@
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
   {{ govukCheckboxes({
-  idPrefix: "waste",
-  name: "waste",
+  idPrefix: title,
+  name: title,
   fieldset: {
     legend: {
       text: "Filter options: "+ title,

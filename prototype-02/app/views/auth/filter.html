@@ -57,13 +57,17 @@
             {% for item in filterList %}
             <li class="app-task-list__item filter-overview__add">
               <span class="app-task-list__task-btn btn--tertiary">
-                Add 
+                {% if item.results==='Nothing added' %}
+                Add
+                {% else %}
+                Edit
+                {% endif %}
               </span>
               <a class="app-task-list__task-name" href="{{item.link}}" aria-describedby="{{item.title}}-completed">
                 {{item.title}}
               </a>
               <div class="app-task-list__task-name">
-                Nothing added
+                {{item.results}}
               </div>
             </li>
             {% endfor %}
