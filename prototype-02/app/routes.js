@@ -19,7 +19,7 @@ var links = [
   {id:6, title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
   {id:7, title:'Get EP data', copy:'Download EPC data', link:'/get-data'},
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
-  {id:9, title:'Manage access', copy:'Download EPC data', link:'/manage-accounts'},
+  {id:9, title:'Manage access', copy:'Manage user accounts', link:'/manage-accounts'},
 ];
 var availableOptions = [];
 
@@ -491,7 +491,7 @@ var filters = [
   {id:1, title:"Date range", link:"filter-date"},
   {id:2, title:"Location", link:"filter-location"},
   {id:3, title:"Assessor", link:"filter-date"},
-  {id:4, title:"Scheme", link:"filter-date"},
+  {id:4, title:"Scheme", link:"filter-scheme"},
   {id:5, title:"Rating", link:"filter-date"},
   {id:6, title:"Property type", link:"filter-date"},
   {id:7, title:"Property total size", link:"filter-date"},
@@ -604,19 +604,16 @@ router.get('/filter-date', function(req, res, next) {
 });
 
 
+
+
 router.get('/filter-scheme', function(req, res, next) {
  var itemList = [
-    { value: "2018", text: "2018"},
-    { value: "2017", text: "2017"},
-    { value: "2016", text: "2016"},
-    { value: "2015", text: "2015"},
-    { value: "2014", text: "2014"},
-    { value: "2013", text: "2013"},
-    { value: "2013", text: "2013"},
-    { value: "2012", text: "2012"},
-    { value: "2011", text: "2011"},
-    { value: "2010", text: "2010"},
-    { value: "2009", text: "2009"}
+    { value: "Elmhurst", text: "Elmhurst"},
+    { value: "Quidos", text: "Quidos"},
+    { value: "CIBSE", text: "CIBSE"},
+    { value: "Stirling", text: "Stirling"},
+    { value: "Stroma", text: "Stroma"},
+    { value: "ECMK", text: "ECMK"}
   ]
 
   res.render('auth/filter-scheme', {
