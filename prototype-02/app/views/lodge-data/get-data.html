@@ -28,7 +28,7 @@
 
 
 
-      <form id="main" action="get-data" method="post" class="form" >
+      <form id="main" action="" method="post" class="form" >
 
       <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
         <h2 class="govuk-error-summary__title " id="error-summary-title">
@@ -40,44 +40,55 @@
         </div>
       </div>
 
+
       <div class="govuk-form-group"> 
         <fieldset class="govuk-fieldset" aria-describedby="address-hint">
 
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading">
-              Filter options
+              Download EPC data
             </h1>
           </legend>
+                <h2 class="govuk-heading-m">
+        Get the data
+      </h2>
 
-          <h2 class="app-task-list__section">
-            Filter and specify fields
-          </h2>
+      {{ govukButton({
+        text: "Filter and download"
+      }) }}
 
-          <ul class="app-task-list__items">
-            {% for item in filterList %}
-            <li class="app-task-list__item filter-overview__add">
-              <span class="app-task-list__task-btn btn--tertiary">
-                Add 
+
+
+          <div class="govuk-form-group">
+
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Other download options
               </span>
-              <a class="app-task-list__task-name" href="{{item.link}}" aria-describedby="{{item.title}}-completed">
-                {{item.title}}
-              </a>
-              <div class="app-task-list__task-name">
-                Nothing added
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
+            </summary>
 
-          <div>
-          <a href="#">Clear Filters</a>
+            <div>
+              <ul class="govuk-list">
+                <li>
+                  <a class="govuk-link" href="#">Complete dataset (csv format) (34.8 MB)</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="#">Complete dataset (csvw format) (1.7 MB)</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="#">Complete dataset (xls format) (5.6 MB)</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="#">Complete dataset (txt format) (12.4 MB)</a>
+                </li>
+              </ul>
+            </div>
+
+
+          </details>
+
           </div>
-
-          {{ govukButton({
-            text: "Save and return"
-          }) }}
-
-
 
           </fieldset>
         </div>

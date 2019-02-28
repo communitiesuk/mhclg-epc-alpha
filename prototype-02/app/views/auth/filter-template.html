@@ -1,3 +1,6 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -50,24 +53,10 @@
           </legend>
 
           <h2 class="app-task-list__section">
-            Filter and specify fields
+            {{ title }}
           </h2>
 
-          <ul class="app-task-list__items">
-            {% for item in filterList %}
-            <li class="app-task-list__item filter-overview__add">
-              <span class="app-task-list__task-btn btn--tertiary">
-                Add 
-              </span>
-              <a class="app-task-list__task-name" href="{{item.link}}" aria-describedby="{{item.title}}-completed">
-                {{item.title}}
-              </a>
-              <div class="app-task-list__task-name">
-                Nothing added
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
+
 
           <div>
           <a href="#">Clear Filters</a>
