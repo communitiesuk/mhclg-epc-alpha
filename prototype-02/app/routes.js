@@ -835,7 +835,7 @@ router.get('/filter-rooms', function(req, res, next) {
   res.render('auth/filter-input', {
     type:"number",
     title:"rooms",
-    description:"number of rooms",
+    description:"Enter the number of rooms",
     filterList:filters,
     links: availableOptions
   });
