@@ -647,7 +647,6 @@ router.get('/filter-location', function(req, res, next) {
     itemList.push({value:regions[i], text:regions[i]})
   }
 
-
   res.render('auth/filter-checkbox', {
     title:"location",
     description:"location",
@@ -668,10 +667,10 @@ router.get('/filter-assessor', function(req, res, next) {
     { value: "ECMK", text: "ECMK"}
   ]
 
-  res.render('auth/filter-checkbox', {
+   res.render('auth/filter-input', {
+    type:"text",
     title:"assessor",
-    description:"Assessor",
-    itemList:itemList,
+    description:"Enter the Assessor reference",
     filterList:filters,
     links: availableOptions
   });
@@ -820,7 +819,8 @@ router.get('/filter-rooms', function(req, res, next) {
     { value: "4+", text: "4+"}
   ]
 
-  res.render('auth/filter-numberInput', {
+  res.render('auth/filter-input', {
+    type:"number",
     title:"rooms",
     description:"number of rooms",
     filterList:filters,

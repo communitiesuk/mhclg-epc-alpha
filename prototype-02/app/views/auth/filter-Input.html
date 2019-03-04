@@ -38,10 +38,20 @@
         </div>
       </div>
 
+{% if type =="text" %}
+{% set class='govuk-input--width-20' %}
+{% else %}
+{% set class='govuk-input--width-4' %}
+{% endif %}
+
       <div class="govuk-form-group"> 
         <fieldset class="govuk-fieldset" aria-describedby="address-hint">
 
-
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              Filter options: {{title | capitalize }}
+            </h1>
+          </legend>
   
           <div class="">
             <label class="govuk-label" for="{{title}}">
@@ -50,7 +60,7 @@
             <span id="{{title}}-error" class="govuk-error-message hide">
               Enter the {{ description }}
             </span>
-            <input class="govuk-input  govuk-input--width-4" id="{{title}}" name="{{title}}" type="number" value="{{data[title]}}">
+            <input class="govuk-input {{ class }}" id="{{title}}" name="{{title}}" type="{{inputType}}" value="{{data[title]}}">
           </div>
 
 
