@@ -43,28 +43,19 @@
 
 
   
-{% from "checkboxes/macro.njk" import govukCheckboxes %}
-
-  {{ govukCheckboxes({
-  idPrefix: title,
-  name: title,
-  fieldset: {
-    legend: {
-      text: "Filter options: "+ description,
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--xl"
-    }
-  },
-  hint: {
-    text: "Select all that apply."
-  },
-
-  items: itemList
-}) }}
+          <div class="">
+            <label class="govuk-label" for="{{title}}">
+              {{ description | capitalize }}
+            </label>
+            <span id="{{title}}-error" class="govuk-error-message hide">
+              Enter the {{ description }}
+            </span>
+            <input class="govuk-input  govuk-input--width-4" id="{{title}}" name="{{title}}" type="number" value="{{data[title]}}">
+          </div>
 
 
           <div>
-          <a href="#">Clear Filters</a>
+            <a href="#">Clear Filters</a>
           </div>
 
           {{ govukButton({

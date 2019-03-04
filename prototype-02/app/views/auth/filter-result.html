@@ -1,6 +1,3 @@
-{% from "input/macro.njk" import govukInput %}
-{% from "button/macro.njk" import govukButton %}
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -17,7 +14,7 @@
   <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Adjust filter options</a>
       </li>
     </ol>
   </div>
@@ -26,12 +23,48 @@
 {% block content %}
   <div class="govuk-grid-row">
 
+    <h1 class="govuk-heading-xl">
+      Filtered dataset
+    </h1>
+
+
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption">Example dataset mock-up.</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          {% for item in filterList %}
+          <th class="govuk-table__header" scope="col">{{ item.title }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+      {% set length = 10 %} 
+      {% for i in range(0, length) %}
+            <tr class="govuk-table__row">
+
+        {% for item in filterList %}
+
+              <td class="govuk-table__cell">{{item.results}}</td>
+        {% endfor %}
+
+            </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+
+  </div>
+  <div class="govuk-grid-row">
+
     <div class="govuk-grid-column-two-thirds">
 
 
 
 
-      <form id="main" action="filter" method="post" class="form" >
+      <form id="main" action="get-data" method="post" class="form" >
 
       <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
         <h2 class="govuk-error-summary__title " id="error-summary-title">
@@ -43,24 +76,23 @@
         </div>
       </div>
 
-
       <div class="govuk-form-group"> 
         <fieldset class="govuk-fieldset" aria-describedby="address-hint">
 
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading">
-              Download EPC data
+              Filtered dataset
             </h1>
-          </legend>
-                <h2 class="govuk-heading-m">
-        Get the data
-      </h2>
-
-      {{ govukButton({
-        text: "Filter and download"
-      }) }}
+          </legend> -->
 
 
+          <h2 class="app-task-list__section">
+            Download
+          </h2>
+
+          {{ govukButton({
+            text: "Excel file"
+          }) }}
 
           <div class="govuk-form-group">
           <details class="govuk-details">
@@ -72,22 +104,22 @@
             <div>
               <ul class="govuk-list">
                 <li>
-                  <a class="govuk-link" href="#">Complete dataset (csv format) (34.8 MB)</a>
+                  <a class="govuk-link" href="#">Filtered dataset (csv format) (34.8 MB)</a>
                 </li>
                 <li>
-                  <a class="govuk-link" href="#">Complete dataset (csvw format) (1.7 MB)</a>
+                  <a class="govuk-link" href="#">Filtered dataset (csvw format) (1.7 MB)</a>
                 </li>
                 <li>
-                  <a class="govuk-link" href="#">Complete dataset (xls format) (5.6 MB)</a>
+                  <a class="govuk-link" href="#">Filtered dataset (xls format) (5.6 MB)</a>
                 </li>
                 <li>
-                  <a class="govuk-link" href="#">Complete dataset (txt format) (12.4 MB)</a>
+                  <a class="govuk-link" href="#">Filtered dataset (txt format) (12.4 MB)</a>
                 </li>
               </ul>
             </div>
           </details>
-
           </div>
+
 
           </fieldset>
         </div>

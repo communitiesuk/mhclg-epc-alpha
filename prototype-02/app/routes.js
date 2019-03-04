@@ -490,10 +490,9 @@ router.get('/select-address', function(req, res) {
 
 // use link pattern 'filter-xxxx' where xxxx is th eporpotey being filtered
 // create a new route for each page
-// date, location, assessor, scheme, rating, prop-type, prop-size, reason, type, status, rooms
+// date, location, assessor, scheme, rating, propType, propSize, reason, certType, status, rooms
 // use a generic filter-checkbox template to render most pages
 var filters = [
-
   {id:1, ref:'date', title:"Date range", link:"filter-date", results:'Nothing added'},
   {id:2, ref:'location', title:"Location", link:"filter-location", results:'Nothing added'},
   {id:3, ref:'assessor', title:"Assessor", link:"filter-assessor", results:'Nothing added'},
@@ -502,13 +501,14 @@ var filters = [
   {id:6, ref:'propType', title:"Property type", link:"filter-prop-type", results:'Nothing added'},
   {id:7, ref:'propSize', title:"Property total size", link:"filter-prop-size", results:'Nothing added'},
   {id:8, ref:'reason', title:"Lodgement reason", link:"filter-reason", results:'Nothing added'},
-  {id:9, ref:'certType', title:"Type", link:"filter-type", results:'Nothing added'},
+  {id:9, ref:'certType', title:"Certificate Type", link:"filter-type", results:'Nothing added'},
   {id:10, ref:'status', title:"Status", link:"filter-status", results:'Nothing added'},
   {id:11, ref:'rooms', title:"Number of rooms", link:"filter-rooms", results:'Nothing added'}
 ];
 
-router.get('/filter', function(req, res, next) {
+
   var filteredArray = [];
+router.get('/filter', function(req, res, next) {
   // get returned data
   console.log(req.session.data);
 
@@ -617,6 +617,7 @@ router.get('/filter-date', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"date",
+    description:"date",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -649,6 +650,7 @@ router.get('/filter-location', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"location",
+    description:"location",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -668,6 +670,7 @@ router.get('/filter-assessor', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"assessor",
+    description:"Assessor",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -687,6 +690,7 @@ router.get('/filter-scheme', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"schemes",
+    description:"Schemes",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -706,6 +710,7 @@ router.get('/filter-rating', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"rating",
+    description:"Energy rating",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -715,15 +720,16 @@ router.get('/filter-rating', function(req, res, next) {
 
 router.get('/filter-prop-type', function(req, res, next) {
  var itemList = [
-    { value: "0", text: "House"},
-    { value: "1", text: "Bungalow"},
-    { value: "2", text: "Flat"},
-    { value: "3", text: "Maisonette"},
-    { value: "4", text: "Park home"}
+    { value: "House", text: "House"},
+    { value: "Bungalow", text: "Bungalow"},
+    { value: "Flat", text: "Flat"},
+    { value: "Maisonette", text: "Maisonette"},
+    { value: "Park home", text: "Park home"}
   ]
 
   res.render('auth/filter-checkbox', {
-    title:"Type",
+    title:"propType",
+    description:"Property Type",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -742,26 +748,27 @@ router.get('/filter-prop-size', function(req, res, next) {
   ]
 
   res.render('auth/filter-checkbox', {
-    title:"Property Size",
+    title:"size",
+    description:"Property Size",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
   });
 });
 
-
+// green deal, sale, rental
 router.get('/filter-reason', function(req, res, next) {
  var itemList = [
-    { value: "A", text: "A"},
-    { value: "B", text: "B"},
-    { value: "C", text: "C"},
-    { value: "D", text: "D"},
-    { value: "E", text: "E"},
-    { value: "F", text: "F"}
+    { value: "Rental", text: "Rental"},
+    { value: "Sale", text: "Sale"},
+    { value: "Green Deal", text: "Green Deal"},
+    { value: "Green mortgage", text: "Green mortgage"},
+    { value: "Renewable Heat Initiative", text: "Renewable Heat Initiative"}
   ]
 
   res.render('auth/filter-checkbox', {
     title:"reason",
+    description:"Lodgement reason",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -779,7 +786,8 @@ router.get('/filter-type', function(req, res, next) {
   ]
 
   res.render('auth/filter-checkbox', {
-    title:"type",
+    title:"certType",
+    description:"Certificate type",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -796,6 +804,7 @@ router.get('/filter-status', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"status",
+    description:"status",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
@@ -811,9 +820,9 @@ router.get('/filter-rooms', function(req, res, next) {
     { value: "4+", text: "4+"}
   ]
 
-  res.render('auth/filter-checkbox', {
+  res.render('auth/filter-numberInput', {
     title:"rooms",
-    itemList:itemList,
+    description:"number of rooms",
     filterList:filters,
     links: availableOptions
   });
@@ -829,6 +838,17 @@ router.get('/manage-accounts', function(req, res, next) {
 
 router.get('/get-data', function(req, res, next) {
   res.render('auth/get-data', {
+    links: availableOptions
+  });
+});
+
+router.get('/filter-result', function(req, res, next) {
+
+
+
+
+  res.render('auth/filter-result', {
+    filterList:filteredArray,
     links: availableOptions
   });
 });
