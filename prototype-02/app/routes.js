@@ -526,6 +526,19 @@ router.get('/filter', function(req, res, next) {
     console.log(item, refObj);
   }
 
+  // extract the range of sizes for 
+  var minSize = 0;
+  var maxSize = 10000;
+  
+  // get range for size
+  if(req.session.data['size-from']){
+    minSize = req.session.data['size-from'];
+  }
+  if(req.session.data['size-to']){
+    maxSize = req.session.data['size-to'];
+  }
+  filters[6].results = minSize + ' to ' + maxSize +" sq ft";
+
 
   // TODO: Extract this function out and check for query string for each page?
   // check for user in url query string
@@ -746,7 +759,7 @@ router.get('/filter-prop-size', function(req, res, next) {
     { value: "F", text: "F"}
   ]
 
-  res.render('auth/filter-checkbox', {
+  res.render('auth/filter-range', {
     title:"size",
     description:"Property Size",
     itemList:itemList,
@@ -843,11 +856,12 @@ router.get('/get-data', function(req, res, next) {
 });
 
 router.get('/filter-result', function(req, res, next) {
-
+  var randomNumber = Math.round(Math.random()*100000);
 
 
 
   res.render('auth/filter-result', {
+    randomNumber:randomNumber,
     filterList:filteredArray,
     links: availableOptions
   });
