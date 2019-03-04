@@ -487,6 +487,11 @@ router.get('/select-address', function(req, res) {
   });
 });
 
+
+// use link pattern 'filter-xxxx' where xxxx is th eporpotey being filtered
+// create a new route for each page
+// date, location, assessor, scheme, rating, prop-type, prop-size, reason, type, status, rooms
+// use a generic filter-checkbox template to render most pages
 var filters = [
 
   {id:1, ref:'date', title:"Date range", link:"filter-date", results:'Nothing added'},
@@ -501,7 +506,6 @@ var filters = [
   {id:10, ref:'status', title:"Status", link:"filter-status", results:'Nothing added'},
   {id:11, ref:'rooms', title:"Number of rooms", link:"filter-rooms", results:'Nothing added'}
 ];
-
 
 router.get('/filter', function(req, res, next) {
   var filteredArray = [];
@@ -523,10 +527,9 @@ router.get('/filter', function(req, res, next) {
   }
 
 
-  // TODO: Extract this fucntion out and check for query string for each page?
+  // TODO: Extract this function out and check for query string for each page?
   // check for user in url query string
   if(req.query.user){
-
     user = req.query.user.toLowerCase();
 
     if(user!=='assessor' && user!=='scheme' && user!=='gov' 
@@ -536,7 +539,6 @@ router.get('/filter', function(req, res, next) {
       user = 'none';
       renderPath='auth/index';
     }
-
 
     if(user==='assessor'){
       availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
@@ -564,9 +566,9 @@ router.get('/filter', function(req, res, next) {
 
   }
 
-
-
   filteredArray =  filters.slice();
+  // there are more users that have all options so 
+  // loop thru the array and remove the non-applicable ones
   switch (user) {
     case 'epc': 
       filteredArray = _.without(filteredArray, _.findWhere(filters, {
@@ -622,6 +624,48 @@ router.get('/filter-date', function(req, res, next) {
 });
 
 
+/*
+UKRegionCode, string, 1, Borders, 2, East Anglia, 3, East Pennines, 4, East Scotland, 5, Highland, 6, Midlands, 7, North East England, 8, North East Scotland, 9, North West England / South West Scotland, 10, Northern Ireland, 11, Orkney, 12, Severn Valley, 13, Shetland, 14, South East England, 15, South West England, 16, Southern England, 17, Thames Valley, 18, Wales, 19, West Pennines, 20, West Scotland, 21, Western Isles, 22, Jersey, 23, Guernsey, 24, Isle of Man, NR, for backwards compatibility only – do not use,
+*/
+
+router.get('/filter-location', function(req, res, next) {
+ var itemList = [
+    { value: "Elmhurst", text: "Elmhurst"},
+    { value: "Quidos", text: "Quidos"},
+    { value: "CIBSE", text: "CIBSE"},
+    { value: "Stirling", text: "Stirling"},
+    { value: "Stroma", text: "Stroma"},
+    { value: "ECMK", text: "ECMK"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"location",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-assessor', function(req, res, next) {
+ var itemList = [
+    { value: "Elmhurst", text: "Elmhurst"},
+    { value: "Quidos", text: "Quidos"},
+    { value: "CIBSE", text: "CIBSE"},
+    { value: "Stirling", text: "Stirling"},
+    { value: "Stroma", text: "Stroma"},
+    { value: "ECMK", text: "ECMK"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"assessor",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
 router.get('/filter-scheme', function(req, res, next) {
  var itemList = [
     { value: "Elmhurst", text: "Elmhurst"},
@@ -641,6 +685,100 @@ router.get('/filter-scheme', function(req, res, next) {
 });
 
 
+router.get('/filter-rating', function(req, res, next) {
+ var itemList = [
+    { value: "A", text: "A"},
+    { value: "B", text: "B"},
+    { value: "C", text: "C"},
+    { value: "D", text: "D"},
+    { value: "E", text: "E"},
+    { value: "F", text: "F"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"rating",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-prop-type', function(req, res, next) {
+ var itemList = [
+ //House, 1, Bungalow, 2, Flat, 3, Maisonette, 4, Park home
+    { value: "0", text: "House"},
+    { value: "1", text: "Bungalow"},
+    { value: "2", text: "Flat"},
+    { value: "3", text: "Maisonette"},
+    { value: "4", text: "Park home"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"Type",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-prop-size', function(req, res, next) {
+ var itemList = [
+    { value: "A", text: "A"},
+    { value: "B", text: "B"},
+    { value: "C", text: "C"},
+    { value: "D", text: "D"},
+    { value: "E", text: "E"},
+    { value: "F", text: "F"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"Property Size",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-reason', function(req, res, next) {
+ var itemList = [
+    { value: "A", text: "A"},
+    { value: "B", text: "B"},
+    { value: "C", text: "C"},
+    { value: "D", text: "D"},
+    { value: "E", text: "E"},
+    { value: "F", text: "F"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"reason",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+// certifcate type
+router.get('/filter-type', function(req, res, next) {
+ var itemList = [
+    { value: "SAP", text: "SAP"},
+    { value: "SAPrd", text: "SAPrd"},
+    { value: "DEC", text: "DEC"},
+    { value: "ACR", text: "ACR"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"type",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
 router.get('/filter-status', function(req, res, next) {
  var itemList = [
     { value: "Active", text: "Active"},
@@ -650,6 +788,23 @@ router.get('/filter-status', function(req, res, next) {
 
   res.render('auth/filter-checkbox', {
     title:"status",
+    itemList:itemList,
+    filterList:filters,
+    links: availableOptions
+  });
+});
+
+
+router.get('/filter-rooms', function(req, res, next) {
+ var itemList = [
+    { value: "2", text: "2"},
+    { value: "3", text: "3"},
+    { value: "4", text: "4"},
+    { value: "4+", text: "4+"}
+  ]
+
+  res.render('auth/filter-checkbox', {
+    title:"rooms",
     itemList:itemList,
     filterList:filters,
     links: availableOptions
