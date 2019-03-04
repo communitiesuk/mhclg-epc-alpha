@@ -629,14 +629,23 @@ UKRegionCode, string, 1, Borders, 2, East Anglia, 3, East Pennines, 4, East Scot
 */
 
 router.get('/filter-location', function(req, res, next) {
- var itemList = [
-    { value: "Elmhurst", text: "Elmhurst"},
-    { value: "Quidos", text: "Quidos"},
-    { value: "CIBSE", text: "CIBSE"},
-    { value: "Stirling", text: "Stirling"},
-    { value: "Stroma", text: "Stroma"},
-    { value: "ECMK", text: "ECMK"}
-  ]
+  var regions = [
+  "Borders", "East Anglia", "East Pennines", "East Scotland",
+   "Highland", "Midlands", "North East England", "North East Scotland", 
+   "North West England / South West Scotland", "Northern Ireland", 
+   "Orkney", "Severn Valley", "Shetland", "South East England", 
+   "South West England", "Southern England", "Thames Valley", 
+   "Wales", "West Pennines", "West Scotland", "Western Isles", 
+   "Jersey", "Guernsey", "Isle of Man"
+   // NR, for backwards compatibility only – do not use,
+];
+
+ var itemList = [];
+
+  for (var i=0; i<regions.length; i++){
+    itemList.push({value:regions[i], text:regions[i]})
+  }
+
 
   res.render('auth/filter-checkbox', {
     title:"location",
@@ -706,7 +715,6 @@ router.get('/filter-rating', function(req, res, next) {
 
 router.get('/filter-prop-type', function(req, res, next) {
  var itemList = [
- //House, 1, Bungalow, 2, Flat, 3, Maisonette, 4, Park home
     { value: "0", text: "House"},
     { value: "1", text: "Bungalow"},
     { value: "2", text: "Flat"},
