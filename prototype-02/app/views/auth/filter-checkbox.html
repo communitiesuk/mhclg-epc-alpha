@@ -40,8 +40,6 @@
 
       <div class="govuk-form-group"> 
         <fieldset class="govuk-fieldset" aria-describedby="address-hint">
-
-
   
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
@@ -64,23 +62,17 @@
 
 
           <div>
-          <a href="#">Clear Filters</a>
+          <a href="#" onclick="javascript:clearFilters('{{title}}');">Clear Filters</a>
           </div>
 
           {{ govukButton({
             text: "Save and return"
           }) }}
 
+        </fieldset>
+      </div>
 
-
-          </fieldset>
-        </div>
-
-      </form>
-
-
-
-
+    </form>
 
 
     </div>

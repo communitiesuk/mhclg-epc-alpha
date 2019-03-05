@@ -530,15 +530,20 @@ router.get('/filter', function(req, res, next) {
   // extract the range of sizes for 
   var minSize = 0;
   var maxSize = 10000;
+  var setSize = false;
   
   // get range for size
   if(req.session.data['size-from']){
     minSize = req.session.data['size-from'];
+    setSize = true;
   }
   if(req.session.data['size-to']){
     maxSize = req.session.data['size-to'];
+    setSize = true;
   }
-  filters[6].results = minSize + ' to ' + maxSize +" sq ft";
+  if(setSize){
+    filters[6].results = minSize + ' to ' + maxSize +" sq ft";
+  }
 
 
   // TODO: Extract this function out and check for query string for each page?
@@ -628,7 +633,10 @@ router.get('/filter-date', function(req, res, next) {
     { value: "2010", text: "2010"},
     { value: "2009", text: "2009"}
   ]
-
+  var data = req.session.data.date;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"date",
     description:"date",
@@ -660,7 +668,10 @@ router.get('/filter-location', function(req, res, next) {
   for (var i=0; i<regions.length; i++){
     itemList.push({value:regions[i], text:regions[i]})
   }
-
+  var data = req.session.data.location;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"location",
     description:"location",
@@ -672,14 +683,6 @@ router.get('/filter-location', function(req, res, next) {
 
 
 router.get('/filter-assessor', function(req, res, next) {
- var itemList = [
-    { value: "Elmhurst", text: "Elmhurst"},
-    { value: "Quidos", text: "Quidos"},
-    { value: "CIBSE", text: "CIBSE"},
-    { value: "Stirling", text: "Stirling"},
-    { value: "Stroma", text: "Stroma"},
-    { value: "ECMK", text: "ECMK"}
-  ]
 
    res.render('auth/filter-input', {
     type:"text",
@@ -700,7 +703,10 @@ router.get('/filter-scheme', function(req, res, next) {
     { value: "Stroma", text: "Stroma"},
     { value: "ECMK", text: "ECMK"}
   ]
-
+  var data = req.session.data.schemes;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"schemes",
     description:"Schemes",
@@ -720,7 +726,10 @@ router.get('/filter-rating', function(req, res, next) {
     { value: "E", text: "E"},
     { value: "F", text: "F"}
   ]
-
+  var data = req.session.data.rating;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"rating",
     description:"Energy rating",
@@ -739,7 +748,10 @@ router.get('/filter-prop-type', function(req, res, next) {
     { value: "Maisonette", text: "Maisonette"},
     { value: "Park home", text: "Park home"}
   ]
-
+  var data = req.session.data.propType;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"propType",
     description:"Property Type",
@@ -751,33 +763,33 @@ router.get('/filter-prop-type', function(req, res, next) {
 
 
 router.get('/filter-prop-size', function(req, res, next) {
- var itemList = [
-    { value: "A", text: "A"},
-    { value: "B", text: "B"},
-    { value: "C", text: "C"},
-    { value: "D", text: "D"},
-    { value: "E", text: "E"},
-    { value: "F", text: "F"}
-  ]
 
   res.render('auth/filter-range', {
     title:"size",
-    description:"Property Size",
-    itemList:itemList,
+    description:"Property Size (sq ft)",
     filterList:filters,
     links: availableOptions
   });
 });
 
+
+
 // green deal, sale, rental
 router.get('/filter-reason', function(req, res, next) {
- var itemList = [
+  // get an array of results back eg [ 'Rental', 'Sale' ]
+
+  var itemList = [
     { value: "Rental", text: "Rental"},
     { value: "Sale", text: "Sale"},
     { value: "Green Deal", text: "Green Deal"},
-    { value: "Green mortgage", text: "Green mortgage"},
+    { value: "Green Mortgage", text: "Green Mortgage"},
     { value: "Renewable Heat Initiative", text: "Renewable Heat Initiative"}
-  ]
+  ];
+
+  var data = req.session.data.reason;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
 
   res.render('auth/filter-checkbox', {
     title:"reason",
@@ -793,10 +805,15 @@ router.get('/filter-reason', function(req, res, next) {
 router.get('/filter-type', function(req, res, next) {
  var itemList = [
     { value: "SAP", text: "SAP"},
-    { value: "SAPrd", text: "SAPrd"},
+    { value: "rdSAP", text: "rdSAP"},
     { value: "DEC", text: "DEC"},
     { value: "ACR", text: "ACR"}
   ]
+  
+  var data = req.session.data.certType;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
 
   res.render('auth/filter-checkbox', {
     title:"certType",
@@ -814,7 +831,10 @@ router.get('/filter-status', function(req, res, next) {
     { value: "Retired", text: "Retired"},
     { value: "Not for issue", text: "Not for issue"}
   ]
-
+  var data = req.session.data.status;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-checkbox', {
     title:"status",
     description:"status",
@@ -832,7 +852,10 @@ router.get('/filter-rooms', function(req, res, next) {
     { value: "4", text: "4"},
     { value: "4+", text: "4+"}
   ]
-
+  var data = req.session.data.rooms;
+  if (data){
+    itemList = setCheckbox(itemList, data);
+  }
   res.render('auth/filter-input', {
     type:"number",
     title:"rooms",
@@ -866,6 +889,18 @@ router.get('/filter-result', function(req, res, next) {
     links: availableOptions
   });
 });
+
+// loop through items in list and check vs session data
+// return array with checked=true for the nunjuck component
+function setCheckbox(list, data){
+  for (var item in list){
+    var str = list[item].text
+    if (data.indexOf(str)>-1){
+      list[item].checked = true;
+    }
+  }
+  return list
+}
 
 ////////////////////////////////////////////////////////////////////////////
 //

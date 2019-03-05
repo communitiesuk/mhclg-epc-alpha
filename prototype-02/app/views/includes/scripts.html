@@ -26,6 +26,7 @@
 		evt.preventDefault();
 	});
 
+	// sort results on auth search
 	$("select#sort").change(function(){
 		console.log( "sort, sort, sort" );
 		console.log( $( "#sort" ).val() );
@@ -33,12 +34,14 @@
 		$('#sortBtn').click();
 	});
 
+	// filter the results on the auth results page
 	$("#filterBtn").click(function(evt){
 		//console.log( "click, click, click" );
 		console.log('filterBtn here');
 		$('#form').submit();
 	});
 
+	// toggle password on auth sign-in
 	function togglePassword() {
 	  var x = document.getElementById("password");
 	  if (x.type === "password") {
@@ -46,7 +49,19 @@
 	  } else {
 	    x.type = "password";
 	  }
-	} 
+	}
+
+	// clear filters
+	function clearFilters(data_id){
+
+		if(data_id==='size'){
+			data[data_id+'-to'] = '';
+			data[data_id+'-from'] = '';
+		}
+
+		//data[data_id] = [];
+		console.log('clear ' + data_id);
+	}
 
 
 </script>
