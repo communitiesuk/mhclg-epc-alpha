@@ -488,7 +488,7 @@ router.get('/select-address', function(req, res) {
 });
 
 
-// use link pattern 'filter-xxxx' where xxxx is th eporpotey being filtered
+// use link pattern 'filter-xxxx' where xxxx is the property being filtered
 // create a new route for each page
 // date, location, assessor, scheme, rating, propType, propSize, reason, certType, status, rooms
 // use a generic filter-checkbox template to render most pages
@@ -506,11 +506,12 @@ var filters = [
   {id:11, ref:'rooms', title:"Number of rooms", link:"filter-rooms", results:'Nothing added'}
 ];
 
+var filteredArray = [];
 
-  var filteredArray = [];
+
 router.get('/filter', function(req, res, next) {
   // get returned data
-  console.log(req.session.data);
+  // console.log(req.session.data);
 
   //populate filter list with returned values
   for (item in req.session.data){
@@ -523,7 +524,7 @@ router.get('/filter', function(req, res, next) {
       refObj.results = req.session.data[item];
     }
   
-    console.log(item, refObj);
+    //console.log(item, refObj);
   }
 
   // extract the range of sizes for 
@@ -855,10 +856,9 @@ router.get('/get-data', function(req, res, next) {
   });
 });
 
+
 router.get('/filter-result', function(req, res, next) {
   var randomNumber = Math.round(Math.random()*100000);
-
-
 
   res.render('auth/filter-result', {
     randomNumber:randomNumber,
