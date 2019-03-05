@@ -41,24 +41,25 @@
       <div class="govuk-form-group"> 
         <fieldset class="govuk-fieldset" aria-describedby="address-hint">
   
-{% from "checkboxes/macro.njk" import govukCheckboxes %}
+          {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
-  {{ govukCheckboxes({
-  idPrefix: title,
-  name: title,
-  fieldset: {
-    legend: {
-      text: "Filter options: "+ description,
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--xl"
-    }
-  },
-  hint: {
-    text: "Select all that apply."
-  },
-
-  items: itemList
-}) }}
+            {{ 
+              govukCheckboxes({
+                idPrefix: title,
+                name: title,
+                fieldset: {
+                  legend: {
+                    text: "Filter options: "+ description,
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                  }
+                },
+                hint: {
+                  text: "Select all that apply."
+                },
+                items: itemList
+              })
+            }}
 
 
           <div>
