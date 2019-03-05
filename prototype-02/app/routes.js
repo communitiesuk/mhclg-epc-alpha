@@ -511,9 +511,6 @@ var filteredArray = [];
 
 router.get('/filter', function(req, res, next) {
   // get returned data
-  console.log('filter');
-  console.log(req.session);
-  console.log(req.session.data);
 
   //populate filter list with returned values
   for (item in req.session.data){
