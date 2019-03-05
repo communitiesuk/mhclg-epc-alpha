@@ -59,6 +59,19 @@
 		$('#form').submit();
 	});
 
+	// 
+	function enableButton() {
+		var isChecked = $('input:checkbox').prop('checked');
+		
+		if(isChecked){
+			$('#termsBtn').removeClass("govuk-button--disabled");
+		}else{
+			$('#termsBtn').addClass("govuk-button--disabled");
+		}
+		$('#termsBtn').prop("disabled", !isChecked);
+
+	}
+		
 
 
 </script>

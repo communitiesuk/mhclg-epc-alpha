@@ -62,7 +62,7 @@
               Check the agreement box to continue.
             </span>
             <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="agreement" name="agreement" type="checkbox" value="agreement">
+            <input class="govuk-checkboxes__input" id="agreement" name="agreement" type="checkbox" value="agreement" onclick="enableButton()">
             <label class="govuk-label govuk-checkboxes__label" for="agreement">
               I agree
             </label>
@@ -70,9 +70,9 @@
           </fieldset>
         </div>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <button id="termsBtn" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled">
+          Continue
+        </button>
       </form>
 
     </div>

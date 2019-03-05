@@ -35,9 +35,9 @@
       <table class="govuk-table">
         <caption class="govuk-table__caption">
           {% if data['opt-out-choice']==='opt-out' %}
-            You have chosen to opt out of the register.
+            You have chosen to opt the following property out of the register:
           {% else %}
-            You have chosen to opt in to the register.
+            You have chosen to opt the following property in to the register:
           {% endif %}
 
 
@@ -45,7 +45,7 @@
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{ data['opt-out-address'] }}</td>
-            <td class="govuk-table__cell"><a href="#">Change</a></td>
+            <td class="govuk-table__cell"><a href="home-address">Change</a></td>
           </tr>
         </tbody>
       </table>
@@ -56,22 +56,22 @@
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="row">First Name</th>
             <td class="govuk-table__cell">{{ data['opt-out-first-name'] }}</td>
-            <td class="govuk-table__cell"><a href="#">Change</a></td>
+            <td class="govuk-table__cell"><a href="personal-details">Change</a></td>
           </tr>
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="row">Surname</th>
             <td class="govuk-table__cell">{{ data['opt-out-surname'] }}</td>
-            <td class="govuk-table__cell"><a href="#">Change</a></td>
+            <td class="govuk-table__cell"><a href="personal-details">Change</a></td>
           </tr>
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="row">Contact Details</th>
             <td class="govuk-table__cell">{{ data['opt-out-email'] }}</td>
-            <td class="govuk-table__cell"><a href="#">Change</a></td>
+            <td class="govuk-table__cell"><a href="personal-details">Change</a></td>
           </tr>
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="row"></th>
+            <th class="govuk-table__header" scope="row">Contact address</th>
             <td class="govuk-table__cell">{{ data['opt-out-address'] }}</td>
-            <td class="govuk-table__cell"><a href="#">Change</a></td>
+            <td class="govuk-table__cell"><a href="home-address">Change</a></td>
           </tr>
         </tbody>
       </table>

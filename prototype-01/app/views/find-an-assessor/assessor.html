@@ -54,8 +54,14 @@
 
           {% for key, item in results.scheme %}
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">{{ key| capitalize }}</th>
+                <th class="govuk-table__header" scope="row">{{ key | capitalize }}</th>
+                {% if key=="email" %}
+                <td class="govuk-table__cell"><a href="mailto:{{ item }}">{{ item }}</a></td>
+                {% elif key=="website" %}
+                <td class="govuk-table__cell"><a href="http://{{ item }}">{{ item }}</a></td>
+                {% else %}
                 <td class="govuk-table__cell">{{ item }}</td>
+                {% endif %}
               </tr>
           {% endfor %}
 
