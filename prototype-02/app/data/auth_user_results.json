@@ -839,7 +839,7 @@
         "name": "EPC Scheme One",
         "address": "100 Windsor Gardens",
         "email": "enquires@test1.co.uk",
-        "telephone": "421-188-9870",
+        "telephone": "01421-188-9870",
         "website": "test1.co.uk",
         "certificate types": ["EPC 3", "EPC 4"]
       },
@@ -847,7 +847,7 @@
         "name": "Acme Energy Scheme",
         "address": "549 Higher Heath",
         "email": "epc@acme-energy.co.uk",
-        "telephone": "555-348-6868",
+        "telephone": "01555-348-6868",
         "website": "www.acme-energy.co.uk",
         "certificate types": ["EPC 1", "EPC 2", "EPC 3", "EPC 4"]
       },
@@ -855,7 +855,7 @@
         "name": "API Surveys",
         "address": "1 Smithfield Road",
         "email": "survey@surveys.co.uk",
-        "telephone": "555-808-9999",
+        "telephone": "01555-808-9999",
         "website": "surveys.co.uk",
         "certificate types": ["EPC 2", "EPC 3"]
       },
@@ -863,7 +863,7 @@
         "name": "New Energy",
         "address": "84 Lansdown Road",
         "email": "admin@newenergy.net",
-        "telephone": "555-824-1234",
+        "telephone": "01555-824-1234",
         "website": "newenergy.net",
         "certificate types": ["DEC 1", "EPC 3", "EPC 4"]
       },
@@ -871,7 +871,7 @@
         "name": "Eco Energy",
         "address": "84 Lansdown Road",
         "email": "eco@eco.org",
-        "telephone": "555-176-5445",
+        "telephone": "01555-176-5445",
         "website": "www.eco.org",
         "certificate types": ["DEC 1", "DEC 2", "EPC 1", "EPC 2"]
       }
