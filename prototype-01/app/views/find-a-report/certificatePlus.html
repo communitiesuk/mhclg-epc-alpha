@@ -55,14 +55,14 @@
                 <th class="govuk-table__header" scope="row">Transaction type</th>
                 <td class="govuk-table__cell">{{ data.transactionType | capitalize }}</td>
               </tr>
-              <tr class="govuk-table__row">
+              <!-- <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row">Current rating</th>
                 <td class="govuk-table__cell">{{ data.currentRating }}</td>
               </tr>
               <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row">Potential rating</th>
                 <td class="govuk-table__cell">{{ data.potentialRating }}</td>
-              </tr>
+              </tr> -->
         </tbody>
       </table>
  
@@ -137,16 +137,6 @@
       </div>
 
       <p></p>
-      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
-      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
-      
-     <!-- 
-     <img height="240" src="/public/images/rating-graph.png" alt="Rating Graph for {{ data.address }}">
-      <p>Current rating: {{ data.currentRating }} ({{ data.currentEfficiency }})</p>
-      <p>Potential rating: {{ data.potentialRating }} ({{ data.potentialEfficiency }})</p>
-       -->
-
-
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
