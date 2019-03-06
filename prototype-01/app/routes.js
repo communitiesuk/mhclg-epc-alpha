@@ -373,7 +373,6 @@ router.get('/find-an-assessor/results', function(req, res) {
     req.app.locals.smartResults.assessors[i].base64ref  = base;
     var schemeRef = parseInt(assessors[i].scheme)-1;
     assessors[i].schemeName = req.app.locals.smartResults.schemes[schemeRef].name;
-    console.log(assessors);
   }
 
   var results = {
