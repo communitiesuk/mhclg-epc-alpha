@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 router.get('/user', function(req, res, next) {
 
   
-  var renderPath = 'auth/user';
+  var renderPath = 'auth/search';
 
   //check for user in url query string
   if(req.query.user){
@@ -130,6 +130,11 @@ router.get('/start', function(req, res, next) {
 
 
 router.get('/search', function(req, res, next) {
+
+    res.render('auth/search', {
+      links: availableOptions
+    });
+/*
   var contentType='find-a-report-step';
   var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324';
 
@@ -140,6 +145,7 @@ router.get('/search', function(req, res, next) {
       }
   }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
+        console.log(JSON.parse(body));
         res.render('auth/search', {
           links: availableOptions,
           content : JSON.parse(body)
@@ -150,6 +156,9 @@ router.get('/search', function(req, res, next) {
         res.redirect('/error');
       }
   });
+*/
+
+
 });
 
 
