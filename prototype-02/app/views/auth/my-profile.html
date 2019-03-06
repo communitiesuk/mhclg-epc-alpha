@@ -1,0 +1,45 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        My Profile
+      </h1>
+
+      <p>Edit my personal user account</p>
+      <p>[COPY GOES HERE]</p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {% include "includes/auth_side_nav.html" %}
+    </div>
+
+  </div>
+{% endblock %}
