@@ -896,6 +896,15 @@ router.get('/auth-report/assessor/:reference', function(req, res) {
   });
 });
 
+
+  router.get('/about', function(req, res, next) {
+    
+    res.render('about', { });
+
+  });
+
+
+
 /*
 router.get('/auth-assessor', function(req, res, next) {
   var contentType='service-start'
