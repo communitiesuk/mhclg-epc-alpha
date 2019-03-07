@@ -52,10 +52,11 @@ router.get('/user', function(req, res, next) {
 
     user = req.query.user.toLowerCase();
 
+    // allowable users
     if(user!=='assessor' && user!=='scheme' && user!=='gov' 
       && user!=='local-gov' && user!=='local'
       && user!=='service-provider' && user!=='service' && user!=='sp' 
-      && user!=='epc' && user!=='bank'){
+      && user!=='epc' && user!=='admin'){
       user = 'none';
       renderPath='auth/index';
     }
@@ -586,39 +587,56 @@ router.get('/filter', function(req, res, next) {
   if(req.query.user){
     user = req.query.user.toLowerCase();
 
+    // allowable users
     if(user!=='assessor' && user!=='scheme' && user!=='gov' 
       && user!=='local-gov' && user!=='local'
       && user!=='service-provider' && user!=='service' && user!=='sp' 
-      && user!=='epc' && user!=='bank'){
+      && user!=='epc' && user!=='admin'){
       user = 'none';
       renderPath='auth/index';
     }
 
+
+    if(user==='epc'|| user==='admin'){
+      user = 'epc';
+      userName = 'EPC Admin';
+      isAdmin = 'true';
+      canDownload = 'true';
+
+      availableOptions = [ links[1], links[2], links[4], links[5], links[6] ];
+    }else
+
+    if(user==='scheme' || user==='service-provider'|| user==='service'|| user==='sp'){
+      user = 'scheme';
+      userName = 'Scheme';
+      canLodge = 'true';
+      availableOptions = [ links[1], links[3], links[5], links[6]  ];
+    }else
+    
     if(user==='assessor'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
+      userName = 'Assessor';
+      availableOptions = [ links[1], links[3], links[5] ];
+      canLodge = 'true';
     }else
-    if(user==='scheme'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
-    }else
+
     if(user==='local-gov' || user==='local'){
       user = 'local-gov';
-      availableOptions = [ links[1], links[2], links[3], links[7] ];
+      userName = 'Local Govt';
+      canDownload = 'true';
+      availableOptions = [ links[4] ];
     }else
+
     if(user==='gov'){
-      availableOptions = [ links[1], links[2], links[3], links[7] ];
-    }else
-    if(user==='service-provider'|| user==='service'|| user==='sp'){
-      user = 'service-provider';
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
-    }else
-    if(user==='bank'){
-      availableOptions = [ links[7] ];
-    }else
-    if(user==='epc'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
+      userName = 'Govt';
+      availableOptions = [ links[4] ];
     }
 
+
+  }else{
+      user = 'none';
+      renderPath='auth/index';
   }
+
 
   filteredArray =  filters.slice();
   // there are more users that have all options so 
