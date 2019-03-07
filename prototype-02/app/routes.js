@@ -8,6 +8,14 @@ const _ = require('underscore');
 var user ='';
 var availableOptions = [];
 
+
+// auth user tools
+// scheme and assessor: input data
+// local-gov, gov, open data, banks: 
+
+
+
+
 var links = [
   {},
 /*  
@@ -15,6 +23,7 @@ var links = [
   {id:2, title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
   {id:3, title:'Find address', copy:'Find an address', link:'/search'},
   */
+
   {id:4, title:'Request new address', copy:'Add a new address', link:'/add-address'},
   {id:5, title:'Edit address', copy:'Update company address data', link:'/find-address'},
   
@@ -22,7 +31,7 @@ var links = [
   {id:7, title:'Download bulk data', copy:'Download EPC data', link:'/get-data'},
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
   {id:9, title:'User Access Management', copy:'Manage user accounts', link:'/manage-accounts'},
-  {id:9, title:'My Profile', copy:'Update Personal profile', link:'/my-profile'},
+  //{id:9, title:'My Profile', copy:'Update Personal profile', link:'/my-profile'},
 ];
 
 // static start page 
@@ -32,9 +41,11 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/user', function(req, res, next) {
-
-  
-  var renderPath = 'auth/search';
+  var renderPath = 'auth/landing-page';
+  var isAdmin = 'false';
+  var canLodge = 'false';
+  var canDownload = 'false';
+  var userName = '';
 
   //check for user in url query string
   if(req.query.user){
@@ -50,29 +61,40 @@ router.get('/user', function(req, res, next) {
     }
 
 
+    if(user==='epc'|| user==='admin'){
+      user = 'epc';
+      userName = 'EPC Admin';
+      isAdmin = 'true';
+      canDownload = 'true';
+
+      availableOptions = [ links[1], links[2], links[4], links[5], links[6] ];
+    }else
+
+    if(user==='scheme' || user==='service-provider'|| user==='service'|| user==='sp'){
+      user = 'scheme';
+      userName = 'Scheme';
+      canLodge = 'true';
+      availableOptions = [ links[1], links[3], links[5], links[6]  ];
+    }else
+    
     if(user==='assessor'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
+      userName = 'Assessor';
+      availableOptions = [ links[1], links[3], links[5] ];
+      canLodge = 'true';
     }else
-    if(user==='scheme'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5] ];
-    }else
+
     if(user==='local-gov' || user==='local'){
       user = 'local-gov';
-      availableOptions = [ links[1], links[2], links[3], links[7] ];
+      userName = 'Local Govt';
+      canDownload = 'true';
+      availableOptions = [ links[4] ];
     }else
+
     if(user==='gov'){
-      availableOptions = [ links[1], links[2], links[3], links[7] ];
-    }else
-    if(user==='service-provider'|| user==='service'|| user==='sp'){
-      user = 'service-provider';
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8], links[9] ];
-    }else
-    if(user==='bank'){
-      availableOptions = [ links[7] ];
-    }else
-    if(user==='epc'){
-      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7], links[8] ];
+      userName = 'Govt';
+      availableOptions = [ links[4] ];
     }
+
 
   }else{
       user = 'none';
@@ -82,6 +104,10 @@ router.get('/user', function(req, res, next) {
 
   res.render( renderPath, { 
       user: user,
+      displayName: userName,
+      isAdmin: isAdmin,
+      canLodge: canLodge,
+      canDownload:canDownload,
       links: availableOptions,
       users:['assessor','scheme','local-gov','gov','service-provider','epc','bank']
     });
@@ -166,7 +192,7 @@ router.get('/search', function(req, res, next) {
 
 router.get('/results', function(req, res, next) {
   var str;
-
+console.log(req.query.q);
   if(req.query.q){
     str = req.query.q.toLowerCase();
   }

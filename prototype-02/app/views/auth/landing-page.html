@@ -1,0 +1,172 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+<!--   <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div> -->
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <main id="main-content" role="main">
+    
+<div class="app-masthead">
+  <div class="govuk-width-container app-site-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl app-masthead__title"> {{displayName}} smart search</h1>
+            <p class="app-masthead__description">Authorised users can start by searching here for an Energy Performance Certificate for a particular property. Search using postcode, certificate or assessor reference.
+            </p>
+            <br/>
+              
+            <p>
+            <span id="search-field-hint" class="app-masthead__description app-masthead__hint">
+              Use the address and postcode (eg DY10 1AA, SW1P 3BU)
+              <br/>
+              or Certificate Reference Number: 1234-5678-1234-5678-1234
+              <br/>
+              or Assessor Reference Number: XXX123456
+            </span>
+            </p>
+
+        <form id="main" action="results" method="get" class="form" novalidate>
+        
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-form-group"> 
+          <fieldset class="govuk-fieldset" aria-describedby="search-field-hint">
+
+            <div class="govuk-form-group">
+              <label class="govuk-label app-masthead__label" for="search-field">
+                Enter a postcode, certificate or assessor reference.
+              </label>
+              <span id="search-field-error" class="govuk-error-message hide">
+                Enter the postcode, certificate or assessor reference.
+              </span>
+              <input data-required="true" class="govuk-input govuk-input--width-20" id="search-field" name="q" type="text" value="">
+              <!-- <label class="govuk-label" for="filter-type">
+                Sort by
+              </label> 
+              <select class="govuk-select" id="filter-type" name="filter-type">
+                <option value="all" selected>All</option>
+                <option value="certificates" >Certificate</option>
+                <option value="assessors">Assessors</option>
+                <option value="addresses">Addresses</option>
+              </select> -->
+            </div>
+            <br/>
+
+          </fieldset>
+        </div>
+
+
+        <button type="submit" role="button" draggable="false" class="govuk-button  app-button--inverted  govuk-!-margin-bottom-0">
+          Find the property
+        </button>
+
+
+      </form>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="govuk-width-container app-site-width-container">
+  <div class="govuk-main-wrapper govuk-main-wrapper--l">
+    <div class="govuk-grid-row">
+
+      {%  if canLodge =='true' %}
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l govuk-!-font-weight-bold">Lodge Data</h2>
+        <p class="govuk-body">Upload EPC lodgement data direct from your browser.</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="lodge-data" class="govuk-link govuk-!-font-weight-bold">Lodge EPC data</a></p>
+      </div>
+      {% endif %}
+
+      {%  if canDownload =='true' %}
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l">Download</h2>
+        <p class="govuk-body">Search, filter and download bulk EPC record data that is specific to your role.&nbsp;</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="get-data" class="govuk-link govuk-!-font-weight-bold">Download EPC data</a></p>
+      </div>
+      {% endif %}
+
+      {%  if isAdmin =='true' %}
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l">User Management</h2>
+        <p class="govuk-body">Add, remove and edit user accounts for access to the EPB register</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="manage-accounts" class="govuk-link govuk-!-font-weight-bold">User Accounts</a></p>
+      </div>
+      {% endif %}
+
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l">My Profile</h2>
+        <p class="govuk-body">Update your contact details, geographic areas covered and types of inspections carried out</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="my-profile" class="govuk-link govuk-!-font-weight-bold">Update my profile</a></p>
+      </div>
+
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
+      </div>
+
+      <div class="govuk-grid-column-two-thirds">
+        <h2 id="community" class="govuk-heading-l">Useful links</h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            {% for item in links %}
+            <li>
+              <a href="{{item.link}}" class="{{item}}">
+                {{item.title}}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+
+
+      </div>
+
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+  </main>  
+  </div>
+
+
+
+
+{% endblock %}

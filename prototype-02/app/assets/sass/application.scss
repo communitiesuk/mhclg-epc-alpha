@@ -14,6 +14,53 @@ $govuk-global-styles: true;
 @import "components/pagination";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.app-masthead {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    background-color: #005ea5;
+}
+
+.app-masthead__title {
+    color: #fff;
+    margin-bottom: 20px;
+}
+.app-masthead__description {
+    font-family: "nta",Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.11111;
+    margin-bottom: 0;
+    color: #fff;
+}
+.app-masthead__description {
+    font-size: 24px;
+    line-height: 1.25;
+}
+.app-masthead__hint {
+    font-size: 20px;
+    line-height: 1.25;
+    color: #ddd;
+}
+.app-button--inverted, .app-button--inverted:link, .app-button--inverted:visited {
+    color: #005ea5;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 0 #004274;
+    box-shadow: 0 2px 0 #004274;
+}
+.app-button--inverted:hover{
+  background-color: #ccc;
+}
+.app-masthead__label{
+    color: #fff;
+}
+
+.govuk-button--start.app-button--inverted {
+    background-image: url("/public/images/icon-pointer--blue.png");
+}
 
 .govuk-select{
   padding:0;
