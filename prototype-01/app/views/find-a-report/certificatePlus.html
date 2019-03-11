@@ -32,7 +32,7 @@
 
 
       <h1 class="govuk-heading-xl">
-        AUTHORISED: Energy Performance Information
+        Energy Performance Information
       </h1>
 
       <table class="govuk-table">
@@ -51,11 +51,11 @@
                 <th class="govuk-table__header" scope="row">Floor area</th>
                 <td class="govuk-table__cell">{{ data.floorArea }} m2</td>
               </tr>
-              <tr class="govuk-table__row">
+              <!-- <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row">Transaction type</th>
                 <td class="govuk-table__cell">{{ data.transactionType | capitalize }}</td>
               </tr>
-              <!-- <tr class="govuk-table__row">
+              <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="row">Current rating</th>
                 <td class="govuk-table__cell">{{ data.currentRating }}</td>
               </tr>
@@ -63,9 +63,14 @@
                 <th class="govuk-table__header" scope="row">Potential rating</th>
                 <td class="govuk-table__cell">{{ data.potentialRating }}</td>
               </tr> -->
+
         </tbody>
       </table>
  
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+      <h2><a href="#">Download EPC Certificate</a></h2>
+
       <hr class="govuk-section-break govuk-section-break--xl ">
 
       <h2>Assessment Result</h2> 
