@@ -977,12 +977,6 @@ router.get('/get-data', function(req, res, next) {
   });
 });
 
-router.get('/get-data-xyz', function(req, res, next) {
-  res.render('auth/get-data', {
-    links: availableOptions
-  });
-});
-
 
 router.get('/filter-result', function(req, res, next) {
   var randomNumber = Math.round(Math.random()*100000);
