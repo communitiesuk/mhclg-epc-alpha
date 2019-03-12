@@ -987,6 +987,14 @@ router.get('/filter-result', function(req, res, next) {
   });
 });
 
+
+router.get('/api-documentation', function(req, res, next) {
+  res.render('auth/api-documentation', {
+
+  });
+});
+
+
 // loop through items in list and check vs session data
 // return array with checked=true for the nunjuck component
 function setCheckbox(list, data){
@@ -1108,11 +1116,11 @@ router.get('/recommends', function(req, res, next) {
 
 
 router.get('/overview', function(req, res, next) {
-	//there is only one result
+	// there is only one result
 	var idx = 0;
 	var filtered =[];
 	filtered[idx] = {};
-	//console.log(filtered);
+
 	// add dummy data
 	  filtered[idx]['address'] = '';
     displayDate = '';
@@ -1131,7 +1139,7 @@ router.get('/overview', function(req, res, next) {
     filtered[idx]['hot-water-cost-potential'] = Math.round( filtered[idx]['hot-water-cost-current'] * Math.random() );
 
 
-  //assume a filtered array with only a single property result
+  // assume a filtered array with only a single property result
   var displayDate = moment(filtered[idx]['lodge-data-date']).format("Do MMMM YYYY");
 
   // hard code style pixel offsets for now
@@ -1204,7 +1212,6 @@ router.get('/overview', function(req, res, next) {
 
 	res.render('lodge-data/overview', { 
 		sectionTitles: sectionTitles,
-		//recommends: recommends,
 		response: response,
     property: property
 	});
