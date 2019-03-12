@@ -28,12 +28,51 @@
 
     <div class="govuk-grid-column-two-thirds">
 
+
       <h1 class="govuk-heading-xl">
-        My Profile
+        {{ results.assessor.name }}
       </h1>
 
       <p>Edit my personal user account</p>
-      <p>[COPY GOES HERE]</p>
+
+      <table class="govuk-table">
+        <!-- <caption class="govuk-table__caption">{{ assessor.address }}</caption> -->
+
+        <tbody class="govuk-table__body">
+
+          {% for key, item in results.assessor %}
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">{{ key| capitalize }}</th>
+                <td class="govuk-table__cell">{{ item }}</td>
+              </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+ 
+      <hr class="govuk-section-break govuk-section-break--xl ">
+
+      <h2>Scheme</h2> 
+
+      <table class="govuk-table">
+
+        <tbody class="govuk-table__body">
+
+          {% for key, item in results.scheme %}
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="row">{{ key | capitalize }}</th>
+                {% if key=="email" %}
+                <td class="govuk-table__cell"><a href="mailto:{{ item }}">{{ item }}</a></td>
+                {% elif key=="website" %}
+                <td class="govuk-table__cell"><a href="http://{{ item }}">{{ item }}</a></td>
+                {% else %}
+                <td class="govuk-table__cell">{{ item }}</td>
+                {% endif %}
+              </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
 
     </div>
 

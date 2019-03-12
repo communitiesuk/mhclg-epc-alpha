@@ -920,14 +920,51 @@ router.get('/filter-rooms', function(req, res, next) {
 
 
 router.get('/manage-accounts', function(req, res, next) {
+  // dummy assessor data
+  var assessors = req.app.locals.smartResults.assessors;
+  for ( var i=0; i<assessors.length; i++){
+    var base = Buffer.from(assessors[i]['number']).toString('base64')
+    req.app.locals.smartResults.assessors[i].base64ref  = base;
+    var schemeRef = parseInt(assessors[i].scheme)-1;
+    assessors[i].schemeName = req.app.locals.smartResults.schemes[schemeRef].name;
+  }
+
+  var results = {
+    assessor:assessors
+  };
+
+
   res.render('auth/manage-accounts', {
+    addresses: results,
     links: availableOptions
   });
 });
 
 
 router.get('/my-profile', function(req, res, next) {
+
+  //get random assessor
+  var len = req.app.locals.smartResults.assessors.length;
+  var idx =Math.floor( Math.random() * len);
+  var item = req.app.locals.smartResults.assessors[idx];
+  var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
+  
+  var results = {
+    assessor:{
+        name:item.name,
+        "accredition number": item.number,
+        "Company name": scheme.name,
+        "Postcode coverage": item['postcode coverage'].join(' '),
+        "Contact address": item.address,
+        "Email": scheme.email,
+        "Phone number": item.telephone,
+        "Website": scheme.website,
+        "Certificate types": scheme['certificate types'].join('; ')
+      },
+      scheme:scheme
+    };
   res.render('auth/my-profile', {
+    results,results,
     links: availableOptions
   });
 });
