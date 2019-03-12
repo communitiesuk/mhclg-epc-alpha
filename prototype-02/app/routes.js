@@ -31,6 +31,7 @@ var links = [
   {id:7, title:'Download bulk data', copy:'Download EPC data', link:'/get-data'},
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
   {id:9, title:'User Access Management', copy:'Manage user accounts', link:'/manage-accounts'},
+  {id:10, title:'API Documentation', copy:'API Documentation', link:'/api-documentation'},
   //{id:9, title:'My Profile', copy:'Update Personal profile', link:'/my-profile'},
 ];
 
@@ -68,14 +69,14 @@ router.get('/user', function(req, res, next) {
       isAdmin = 'true';
       canDownload = 'true';
 
-      availableOptions = [ links[1], links[2], links[4], links[5], links[6] ];
+      availableOptions = [ links[1], links[2], links[4], links[5], links[6], links[7] ];
     }else
 
     if(user==='scheme' || user==='service-provider'|| user==='service'|| user==='sp'){
       user = 'scheme';
       userName = 'Scheme';
       canLodge = 'true';
-      availableOptions = [ links[1], links[3], links[5], links[6]  ];
+      availableOptions = [ links[1], links[3], links[5], links[6], links[7]  ];
     }else
     
     if(user==='assessor'){
@@ -990,7 +991,7 @@ router.get('/filter-result', function(req, res, next) {
 
 router.get('/api-documentation', function(req, res, next) {
   res.render('auth/api-documentation', {
-
+      links: availableOptions
   });
 });
 
