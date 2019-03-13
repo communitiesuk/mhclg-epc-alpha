@@ -76,12 +76,12 @@ router.get('/user', function(req, res, next) {
       user = 'scheme';
       userName = 'Scheme';
       canLodge = 'true';
-      availableOptions = [ links[1], links[3], links[5], links[6], links[7]  ];
+      availableOptions = [ links[1], links[2], links[3], links[5], links[6], links[7]  ];
     }else
     
     if(user==='assessor'){
       userName = 'Assessor';
-      availableOptions = [ links[1], links[3], links[5] ];
+      availableOptions = [ links[1], links[2], links[3], links[5] ];
       canLodge = 'true';
     }else
 
