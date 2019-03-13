@@ -745,8 +745,7 @@ router.get('/filter-location', function(req, res, next) {
 
 
 router.get('/filter-assessor', function(req, res, next) {
-console.log('assessor');
-   res.render('auth/filter-input', {
+   res.render('auth/filter-textInput', {
     type:"text",
     title:"assessor",
     description:"Enter the Assessor reference",
