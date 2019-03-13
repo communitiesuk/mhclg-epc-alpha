@@ -745,7 +745,7 @@ router.get('/filter-location', function(req, res, next) {
 
 
 router.get('/filter-assessor', function(req, res, next) {
-
+console.log('assessor');
    res.render('auth/filter-input', {
     type:"text",
     title:"assessor",
