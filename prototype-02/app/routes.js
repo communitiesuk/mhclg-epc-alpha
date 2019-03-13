@@ -18,7 +18,7 @@ var availableOptions = [];
 
 var links = [
   {},
-/*  
+  /*  
   {id:1, title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
   {id:2, title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
   {id:3, title:'Find address', copy:'Find an address', link:'/search'},
@@ -32,7 +32,7 @@ var links = [
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
   {id:9, title:'User Access Management', copy:'Manage user accounts', link:'/manage-accounts'},
   {id:10, title:'API Documentation', copy:'API Documentation', link:'/api-documentation'},
-  //{id:9, title:'My Profile', copy:'Update Personal profile', link:'/my-profile'},
+
 ];
 
 // static start page 
@@ -54,10 +54,18 @@ router.get('/user', function(req, res, next) {
     user = req.query.user.toLowerCase();
 
     // allowable users
-    if(user!=='assessor' && user!=='scheme' && user!=='gov' 
-      && user!=='local-gov' && user!=='local'
-      && user!=='service-provider' && user!=='service' && user!=='sp' 
-      && user!=='epc' && user!=='admin'){
+    if(
+      user!=='assessor' &&
+      user!=='scheme' &&
+      user!=='gov' && 
+      user!=='local-gov' &&
+      user!=='local' &&
+      user!=='service-provider' && 
+      user!=='service' && 
+      user!=='sp' && 
+      user!=='epc' && 
+      user!=='admin'
+      ){
       user = 'none';
       renderPath='auth/index';
     }
