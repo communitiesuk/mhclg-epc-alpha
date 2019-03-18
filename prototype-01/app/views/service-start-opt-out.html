@@ -1,0 +1,76 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Opt out of the EPC Register - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Energy performance of buildings register</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item" aria-current="page">Opt in/out</li>
+
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Opt out of the EPC Register</h1>
+      <p>Use this service to:</p>
+      <ul>
+      <li>Remove a property from public searches.</li>
+      <li>Add a property to public searches.</li>
+      </ul>
+
+      <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      If the owner and/or occupier of the property has chosen to remove a property from general searches, the property information can only be found using the reference number on the certificate.
+      </strong>
+      </div>
+
+      
+      <a href="/opt-in-opt-out/address" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">
+        Start now
+      </a>
+
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p>You will need an existing certificate or report to hand.</p>
+      <p>This guide explains the <a href="https://www.gov.uk/government/publications/guide-to-the-general-data-protection-regulation">General Data Protection Regulation (GDPR)</a> to help organisations comply with its requirements.</p>
+      <p>The online service is also available in <a href="#">Welsh (Cymraeg)</a>.</p>
+
+
+     
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+      <aside class="app-related-items" role="complementary">
+        <h2>Related Content</h2>
+        <ul>
+        <li><a href="/find-a-report">Find an Energy Performance Certificate</a></li>
+        <li><a href="/find-an-assessor">Find an Assessor</a></li>
+        </ul>
+
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}

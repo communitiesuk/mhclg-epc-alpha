@@ -2,49 +2,100 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Find an Energy Performance Certificate
+  Energy performance of buildings register - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ super() }}
+    <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item" aria-current="page">Energy performance of buildings register</li>
+
+    </ol>
+  </div>
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Energy performance of buildings register
-      </h1>
+  
+    <div class="app-masthead">
+      <div class="govuk-width-container app-site-width-container">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+              <h1 class="govuk-heading-xl app-masthead__title">Energy performance of buildings register</h1>
 
-      <h2 class="govuk-heading-m">Welcome to the Domestic Energy Performance of Buildings Register</h2>
+              <h2 >Welcome to the Energy Performance of Buildings Register</h2>
+                
+              <p>The Register includes EPCs for non-domestic buildings, Display Energy Certificates for public authority buildings and air conditioning inspection reports for air conditioning systems over 12kW.</p>
 
-      <p>The legislation governing Home Information Packs has now been abolished and there is no longer a requirement to produce and to lodge Home Condition Reports on the Energy Performance of Buildings Register. However, Home Condition Reports that have already been lodged may still be retrieved from the Register if required.
-      </p>
+              <p>An Energy Performance Certificate is required for properties when constructed, sold or let. The Energy Performance Certificate provides details on the energy performance of the property and what you can do to improve it.</p>
 
-      <p>
-      An Energy Performance Certificate is required for properties when constructed, sold or let. The Energy Performance Certificate provides details on the energy performance of the property and what you can do to improve it.
-      </p>
-
-      <p>
-      This website will allow you to: 
-      </p>
-
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/find-a-report/index.html">
-          Retrieve an Energy Performance Certificate.
-        </a>
-      </li>
-        <li>
-          <a href="/find-an-assessor">
-            Find an Domestic Energy Assessor.
-          </a>
-        </li>
-        <li>
-          <a href="/opt-in-opt-out/index.html">
-            Opt in or opt out of the register.
-          </a>
-        </li>
-      </ul>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <div class="govuk-width-container app-site-width-container">
+      <div class="govuk-main-wrapper govuk-main-wrapper--l">
+        <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+            <h2 class="govuk-heading-l govuk-!-font-weight-bold">Find a Report</h2>
+            <p class="govuk-body">Find an <abbr title="Energy Performance Certificate">EPC</abbr> using the property's postcode or the 24-digit Report Reference Number. This is printed on the report or provided by the Energy Assessor who produced it.</p>
+            <p class="govuk-body govuk-!-margin-bottom-0"><a href="find-a-report" class="govuk-link govuk-!-font-weight-bold">Find a Report</a></p>
+          </div>
+
+          <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+            <h2 class="govuk-heading-l">Find an Assessor</h2>
+            <p class="govuk-body">To get an <abbr title="Energy Performance Certificate">EPC</abbr> for your home, you need to have your property assessed. Use this service to search for an accredited assessor in your area.</p>
+            <p class="govuk-body">You can also use this service to check the accreditation of an individual assessor.</p>
+            <p class="govuk-body govuk-!-margin-bottom-0"><a href="find-an-assessor" class="govuk-link govuk-!-font-weight-bold">Find an Assessor</a></p>
+          </div>
+
+          <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+            <h2 class="govuk-heading-l">Opt in or opt out</h2>
+            <p class="govuk-body">As part of the General Data Protection Regulation (GDPR) you can opt to have your address removed from the Register. If you have previously removed your details you can opt to have your details included.</p>
+            <p class="govuk-body govuk-!-margin-bottom-0"><a href="opt-in-opt-out" class="govuk-link govuk-!-font-weight-bold">Change your Register details</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+          <h2 id="related-nav-topics">Additional information</h2>
+
+          <p>Almost 40% of the UK’s energy consumption and carbon emissions come from the way our buildings are lit, heated and used. Even comparatively small changes in energy performance and the way we use each building will have a significant effect in reducing total energy consumption.</p>
+
+          <p><a href="about">More information about <abbr title="Energy Performance Certificate">EPC</abbr>s</a>
+
+          </div>
+        </div>
+
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+  <nav role="navigation" class="" aria-labelledby="related-nav-topics" >
+
+    <h2 id="related-nav-topics">Explore the topic</h2>
+
+    <ul class="" >
+      <li class=""><a class="" href="https://www.gov.uk/buy-sell-your-home">Buying and selling your home</a></li>
+      <li class=""><a class="" href="https://www.gov.uk/government/publications/european-union-energy-performance-of-buildings-directive">European Union Energy Performance of Buildings Directive</a></li>
+      <li class=""><a class="" href="https://www.gov.uk/guidance/energy-performance-of-buildings-certificates-notes-and-definitions">Energy Performance of Buildings Certificates: notes and definitions</a></li>
+      <li class=""><a class="" href="https://www.gov.uk/green-deal-energy-saving-measures">Green Deal: energy saving for your home</a></li>
+
+  </ul>
+</nav>
+
 </div>
 
 {% endblock %}
