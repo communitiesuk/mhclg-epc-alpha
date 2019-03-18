@@ -632,7 +632,7 @@ router.get('/opt-in-opt-out/application-complete', function(req, res) {
 //
 //
 ////////////////////////////////////////////////////////////////////////////
-
+/*
 router.get('/auth-report', function(req, res, next) {
   var contentType='service-start'
   var contentId='5bc85eca-8664-4538-b1e1-9cba914bc680'
@@ -802,12 +802,12 @@ console.log(req.params.reference);
 
   ref = ref.split("_")[1];
 
-/*
-  var lmkKey = req.params.reference;
-  var filtered = _.filter(dataset.rows, function(item) {
-    return (lmkKey === item['lmk-key']);
-  });
-*/
+
+//  var lmkKey = req.params.reference;
+//   var filtered = _.filter(dataset.rows, function(item) {
+//    return (lmkKey === item['lmk-key']);
+//  });
+
 
 console.log('got ref ' +ref);
 var filtered = [ req.app.locals.smartResults.certificates[ref] ];
@@ -891,7 +891,7 @@ router.get('/auth-report/assessor/:reference', function(req, res) {
     results: results
   });
 });
-
+*/
 
   router.get('/about', function(req, res, next) {
     
@@ -901,84 +901,6 @@ router.get('/auth-report/assessor/:reference', function(req, res) {
 
 
 
-/*
-router.get('/auth-assessor', function(req, res, next) {
-  var contentType='service-start'
-  var contentId='f27f6d59-88fc-4f64-8765-fea96bc44d26'
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-  method: "GET",
-  headers: {
-      'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-    }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // res.send({ content : JSON.parse(body) });
-        res.render('service-start', { content : JSON.parse(body) });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      } else {
-        res.redirect('/error');
-      }
-  });
-});
-
-router.get('/auth-assessor/results', function(req, res) {
-  // dummy assessor data
-  var results = {
-    assessor:[
-        {accredition:"ABS-23454355", name:"Lettie Gutierrez", status:"Registered", type:"Domestic", contactNumber:"094-074-7885"},
-        {accredition:"ABC-47382952", name:"Ivan Shelton", status:"Registered", type:"Domestic", contactNumber:"081-161-1844"},
-        {accredition:"ABX-34225435", name:"Ray Keller", status:"Rogue Agent", type:"Both", contactNumber:"07865-732-399"},
-        {accredition:"ABC-47382952", name:"Barbara Steele", status:"Registered", type:"Domestic", contactNumber:"023-519-3943"},
-    ]
-  };
-
-  res.render('auth-assessor/results', {
-    addresses: results
-  });
-});
-
-router.get('/auth-assessor/assessor/:reference', function(req, res) {
-  // dummy assessor data
-  var results = {
-    assessor:{
-        name:"Barbara Steele",
-        accredition: req.params.reference,
-        "Company name": "Robert Knight Ltd",
-        "Postcode coverage": "WC1V",
-        "Contact address": "25 Krajcik Junctions",
-        "Email": "jared_lamb@gmail.com",
-        "Phone number": "21-188-9870",
-        "Website": "robertknight.com",
-        "Certificate types": "EPC 3; EPC 4"
-      },
-      scheme:{
-        "Contact address": "549 Toni Glens",
-        "Email": "enquires@test1.co.uk",
-        "Phone number": "421-188-9870",
-        "Website": "test1.co.uk"
-      }
-    };
-
-  res.render('auth-assessor/assessor', {
-    results: results
-  });
-});
-
-// Branching
-router.post('/auth-assessor/assessor-branch', function (req, res) {
-  // Get the answer from session data
-  // The name between the quotes is the same as the 'name' attribute on the input elements
-  // However in JavaScript we can't use hyphens in variable names
-
-  let assessorSearch = req.session.data['assessor-search-type']
-
-  if (assessorSearch === 'check-assessor') {
-    res.redirect('/auth-assessor/check')
-  } else {
-    res.redirect('/auth-assessor/search-for-type')
-  }
-})
-*/
 
 
 
