@@ -10,23 +10,10 @@ var availableOptions = [];
 
 
 // auth user tools
-// scheme and assessor: input data
-// local-gov, gov, open data, banks: 
-
-
-
-
 var links = [
   {},
-  /*  
-  {id:1, title:'Find a certificate', copy:'Find an EPC (Energy Performance Certificate) using the property\'s postcode.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-a-report'},
-  {id:2, title:'Find an assessor', copy:'Find an assessor using postcode, assessor number or certificate reference.', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/find-an-assessor'},
-  {id:3, title:'Find address', copy:'Find an address', link:'/search'},
-  */
-
   {id:4, title:'Request new address', copy:'Add a new address', link:'/add-address'},
   {id:5, title:'Edit address', copy:'Update company address data', link:'/find-address'},
-  
   {id:6, title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
   {id:7, title:'Download bulk data', copy:'Download EPC data', link:'/get-data'},
   {id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
@@ -50,9 +37,7 @@ router.get('/user', function(req, res, next) {
 
   //check for user in url query string
   if(req.query.user){
-
     user = req.query.user.toLowerCase();
-
     // allowable users
     if(
       user!=='assessor' &&
@@ -71,7 +56,6 @@ router.get('/user', function(req, res, next) {
       user = 'none';
       renderPath='auth/index';
     }
-
 
     if(user==='demo'|| user==='full'){
       user = 'demo';
@@ -116,12 +100,10 @@ router.get('/user', function(req, res, next) {
       availableOptions = [ links[4] ];
     }
 
-
   }else{
       user = 'none';
       renderPath='auth/index';
   }
-
 
   res.render( renderPath, { 
       user: user,
@@ -137,21 +119,8 @@ router.get('/user', function(req, res, next) {
 
 
 router.get('/error', function(req, res, next) {
-  /*var today = moment(Date.now()).format('YYYY-MM-DD');
-  var tokenCreatedDate = moment(process.env.CONTOMIC_ACCESS_TOKEN_DATE, 'DD/MM/YYYY');
-  var tokenExpiryDate = moment(tokenCreatedDate).add(30, 'days').format('YYYY-MM-DD');
-
-  if (moment(today).isAfter(tokenExpiryDate)){
-    res.render('error', { content : {error: {message: "Contomic trial expired"}}});
-  } else if (!process.env.CONTOMIC_ACCESS_TOKEN_DATE){
-  	res.render('error', { content : {error: {message: "CONTOMIC_ACCESS_TOKEN_DATE missing"}}});
-  } else {
-    res.render('error', { content : {error: {message: "Internal server error"}}});
-  }
-	*/
   res.render('error', { content : {error: {message: "Internal server error"}}});
 });
-
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -159,71 +128,19 @@ router.get('/error', function(req, res, next) {
 //  AUTHORISED USERS
 //
 ////////////////////////////////////////////////////////////////////////////
-/*
-router.get('/start', function(req, res, next) {
-  var contentType='service-start';
-  var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
-
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-    method: "GET",
-    headers: {
-        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.render('service-start', { content : JSON.parse(body) });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      } else {
-        res.redirect('/error');
-      }
-  });
-});
-*/
-
 router.get('/search', function(req, res, next) {
-
-    res.render('auth/search', {
-      links: availableOptions
-    });
-/*
-  var contentType='find-a-report-step';
-  var contentId='c6a91d55-8cfe-46a6-83fb-3b875ea9e324';
-
-  request(process.env.CONTOMIC_CONTENT_API_URI+contentType+'/'+contentId, {
-    method: "GET",
-    headers: {
-        'Authorization': process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      }
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(JSON.parse(body));
-        res.render('auth/search', {
-          links: availableOptions,
-          content : JSON.parse(body)
-        });
-        process.env.CONTOMIC_30_DAY_ACCESS_TOKEN
-      } else {
-        //console.log(error);
-        res.redirect('/error');
-      }
+  res.render('auth/search', {
+    links: availableOptions
   });
-*/
-
-
 });
 
 
 router.get('/results', function(req, res, next) {
   var str;
-  //console.log(req.query.q);
+
   if(req.query.q){
     str = req.query.q.toLowerCase();
   }
-/*
-  if(req.session.data['search-field']){
-    str = req.session.data['search-field'];
-  }*/
-
 
     // pull in dummy data loaded from static file via server.js
     // arrays from addresses, certificates and assessors
@@ -266,25 +183,17 @@ router.get('/results', function(req, res, next) {
     // if selected, add to response
     // change sort order if required
     _.each(checkboxes, function (element, index, list) {
-        // console.log( 'Element: ' + element + ', ' + 'Index: ' + index + ', ' + 'List Length: ' + list.length);
         var output = req.app.locals.smartResults[element];
         var sortedOutput;
 
         if (sort==='name_desc'){
-          //console.log('sort name down');
           sortedOutput = _.sortBy(output, 'name').reverse();
         } else if (sort==='name_asc'){
-          //console.log('sort name up');
           sortedOutput =_.sortBy(output, 'name');
-
         } else if (sort==='number_desc'){
-          //console.log('sort number down');
           sortedOutput =_.sortBy(output, 'number').reverse();
-
         } else if (sort==='number_asc'){
-          //console.log('sort number_asc up');
           sortedOutput =_.sortBy(output, 'number');
-
         }
         response[element] = sortedOutput;
         filterType[element] = true;
@@ -303,13 +212,9 @@ router.get('/results', function(req, res, next) {
         anchor = "certificates";
       }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
         response.addresses = [];
-        //response.certificates = response.certificates;
         response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
         anchor = "assessors";
       }else if(str.length<=8){ // postcode so all results
-        //response.addresses = response.addresses;
-        //response.certificates = response.certificates;
-        //response.assessors = response.assessors;
         anchor = "all";
       }
       total = response.addresses.length + response.certificates.length + response.assessors.length;
@@ -331,10 +236,7 @@ router.get('/results', function(req, res, next) {
       anchor: anchor,
       count:total   
     });
-              
-/*  }else{
-    res.send('no data');
-  }*/
+
 });
 
 
@@ -461,14 +363,6 @@ router.get('/find-address', function(req, res) {
   });
 });
 
-/*
-router.get('/add-address', function(req, res) {
-
-  res.render('auth/add-address', {
-    links: availableOptions
-  });
-});
-*/
 
 router.get('/add-address', function(req, res) {
 
@@ -477,7 +371,6 @@ router.get('/add-address', function(req, res) {
     links: availableOptions
   });
 });
-
 
 
 router.get('/edit-address', function(req, res) {
@@ -604,7 +497,6 @@ router.get('/filter', function(req, res, next) {
     filters[6].results = minSize + ' to ' + maxSize +" sq ft";
   }
 
-
   // TODO: Extract this function out and check for query string for each page?
   // check for user in url query string
   if(req.query.user){
@@ -618,7 +510,6 @@ router.get('/filter', function(req, res, next) {
       user = 'none';
       renderPath='auth/index';
     }
-
 
     if(user==='epc'|| user==='admin'){
       user = 'epc';
@@ -848,7 +739,6 @@ router.get('/filter-prop-size', function(req, res, next) {
 });
 
 
-
 // green deal, sale, rental
 router.get('/filter-reason', function(req, res, next) {
   // get an array of results back eg [ 'Rental', 'Sale' ]
@@ -955,7 +845,6 @@ router.get('/manage-accounts', function(req, res, next) {
     assessor:assessors
   };
 
-
   res.render('auth/manage-accounts', {
     addresses: results,
     links: availableOptions
@@ -964,7 +853,6 @@ router.get('/manage-accounts', function(req, res, next) {
 
 
 router.get('/my-profile', function(req, res, next) {
-
   //get random assessor
   var len = req.app.locals.smartResults.assessors.length;
   var idx =Math.floor( Math.random() * len);
