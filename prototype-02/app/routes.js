@@ -215,7 +215,7 @@ router.get('/search', function(req, res, next) {
 
 router.get('/results', function(req, res, next) {
   var str;
-console.log(req.query.q);
+  //console.log(req.query.q);
   if(req.query.q){
     str = req.query.q.toLowerCase();
   }
