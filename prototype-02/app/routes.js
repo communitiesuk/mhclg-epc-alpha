@@ -64,13 +64,24 @@ router.get('/user', function(req, res, next) {
       user!=='service' && 
       user!=='sp' && 
       user!=='epc' && 
-      user!=='admin'
+      user!=='admin'&&
+      user!=='full'&&
+      user!=='demo'
       ){
       user = 'none';
       renderPath='auth/index';
     }
 
 
+    if(user==='demo'|| user==='full'){
+      user = 'demo';
+      userName = 'EPC DEMO';
+      isAdmin = 'true';
+      canDownload = 'true';
+      canLodge = 'true';
+
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7] ];
+    }else
     if(user==='epc'|| user==='admin'){
       user = 'epc';
       userName = 'EPC Admin';
@@ -126,7 +137,7 @@ router.get('/user', function(req, res, next) {
 
 
 router.get('/error', function(req, res, next) {
-  var today = moment(Date.now()).format('YYYY-MM-DD');
+  /*var today = moment(Date.now()).format('YYYY-MM-DD');
   var tokenCreatedDate = moment(process.env.CONTOMIC_ACCESS_TOKEN_DATE, 'DD/MM/YYYY');
   var tokenExpiryDate = moment(tokenCreatedDate).add(30, 'days').format('YYYY-MM-DD');
 
@@ -135,8 +146,10 @@ router.get('/error', function(req, res, next) {
   } else if (!process.env.CONTOMIC_ACCESS_TOKEN_DATE){
   	res.render('error', { content : {error: {message: "CONTOMIC_ACCESS_TOKEN_DATE missing"}}});
   } else {
-	  res.render('error', { content : {error: {message: "Internal server error"}}});
+    res.render('error', { content : {error: {message: "Internal server error"}}});
   }
+	*/
+  res.render('error', { content : {error: {message: "Internal server error"}}});
 });
 
 
@@ -146,7 +159,7 @@ router.get('/error', function(req, res, next) {
 //  AUTHORISED USERS
 //
 ////////////////////////////////////////////////////////////////////////////
-
+/*
 router.get('/start', function(req, res, next) {
   var contentType='service-start';
   var contentId='42da62eb-7944-4ed1-9cb2-326f3c192781';
@@ -165,7 +178,7 @@ router.get('/start', function(req, res, next) {
       }
   });
 });
-
+*/
 
 router.get('/search', function(req, res, next) {
 
@@ -302,6 +315,7 @@ console.log(req.query.q);
       total = response.addresses.length + response.certificates.length + response.assessors.length;
     
     }else{
+      total = response.addresses.length + response.certificates.length + response.assessors.length;
 
     }
 
