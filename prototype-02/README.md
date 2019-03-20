@@ -23,4 +23,6 @@ For this project, a Heroku app has been created at:
 From the working folder push changes to Heroku via 
 `git subtree push --prefix prototype-02 prototype-02 master`
 
+## Notes
 
+The prototype was built using the [GDS Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/tutorials-and-examples).  A set of dummy data (`app/data/auth_user_results.json`) is loaded on the server to populate the search results. Additional example data is set in the `routes.js` file and passed to the actual pages to render them. 

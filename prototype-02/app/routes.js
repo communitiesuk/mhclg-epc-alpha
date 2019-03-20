@@ -142,100 +142,100 @@ router.get('/results', function(req, res, next) {
     str = req.query.q.toLowerCase();
   }
 
-    // pull in dummy data loaded from static file via server.js
-    // arrays from addresses, certificates and assessors
-    var response = {};
-    // set some empty arrays for zero count
+  // pull in dummy data loaded from static file via server.js
+  // arrays from addresses, certificates and assessors
+  var response = {};
+  // set some empty arrays for zero count
 
-    response.addresses = [];
-    response.certificates = [];
-    response.assessors = [];
-    
-    // base64 encode the assessor ref num
-    for ( var i=0; i<req.app.locals.smartResults.assessors.length; i++){
-      var base = Buffer.from(req.app.locals.smartResults.assessors[i]['number']).toString('base64')
-      req.app.locals.smartResults.assessors[i].base64ref = base;
-    }
-    // create fake reference for dummy data
-    for ( var i=0; i<req.app.locals.smartResults.certificates.length; i++){
-      var base = Buffer.from("0000_" +i).toString('base64');// has to be a string...
-      req.app.locals.smartResults.certificates[i].reference = base;
-    }
+  response.addresses = [];
+  response.certificates = [];
+  response.assessors = [];
+  
+  // base64 encode the assessor ref num
+  for ( var i=0; i<req.app.locals.smartResults.assessors.length; i++){
+    var base = Buffer.from(req.app.locals.smartResults.assessors[i]['number']).toString('base64')
+    req.app.locals.smartResults.assessors[i].base64ref = base;
+  }
+  // create fake reference for dummy data
+  for ( var i=0; i<req.app.locals.smartResults.certificates.length; i++){
+    var base = Buffer.from("0000_" +i).toString('base64');// has to be a string...
+    req.app.locals.smartResults.certificates[i].reference = base;
+  }
 
-    var sort = 'name_desc';
-    if(req.session.data['sortBy']){
-      sort = req.session.data['sortBy'];
-    }
+  var sort = 'name_desc';
+  if(req.session.data['sortBy']){
+    sort = req.session.data['sortBy'];
+  }
 
-    var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
-    // todo refactor this to make more sense
-    // get filter type from original search: if its 'all' then use all three types
-    if(req.session.data['filter-type']){
-      if(req.session.data['filter-type']!== 'all'){
-        checkboxes = req.session.data['filter-type'];
+  var checkboxes = [ 'certificates', 'assessors', 'addresses' ];
+  // todo refactor this to make more sense
+  // get filter type from original search: if its 'all' then use all three types
+  if(req.session.data['filter-type']){
+    if(req.session.data['filter-type']!== 'all'){
+      checkboxes = req.session.data['filter-type'];
+    }
+  }
+
+  var total = 0;
+  var filterType = {};
+
+  // loop through each group by type from the raw data
+  // if selected, add to response
+  // change sort order if required
+  _.each(checkboxes, function (element, index, list) {
+      var output = req.app.locals.smartResults[element];
+      var sortedOutput;
+
+      if (sort==='name_desc'){
+        sortedOutput = _.sortBy(output, 'name').reverse();
+      } else if (sort==='name_asc'){
+        sortedOutput =_.sortBy(output, 'name');
+      } else if (sort==='number_desc'){
+        sortedOutput =_.sortBy(output, 'number').reverse();
+      } else if (sort==='number_asc'){
+        sortedOutput =_.sortBy(output, 'number');
       }
+      response[element] = sortedOutput;
+      filterType[element] = true;
+  });
+
+  // set the page tab anchor
+  var anchor = req.session.data['anchor'];
+
+  // certificate
+  if(str){
+    if(str.length>20){
+      response.addresses = [];
+      response.certificates = [ response.certificates[Math.round(Math.random()*response.certificates.length)] ];
+      // show 1 random assessor
+      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+      anchor = "certificates";
+    }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
+      response.addresses = [];
+      response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
+      anchor = "assessors";
+    }else if(str.length<=8){ // postcode so all results
+      anchor = "all";
     }
+    total = response.addresses.length + response.certificates.length + response.assessors.length;
+  
+  }else{
+    total = response.addresses.length + response.certificates.length + response.assessors.length;
 
-    var total = 0;
-    var filterType = {};
+  }
 
-    // loop through each group by type from the raw data
-    // if selected, add to response
-    // change sort order if required
-    _.each(checkboxes, function (element, index, list) {
-        var output = req.app.locals.smartResults[element];
-        var sortedOutput;
+  // if there is a tab selected already
+  if(req.session.data['anchor']){
+    anchor = req.session.data['anchor']
+  }
+  
+  response.filterType = filterType;
 
-        if (sort==='name_desc'){
-          sortedOutput = _.sortBy(output, 'name').reverse();
-        } else if (sort==='name_asc'){
-          sortedOutput =_.sortBy(output, 'name');
-        } else if (sort==='number_desc'){
-          sortedOutput =_.sortBy(output, 'number').reverse();
-        } else if (sort==='number_asc'){
-          sortedOutput =_.sortBy(output, 'number');
-        }
-        response[element] = sortedOutput;
-        filterType[element] = true;
-    });
-
-    // set the page tab anchor
-    var anchor = req.session.data['anchor'];
-
-    // certificate
-    if(str){
-      if(str.length>20){
-        response.addresses = [];
-        response.certificates = [ response.certificates[Math.round(Math.random()*response.certificates.length)] ];
-        // show 1 random assessor
-        response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
-        anchor = "certificates";
-      }else if(str.length>8 && str.length<20){ // ASSESSOR : 1 assessor and multiple certificates
-        response.addresses = [];
-        response.assessors = [ response.assessors[Math.round(Math.random()*response.assessors.length)] ];
-        anchor = "assessors";
-      }else if(str.length<=8){ // postcode so all results
-        anchor = "all";
-      }
-      total = response.addresses.length + response.certificates.length + response.assessors.length;
-    
-    }else{
-      total = response.addresses.length + response.certificates.length + response.assessors.length;
-
-    }
-
-    // if there is a tab selected already
-    if(req.session.data['anchor']){
-      anchor = req.session.data['anchor']
-    }
-    
-    response.filterType = filterType;
-
-    res.render('auth/results', {
-      response: response,
-      anchor: anchor,
-      count:total   
-    });
+  res.render('auth/results', {
+    response: response,
+    anchor: anchor,
+    count:total   
+  });
 
 });
 
@@ -250,25 +250,25 @@ router.get('/certificate/:reference', function(req, res) {
 	// store as an array
 	var filtered = [ req.app.locals.smartResults.certificates[ref] ];
 
-	//there is only one result
+	// there is only one result
 	var idx = 0;
 
 	// add dummy data
-	  filtered[idx]['address'] = '';
-    displayDate = '';
-    filtered[idx]['property-type'] = 'Fake Property';
-    filtered[idx]['total-floor-area'] = '200';
-    filtered[idx]['transaction-type'] = 'Commercial';
-    filtered[idx]['current-energy-rating'] = 'G';
-    filtered[idx]['potential-energy-rating'] = 'E';
-    filtered[idx]['current-energy-efficiency'] = 19;
-    filtered[idx]['potential-energy-efficiency'] = 51;
-    filtered[idx]['lighting-cost-current'] = Math.round(Math.random()*100) * 10;
-    filtered[idx]['heating-cost-current'] = Math.round(Math.random()*100) * 10;
-    filtered[idx]['hot-water-cost-current'] = Math.round(Math.random()*100) * 10;
-    filtered[idx]['lighting-cost-potential'] = Math.round( filtered[idx]['lighting-cost-current'] * Math.random() );
-    filtered[idx]['heating-cost-potential'] = Math.round( filtered[idx]['heating-cost-current'] * Math.random() )
-    filtered[idx]['hot-water-cost-potential'] = Math.round( filtered[idx]['hot-water-cost-current'] * Math.random() );
+  filtered[idx]['address'] = '';
+  displayDate = '';
+  filtered[idx]['property-type'] = 'Fake Property';
+  filtered[idx]['total-floor-area'] = '200';
+  filtered[idx]['transaction-type'] = 'Commercial';
+  filtered[idx]['current-energy-rating'] = 'G';
+  filtered[idx]['potential-energy-rating'] = 'E';
+  filtered[idx]['current-energy-efficiency'] = 19;
+  filtered[idx]['potential-energy-efficiency'] = 51;
+  filtered[idx]['lighting-cost-current'] = Math.round(Math.random()*100) * 10;
+  filtered[idx]['heating-cost-current'] = Math.round(Math.random()*100) * 10;
+  filtered[idx]['hot-water-cost-current'] = Math.round(Math.random()*100) * 10;
+  filtered[idx]['lighting-cost-potential'] = Math.round( filtered[idx]['lighting-cost-current'] * Math.random() );
+  filtered[idx]['heating-cost-potential'] = Math.round( filtered[idx]['heating-cost-current'] * Math.random() )
+  filtered[idx]['hot-water-cost-potential'] = Math.round( filtered[idx]['hot-water-cost-current'] * Math.random() );
 
 
   //assume a filtered array with only a single property result
@@ -465,8 +465,7 @@ var filteredArray = [];
 
 router.get('/filter', function(req, res, next) {
   // get returned data
-
-  //populate filter list with returned values
+  // populate filter list with returned values
   for (item in req.session.data){
     // find filter with the matching ref value
     var refObj = _.findWhere(filters, {
@@ -476,7 +475,6 @@ router.get('/filter', function(req, res, next) {
     if(refObj){
       refObj.results = req.session.data[item];
     }
-    //console.log(item, refObj);
   }
 
   // extract the range of sizes for 
@@ -503,14 +501,33 @@ router.get('/filter', function(req, res, next) {
     user = req.query.user.toLowerCase();
 
     // allowable users
-    if(user!=='assessor' && user!=='scheme' && user!=='gov' 
-      && user!=='local-gov' && user!=='local'
-      && user!=='service-provider' && user!=='service' && user!=='sp' 
-      && user!=='epc' && user!=='admin'){
+    if(
+      user!=='assessor' &&
+      user!=='scheme' &&
+      user!=='gov' && 
+      user!=='local-gov' &&
+      user!=='local' &&
+      user!=='service-provider' && 
+      user!=='service' && 
+      user!=='sp' && 
+      user!=='epc' && 
+      user!=='admin'&&
+      user!=='full'&&
+      user!=='demo'
+      ){
       user = 'none';
       renderPath='auth/index';
     }
 
+    if(user==='demo'|| user==='full'){
+      user = 'demo';
+      userName = 'EPC DEMO';
+      isAdmin = 'true';
+      canDownload = 'true';
+      canLodge = 'true';
+
+      availableOptions = [ links[1], links[2], links[3], links[4], links[5], links[6], links[7] ];
+    }else
     if(user==='epc'|| user==='admin'){
       user = 'epc';
       userName = 'EPC Admin';
@@ -545,12 +562,10 @@ router.get('/filter', function(req, res, next) {
       availableOptions = [ links[4] ];
     }
 
-
   }else{
       user = 'none';
       renderPath='auth/index';
   }
-
 
   filteredArray =  filters.slice();
   // there are more users that have all options so 
@@ -615,9 +630,19 @@ router.get('/filter-date', function(req, res, next) {
 
 
 /*
-UKRegionCode, string, 1, Borders, 2, East Anglia, 3, East Pennines, 4, East Scotland, 5, Highland, 6, Midlands, 7, North East England, 8, North East Scotland, 9, North West England / South West Scotland, 10, Northern Ireland, 11, Orkney, 12, Severn Valley, 13, Shetland, 14, South East England, 15, South West England, 16, Southern England, 17, Thames Valley, 18, Wales, 19, West Pennines, 20, West Scotland, 21, Western Isles, 22, Jersey, 23, Guernsey, 24, Isle of Man, NR, for backwards compatibility only – do not use,
+UKRegionCode, string, 
+1, Borders, 2, East Anglia, 3, East Pennines, 
+4, East Scotland, 5, Highland, 6, Midlands, 
+7, North East England, 8, North East Scotland, 
+9, North West England / South West Scotland, 
+10, Northern Ireland, 11, Orkney, 12, Severn Valley, 
+13, Shetland, 14, South East England, 
+15, South West England, 16, Southern England, 
+17, Thames Valley, 18, Wales, 19, West Pennines, 
+20, West Scotland, 21, Western Isles, 22, Jersey, 
+23, Guernsey, 24, Isle of Man, 
+NR, for backwards compatibility only – do not use,
 */
-
 router.get('/filter-location', function(req, res, next) {
   var regions = [
   "Borders", "East Anglia", "East Pennines", "East Scotland",
@@ -766,7 +791,7 @@ router.get('/filter-reason', function(req, res, next) {
 });
 
 
-// certifcate type
+// certificate type
 router.get('/filter-type', function(req, res, next) {
  var itemList = [
     { value: "SAP", text: "SAP"},
@@ -853,7 +878,7 @@ router.get('/manage-accounts', function(req, res, next) {
 
 
 router.get('/my-profile', function(req, res, next) {
-  //get random assessor
+  // get random assessor
   var len = req.app.locals.smartResults.assessors.length;
   var idx =Math.floor( Math.random() * len);
   var item = req.app.locals.smartResults.assessors[idx];

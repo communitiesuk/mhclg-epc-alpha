@@ -74,11 +74,9 @@ router.get('/find-a-report/results', function(req, res, next) {
             } else {
               res.render('find-a-report/results', {
                 addresses: []
-                //addresses: req.app.locals.data //static dummy data
               });
             }
           } else {
-            //console.log(error);
             res.redirect('/error');
           }
       });
@@ -121,7 +119,6 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
             if (!error && response.statusCode == 200) {
               if(body) {
                 var dataset = JSON.parse(body);
-                //console.log(dataset);
                 var item = dataset.rows[0];
 
                 // pull out results and build a simple array
@@ -161,19 +158,15 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
                 });
 
             } else {
-              //console.log('no data');
               res.render('find-a-report/certificatePlus', {
                 addresses: req.app.locals.data //static dummy data
               });
             }
           } else {
-            //console.log("error");
-            //console.log(response);
             res.redirect('/error');
           }
       });
   } else {
-    //console.log("no cert hash");
     res.redirect('/error');
   }
 });
@@ -244,7 +237,6 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
 
 
   } else {
-    //console.log("no cert hash");
     res.redirect('/error');
   }
 
@@ -256,7 +248,6 @@ router.post('/find-an-assessor/assessor-branch', function (req, res) {
   // Get the answer from session data
   // The name between the quotes is the same as the 'name' attribute on the input elements
   // However in JavaScript we can't use hyphens in variable names
-
   let assessorSearch = req.session.data['assessor-search-type']
 
   if (assessorSearch === 'check-assessor') {
@@ -324,7 +315,6 @@ router.post('/opt-in-opt-out/confirm-details', function (req, res) {
   // Get the answer from session data
   // The name between the quotes is the same as the 'name' attribute on the input elements
   // However in JavaScript we can't use hyphens in variable names
-
   let addressChoice = req.session.data['address-choice']
 
   if (addressChoice !== 'Another address') {
@@ -361,7 +351,6 @@ router.get('/opt-in-opt-out/application-complete', function(req, res) {
   var random2 = Math.floor(Math.random()*10);
   var random3 = Math.floor(Math.random()*10);
   var random4 = Math.floor(Math.random()*10);
-
   var randomNo = "EPC" + random1 + random1 + random3 + random4 +"X";
 
   res.render('opt-in-opt-out/application-complete', {
