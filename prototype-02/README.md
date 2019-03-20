@@ -8,7 +8,7 @@ This kit has been designed for prototyping, not production code. Take only the l
 
 ## Installation
 To run this prototype locally, download this repo and install the files in a _working folder_.
-From the `prototype-01` folder, run `npm install` to update the node modules
+From the `prototype-02` folder, run `npm install` to update the node modules
 
 ## Development
 Run `npm run start` to build the site, run a local server and watch file changes.
