@@ -6,7 +6,7 @@ heading: User Research
 
 # Overview
 
-A total of _25_ participants were engaged throughout the 10 week Alpha project. These participants were from the following user groups:
+A total of **25** participants were engaged throughout the 10 week Alpha project. These participants were from the following user groups:
 
 * Domestic assessors
 * Non-domestic assessors
