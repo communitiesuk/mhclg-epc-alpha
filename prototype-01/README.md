@@ -12,7 +12,7 @@ From the `prototype-01` folder, run `npm install` to update the node modules
 
 ## Development
 Run `npm run start` to build the site, run a local server and watch file changes.
-The site is served at The site is served at [http://localhost:3000](http://localhost:3000)
+The site is served at [http://localhost:3000](http://localhost:3000)
 
 To stop the service use `ctrl+c`
 
