@@ -21,6 +21,6 @@ For this project, a Heroku app has been created at:
 [https://mhclg-epc-alpha-prototype-02.herokuapp.com](https://mhclg-epc-alpha-prototype-02.herokuapp.com)
 
 From the working folder push changes to Heroku via 
-`ggit subtree push --prefix prototype-02 prototype-02 master`
+`git subtree push --prefix prototype-02 prototype-02 master`
 
 
