@@ -48,6 +48,10 @@
   }
 }
 
+body{
+  font-family: "nta", Arial, sans-serif;
+}
+
 .govuk-link:focus, a:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
