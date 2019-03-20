@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: user-research
 title: User Research
 heading: User Research
 ---
@@ -35,3 +35,12 @@ Two workshops were also conducted to validate and prioritise user needs - one fo
 
 
 The needs, combined with business requirements, were used to influence the prototypes designed.  The prototype was then embedded with tracking which allowed the project team to track how participants interacted with it.
+
+
+
+{% include userNeeds.html %}
+
+
+
+
+
