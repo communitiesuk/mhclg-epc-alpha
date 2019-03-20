@@ -22,7 +22,6 @@ A total of _25_ participants were engaged throughout the 10 week Alpha project. 
 
 From this research it was possible to group the participants by needs and goals into the following groups:
 
-
   * Data consumer [BEIS, Academic users, MHCLG Data analysts, Local Authorities, Devolved administration]
  <!--  <img src="mhclg-epc-alpha/team-site/content/user-research/EPC Research artefacts - Data consumer - user journey (1)-3.pdf"> -->
   * Service user [Property owners, Landlords, Tenants]
