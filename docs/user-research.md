@@ -4,7 +4,8 @@ title: User Research
 heading: User Research
 ---
 
-# Overview
+<h1 class="govuk-heading-m">Overview</h1>
+
 
 A total of **25** participants were engaged throughout the 10 week Alpha project. These participants were from the following user groups:
 
