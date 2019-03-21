@@ -33,7 +33,7 @@ Making use of solutions managed by cloud vendors will enable benefit to be deriv
 
 Following assessments by both MHCLG architecture and the alpha team it is recommended that the current codebase not be migrated. 
 
-Due to the age of the current codebase and coupling to the underlying database technology, the recommended approach is to “leave the code and take the learning”. Based in experience it will be cheaper in the short term and more sustainable, supportable and maintainable over the medium to long term to implement using modern approaches and technologies. 
+Due to the age of the current codebase and coupling to the underlying database technology, the recommended approach is to “leave the code and take the learning”. Based on experience it will be cheaper in the short term and more sustainable, supportable and maintainable over the medium to long term to implement using modern approaches and technologies. 
 
 This will enable MHCLG to benefit from advances in the technology industry as a whole.
 
