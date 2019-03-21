@@ -1,7 +1,7 @@
 ---
 title: Addresses
 order: 3
-layout: prototypes
+layout: addressPage
 ---
 <h2 class="govuk-heading-m">Addresses</h2>
 

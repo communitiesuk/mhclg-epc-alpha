@@ -1,5 +1,5 @@
 ---
-layout: prototypes
+layout: addressPage
 title: Prototypes
 ---
 
