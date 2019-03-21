@@ -16,9 +16,9 @@ var links = [
   {id:5, title:'Edit address', copy:'Update company address data', link:'/find-address'},
   {id:6, title:'Lodge EP data', copy:'Create an EPC certificate for a property', link:'/lodge-data/'},
   {id:7, title:'Download bulk data', copy:'Download EPC data', link:'/get-data'},
-  //{id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'https://mhclg-epc-alpha-prototype-01.herokuapp.com/opt-in-opt-out'},
+  //{id:8, title:'Process opt in/out', copy:'Add or remove a property from public searches', link:'/opt-in-opt-out'},
   {id:9, title:'User Access Management', copy:'Manage user accounts', link:'/manage-accounts'},
-  //{id:10, title:'API Documentation', copy:'API Documentation', link:'/api-documentation'},
+  {id:10, title:'API Documentation', copy:'API Documentation', link:'/api-documentation'},
 
 ];
 
@@ -925,6 +925,13 @@ router.get('/filter-result', function(req, res, next) {
 
 router.get('/api-documentation', function(req, res, next) {
   res.render('auth/api-documentation', {
+      links: availableOptions
+  });
+});
+
+
+router.get('/opt-in-opt-out', function(req, res, next) {
+  res.render('auth/opt-in-opt-out', {
       links: availableOptions
   });
 });
