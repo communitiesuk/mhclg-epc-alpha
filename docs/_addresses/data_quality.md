@@ -1,3 +1,8 @@
+---
+title: Data Quality
+order: 4
+layout: addressPage
+---
 **Data Quality and Cleansing.** 
 
 1. Problems with data in the register arise from:

@@ -1,0 +1,14 @@
+<!--  userNeeds.html  -->
+
+<h2 class="govuk-heading-m">Addresses</h2>
+
+  <ul>
+    {% assign sections_sorted = site.addresses | sort: 'order' %}
+    {% for note in sections_sorted  %}
+    <li> 
+    <a href="{{ note.url| prepend: site.baseurl  }}">
+        {{ note.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>

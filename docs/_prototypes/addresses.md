@@ -50,3 +50,5 @@ Can link to architecture etc link to relevant documents/wiki pages
 * Index Layer and Address Exceptions to be held in a cloud based relational database, such as AWS Aurora, or a hosted Postgres instance.  
 * Access to the data through AWS API Gateways, with code logic in serverless functions.  
 * All register searches to go through the Address Index layer, so that all historic certificate are properly represented.  
+
+{% include addressLinks.html %}

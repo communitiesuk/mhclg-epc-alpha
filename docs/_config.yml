@@ -35,6 +35,8 @@ collections:
     output: true
   prototypes:
     output: true
+  addresses:
+    output: true
 
 # Build settings
 markdown: kramdown
@@ -67,6 +69,10 @@ defaults:
       layout: "default"
   - scope:
       path: "prototypes"
+    values:
+      layout: "default"
+  - scope:
+      path: "addresses"
     values:
       layout: "default"
       

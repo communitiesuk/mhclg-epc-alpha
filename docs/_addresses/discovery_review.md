@@ -1,3 +1,8 @@
+---
+title: Discovery Review
+order: 5
+layout: addressPage
+---
 **Addresses: Review of Discovery work on Addresses**
 
 Accurate address matching is fundamental to users' ability to search for the certificates and data they need, and to match updated assessor / certificate data with existing data for the same address.
