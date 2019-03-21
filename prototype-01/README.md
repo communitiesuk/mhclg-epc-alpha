@@ -21,9 +21,11 @@ To stop the service use `ctrl+c`
 For this project, a Heroku app has been created at:
 [https://mhclg-epc-alpha-prototype-01.herokuapp.com](https://mhclg-epc-alpha-prototype-01.herokuapp.com)
 
-From the working folder push changes to Heroku via 
+See the [GDS publishing guidance](https://govuk-prototype-kit.herokuapp.com/docs/publishing-on-heroku) for more details.
+
+From the _working folder_ push changes to Heroku via 
 `git subtree push --prefix prototype-01 heroku master`
 
 ## Notes
 
-The prototype was built using the [GDS Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/tutorials-and-examples).  A set of dummy data (`app/data/auth_user_results.json`) is loaded on the server to populate the search results. Additional example data is set in the `routes.js` file and passed to the actual pages to render them. 
+The prototype was built using the [GDS Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/tutorials-and-examples).  Some data is retrieved directly via the [MHCLG](https://epc.opendatacommunities.org/docs/api/display) API. A set of dummy data (`app/data/auth_user_results.json`) is loaded on the server to populate the search results. Additional example data is set in the `routes.js` file and passed to the actual pages to render them. 
