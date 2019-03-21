@@ -33,6 +33,8 @@ collections:
     output: true
   userresearch:
     output: true
+  prototypes:
+    output: true
 
 # Build settings
 markdown: kramdown
@@ -61,6 +63,10 @@ defaults:
       weeknotes: "true"
   - scope:
       path: "userresearch"
+    values:
+      layout: "default"
+  - scope:
+      path: "prototypes"
     values:
       layout: "default"
       
