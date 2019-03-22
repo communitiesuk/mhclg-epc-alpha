@@ -5,9 +5,7 @@ layout: prototypes
 ---
 <h2 class="govuk-heading-m">Service providers and data consumers prototype</h2>
 
-[https://mhclg-epc-alpha-prototype-02.herokuapp.com](https://mhclg-epc-alpha-prototype-02.herokuapp.com)
 
-[Demo access without sign-in](https://mhclg-epc-alpha-prototype-02.herokuapp.com/user?user=demo)
 
 This prototype provides authorised access to a range of services based on the user type, eg service provider, assessor, epc, government, devolved administration or local government. It enables service users to find certificates, assessors and addresses using a smart search with combined filterable results. It makes it quicker for service users to get the information they require and provides consistent results.
 
