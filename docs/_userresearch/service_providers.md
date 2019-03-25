@@ -1,6 +1,6 @@
 ---
 title: Service providers
-order: 2
+order: 3
 layout: user-research
 ---
 ## Discovery research summary
