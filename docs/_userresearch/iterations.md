@@ -1,6 +1,6 @@
 ---
 title: Iterations 
-order: 6
+order: 4
 layout: user-research
 ---
 ## Sprint 1
