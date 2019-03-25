@@ -359,7 +359,7 @@ router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var assessors = req.app.locals.smartResults.assessors;
   for ( var i=0; i<assessors.length; i++){
-    var base = Buffer.from(assessors[i]['Accreditation Number']).toString('base64')
+    var base = Buffer.from(assessors[i]['number']).toString('base64')
     req.app.locals.smartResults.assessors[i].base64ref  = base;
   }
 
