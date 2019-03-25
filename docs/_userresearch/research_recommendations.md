@@ -1,6 +1,6 @@
 ---
 title: Research recommendations
-order: 7
+order: 6
 layout: user-research
 ---
 
