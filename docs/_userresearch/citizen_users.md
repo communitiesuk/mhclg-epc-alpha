@@ -6,8 +6,8 @@ layout: user-research
 ## Discovery research summary
 
 ### Findings
-Tested and validated the hypothesis that citizen users will self serve information about energy certificates if it was presented clearly and included up to date information
-Tested and dispelled the hypothesis that citizen users need a way to opt out of having their address included in the register after it has already been added to the register.
+* Tested and validated the hypothesis that citizen users will self serve information about energy certificates if it was presented clearly and included up to date information
+* Tested and dispelled the hypothesis that citizen users need a way to opt out of having their address included in the register after it has already been added to the register.
 
 ### User needs
 Tenant
