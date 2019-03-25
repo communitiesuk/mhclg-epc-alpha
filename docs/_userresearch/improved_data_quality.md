@@ -1,16 +1,38 @@
 ---
-title: Improved data quality
-order: 4
+title: Methodology
+order: 5
 layout: user-research
 ---
-<h2 class="govuk-heading-m">User stories</h2>
+Methods used to gather feedback were:
 
+## Interviews (**26**)
+45 minutes interviews with representatives from each of the identified user groups
 
-<h2 class="govuk-heading-m">Personas impacted</h2>
+### Aim by persona
+#### Citizen user: 
+Understand current knowledge of EPCs
+Investigate current experience with EPC services
+Investigate understanding of consent and data access
 
+#### Data consumers:
+Understand current experience of the EPC service
+Investigate goals and needs for service
 
-<h2 class="govuk-heading-m">Design options</h2>
+#### Service provider:
+Understand current experience of the EPC service
+Investigate goals and needs for service
 
+## Focus group
+Session with representatives from Scheme representatives
 
-<h2 class="govuk-heading-m">Impact of not having this need met</h2>
+## Workshop
+Representatives from each of the identified user groups got together to validate the needs identified during research and prioritise their overall needs for the service as well as their information needs
+[Insert link/file for agenda]
+[Insert link/file for Alpha day summary]
 
+## Embedded surveys
+[link to overview of results]
+
+## Embedded tracking
+Each prototype was embedded with tracking to track specific funnels through the prototype
+[Link to hotjar findings/stats]
