@@ -32,54 +32,116 @@ router.get('/find-a-report/search', function(req, res, next) {
 });
  
 
+  var sortedArray = [];
 router.get('/find-a-report/results', function(req, res, next) {
 
   if(req.session.data['address-postcode']){
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
+    // flats/houses, Small Commercial Buildings, Large Commercial Buildings, Public buildings
+    var certInitials = ['EPC', 'EPC3', 'EPC4', 'DEC'];
+    var certTypes = ['Domestic EPC', 'Commercial EPC Level 3', 'Commercial EPC Level 4', 'Display Energy Certificates'];
 
-    request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
-      method: "GET",
-      headers: {
-          'Authorization': process.env.EPC_API_KEY,
-          'Accept': 'application/json'
+    var sort = -1;
+    // check for a filter 
+    // that means we already have data so dont make call
+    if(req.session.data['sort']){
+      // loop through sortedArray and rebuild the array we pass to the page
+      arr = [];
+      sort = parseInt(req.session.data['sort']);
+      console.log(' got sort ' + sort);
+      for (var i=0;i<sortedArray.length;i++){
+        // only match selection
+        console.log(sort, sortedArray[i].certIndex);
+        if( sort=== -1 || sort === sortedArray[i].certIndex){
+          arr.push(sortedArray[i]);
         }
-      }, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            if(body) {
-              dataset = JSON.parse(body);
+      }
 
-              // sort by second property then first property
-              // sort by house number as main order then flat number
-              var sortedArray = _.chain(dataset.rows)
-                .sortBy('address1')
-                .sortBy('address2')
-                .value();
-
-              // loop through results and build a simple array
-              var arr = [];
-              for (var i=0;i<sortedArray.length;i++){
-                arr[i] = {
-                      "reference": sortedArray[i]['certificate-hash'],
-                      "type": sortedArray[i]['property-type'],
-                      "address": sortedArray[i].address +', '+ dataset.rows[i].postcode,
-                      "category": sortedArray[i]['current-energy-rating']
-                  }
-              }              
-
-              res.render('find-a-report/results', {
-                addresses: arr
-              });
-              
-            } else {
-              res.render('find-a-report/results', {
-                addresses: []
-              });
-            }
-          } else {
-            res.redirect('/error');
-          }
+      res.render('find-a-report/results', {
+        addresses: arr,
+        selection: sort,
+        totalRecords: sortedArray.length,
+        selectedRecords: arr.length
       });
+
+    }else{
+
+      request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
+        method: "GET",
+        headers: {
+            'Authorization': process.env.EPC_API_KEY,
+            'Accept': 'application/json'
+          }
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+              if(body) {
+                dataset = JSON.parse(body);
+
+                // sort by second property then first property
+                // sort by house number as main order then flat number
+                sortedArray = _.chain(dataset.rows)
+                  .sortBy('address1')
+                  .sortBy('address2')
+                  .value();
+
+                // loop through results and build a simple array
+                var arr = [];
+
+                for (var i=0;i<sortedArray.length;i++){
+                  //add in rando certificate type
+                  var ran = Math.random()*10;
+                  var certIndex = 0;
+                  if(ran>9){
+                    certIndex = 3;
+                  }
+                  else if(ran>8){
+                    certIndex =2;
+                  }
+                  else  if(ran>6){
+                    certIndex =1;
+                  }
+                  //update the sortedArray with the index for later sorting...
+                  sortedArray[i].certIndex = certIndex;
+                  sortedArray[i].reference = sortedArray[i]['certificate-hash'];
+                  sortedArray[i].type = certTypes[certIndex];
+                  sortedArray[i].initials = certInitials[certIndex];
+                  sortedArray[i].address = sortedArray[i].address +', '+ dataset.rows[i].postcode;
+                  sortedArray[i].category = sortedArray[i]['current-energy-rating'];
+                  // only match selection
+                  //if( sort=== -1 || sort === certIndex){
+                    
+                    arr.push( sortedArray[i]);
+
+                    /*arr.push( {
+                          "reference": sortedArray[i]['certificate-hash'],
+                          //"type": sortedArray[i]['property-type'],
+                          "certIndex": certIndex,
+                          "type": certTypes[certIndex],
+                          "initials": certInitials[certIndex],
+                          "address": sortedArray[i].address +', '+ dataset.rows[i].postcode,
+                          "category": sortedArray[i]['current-energy-rating']
+                      });*/
+                  //}
+                }              
+
+                res.render('find-a-report/results', {
+                  addresses: arr,
+                  selection: sort,
+                  totalRecords: sortedArray.length,
+                  selectedRecords: arr.length
+                });
+                
+              } else {
+                res.render('find-a-report/results', {
+                  addresses: []
+                });
+              }
+            } else {
+              res.redirect('/error');
+            }
+        });
+      }
     
   }else{
     res.send('no data');

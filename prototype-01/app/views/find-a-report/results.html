@@ -32,14 +32,38 @@
         Energy Performance Certificates for {{ data['address-postcode'] | upper}}
       </h1>
       
+
+<form id="form-sort" class="" action="results" method="post" >
+  <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
+    <legend class="govuk-heading-s">Sort options</legend>
+    <label class="govuk-label" for="sort">
+      Showing {{selectedRecords}} of {{totalRecords}} results.
+    </label>
+    <span id="sort-hint" class="govuk-hint">
+      Order the search results.
+    </span> 
+
+    <select class="govuk-select" id="sort" name="sort">
+      <option value="-1" {% if (selection===-1) %} selected="selected" {% endif %}>All certificate types</option>
+      <option value="0" {% if (selection===0) %} selected="selected" {% endif %}>Domestic EPC</option>
+      <option value="1" {% if (selection===1) %} selected="selected" {% endif %}>Commercial EPC Level 3 (small buildings)</option>
+      <option value="2" {% if (selection===2) %} selected="selected" {% endif %}>Commercial EPC Level 4 (large buildings)</option>
+      <option value="3" {% if (selection===3) %} selected="selected" {% endif %}>Display Energy Certificates (public buildings)</option>
+    </select>
+    <button id="sortBtn" type="hidden" class="hidden">Sort</button>
+  </fieldset>
+</form>
+
 {% if not addresses.length %}
 <p>No certicates found for that postcode</p>
 
 {% else %}
 <p>Please click on an address below to view or download a report:</p>
 
+
+
 <table class="govuk-table">
-  <caption class="govuk-table__caption">Properties with an EPC*</caption>
+  <caption class="govuk-table__caption"></caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="col">Type</th>
@@ -52,7 +76,7 @@
 
     {% for item in addresses %}
         <tr class="govuk-table__row">
-          <th class="govuk-table__header" scope="row">{{item.type}}</th>
+          <th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}}</abbr></th>
           <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.address}}</a></td>
           <td class="govuk-table__cell">{{item.category}}</td>
         </tr>
