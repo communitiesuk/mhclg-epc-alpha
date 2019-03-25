@@ -1,5 +1,5 @@
 ---
-title: Iterations 
+title: Sprints 
 order: 4
 layout: user-research
 ---
