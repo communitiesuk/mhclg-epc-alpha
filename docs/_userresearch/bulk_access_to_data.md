@@ -85,4 +85,11 @@ Needs:
 * Easy to understand content
 * Provide support to identified contacts for citizen users [Assisted Digital]
   * Digital leaflets and other artefacts that can be used to explain EPCs, the register, the legislation, data
+  
+  
+##Service flow
+[insert diagram]
+
+##Recommendations for Beta research
+[summarise and link to page with full recommendations]
 
