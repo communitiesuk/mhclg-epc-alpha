@@ -3,14 +3,14 @@ title: Access to raw data
 order: 5
 layout: user-research
 ---
-<h2 class="govuk-heading-m">User stories</h2>
+<h2 class="govuk-heading-m">Discovery research summary</h2>
 
 
-<h2 class="govuk-heading-m">Personas impacted</h2>
+<h3 class="govuk-heading-m">Findings</h2>
 
 
-<h2 class="govuk-heading-m">Design options</h2>
+<h3 class="govuk-heading-m">User needs</h3>
 
 
-<h2 class="govuk-heading-m">Impact of not having this need met</h2>
+<h3 class="govuk-heading-m">Discovery backlog for Alpha</h3>
 
