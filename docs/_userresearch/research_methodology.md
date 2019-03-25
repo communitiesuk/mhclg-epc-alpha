@@ -1,5 +1,5 @@
 ---
-title: Methodology
+title: Research Methodology
 order: 4
 layout: user-research
 ---
