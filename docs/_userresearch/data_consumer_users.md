@@ -3,11 +3,11 @@ title: Data consumers
 order: 3
 layout: user-research
 ---
-##Discovery research summary
-###Findings
+## Discovery research summary
+### Findings
 
 
-###User needs
+### User needs
 Property portal
 * Need to serve EPC rating on the property page
 * Neet to use EPC open data to pre-populate property pages
@@ -44,24 +44,24 @@ Consumer bodies
 * Give legal and money saving advice
 
 
-###Discover backlog for Alpha
+### Discover backlog for Alpha
 
 
-##Alpha research
-###Participants
+## Alpha research
+### Participants
 * BEIS representatives: 
 * Scheme representatives: 6 participants
 * Academic researchers: 3 participants
 * Devolved administration representatives: 3 participants
 * Property portal representatives: 1 participant
 
-###Methodology
+### Methodology
 * Interviews [link to section on methodology page]
 * Group workshop [link to section on methodology page]
 * Embedded survey [link to section on methodology page]
 * Embedded tracking [link to section on methodology page]
 
 
-###Service flow
+### Service flow
 
-###Recommendations for Beta Research
+### Recommendations for Beta Research
