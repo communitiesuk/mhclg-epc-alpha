@@ -1,6 +1,6 @@
 ---
 title: Methodology
-order: 5
+order: 4
 layout: user-research
 ---
 Methods used to gather feedback were:
