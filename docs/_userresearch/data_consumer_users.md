@@ -1,6 +1,6 @@
 ---
 title: Data consumers
-order: 3
+order: 2
 layout: user-research
 ---
 ## Discovery research summary
