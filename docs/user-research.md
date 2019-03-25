@@ -5,17 +5,17 @@ heading: User Research
 ---
 
 
-##Background
+## Background
 
-##What is an EPC
+## What is an EPC
 
-##Project Scope
+## Project Scope
 
 
-##Timeline
+## Timeline
 [link to iterations/sprints]
 
-##Personas defined in Alpha
+## Personas defined in Alpha
 [Insert citizen persona]
 [Insert data consumer persona]
 [Insert service provider persona]
