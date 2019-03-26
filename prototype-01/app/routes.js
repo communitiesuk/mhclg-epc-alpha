@@ -32,7 +32,8 @@ router.get('/find-a-report/search', function(req, res, next) {
 });
  
 
-  var sortedArray = [];
+var sortedArray = [];
+
 router.get('/find-a-report/results', function(req, res, next) {
 
   if(req.session.data['address-postcode']){
@@ -49,10 +50,10 @@ router.get('/find-a-report/results', function(req, res, next) {
       // loop through sortedArray and rebuild the array we pass to the page
       arr = [];
       sort = parseInt(req.session.data['sort']);
-      console.log(' got sort ' + sort);
+      //console.log(' got sort ' + sort);
       for (var i=0;i<sortedArray.length;i++){
         // only match selection
-        console.log(sort, sortedArray[i].certIndex);
+        //console.log(sort, sortedArray[i].certIndex);
         if( sort=== -1 || sort === sortedArray[i].certIndex){
           arr.push(sortedArray[i]);
         }
