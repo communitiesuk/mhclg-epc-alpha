@@ -1,5 +1,5 @@
 ---
-title: Citizen users
+title: Citizen users research
 order: 1
 layout: user-research
 ---
@@ -9,7 +9,7 @@ layout: user-research
 * Tested and validated the hypothesis that citizen users will self serve information about energy certificates if it was presented clearly and included up to date information
 * Tested and dispelled the hypothesis that citizen users need a way to opt out of having their address included in the register after it has already been added to the register.
 
-### User needs
+### User needs from Discovery phase
 Tenant
 * Need information including the EPC to decide which property to rent
 * Need to check rating and complain to have improvements made if EPC is an F or G
@@ -43,8 +43,8 @@ Builders
 Property investors
 * Decide when to invest in improvements
 
-## Discover backlog for Alpha
-Things to focus on in Alpha as identified by Discovery team:
+## Discovery backlog for Alpha
+Things the Discovery team identified needed to be explored during the Alpha phase:
 
 * Research with Energy Savings Trust
 * Research with potential users of the APIs
@@ -66,20 +66,21 @@ Tenants
 Landlords
 
 ### Research methodology
-Interviews [link to methodology page]
-Embedded surveys [link to methodology page]
-Embedded tracking [link to methodology page]
-Group workshop [link to methodology page]
+* Interviews [link to methodology page]
+* Embedded surveys [link to methodology page]
+* Embedded tracking [link to methodology page]
+* Group workshop [link to methodology page]
 
 ## Findings
-Goal: 
+Citizen Goal: 
 Purchase or rent a property - legislation has meant that the EPC is a small but mandatory part of that journey
+
+
 
 Needs:
 * Improve public awareness of EPCs and the EPB register 
   * Purpose of the register, data held, uses for the data
   * [Beta consideration] Review/update position in service flow
-* Possibly a symptom of lack of public awareness
 * Easy to find EPC data about a property
 * Easy to find valid information about an assessor
 * Easy to understand content
