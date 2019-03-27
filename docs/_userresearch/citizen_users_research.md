@@ -3,7 +3,7 @@ title: Citizen users research
 order: 1
 layout: user-research
 ---
-## User roles interviewed:
+## Number of users and roles interviewed:
 * Property owners (x2)
 * Tenant (x3)
 * Landlord (x2)
