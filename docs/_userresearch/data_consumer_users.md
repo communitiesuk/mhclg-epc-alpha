@@ -21,3 +21,5 @@ layout: user-research
 
 
 ### Recommendations for Beta Research
+* Conduct research with Local Authorities and Registered Social Landlords
+* Explore user needs for APIs
