@@ -3,9 +3,7 @@ title: Citizen users research
 order: 1
 layout: user-research
 ---
-
-## Citizen user research
-User roles:
+## User roles:
 * Property owners
 * Buyer
 * Seller
