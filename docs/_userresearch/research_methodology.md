@@ -23,16 +23,13 @@ Understand current experience of the EPC service
 Investigate goals and needs for service
 
 ## Focus group
-Session with representatives from Scheme representatives
-[a link](mhclg-epc-alpha/docs/assets/media/RESEARCH_ Scheme session summary (1).pdf)
+Session with representatives from Energy Performance Schemes
+[a link](https://github.com/notbinary/mhclg-epc-alpha/docs/assets/media/RESEARCH_ Scheme session summary (1).pdf)
 
 ## Workshop
 Representatives from each of the identified user groups got together to validate the needs identified during research and prioritise their overall needs for the service as well as their information needs
 [Insert link/file for agenda]
 [Insert link/file for Alpha day summary]
-
-## Embedded surveys
-[link to overview of results]
 
 ## Embedded tracking
 Each prototype was embedded with tracking to track specific funnels through the prototype
