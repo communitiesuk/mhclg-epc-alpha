@@ -4,14 +4,6 @@ title: User Research
 heading: User Research
 ---
 
-
-## Background
-
-## What is an EPC
-
-## Project Scope
-
-
 ## Who are the users?
 User groups identified:
 * Citizen 
