@@ -31,9 +31,6 @@ Representatives from each of the identified user groups got together to validate
 [Insert link/file for agenda]
 [Insert link/file for Alpha day summary]
 
-## Embedded surveys
-[link to overview of results]
-
 ## Embedded tracking
 Each prototype was embedded with tracking to track specific funnels through the prototype
 [Link to hotjar findings/stats]
