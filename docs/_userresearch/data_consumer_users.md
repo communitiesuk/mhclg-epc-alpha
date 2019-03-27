@@ -3,13 +3,13 @@ title: Data consumer research
 order: 3
 layout: user-research
 ---
-## Data user research
-User roles:
-* Local authority
-* Devolved administration users
-* Registered Social Landlords
-* BEIS
-* Academic researchers
+## User roles interviewed:
+* Devolved administration representatives (x3)
+* BEIS (x4)
+* Academic researchers (x2)
+* MHCLG data analysts (x4)
+* Scheme representative (x6)
+* Property portal (x1)
 
 ## Goals
 * Identify trends within EPC data
