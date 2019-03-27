@@ -1,5 +1,5 @@
 ---
-title: Data consumers
+title: Data consumer research
 order: 3
 layout: user-research
 ---
