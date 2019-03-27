@@ -3,7 +3,7 @@ title: Data consumer research
 order: 3
 layout: user-research
 ---
-## User roles interviewed:
+## Number of users and roles interviewed:
 * Devolved administration representatives (x3)
 * BEIS (x4)
 * Academic researchers (x2)
