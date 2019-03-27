@@ -10,9 +10,9 @@ Research for this user group was not done during Discovery.
 [Insert image] Stakeholder map - highlight the stakeholders relevant for ‘Service provider’ persona
 
 ## Assessor user research
-User roles:
-* Domestic assessor
-* Non-domestic assessor
+User roles interviewed:
+* Domestic assessor (x2)
+* Non-domestic assessor (x2)
 
 ## Goals
 * Lodge assessment data so that energy performance certificates can be generated for clients
