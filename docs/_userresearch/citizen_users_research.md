@@ -37,8 +37,10 @@ User roles:
 * Find an assessor to do an EPC assessment on a property
 
 ## Needs
-<p>**As a** property owner</p>
+**As a** property owner
+
 **I need to** be informed about what EPCs are and why they are needed 
+
 **So that** I can make informed decisions about an EPC for my property
 
 **As a** property owner
