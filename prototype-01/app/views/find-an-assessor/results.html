@@ -48,7 +48,13 @@
         <tbody class="govuk-table__body">
           {% for item in addresses.assessor %}
               <tr class="govuk-table__row">
-                <th class="govuk-table__cell" scope="row">{{item.number}}</th>
+                <th class="govuk-table__cell" scope="row">
+                  {% if isAssessorCheck %} 
+                    {{ target }}
+                  {% else %}
+                    {{ item.number }}
+                  {% endif %}
+                </th>
                 <td class="govuk-table__cell">{{item.name}}</td>
                 <td class="govuk-table__cell">{{item.schemeName}}</td>
                 <td class="govuk-table__cell">{{item.distance}}</td>

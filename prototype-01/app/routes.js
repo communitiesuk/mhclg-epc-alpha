@@ -51,10 +51,8 @@ router.get('/find-a-report/search', function(req, res, next) {
   if(certIndex>0){ 
     certType = certText[certIndex];
   }
-  //console.log('search: ' + certIndex);
 
   if(req.session.data['sort']){
-    //console.log('clear data');
     req.session.data['sort'] = null;
   }
 
@@ -68,13 +66,12 @@ router.get('/find-a-report/search', function(req, res, next) {
 
 router.get('/find-a-report/choices', function(req, res, next) {
   var doesKnowCertType = req.session.data['know-cert-type'];
-  //console.log(doesKnowCertType);
+
   if (doesKnowCertType === 'Yes') {
     // redirect and select a cert type
     res.redirect('/find-a-report/certificate-types')
   } else {
-    // don't know so show all
-    //console.log('choices:: search' + certText[0]);
+    // user doesn't know which type so show all
     req.session.data['cert-type'] = 0;
     certIndex = 0;
     res.redirect('/find-a-report/search')
@@ -88,14 +85,11 @@ var sortedArray = [];
 var lastCheckedPostcode = '';
 
 router.get('/find-a-report/results', function(req, res, next) {
-//console.log('results: ' + certIndex);
-  if(req.session.data['address-postcode']){
 
+  if(req.session.data['address-postcode']){
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
     // flats/houses, Small Commercial Buildings, Large Commercial Buildings, Public buildings
-
-
     if(cleaned!==lastCheckedPostcode){
       // get data for address and modify to add dummy 'types'
       request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
@@ -159,11 +153,8 @@ router.get('/find-a-report/results', function(req, res, next) {
         });
 
     }else{
-      //console.log('previously...');
       filterCertTypes(req, res);
     }
-
-
 
     
   }else{
@@ -176,32 +167,23 @@ router.get('/find-a-report/results', function(req, res, next) {
 
 function filterCertTypes(req, res){
   var sort = 0;
-  //console.log("FILTER CERTS");
   // check for a filter 
   // either previous radio or select menu
   if(req.session.data['sort'] ){
     sort = parseInt(req.session.data['sort']);
-    //console.log('read sort '+ sort);
     certIndex = sort;
   }
 
   if(certIndex>0 ){
-    //console.log('set sort ' + certIndex);
     sort = parseInt(certIndex);
   }
-
-  //console.log("cert index: " + certIndex, sort);
-
 
   // loop through sortedArray and rebuild the array we pass to the page
   arr = [];
   certType = certText[sort];
-  //console.log(' got sort ' + sort);
   for (var i=0;i<sortedArray.length;i++){
     // only match selection
-    //console.log(sort, sortedArray[i].certIndex);
     if( sort=== 0 || sort === sortedArray[i].certIndex){
-      //console.log('match!');
       arr.push(sortedArray[i]);
     }
   }
@@ -341,7 +323,7 @@ router.get('/find-an-assessor/results', function(req, res) {
     var idx = Math.floor(Math.random()*assessors.length)
     assessors = [ assessors[idx]];
     // fake the accreditation
-    assessors[0].number = target;
+    //assessors[0].number = target;
   }
 
 
@@ -371,6 +353,9 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
     var item = filtered[0];
     var scheme = req.app.locals.smartResults.schemes[item.scheme-1];
     
+    if (req.session.data['assessor-reference']){
+      item.number = req.session.data['assessor-reference'].toUpperCase();
+    }
     var results = {
       assessor:{
           name:item.name,
@@ -378,8 +363,8 @@ router.get('/find-an-assessor/assessor/:reference', function(req, res) {
           "Contact address": item.address,
           "Phone number": item.telephone,
           "Company name": scheme.name,
-          "status": "registered",
-          "Postcode coverage": item['postcode coverage'].join(' '),
+          "status": "Registered",
+          //"Postcode coverage": item['postcode coverage'].join(' '),
           "Certificate types": scheme['certificate types'].join('; ')
         },
         scheme:scheme
