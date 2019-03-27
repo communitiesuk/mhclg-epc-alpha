@@ -51,10 +51,10 @@ router.get('/find-a-report/search', function(req, res, next) {
   if(certIndex>0){ 
     certType = certText[certIndex];
   }
-  console.log('search: ' + certIndex);
+  //console.log('search: ' + certIndex);
 
   if(req.session.data['sort']){
-    console.log('clear data');
+    //console.log('clear data');
     req.session.data['sort'] = null;
   }
 
@@ -68,13 +68,13 @@ router.get('/find-a-report/search', function(req, res, next) {
 
 router.get('/find-a-report/choices', function(req, res, next) {
   var doesKnowCertType = req.session.data['know-cert-type'];
-console.log(doesKnowCertType);
+  //console.log(doesKnowCertType);
   if (doesKnowCertType === 'Yes') {
     // redirect and select a cert type
     res.redirect('/find-a-report/certificate-types')
   } else {
     // don't know so show all
-    console.log('choices:: search' + certText[0]);
+    //console.log('choices:: search' + certText[0]);
     req.session.data['cert-type'] = 0;
     certIndex = 0;
     res.redirect('/find-a-report/search')
@@ -88,7 +88,7 @@ var sortedArray = [];
 var lastCheckedPostcode = '';
 
 router.get('/find-a-report/results', function(req, res, next) {
-console.log('results: ' + certIndex);
+//console.log('results: ' + certIndex);
   if(req.session.data['address-postcode']){
 
     var str = req.session.data['address-postcode'];
@@ -159,7 +159,7 @@ console.log('results: ' + certIndex);
         });
 
     }else{
-      console.log('previously...');
+      //console.log('previously...');
       filterCertTypes(req, res);
     }
 
@@ -176,21 +176,21 @@ console.log('results: ' + certIndex);
 
 function filterCertTypes(req, res){
   var sort = 0;
-  console.log("FILTER CERTS");
+  //console.log("FILTER CERTS");
   // check for a filter 
   // either previous radio or select menu
   if(req.session.data['sort'] ){
     sort = parseInt(req.session.data['sort']);
-    console.log('read sort '+ sort);
+    //console.log('read sort '+ sort);
     certIndex = sort;
   }
 
   if(certIndex>0 ){
-    console.log('set sort ' + certIndex);
+    //console.log('set sort ' + certIndex);
     sort = parseInt(certIndex);
   }
 
-  console.log("cert index: " + certIndex, sort);
+  //console.log("cert index: " + certIndex, sort);
 
 
   // loop through sortedArray and rebuild the array we pass to the page
@@ -199,9 +199,9 @@ function filterCertTypes(req, res){
   //console.log(' got sort ' + sort);
   for (var i=0;i<sortedArray.length;i++){
     // only match selection
-    console.log(sort, sortedArray[i].certIndex);
+    //console.log(sort, sortedArray[i].certIndex);
     if( sort=== 0 || sort === sortedArray[i].certIndex){
-      console.log('match!');
+      //console.log('match!');
       arr.push(sortedArray[i]);
     }
   }
