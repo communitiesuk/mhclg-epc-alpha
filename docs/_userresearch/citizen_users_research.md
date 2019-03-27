@@ -9,39 +9,6 @@ layout: user-research
 * Tested and validated the hypothesis that citizen users will self serve information about energy certificates if it was presented clearly and included up to date information
 * Tested and dispelled the hypothesis that citizen users need a way to opt out of having their address included in the register after it has already been added to the register.
 
-### User needs from Discovery phase
-Tenant
-* Need information including the EPC to decide which property to rent
-* Need to check rating and complain to have improvements made if EPC is an F or G
-
-Buyer
-* Need to see EPC ratings to decide what property to buy
-* Need the EPC to obtain a specialised mortgage
-
-Home owner
-* Need expert guidance on what to do to improve energy performance
-
-Seller
-* Need to have an EPC shortly after placing on the market and before sale
-* Need to send EPC to buyer via agent or solicitor
-
-Landlord
-* Need to have an EPC to rent out my property
-* Need to send EPC to new tenant via agent or solicitor
-
-Estate agent
-* Need to attach the EPC to the property
-* Need to provide the EPC to the buyer on behalf of the seller
-
-Letting agent
-* Need to attach the EPC to the property
-* Need to provide the EPC to the tenant on behalf of the landlord
-
-Builders
-* Need EPC to be lodged quickly
-
-Property investors
-* Decide when to invest in improvements
 
 ## Discovery backlog for Alpha
 Things the Discovery team identified needed to be explored during the Alpha phase:
@@ -56,40 +23,36 @@ Things the Discovery team identified needed to be explored during the Alpha phas
 * Run a survey with users to discover appetite to access and use own energy performance data
 * Investigate incorporating EPCs into a ‘Property logbook’
 
-## Alpha research
-[Insert image] Stakeholder map - highlight the stakeholders relevant for ‘Citizen’ persona
+## Citizen user research
+User roles:
+* Property owners
+* Buyer
+* Seller
+* Tenant
+* Estate agent
+* Letting agent
 
-### Participants
-Property owners 
-Sellers
-Tenants
-Landlords
+## Goals
+* Find an EPC report for a property
+* Find an assessor to do an EPC assessment on a property
 
-### Research methodology
-* Interviews [link to methodology page]
-* Embedded surveys [link to methodology page]
-* Embedded tracking [link to methodology page]
-* Group workshop [link to methodology page]
+## Needs
+**As a** property owner 
+**I need to** be informed about what EPCs are and why they are needed 
+**So that** I can make informed decisions about an EPC for my property
 
-## Findings
-Citizen Goal: 
-Purchase or rent a property - legislation has meant that the EPC is a small but mandatory part of that journey
+**As a** property owner
+**I need to** find a valid EPC for a property if one exists 
+**So that** I can legally sell or rent that property
 
+**As an** Estate / letting agent marketing a property for sale or rent 
+**I need to** have a direct link to a valid EPC for a specific property 
+**So that** I know that the EPC rating being displayed in the listing is valid
 
+**As a** property owner renting or selling a property
+**I need to** locate a reputable and competent energy performance assessor
+**So that** I can legally sell or rent that property
 
-Needs:
-* Improve public awareness of EPCs and the EPB register 
-  * Purpose of the register, data held, uses for the data
-  * [Beta consideration] Review/update position in service flow
-* Easy to find EPC data about a property
-* Easy to find valid information about an assessor
-* Easy to understand content
-* Provide support to identified contacts for citizen users [Assisted Digital]
-  * Digital leaflets and other artefacts that can be used to explain EPCs, the register, the legislation, data
-  
-  
-## Service flow
-[insert diagram]
 
 ## Recommendations for Beta research
 [summarise and link to page with full recommendations]
