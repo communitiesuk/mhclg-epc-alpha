@@ -28,10 +28,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Assessors for {{ data['address-postcode'] | upper }}
+        Assessors for {{ target }}
       </h1>
 
-      <p>The following assessors are registered near {{ data['address-postcode'] | upper }}:</p>
+      <p>The following assessors have been found:</p>
 
       <table class="govuk-table">
         <caption class="govuk-table__caption"></caption>
@@ -39,19 +39,19 @@
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col">Accreditation</th>
             <th class="govuk-table__header" scope="col">Name</th>
-            <th class="govuk-table__header" scope="col">Status</th>
             <th class="govuk-table__header" scope="col">Scheme</th>
-            <th class="govuk-table__header" scope="col">View</th>
+            <th class="govuk-table__header" scope="col">Distance (miles)</th>
+            <th class="govuk-table__header" scope="col"></th>
           </tr>
         </thead>
 
         <tbody class="govuk-table__body">
           {% for item in addresses.assessor %}
               <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="row">{{item.number}}</th>
+                <th class="govuk-table__cell" scope="row">{{item.number}}</th>
                 <td class="govuk-table__cell">{{item.name}}</td>
-                <td class="govuk-table__cell">{{item.status | capitalize }}</td>
                 <td class="govuk-table__cell">{{item.schemeName}}</td>
+                <td class="govuk-table__cell">{{item.distance}}</td>
                 <td class="govuk-table__cell"><a href="assessor/{{item.base64ref}}">View</a></td>
               </tr>
           {% endfor %}

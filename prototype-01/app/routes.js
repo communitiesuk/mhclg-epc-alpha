@@ -316,19 +316,43 @@ router.get('/find-an-assessor', function(req, res, next) {
 router.get('/find-an-assessor/results', function(req, res) {
   // dummy assessor data
   var assessors = req.app.locals.smartResults.assessors;
+  var count = 0;
+  var target;
+  var isAssessorCheck = false;
+
   for ( var i=0; i<assessors.length; i++){
     var base = Buffer.from(assessors[i]['number']).toString('base64')
     req.app.locals.smartResults.assessors[i].base64ref  = base;
     var schemeRef = parseInt(assessors[i].scheme)-1;
     assessors[i].schemeName = req.app.locals.smartResults.schemes[schemeRef].name;
+    assessors[i].distance = count;
+    count += Math.round(Math.random()*3);
   }
+
+  // check for assessor ref
+  if (req.session.data['address-postcode']){
+    target = req.session.data['address-postcode'].toUpperCase();
+  }
+
+  if (req.session.data['assessor-reference']){
+    target = req.session.data['assessor-reference'].toUpperCase();
+    isAssessorCheck = true;
+    // just show one at random
+    var idx = Math.floor(Math.random()*assessors.length)
+    assessors = [ assessors[idx]];
+    // fake the accreditation
+    assessors[0].number = target;
+  }
+
 
   var results = {
     assessor:assessors
   };
 
   res.render('find-an-assessor/results', {
-    addresses: results
+    addresses: results,
+    target:target,
+    isAssessorCheck:isAssessorCheck
   });
 });
 
@@ -380,8 +404,10 @@ router.post('/find-an-assessor/assessor-branch', function (req, res) {
   let assessorSearch = req.session.data['assessor-search-type']
 
   if (assessorSearch === 'check-assessor') {
+    req.session.data['address-postcode'] = null;
     res.redirect('/find-an-assessor/check')
   } else {
+    req.session.data['assessor-reference'] = null;
     res.redirect('/find-an-assessor/search-for-type')
   }
 })
