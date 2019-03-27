@@ -3,7 +3,7 @@ title: Assessors research
 order: 2
 layout: user-research
 ---
-## User roles interviewed:
+## Number of users and roles interviewed:
 * Domestic assessor (x2)
 * Non-domestic assessor (x2)
 
