@@ -19,5 +19,5 @@ layout: user-research
 **I need to** be able to lodge energy assessment and generate a valid EPC report 
 **So that** I can provide clients with a valid EPC report
 
-## Recommendations
+## Recommendations for Beta research
 * 
