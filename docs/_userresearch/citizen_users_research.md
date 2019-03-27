@@ -3,25 +3,6 @@ title: Citizen users research
 order: 1
 layout: user-research
 ---
-## Discovery research summary
-
-### Findings
-* Tested and validated the hypothesis that citizen users will self serve information about energy certificates if it was presented clearly and included up to date information
-* Tested and dispelled the hypothesis that citizen users need a way to opt out of having their address included in the register after it has already been added to the register.
-
-
-## Discovery backlog for Alpha
-Things the Discovery team identified needed to be explored during the Alpha phase:
-
-* Research with Energy Savings Trust
-* Research with potential users of the APIs
-* Investigate ‘Consent’ with citizen users
-* Find out how to integrate with BEIS calculators
-* Further research with estate agents
-* Publicise availability of EPC information (??)
-* Investigate ways to secure access to view own information
-* Run a survey with users to discover appetite to access and use own energy performance data
-* Investigate incorporating EPCs into a ‘Property logbook’
 
 ## Citizen user research
 User roles:
