@@ -26,8 +26,8 @@ var certs = [
   "all energy performance certificates",
   "a domestic energy perfomance certificate",
   "a non-domestic energy perfomance certificate",
-  "a display energy certificates",
-  "an air conditioning inspection certificates"
+  "a display energy certificate",
+  "an air conditioning inspection certificate"
 ];
 var certType = certs[0];
 
@@ -39,13 +39,18 @@ router.get('/find-a-report/choice', function(req, res, next) {
   res.render('find-a-report/certificate-choice');
 });
 
-
+var certIndex = 0;
 router.get('/find-a-report/search', function(req, res, next) {
 
-  let certIndex = req.session.data['cert-type'];
+  certIndex = req.session.data['cert-type'];
 
   if(certIndex>0){ 
     certType = certs[certIndex];
+  }
+  console.log('search: ' + certIndex);
+  if(req.session.data['sort']){
+    console.log('clear data');
+    req.session.data['sort'] = null;
   }
 
   res.render('find-a-report/search', {
@@ -60,6 +65,7 @@ router.get('/find-a-report/choices', function(req, res, next) {
   let doesKnowCertType = req.session.data['know-cert-type'];
 console.log(doesKnowCertType);
   if (doesKnowCertType === 'Yes') {
+    certIndex = 0;
     res.redirect('/find-a-report/certificate-types')
   } else {
     console.log('search' + certs[0]);
@@ -73,7 +79,7 @@ console.log(doesKnowCertType);
 var sortedArray = [];
 
 router.get('/find-a-report/results', function(req, res, next) {
-
+console.log('results: ' + certIndex);
   if(req.session.data['address-postcode']){
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
@@ -82,33 +88,8 @@ router.get('/find-a-report/results', function(req, res, next) {
     var certTypes = [null, 'Domestic energy perfomance certificate', 'Non-domestic energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
 
     var sort = 0;
-    // check for a filter 
-    // that means we already have data so dont make call
-    if(req.session.data['sort']){
 
-      // loop through sortedArray and rebuild the array we pass to the page
-      arr = [];
-      sort = parseInt(req.session.data['sort']);
-      certType = certs[sort];
-      //console.log(' got sort ' + sort);
-      for (var i=0;i<sortedArray.length;i++){
-        // only match selection
-        //console.log(sort, sortedArray[i].certIndex);
-        if( sort=== 0 || sort === sortedArray[i].certIndex){
-          arr.push(sortedArray[i]);
-        }
-      }
-
-      res.render('find-a-report/results', {
-        addresses: arr,
-        selection: sort,
-        totalRecords: sortedArray.length,
-        selectedRecords: arr.length,
-        certType: certType
-      });
-
-    }else{
-
+    // get data for address and modify to add dummy 'types'
       request(process.env.EPC_API_URI+'?postcode='+cleaned+'&size=150', {
         method: "GET",
         headers: {
@@ -133,39 +114,55 @@ router.get('/find-a-report/results', function(req, res, next) {
                 for (var i=0;i<sortedArray.length;i++){
                   //add in random certificate type
                   var ran = Math.random()*10;
-                  var certIndex = 1; //default is 1. 0 is for all certificates
+                  var tempCertIdx = 1; //default is 1. 0 is for all certificates
                   if(ran>9){
-                    certIndex = 4;
+                    tempCertIdx = 4;
                   }
                   else if(ran>8){
-                    certIndex =3;
+                    tempCertIdx =3;
                   }
                   else  if(ran>6){
-                    certIndex =2;
+                    tempCertIdx =2;
                   }
                   //update the sortedArray with the index for later sorting...
-                  sortedArray[i].certIndex = certIndex;
+                  sortedArray[i].certIndex = tempCertIdx;
                   sortedArray[i].reference = sortedArray[i]['certificate-hash'];
-                  sortedArray[i].type = certTypes[certIndex];
-                  sortedArray[i].initials = certInitials[certIndex];
+                  sortedArray[i].type = certTypes[tempCertIdx];
+                  sortedArray[i].initials = certInitials[tempCertIdx];
                   sortedArray[i].address = sortedArray[i].address +', '+ dataset.rows[i].postcode;
                   sortedArray[i].category = sortedArray[i]['current-energy-rating'];
-                  // only match selection
-                  //if( sort=== -1 || sort === certIndex){
-                    
-                    arr.push( sortedArray[i]);
 
-                    /*arr.push( {
-                          "reference": sortedArray[i]['certificate-hash'],
-                          //"type": sortedArray[i]['property-type'],
-                          "certIndex": certIndex,
-                          "type": certTypes[certIndex],
-                          "initials": certInitials[certIndex],
-                          "address": sortedArray[i].address +', '+ dataset.rows[i].postcode,
-                          "category": sortedArray[i]['current-energy-rating']
-                      });*/
-                  //}
                 }              
+
+                // check for a filter 
+                // either previous radio or select menu
+                if(req.session.data['sort'] ){
+                  sort = parseInt(req.session.data['sort']);
+                  console.log('read sort '+ sort);
+                  certIndex = sort;
+                }
+
+                if(certIndex>0 ){
+                  console.log('set sort ' + certIndex);
+                  sort = parseInt(certIndex);
+                }
+
+console.log("cert index: " + certIndex, sort);
+
+
+                // loop through sortedArray and rebuild the array we pass to the page
+                arr = [];
+                certType = certs[sort];
+                //console.log(' got sort ' + sort);
+                for (var i=0;i<sortedArray.length;i++){
+                  // only match selection
+                  console.log(sort, sortedArray[i].certIndex);
+                  if( sort=== 0 || sort === sortedArray[i].certIndex){
+                    console.log('match!');
+                    arr.push(sortedArray[i]);
+                  }
+                }
+                
 
                 res.render('find-a-report/results', {
                   addresses: arr,
@@ -184,7 +181,10 @@ router.get('/find-a-report/results', function(req, res, next) {
               res.redirect('/error');
             }
         });
-      }
+
+
+
+
     
   }else{
     res.send('no data');
