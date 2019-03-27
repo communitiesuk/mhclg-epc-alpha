@@ -3,14 +3,7 @@ title: Assessors research
 order: 2
 layout: user-research
 ---
-## Discovery research summary
-Research for this user group was not done during Discovery.
-
-## Alpha research
-[Insert image] Stakeholder map - highlight the stakeholders relevant for ‘Service provider’ persona
-
-## Assessor user research
-User roles interviewed:
+## User roles interviewed:
 * Domestic assessor (x2)
 * Non-domestic assessor (x2)
 
