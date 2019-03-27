@@ -22,15 +22,19 @@ router.get('/error', function(req, res, next) {
 //  FIND A CERTIFICATE
 //
 ////////////////////////////////////////////////////////////////////////////
-var certs = [
+var certText = [
   "all energy performance certificates",
   "a domestic energy perfomance certificate",
   "a non-domestic energy perfomance certificate",
   "a display energy certificate",
   "an air conditioning inspection certificate"
 ];
+var certInitials = [null, 'EPC', 'EPC3 or 4', 'DEC', 'AC-CERT'];
+var certTitles = [null, 'Domestic energy perfomance certificate', 'Non-domestic energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
+
+
 var certIndex = 0;
-var certType = certs[0];
+var certType = certText[0];
 
 router.get('/find-a-report', function(req, res, next) {
   res.render('service-start-report');
@@ -45,7 +49,7 @@ router.get('/find-a-report/search', function(req, res, next) {
   certIndex = req.session.data['cert-type'];
 
   if(certIndex>0){ 
-    certType = certs[certIndex];
+    certType = certText[certIndex];
   }
   console.log('search: ' + certIndex);
 
@@ -70,7 +74,7 @@ console.log(doesKnowCertType);
     res.redirect('/find-a-report/certificate-types')
   } else {
     // don't know so show all
-    console.log('choices:: search' + certs[0]);
+    console.log('choices:: search' + certText[0]);
     req.session.data['cert-type'] = 0;
     certIndex = 0;
     res.redirect('/find-a-report/search')
@@ -90,8 +94,6 @@ console.log('results: ' + certIndex);
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
     // flats/houses, Small Commercial Buildings, Large Commercial Buildings, Public buildings
-    var certInitials = [null, 'EPC', 'EPC3 or 4', 'DEC', 'AC-CERT'];
-    var certTypes = [null, 'Domestic energy perfomance certificate', 'Non-domestic energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
 
 
     if(cleaned!==lastCheckedPostcode){
@@ -135,7 +137,7 @@ console.log('results: ' + certIndex);
                   //update the sortedArray with the index for later sorting...
                   sortedArray[i].certIndex = tempCertIdx;
                   sortedArray[i].reference = sortedArray[i]['certificate-hash'];
-                  sortedArray[i].type = certTypes[tempCertIdx];
+                  sortedArray[i].type = certTitles[tempCertIdx];
                   sortedArray[i].initials = certInitials[tempCertIdx];
                   sortedArray[i].address = sortedArray[i].address +', '+ dataset.rows[i].postcode;
                   sortedArray[i].category = sortedArray[i]['current-energy-rating'];
@@ -193,7 +195,7 @@ function filterCertTypes(req, res){
 
   // loop through sortedArray and rebuild the array we pass to the page
   arr = [];
-  certType = certs[sort];
+  certType = certText[sort];
   //console.log(' got sort ' + sort);
   for (var i=0;i<sortedArray.length;i++){
     // only match selection
@@ -209,7 +211,8 @@ function filterCertTypes(req, res){
     selection: sort,
     totalRecords: sortedArray.length,
     selectedRecords: arr.length,
-    certType: certType
+    certType: certType,
+    certTitle: certTitles[sort]
   });
 
 }

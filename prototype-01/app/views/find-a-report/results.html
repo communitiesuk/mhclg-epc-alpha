@@ -35,7 +35,7 @@
 
 <form id="form-sort" class="" action="results" method="post" >
   <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
-    <legend class="govuk-heading-s">Sort options</legend>
+    <legend class="govuk-heading-s">Showing {{ certTitle }}</legend>
     <label class="govuk-label" for="sort">
       Showing {{selectedRecords}} of {{totalRecords}} results for <strong>{{ certType }}</strong>.
     </label>
@@ -58,6 +58,7 @@
 <p>No certicates found for that postcode</p>
 
 {% else %}
+<br/>
 <p>Please click on an address below to view or download a report:</p>
 
 
@@ -66,7 +67,7 @@
   <caption class="govuk-table__caption"></caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="col">Type</th>
+      {% if (selection===0) %}<th class="govuk-table__header" scope="col">Type</th>{% endif %}
       <th class="govuk-table__header" scope="col">Address</th>
       <th class="govuk-table__header" scope="col">Grade</th>
     </tr>
@@ -76,7 +77,7 @@
 
     {% for item in addresses %}
         <tr class="govuk-table__row">
-          <th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}}</abbr></th>
+          {% if (selection===0) %}<th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}}</abbr></th>{% endif %}
           <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.address}}</a></td>
           <td class="govuk-table__cell">{{item.category}}</td>
         </tr>
