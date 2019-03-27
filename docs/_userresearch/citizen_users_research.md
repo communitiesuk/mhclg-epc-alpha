@@ -3,18 +3,14 @@ title: Citizen users research
 order: 1
 layout: user-research
 ---
-
-## Citizen user research
-User roles:
-* Property owners
-* Buyer
-* Seller
-* Tenant
-* Estate agent
-* Letting agent
+## Number of users and roles interviewed:
+* Property owners (x2)
+* Tenant (x3)
+* Landlord (x2)
+* Estate agent / letting agent (x1)
 
 ## Goals
-* Find an EPC report for a property
+* Find an up-to-date EPC report for a property
 * Find an assessor to do an EPC assessment on a property
 
 ## Needs

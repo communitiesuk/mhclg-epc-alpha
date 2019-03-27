@@ -17,7 +17,7 @@ Locate up-to-date EPC records for properties
 Query 
 
 ## What we did
-* xx interviews, 45mins long with citizen users, data users, assessors
+* 27 interviews, 45mins long with citizen users, data users and assessors
 * Focus group with scheme representatives
 * Workshop with representatives from all groups (Citizens, Data, Assessor)
 * Embedded tracking in prototype [Hotjar]
