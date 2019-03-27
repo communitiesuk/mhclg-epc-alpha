@@ -22,15 +22,53 @@ router.get('/error', function(req, res, next) {
 //  FIND A CERTIFICATE
 //
 ////////////////////////////////////////////////////////////////////////////
+var certs = [
+  "all energy performance certificates",
+  "a domestic energy perfomance certificate",
+  "a non-domestic energy perfomance certificate",
+  "a display energy certificates",
+  "an air conditioning inspection certificates"
+];
+var certType = certs[0];
 
 router.get('/find-a-report', function(req, res, next) {
   res.render('service-start-report');
 });
 
-router.get('/find-a-report/search', function(req, res, next) {
-  res.render('find-a-report/search');
+router.get('/find-a-report/choice', function(req, res, next) {
+  res.render('find-a-report/certificate-choice');
 });
- 
+
+
+router.get('/find-a-report/search', function(req, res, next) {
+
+  let certIndex = req.session.data['cert-type'];
+
+  if(certIndex>0){ 
+    certType = certs[certIndex];
+  }
+
+  res.render('find-a-report/search', {
+    certType: certType
+  });
+
+});
+
+
+
+router.get('/find-a-report/choices', function(req, res, next) {
+  let doesKnowCertType = req.session.data['know-cert-type'];
+console.log(doesKnowCertType);
+  if (doesKnowCertType === 'Yes') {
+    res.redirect('/find-a-report/certificate-types')
+  } else {
+    console.log('search' + certs[0]);
+    res.redirect('/find-a-report/search')
+  }
+
+
+});
+
 
 var sortedArray = [];
 
@@ -40,21 +78,23 @@ router.get('/find-a-report/results', function(req, res, next) {
     var str = req.session.data['address-postcode'];
     var cleaned = str.split(' ').join('');
     // flats/houses, Small Commercial Buildings, Large Commercial Buildings, Public buildings
-    var certInitials = ['EPC', 'EPC3', 'EPC4', 'DEC'];
-    var certTypes = ['Domestic EPC', 'Commercial EPC Level 3', 'Commercial EPC Level 4', 'Display Energy Certificates'];
+    var certInitials = [null, 'EPC', 'EPC3 or 4', 'DEC', 'AC-CERT'];
+    var certTypes = [null, 'Domestic energy perfomance certificate', 'Non-domestic energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
 
-    var sort = -1;
+    var sort = 0;
     // check for a filter 
     // that means we already have data so dont make call
     if(req.session.data['sort']){
+
       // loop through sortedArray and rebuild the array we pass to the page
       arr = [];
       sort = parseInt(req.session.data['sort']);
+      certType = certs[sort];
       //console.log(' got sort ' + sort);
       for (var i=0;i<sortedArray.length;i++){
         // only match selection
         //console.log(sort, sortedArray[i].certIndex);
-        if( sort=== -1 || sort === sortedArray[i].certIndex){
+        if( sort=== 0 || sort === sortedArray[i].certIndex){
           arr.push(sortedArray[i]);
         }
       }
@@ -63,7 +103,8 @@ router.get('/find-a-report/results', function(req, res, next) {
         addresses: arr,
         selection: sort,
         totalRecords: sortedArray.length,
-        selectedRecords: arr.length
+        selectedRecords: arr.length,
+        certType: certType
       });
 
     }else{
@@ -90,17 +131,17 @@ router.get('/find-a-report/results', function(req, res, next) {
                 var arr = [];
 
                 for (var i=0;i<sortedArray.length;i++){
-                  //add in rando certificate type
+                  //add in random certificate type
                   var ran = Math.random()*10;
-                  var certIndex = 0;
+                  var certIndex = 1; //default is 1. 0 is for all certificates
                   if(ran>9){
-                    certIndex = 3;
+                    certIndex = 4;
                   }
                   else if(ran>8){
-                    certIndex =2;
+                    certIndex =3;
                   }
                   else  if(ran>6){
-                    certIndex =1;
+                    certIndex =2;
                   }
                   //update the sortedArray with the index for later sorting...
                   sortedArray[i].certIndex = certIndex;
@@ -130,7 +171,8 @@ router.get('/find-a-report/results', function(req, res, next) {
                   addresses: arr,
                   selection: sort,
                   totalRecords: sortedArray.length,
-                  selectedRecords: arr.length
+                  selectedRecords: arr.length,
+                  certType: certType
                 });
                 
               } else {

@@ -37,18 +37,18 @@
   <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
     <legend class="govuk-heading-s">Sort options</legend>
     <label class="govuk-label" for="sort">
-      Showing {{selectedRecords}} of {{totalRecords}} results.
+      Showing {{selectedRecords}} of {{totalRecords}} results for <strong>{{ certType }}</strong>.
     </label>
     <span id="sort-hint" class="govuk-hint">
-      Order the search results.
+      Filter the search results.
     </span> 
 
     <select class="govuk-select" id="sort" name="sort">
-      <option value="-1" {% if (selection===-1) %} selected="selected" {% endif %}>All certificate types</option>
-      <option value="0" {% if (selection===0) %} selected="selected" {% endif %}>Domestic EPC</option>
-      <option value="1" {% if (selection===1) %} selected="selected" {% endif %}>Commercial EPC Level 3 (small buildings)</option>
-      <option value="2" {% if (selection===2) %} selected="selected" {% endif %}>Commercial EPC Level 4 (large buildings)</option>
-      <option value="3" {% if (selection===3) %} selected="selected" {% endif %}>Display Energy Certificates (public buildings)</option>
+      <option value="0" {% if (selection===0) %} selected="selected" {% endif %}>All certificate types</option>
+      <option value="1" {% if (selection===1) %} selected="selected" {% endif %}>Domestic EPC</option>
+      <option value="2" {% if (selection===2) %} selected="selected" {% endif %}>Non-domestic EPC </option>
+      <option value="3" {% if (selection===3) %} selected="selected" {% endif %}>Display energy certificates (public buildings)</option>
+      <option value="4" {% if (selection===4) %} selected="selected" {% endif %}>Air conditioning inspection certificates</option>
     </select>
     <button id="sortBtn" type="hidden" class="hidden">Sort</button>
   </fieldset>

@@ -1,0 +1,103 @@
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an Energy Performance Certificate
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="main" action="search" method="post" class="form">
+
+        <div class="govuk-error-summary hide" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h2 class="govuk-error-summary__title " id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="know-cert-type-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                What type of certificate are you trying to find?
+              </h1>
+            </legend>
+            <span id="know-cert-type-hint" class="govuk-hint">
+              Do you own the property or live in it?
+            </span>
+            <span id="error-message" class="govuk-error-message hide">
+              Select Owner if you own the property
+            </span>
+            <div class="govuk-radios">
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="cert-type-0" name="cert-type" type="radio" value="0">
+                <label class="govuk-label govuk-radios__label" for="cert-type-0">
+                  Show all certificates
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="cert-type-1" name="cert-type" type="radio" value="1">
+                <label class="govuk-label govuk-radios__label" for="cert-type-1">
+                  Domestic energy perfomance certificate
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="cert-type-2" name="cert-type" type="radio" value="2">
+                <label class="govuk-label govuk-radios__label" for="cert-type-2">
+                  Non-domestic energy perfomance certificate
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="cert-type-3" name="cert-type" type="radio" value="3">
+                <label class="govuk-label govuk-radios__label" for="cert-type-3">
+                  Display energy certificates
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="cert-type-4" name="cert-type" type="radio" value="4">
+                <label class="govuk-label govuk-radios__label" for="cert-type-4">
+                  Air conditioning inspection certificates
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+    </div>
+  </div>
+{% endblock %}

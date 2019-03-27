@@ -28,10 +28,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Retrieve an Energy Performance Certificate using the postcode
+        Retrieve {{ certType }} using the postcode
       </h1>
-      <p>You can start by searching here for an Energy Performance Certificate for a property.</p>
+      <p>You can start by searching here for {{ certType }} for a property.</p>
       <p>Find energy performance information for your property.</p>
+
+
 
       <form id="main" action="/find-a-report/results" method="post" class="form" novalidate>
         
