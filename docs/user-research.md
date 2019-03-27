@@ -11,10 +11,9 @@ User groups identified:
 * Assessor
 
 ## Key user needs
-Find an Energy Performance certificate for a specific property
-Lodge data from energy performance assessment so that a certificate can be generated
-Locate up-to-date EPC records for properties
-Query 
+* Find an Energy Performance certificate for a specific property
+* Lodge data from energy performance assessment so that a certificate can be generated
+* Identify trends in the EPC data
 
 ## What we did
 * 27 interviews, 45mins long with citizen users, data users and assessors
