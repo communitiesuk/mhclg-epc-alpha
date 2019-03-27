@@ -2,6 +2,10 @@
 
 This is the main repository for the EPC Alpha project. We will keep this README up to date with links to important documents.
 
+
+## A project wiki has been created using a github pages repo at [https://notbinary.github.io/mhclg-epc-alpha/](https://notbinary.github.io/mhclg-epc-alpha/)
+
+ 
 - [Roadmap](https://docs.google.com/spreadsheets/d/1yTmd-kdrj3BmhytUEzJT4jt5wGD90eNhVZJiKBEPYhg/edit?usp=sharing) 
 - [Prototype 01: Citizen Service](https://mhclg-epc-alpha-prototype-01.herokuapp.com/)
 - [User research plan](https://docs.google.com/spreadsheets/d/18OGj2PQbsT7dK4wl0ieFys0_Da1nEugVB0kZJdwfVpA/edit?usp=sharing)
