@@ -23,7 +23,7 @@ Understand current experience of the EPC service
 Investigate goals and needs for service
 
 ## Focus group
-Session with representatives from Scheme representatives
+Session with representatives from Energy Performance Schemes
 [a link](https://github.com/notbinary/mhclg-epc-alpha/docs/assets/media/RESEARCH_ Scheme session summary (1).pdf)
 
 ## Workshop
