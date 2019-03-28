@@ -141,7 +141,8 @@
         </div>
       </div>
 
-      <p></p>
+      <h2><a href="#">Embed this chart:</a></h2>
+      <p>http://localhost:3000/find-a-report/certificate/07f3e87262b13786b7c175b1739462c7cdaf983259a6ae1743072c7182e154c6/chart</p>
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
@@ -168,7 +169,11 @@
 
       <hr class="govuk-section-break govuk-section-break--xl ">
 
-      <h2>Documents</h2>
+      <h2>Previous version of certificates for this property</h2>
+
+      <p>
+        Note that these certificates match the property and are no longer valid.
+      </p>
 
       {% for item in data.documents %}
       <div class="govuk-grid-row">
@@ -177,14 +182,11 @@
         </div> 
         <div class="govuk-grid-column-two-thirds"> 
           <table class="govuk-table">
-           <caption class="govuk-table__caption">Historic documents that may be connected to the property</caption> 
+           <caption class="govuk-table__caption">{{item.address}}</caption> 
             <tbody class="govuk-table__body">
 
                     <tr class="govuk-table__row">
                       <td class="govuk-table__header">{{item.date}}</td>
-                    </tr>
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{item.address}}</td>
                     </tr>
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">{{item.type}}</td>

@@ -45,8 +45,8 @@
 
     <select class="govuk-select" id="sort" name="sort">
       <option value="0" {% if (selection===0) %} selected="selected" {% endif %}>All certificate types</option>
-      <option value="1" {% if (selection===1) %} selected="selected" {% endif %}>Domestic EPC</option>
-      <option value="2" {% if (selection===2) %} selected="selected" {% endif %}>Non-domestic EPC </option>
+      <option value="1" {% if (selection===1) %} selected="selected" {% endif %}>Residential EPC</option>
+      <option value="2" {% if (selection===2) %} selected="selected" {% endif %}>Non-residential EPC </option>
       <option value="3" {% if (selection===3) %} selected="selected" {% endif %}>Display energy certificates (public buildings)</option>
       <option value="4" {% if (selection===4) %} selected="selected" {% endif %}>Air conditioning inspection certificates</option>
     </select>
@@ -101,11 +101,11 @@
                 Find an Assessor
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="/opt-in-opt-out">
                 Opt out of the register
               </a>
-            </li>
+            </li> -->
             <!-- <li>
               <a href="#" class="govuk-!-font-weight-bold">
                 More <span class="govuk-visually-hidden">in Subsection</span>
