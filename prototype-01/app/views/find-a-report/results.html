@@ -37,7 +37,7 @@
   <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
     <legend class="govuk-heading-s">Showing {{ certTitle }}</legend>
     <label class="govuk-label" for="sort">
-      Showing {{selectedRecords}} of {{totalRecords}} results for <strong>{{ certType }}</strong>.
+      There are {{selectedRecords}} for <strong>{{ certType }}</strong>.
     </label>
     <span id="sort-hint" class="govuk-hint">
       Filter the search results.
@@ -55,7 +55,11 @@
 </form>
 
 {% if not addresses.length %}
-<p>No certicates found for that postcode</p>
+<h2>No results</h2>
+<p>No certificates have been found for that postcode.</p>
+<p>Use this service to <a href="/find-an-assessor">find an Assessor</a>.</p>
+<p>You may want to check the postcode and try again.</p>
+<p>If you are looking for a property in Scotland you will need to use the <a href="https://www.scottishepcregister.org.uk">Scottish EPC register.</a></p>
 
 {% else %}
 <br/>
