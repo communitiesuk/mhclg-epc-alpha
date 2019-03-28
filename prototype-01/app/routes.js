@@ -77,7 +77,6 @@ router.get('/find-a-report/choices', function(req, res, next) {
     res.redirect('/find-a-report/search')
   }
 
-
 });
 
 
