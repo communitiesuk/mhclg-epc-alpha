@@ -32,7 +32,8 @@ layout: user-research
 
 ## Barriers
 * Litlle to no knowledge about EPCs beyond the need to get one as part of the process when selling or renting a property
-* Little or no understanding of how to select an appropriate energy pr
+* Little or no understanding of EPC terminology
+* Little or no knowledge of how to choose an appropriate energy performance assessor
 
 ## Recommendations for Beta research
 * Test content to inform the citizen user group about energy performance certificates
