@@ -23,3 +23,4 @@ layout: user-research
 ### Recommendations for Beta Research
 * Conduct research with Local Authorities and Registered Social Landlords
 * Explore user needs for APIs
+* Conduct research with Banks and Mortgage providers to analyse the potential need for them to have access to the EPC data

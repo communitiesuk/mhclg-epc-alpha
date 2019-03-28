@@ -32,5 +32,6 @@ layout: user-research
 
 
 ## Recommendations for Beta research
-[summarise and link to page with full recommendations]
-
+* Test content to inform the citizen user group about energy performance certificates
+* Explore the idea of providing leaflets or a digital wiki of key facts about EPCs to help inform citizens
+* Explore the proposition of moving the consent/opt out decision to the point at which the assessment is conducted

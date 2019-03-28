@@ -11,16 +11,16 @@ User groups identified:
 * Assessor
 
 ## Key user needs
-Find an Energy Performance certificate for a specific property
-Lodge data from energy performance assessment so that a certificate can be generated
-Locate up-to-date EPC records for properties
-Query 
+* Find an Energy Performance certificate for a specific property
+* Lodge data from energy performance assessment so that a certificate can be generated
+* Identify trends in the EPC data
 
 ## What we did
 * 27 interviews, 45mins long with citizen users, data users and assessors
-* Focus group with scheme representatives
-* Workshop with representatives from all groups (Citizens, Data, Assessor)
+* Conduct a focus group with scheme representatives
+* Conduct a workshop with representatives from all groups (Citizens, Data, Assessor)
 * Embedded tracking in prototype [Hotjar]
+* Iterate designs based on feedback
 
 ## Iterations
 Over the course of the project there were several iterations on the prototype. The following hypotheses were tested and iterated on:
