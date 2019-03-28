@@ -16,9 +16,10 @@ User groups identified:
 * Identify trends in the EPC data
 
 ## What we did
-* 27 interviews, 45mins long with citizen users, data users and assessors
-* Conduct a focus group with scheme representatives
-* Conduct a workshop with representatives from all groups (Citizens, Data, Assessor)
+* 34 people were directly engaged 
+  * 27 interviews, 45mins long with citizen users, data users and assessors
+  * Conduct a focus group with 5 scheme representatives
+  * Conduct a workshop with 15 representatives from all groups (Citizens, Data, Assessor)
 * Embedded tracking in prototype [Hotjar]
 * Iterate designs based on feedback
 
