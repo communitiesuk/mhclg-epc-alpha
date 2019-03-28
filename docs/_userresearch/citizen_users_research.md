@@ -30,7 +30,7 @@ layout: user-research
 **I need to** locate a reputable and competent energy performance assessor
 **So that** I can legally sell or rent that property
 
-## Current Barriers
+## Barriers
 * Litlle to no knowledge about EPCs beyond the need to get one as part of the process when selling or renting a property
 * Little or no understanding of how to select an appropriate energy pr
 
