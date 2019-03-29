@@ -35,12 +35,18 @@
 
 <form id="form-sort" class="" action="results" method="post" >
   <fieldset class="govuk-fieldset" aria-describedby="sort-hint">
-    <legend class="govuk-heading-s">Showing {{ certTitle }}</legend>
+    {% if selectedRecords %}
+    <legend class="govuk-heading-s">Showing {{ certTitle | lower}}</legend>
+    {% else %}
+    <legend class="govuk-heading-s">No results found.</legend>
+    {% endif %}
     <label class="govuk-label" for="sort">
-      There are {{selectedRecords}} for <strong>{{ certType }}</strong>.
+      {% if selectedRecords %}
+      There are {{selectedRecords}} results for <strong>{{ certType }}</strong>.
+      {% endif %}
     </label>
     <span id="sort-hint" class="govuk-hint">
-      Filter the search results.
+      Search for a different certificate type.
     </span> 
 
     <select class="govuk-select" id="sort" name="sort">
@@ -55,10 +61,12 @@
 </form>
 
 {% if not addresses.length %}
+<p></p>
+
+
 <h2>No results</h2>
-<p>No certificates have been found for that postcode.</p>
-<p>Use this service to <a href="/find-an-assessor">find an Assessor</a>.</p>
-<p>You may want to check the postcode and try again.</p>
+<p>You may want to check the postcode and <a href="search">search again</a>.</p>
+<p>You can use this service if you want to <a href="/find-an-assessor">find an Assessor</a>.</p>
 <p>If you are looking for a property in Scotland you will need to use the <a href="https://www.scottishepcregister.org.uk">Scottish EPC register.</a></p>
 
 {% else %}
