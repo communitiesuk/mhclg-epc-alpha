@@ -40,6 +40,11 @@ router.get('/find-a-report', function(req, res, next) {
   res.render('service-start-report');
 });
 
+router.get('/find-a-report/is-residential', function(req, res, next) {
+  res.render('find-a-report/certificate-is-residential');
+});
+
+
 router.get('/find-a-report/choice', function(req, res, next) {
   res.render('find-a-report/certificate-choice');
 });
@@ -63,6 +68,21 @@ router.get('/find-a-report/search', function(req, res, next) {
 });
 
 
+// is residential branch
+router.get('/find-a-report/checkResidential', function(req, res, next) {
+  var isResidential = req.session.data['is-residential-type'];
+
+  if (isResidential === 'Yes') {
+    // user know which type so show all
+    req.session.data['cert-type'] = 1;
+    certIndex = 1;
+    res.redirect('/find-a-report/search')
+  } else {
+    // redirect and select a cert type
+    res.redirect('/find-a-report/choice')
+  }
+
+});
 
 router.get('/find-a-report/choices', function(req, res, next) {
   var doesKnowCertType = req.session.data['know-cert-type'];
