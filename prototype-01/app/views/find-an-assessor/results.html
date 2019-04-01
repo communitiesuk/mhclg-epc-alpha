@@ -40,7 +40,7 @@
             <th class="govuk-table__header" scope="col">Accreditation</th>
             <th class="govuk-table__header" scope="col">Name</th>
             <th class="govuk-table__header" scope="col">Scheme</th>
-            <th class="govuk-table__header" scope="col">Distance (miles)</th>
+            {% if isAssessorCheck===false %} <th class="govuk-table__header" scope="col">Distance (miles)</th>{% endif %}
             <th class="govuk-table__header" scope="col"></th>
           </tr>
         </thead>
@@ -57,7 +57,7 @@
                 </th>
                 <td class="govuk-table__cell">{{item.name}}</td>
                 <td class="govuk-table__cell">{{item.schemeName}}</td>
-                <td class="govuk-table__cell">{{item.distance}}</td>
+                {% if isAssessorCheck===false %} <td class="govuk-table__cell">{{item.distance}}</td>{% endif %}
                 <td class="govuk-table__cell"><a href="assessor/{{item.base64ref}}">View</a></td>
               </tr>
           {% endfor %}
