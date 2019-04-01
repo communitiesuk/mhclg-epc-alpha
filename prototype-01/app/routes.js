@@ -24,13 +24,13 @@ router.get('/error', function(req, res, next) {
 ////////////////////////////////////////////////////////////////////////////
 var certText = [
   "all energy performance certificates",
-  "a domestic energy perfomance certificate",
-  "a non-domestic energy perfomance certificate",
+  "a residential energy perfomance certificate",
+  "a non-residential energy perfomance certificate",
   "a display energy certificate",
   "an air conditioning inspection certificate"
 ];
 var certInitials = [null, 'EPC', 'EPC3 or 4', 'DEC', 'AC-CERT'];
-var certTitles = [null, 'Domestic energy perfomance certificate', 'Non-domestic energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
+var certTitles = [null, 'Residential energy perfomance certificate', 'Non-residential energy perfomance certificate', 'Display energy certificates', 'Air conditioning inspection certificates'];
 
 
 var certIndex = 0;
