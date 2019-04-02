@@ -29,9 +29,9 @@ Session with representatives from Energy Performance Schemes
 
 ## Workshop
 Representatives from each of the identified user groups got together to validate the needs identified during research and prioritise their overall needs for the service as well as their information needs
-[Insert link/file for agenda]
-[a link](../assets/media/Alpha_Day_summary.pdf)
+[Workshop agenda](../assets/media/Alpha_Day_agenda.pdf)
+
+[Workshop summary](../assets/media/Alpha_Day_summary.pdf)
 
 ## Embedded tracking
 Each prototype was embedded with tracking to track specific funnels through the prototype
-[Link to hotjar findings/stats]
