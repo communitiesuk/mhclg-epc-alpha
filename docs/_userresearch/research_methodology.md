@@ -29,6 +29,7 @@ Session with representatives from Energy Performance Schemes
 
 ## Workshop
 Representatives from each of the identified user groups got together to validate the needs identified during research and prioritise their overall needs for the service as well as their information needs
+
 [Workshop agenda](../assets/media/Alpha_Day_agenda.pdf)
 
 [Workshop summary](../assets/media/Alpha_Day_summary.pdf)
