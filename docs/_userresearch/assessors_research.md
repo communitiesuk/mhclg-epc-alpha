@@ -32,3 +32,6 @@ layout: user-research
 * Explore options for improving addresses and removing duplicates from the register so that the data is clearer
 * Test the hypothesis of moving the opt out process for property owners to the point of assessment [This will need to be done with Schemes as well as assessors]
 * Test the hypothesis of providing assessors with digital/ non digital material to pass on to clients explaining EPCs
+
+## Persona
+[Persona](../assets/media/Assessor_user_journey.pdf)
