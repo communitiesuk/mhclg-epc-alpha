@@ -24,7 +24,7 @@ Investigate goals and needs for service
 
 ## Focus group
 Session with representatives from Energy Performance Schemes
-[a link](../assets/media/RESEARCH_Scheme_session_summary.pdf)
+[Summary of research session with scheme representatives](../assets/media/RESEARCH_Scheme_session_summary.pdf)
 
 ## Workshop
 Representatives from each of the identified user groups got together to validate the needs identified during research and prioritise their overall needs for the service as well as their information needs
