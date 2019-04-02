@@ -5,7 +5,8 @@ layout: user-research
 ---
 ## Methodologies
 * Interviews
-* Unmoderated testing of prototype using embedded tracking with HotJar 
+* Unmoderated testing of prototype using embedded tracking with Hotjar 
+* Workshop with all user groups (citizens, assessors, data consumers)
 
 ## Number of users and roles interviewed:
 * Property owners (x2)
