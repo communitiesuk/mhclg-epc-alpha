@@ -24,6 +24,7 @@ Investigate goals and needs for service
 
 ## Focus group
 Session with representatives from Energy Performance Schemes
+
 [Summary of research session with scheme representatives](../assets/media/RESEARCH_Scheme_session_summary.pdf)
 
 ## Workshop
