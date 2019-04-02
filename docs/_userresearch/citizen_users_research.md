@@ -3,15 +3,15 @@ title: Citizen users research
 order: 1
 layout: user-research
 ---
+## Methodologies
+* Interviews
+* Unmoderated testing of prototype using embedded tracking with HotJar 
+
 ## Number of users and roles interviewed:
 * Property owners (x2)
 * Tenant (x3)
 * Landlord (x2)
 * Estate agent / letting agent (x1)
-
-## Methodologies
-* Interviews
-* Unmoderated testing of prototype using embedded tracking with HotJar 
 
 ## Goals
 * Find an up-to-date EPC report for a property
