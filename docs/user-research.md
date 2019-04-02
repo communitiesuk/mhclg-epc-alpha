@@ -10,7 +10,7 @@ User groups identified:
 * Data 
 * Assessor
 
-[Stakeholder map](../assets/media/Stakeholder_map-2.pdf)
+Stakeholder map: [Link](../assets/media/Stakeholder_map-2.pdf)
 
 ## Key user needs
 * Find an Energy Performance certificate for a specific property
