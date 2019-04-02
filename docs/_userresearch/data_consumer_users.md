@@ -39,8 +39,9 @@ layout: user-research
 **So that** I can conduct effective audits on their work
 
 
-### Recommendations for Beta Research
+## Recommendations for Beta Research
 * Conduct additional research with Local Authorities and Registered Social Landlords to get a better understanding of their needs
 * Explore user needs for APIs
 * Conduct research with Banks and Mortgage providers to analyse the potential need for them to have access to the EPC data
 * Test the use of canonical URLs with property portals - does it meet their needs and are there any concerns
+* Explore options for unique identifier for assessors across all schemes
