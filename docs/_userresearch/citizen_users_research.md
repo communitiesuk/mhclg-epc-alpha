@@ -47,4 +47,4 @@ layout: user-research
 
 
 ## Persona
-[Persona](../assets/media/Service_user_user_journey.pdf)
+[Citizen persona](../assets/media/Service_user_user_journey.pdf)
