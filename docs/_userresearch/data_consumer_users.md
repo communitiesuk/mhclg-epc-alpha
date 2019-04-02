@@ -45,3 +45,8 @@ layout: user-research
 * Conduct research with Banks and Mortgage providers to analyse the potential need for them to have access to the EPC data
 * Test the use of canonical URLs with property portals - does it meet their needs and are there any concerns
 * Explore options for unique identifier for assessors across all schemes
+
+## Persona
+[Region or user specific data consumers](../assets/media/Data_consumer_Region_or_user_specific_view.pdf)
+
+[UK wide data consumer](../assets/media/Data_consumer_UK-wider_view.pdf)
