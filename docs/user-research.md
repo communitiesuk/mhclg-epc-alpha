@@ -10,6 +10,8 @@ User groups identified:
 * Data 
 * Assessor
 
+[Stakeholder map](../assets/media/Stakeholder_map-2.pdf)
+
 ## Key user needs
 * Find an Energy Performance certificate for a specific property
 * Lodge data from energy performance assessment so that a certificate can be generated
