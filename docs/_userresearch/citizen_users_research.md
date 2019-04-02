@@ -47,4 +47,4 @@ layout: user-research
 
 
 ## Persona
-[pdf here](https://notbinary.mhclg-epc-alpha/docs/assets/media/EPC Research artefacts - Service user- user journey.pdf)
+[pdf here](https://notbinary.mhclg-epc-alpha/docs/assets/media/EPC_Research_artefacts_-_Service_user-_user_journey.pdf)
