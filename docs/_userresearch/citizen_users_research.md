@@ -27,7 +27,7 @@ layout: user-research
 **So that** I know that the EPC rating being displayed in the listing is valid
 
 **As a** property owner renting or selling a property
-**I need to** locate a reputable and competent energy performance assessor
+**I need to** locate a competent energy performance assessor
 **So that** I can legally sell or rent that property
 
 ## Barriers
