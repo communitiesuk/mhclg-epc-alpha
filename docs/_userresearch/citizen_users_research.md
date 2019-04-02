@@ -9,6 +9,10 @@ layout: user-research
 * Landlord (x2)
 * Estate agent / letting agent (x1)
 
+## Methodologies
+* Interviews
+* Unmoderated testing of prototype using embedded tracking with HotJar 
+
 ## Goals
 * Find an up-to-date EPC report for a property
 * Find an assessor to do an EPC assessment on a property
