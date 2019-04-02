@@ -50,3 +50,7 @@ layout: user-research
 [Region or user specific data consumers](../assets/media/Data_consumer_Region_or_user_specific_view.pdf)
 
 [UK wide data consumer](../assets/media/Data_consumer_UK-wider_view.pdf)
+
+[Scheme representative](../assets/media/Scheme_representative_user_journey.pdf)
+
+[Software provider](../assets/media/Software_provider_user_journey.pdf)
