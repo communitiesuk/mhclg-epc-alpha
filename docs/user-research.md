@@ -42,6 +42,8 @@ Over the course of the project there were several iterations on the prototype. T
 
 ### Data 
 * Bulk data download
+* Generate own reports of EPC data
+* API as an option
 
 
 {% include userResearchList.html %}
