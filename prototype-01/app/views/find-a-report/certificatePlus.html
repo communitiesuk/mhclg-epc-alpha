@@ -185,12 +185,17 @@
 
       {% for item in data.documents %}
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-thirds">
-          <img class="documentImage" src="/public/images/pub-cover-doc.png" alt=""/>
-        </div> 
         <div class="govuk-grid-column-two-thirds"> 
+  
+        <p>
+          
+        <strong>{{item.date}}</strong><br/>
+        {{item.address}}<br/>
+        <a href="#">PDF</a> {{item.type}}<br/>
+        </p>
+<!-- 
           <table class="govuk-table">
-           <!-- <caption class="govuk-table__caption">{{item.address}}</caption>  -->
+           <caption class="govuk-table__caption">{{item.address}}</caption> 
             <tbody class="govuk-table__body">
 
                     <tr class="govuk-table__row">
@@ -204,9 +209,12 @@
                     </tr>
              
             </tbody>
-          </table>
+          </table> -->
         </div>
  
+        <div class="govuk-grid-column-one-thirds">
+          
+        </div> 
       </div>
       {% endfor %}
 
