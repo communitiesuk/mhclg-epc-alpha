@@ -174,7 +174,6 @@ ul {
 .bars small {
   display: block;
   line-height: 1em;
-  opacity: .5;
   padding: 8px 4px;
 }
 
@@ -283,12 +282,16 @@ ul {
   margin-right: 10px;
 }
 
+.rating_b,
 .rating_c,
 .rating_d,
 .rating_e,
-.rating_f,
-.rating_g {
+.rating_f {
   color: #111;
+}
+.rating_a,
+.rating_g {
+  color: #fff;
 }
 
 .rating {
