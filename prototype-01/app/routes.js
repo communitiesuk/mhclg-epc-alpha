@@ -277,9 +277,9 @@ router.get('/find-a-report/certificate/:reference', function(req, res) {
                     {date:"2006", event:"First certificate issued", rating:"", assessmentType:""}
                   ],
                   documents:[
-                    {date:"23 January 2015", address:"Flat 3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"C", assessmentType:"RdSAP assessment", type:"PDF, 210kb, 5 pages"},
-                    {date:"8 May 2009", address:"Flat 3, 3 Leonora Tyson Mews, Croxted Road, London, SE21 8GA", rating:"D", assessmentType:"RdSAP assessment", type:"PDF, 207kb, 5 pages"},
-                    {date:"1 October 2006", address:"3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"D", assessmentType:"", type:"PDF, 190kb, 4 pages"}
+                    {date:"23 January 2015", address:"Flat 3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"C", assessmentType:"RdSAP assessment", type:"210kb, 5 pages"},
+                    {date:"8 May 2009", address:"Flat 3, 3 Leonora Tyson Mews, Croxted Road, London, SE21 8GA", rating:"D", assessmentType:"RdSAP assessment", type:"207kb, 5 pages"},
+                    {date:"1 October 2006", address:"3, 3 Leonora Tyson Mews, London, SE21 8GA", rating:"D", assessmentType:"", type:"190kb, 4 pages"}
                   ]
                 };
 

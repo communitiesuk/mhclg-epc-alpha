@@ -145,7 +145,7 @@
 
       <h2>Embed this chart</h2>
         <p>This chart is <abbr title="https://gov.uk/find-a-report/certificate/07f3e87262b13786b7c175b1739462c7cdaf983259a6ae1743072c7182e154c6/chart">unique</abbr> for this property and can be embedded in other websites.</p>
-      <p><a href="#"></a></p>
+      <p></p>
         <button type="submit" class="govuk-button">
           Copy the unique chart url
         </button>
@@ -178,24 +178,29 @@
       <h2>Previous version of certificates for this property</h2>
 
       <p>
-        Note that these certificates match the property and are no longer valid.
+        The following documents have been found that relate to this property.
+      </p>
+      <p>Note that the addresses for some or all of the previous versions may differ from the address shown above and are no longer valid.
       </p>
 
       {% for item in data.documents %}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-thirds">
-          <img class="documentImage" src="/public/images/pub-cover-doc.png"/>
+          <img class="documentImage" src="/public/images/pub-cover-doc.png" alt=""/>
         </div> 
         <div class="govuk-grid-column-two-thirds"> 
           <table class="govuk-table">
-           <caption class="govuk-table__caption">{{item.address}}</caption> 
+           <!-- <caption class="govuk-table__caption">{{item.address}}</caption>  -->
             <tbody class="govuk-table__body">
 
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__header">{{item.date}}</td>
+                      <td class="govuk-table__cell">{{item.address}}</td>
                     </tr>
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{item.type}}</td>
+                      <td class="govuk-table__cell">{{item.date}}</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"><a href="#">PDF</a> {{item.type}}</td>
                     </tr>
              
             </tbody>
