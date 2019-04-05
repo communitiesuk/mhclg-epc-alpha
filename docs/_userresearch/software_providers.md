@@ -1,5 +1,5 @@
 ---
-title: Software providers
+title: Software providers research
 order: 3
 layout: user-research
 ---
