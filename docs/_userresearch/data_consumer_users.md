@@ -1,6 +1,6 @@
 ---
 title: Data consumer research
-order: 3
+order: 4
 layout: user-research
 ---
 ## Methodologies
