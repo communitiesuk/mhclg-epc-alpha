@@ -1,37 +1,33 @@
 ---
 title: Software providers
-order: 7
+order: 3
 layout: user-research
 ---
-## Software providers
+## Methodologies
 * Interviews
-* Unmoderated testing of prototype using embedded tracking with Hotjar
 * Workshop with all user groups (citizens, assessors, data consumers)
 
 ## Number of users and roles interviewed:
-* Domestic assessor (x2)
-* Non-domestic assessor (x2)
+* SoftwarExploree provider (x2)
 
 ## Goals
-* Lodge assessment data so that energy performance certificates can be generated for clients
+* Create software for assessors to use as part of their jobs
 
 ## Needs
-**As an** energy performance assessor
-**I need to** have one central location for domestic and non-domestic records 
-**So that** my workflow is simplified
+**As an** software provider
+**I need to** have a central calculation engine for EPCs 
+**So that** I am certain that I am using the same calculations for EPCs
 
-**As an** energy performance assessor
-**I need to** be able to lodge energy assessment and generate a valid EPC report 
-**So that** I can provide clients with a valid EPC report
+**As an** software provider
+**I need to** have regular engagement and communication with the register team 
+**So that** changes to the register are communicated early enough for them to plan effectively for it
 
-**As an** energy performance assessor
-**I need to** have only one valid address for a property
-**So that** I lodge assessment data against the correct property and do not create duplicate addresses for a property
+
 
 ## Recommendations for Beta research
-* Explore options for improving addresses and removing duplicates from the register so that the data is clearer
-* Test the hypothesis of moving the opt out process for property owners to the point of assessment [This will need to be done with Schemes as well as assessors]
-* Test the hypothesis of providing assessors with digital/ non digital material to pass on to clients explaining EPCs
+* Conduct further research into what software providers need 
+* Engage with software providers early in Beta 
+
 
 ## Persona
-[Persona](../assets/media/Assessor_user_journey.pdf)
+[Persona](../assets/media/Software_provider_user_journey.pdf)
