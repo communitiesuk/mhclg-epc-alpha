@@ -3,7 +3,17 @@ layout: two-thirds
 title: Beta Requirements
 ---
 
-<h2 class="govuk-heading-m">The Register</h2>
+The Energy Performance of Buildings (EPB) Registers Alpha team has spent 10 weeks investigating the user needs, business and technology requirements and associated issues related to moving to a new delivery model for the service. From the outset the hypothesis has been that the current service and technology is insufficiently flexible or adaptable to meet the current/future needs of MHCLG (and its users). Additionally the current platform is considered to be ageing and expensive.
+
+This hypothesis has been partially proven - though perhaps not to the extent that the Discovery and previous intelligence had insinuated. The platform is costly, based on a set of decade old architectural decisions, not ’cloud’ based and is certainly lacking recent UX attention. We agree it should be replaced. However, it is running on reasonably recent versions of the Oracle software and in most cases on relatively well-specified and up-to-date hardware. It is stable and reliable, has made strides towards using more modern standards and the core of the service is trusted by users.
+
+At its core the current architectural model is based on solid foundations and ourrecommended approach to move to the cloud is an evolution (and simplification) rather than major revolution. 
+
+Where the current service particularly fails users is in relation to emerging needs - particularly in relation to access to data. At almost every touchpoint (Assessors, Schemes, Government, Industry, Open Data community) there are well articulated use cases for better access to the data. To some extent the current service has been unable to respond to these emerging demands because of tactical choices it has had to make throughout the long life of the service but it has become a cause of frustration for many stakeholders.
+
+
+
+<h3 class="govuk-heading-m">The Register</h3>
 
 
 Based on understanding gained of the current implementation, data formats and structure of the register, it is recommended that, providing the policy and legal framework allow, the current contents of the register be archived as-is (in order to meet the need to retain information unchanged). 
