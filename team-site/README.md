@@ -1,5 +1,3 @@
-
-
 # EPC Alpha
 
 ## Environment reqs
@@ -11,7 +9,7 @@ To build/run site you need:
 - [Gulp](https://gulpjs.com/)
 
 
-## The generated output is deployed via a github pages repo at [https://notbinary.github.io/mhclg-epc-alpha/](https://notbinary.github.io/mhclg-epc-alpha/)
+## The generated output is deployed via a github pages repo at [https://communitiesuk.github.io/mhclg-epc-alpha/](https://communitiesuk.github.io/mhclg-epc-alpha/)
 
 
 ## Development
