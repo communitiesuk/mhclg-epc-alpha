@@ -1,4 +1,4 @@
-baseURL = "https://notbinary.github.io/mhclg-epc-alpha"
+baseURL = "https://communitiesuk.github.io/mhclg-epc-alpha"
 languageCode = "en-uk"
 title = "EPC Alpha"
 theme = "govuk"
@@ -8,7 +8,7 @@ publishDir = "../docs"
 
 staticDir = ["static", "src/govuk_template/assets", "src/govuk_elements/assets"]
 
-[params] 
+[params]
   global_header_text = "GOV.UK"
   servicename = "EPC Alpha"
   #users = ["Data Maintainer", "Data Modeller", "Policy Maker", "PropTech"]
