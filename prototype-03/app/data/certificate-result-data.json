@@ -1,0 +1,122 @@
+{
+    "addresses": [{
+            "type": "Flat",
+            "address": "Flat 1, 28 Great Smith Street, SW1P 3BU",
+            "category": "D",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 2, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 3, 28 Great Smith Street, SW1P 3BU",
+            "category": "E",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 3, 28 Great Smith Street, SW1P 3BU",
+            "category": "B",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 4, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 5, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC3 or 4"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 7, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "AC-CERT"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 7, 28 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 8, 28 Great Smith Street, SW1P 3BU",
+            "category": "D",
+            "certificate_type": "EPC3 or 4"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, 32 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "DEC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Second Floor Flat, 40 Great Smith Street, SW1P 3BU",
+            "category": "E",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 1, 42 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 3, 42 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 5, 42 Great Smith Street, SW1P 3BU",
+            "category": "D",
+            "certificate_type": "EPC3 or 4"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 6, 42 Great Smith Street, SW1P 3BU",
+            "category": "B",
+            "certificate_type": "DEC"
+        },
+
+        {
+            "type": "Flat",
+            "address": "Flat 8, 42 Great Smith Street, SW1P 3BU",
+            "category": "C",
+            "certificate_type": "EPC"
+        }
+
+    ]
+}

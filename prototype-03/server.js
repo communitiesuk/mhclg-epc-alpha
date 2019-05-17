@@ -1,5 +1,6 @@
 // Core dependencies
 const path = require('path')
+const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -343,3 +344,9 @@ console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
 
 module.exports = app
+
+/*
+  Load data from JSON.
+*/
+var data = JSON.parse(fs.readFileSync(__dirname + '/app/data/certificate-result-data.json').toString());
+app.locals.data = data.addresses;
