@@ -1,0 +1,28 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  ERROR: Energy performance of buildings
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Sorry this prototype service is unavailable
+      </h1>
+      {% from "error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+        titleText: "Error message",
+        errorList: [
+          {
+            text: content.error.message
+          }
+        ]
+      }) }}
+      <p class="govuk-body">Please contact <a href="mailto:jake.mulley@communities.gov.uk">Jake</a> for support.</p>
+    </div>
+  </div>
+
+{% endblock %}
