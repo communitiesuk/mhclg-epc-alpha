@@ -1,0 +1,127 @@
+{% from "table/macro.njk" import govukTable %}
+
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Energy certificates for {{ data['postcode-or-reference'] | upper}}
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Energy certificates for {{ data['postcode-or-reference'] | upper}}
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+
+    <div class="govuk-form-group ebp-checkbox-list">
+      <fieldset class="govuk-fieldset">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h2 class="govuk-fieldset__heading">
+            Certificate type
+          </h2>
+        </legend>
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+
+          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
+            <input class="govuk-checkboxes__input" id="certificate-type-1" name="certificate-type" type="checkbox"
+                   value="res-epc">
+            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-1">
+              Residential energy performance certificates (EPC)
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
+            <input class="govuk-checkboxes__input" id="certificate-type-2" name="certificate-type" type="checkbox"
+                   value="non-res-epc">
+            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-2">
+              Non-residential energy performance certificates (EPC)
+            </label></div>
+          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
+            <input class="govuk-checkboxes__input" id="certificate-type-3" name="certificate-type" type="checkbox"
+                   value="dec">
+            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-3">
+              Display energy certificates (DEC)
+            </label></div>
+          <div class="govuk-checkboxes__item ebp-checkbox-list-item-last">
+            <input class="govuk-checkboxes__input" id="certificate-type-4" name="certificate-type" type="checkbox"
+                   value="ac-cert">
+            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-4">
+              Air conditioning inspection certificate (AC-CERT)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    {% if addresses.length %}
+    <p class="govuk-body">There are {{ addresses.length }} results for <span class="govuk-!-font-weight-bold">all energy performance
+        certificates</span></p>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption"></caption>
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        {% if (selection===0) %}
+        <th class="govuk-table__header" scope="col">Type</th>
+        {% endif %}
+        <th class="govuk-table__header" scope="col">Type</th>
+        <th class="govuk-table__header" scope="col">Address</th>
+        <th class="govuk-table__header" scope="col">Grade</th>
+      </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+
+      {% for item in addresses %}
+      <tr class="govuk-table__row">
+        {% if (selection===0) %}
+        <th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}}WTF</abbr></th>
+        {% endif %}
+        <td class="govuk-table__cell">{{ item.certificate_type }}</td>
+        <td class="govuk-table__cell"><a href="certificate/{{item.reference}}">{{item.address}}</a></td>
+        <td class="govuk-table__cell">{{item.category}}</td>
+      </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+
+    {% else %}
+    <h2>No results</h2>
+    <p>You may want to check the postcode and <a href="search">search again</a>.</p>
+    <p>You can use this service if you want to <a href="/find-an-assessor">find an Assessor</a>.</p>
+    <p>If you are looking for a property in Scotland you will need to use the <a
+        href="https://www.scottishepcregister.org.uk">Scottish EPC register.</a></p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
