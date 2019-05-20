@@ -14,7 +14,7 @@ router.get('/assessor/:id', (req, res) => {
   res.render('assessor/view', { assessor: req.session.data['assessors'][req.params.id] })
 })
 
-router.get('/cert-find-a-certificate', function(req, res, next) {
+router.get('/certificate', function(req, res, next) {
   res.render('certificate/postcode-form');
 });
 
@@ -22,7 +22,7 @@ router.get('/cert-find-a-certificate', function(req, res, next) {
 var sortedArray = [];
 var lastCheckedPostcode = '';
 
-router.post('/cert-postcode-results', function(req, res) {
+router.post('/certificate/results', function(req, res) {
   if(req.session.data['postcode-or-reference']){
       res.render('certificate/results', {
         addresses: req.app.locals.data //static dummy data

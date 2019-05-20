@@ -4,17 +4,6 @@
 Find an energy certificate
 {% endblock %}
 
-{% block beforeContent %}
-{{ super() }}
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
-      </li>
-    </ol>
-  </div>
-{% endblock %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -29,7 +18,7 @@ Find an energy certificate
       <li>air conditioning inspection certificates (AC-CERT) for air conditioning systems over 12kW</li>
     </ul>
 
-    <form action="cert-postcode-results" method="post" class="form">
+    <form action="certificate/results" method="post" class="form">
       <div class="govuk-form-group">
         <label class="govuk-label" for="postcode-or-reference">
           <span class="govuk-!-font-weight-bold">Enter a postcode or certificate reference number to find an EPC</span>

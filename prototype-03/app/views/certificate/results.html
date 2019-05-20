@@ -1,26 +1,9 @@
 {% from "table/macro.njk" import govukTable %}
 
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
 Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} -->
-{% endblock %}
-
-{% block header %}
-<!-- Blank header with no service name for the start page -->
-{{ govukHeader() }}
-{% endblock %}
-
-{% block beforeContent %}
-{{ super() }}
-<div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-back-link" href="javascript: window.history.go(-1)">Back</a>
-    </li>
-  </ol>
-</div>
 {% endblock %}
 
 
@@ -37,46 +20,50 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">
+    <form action="" method="post" novalidate class="govuk-form-with-border">
+      {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
-    <div class="govuk-form-group ebp-checkbox-list">
-      <fieldset class="govuk-fieldset">
+      {{ govukCheckboxes({
+        idPrefix: "certificate-type",
+        name: "certificate-type",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Certificate type",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "residential-epc",
+            text: "Residential energy performance certificates (EPC)",
+            checked: (data['certificate-type'] and 'residential-epc' in data['certificate-type'])
+          },
+          {
+            value: "non-residential-epc",
+            text: "Non-residential energy performance certificates (EPC)",
+            checked: (data['certificate-type'] and 'non-residential-epc' in data['certificate-type'])
+          },
+          {
+            value: "dec",
+            text: "Display energy certificates (DEC)",
+            checked: (data['certificate-type'] and 'dec' in data['certificate-type'])
+          },
+          {
+            value: "residential-epc",
+            text: "Air conditioning inspection certificate (AC-CERT)",
+            checked: (data['certificate-type'] and 'ac-cert' in data['certificate-type'])
+          }
+        ]
+      }) }}
 
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-          <h2 class="govuk-fieldset__heading">
-            Certificate type
-          </h2>
-        </legend>
-        <div class="govuk-checkboxes govuk-checkboxes--small">
+      {% from "button/macro.njk" import govukButton %}
 
-          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
-            <input class="govuk-checkboxes__input" id="certificate-type-1" name="certificate-type" type="checkbox"
-                   value="res-epc">
-            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-1">
-              Residential energy performance certificates (EPC)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
-            <input class="govuk-checkboxes__input" id="certificate-type-2" name="certificate-type" type="checkbox"
-                   value="non-res-epc">
-            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-2">
-              Non-residential energy performance certificates (EPC)
-            </label></div>
-          <div class="govuk-checkboxes__item ebp-checkbox-list-item">
-            <input class="govuk-checkboxes__input" id="certificate-type-3" name="certificate-type" type="checkbox"
-                   value="dec">
-            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-3">
-              Display energy certificates (DEC)
-            </label></div>
-          <div class="govuk-checkboxes__item ebp-checkbox-list-item-last">
-            <input class="govuk-checkboxes__input" id="certificate-type-4" name="certificate-type" type="checkbox"
-                   value="ac-cert">
-            <label class="govuk-label govuk-checkboxes__label govuk-body govuk-!-font-size-16" for="certificate-type-4">
-              Air conditioning inspection certificate (AC-CERT)
-            </label>
-          </div>
-        </div>
-      </fieldset>
-    </div>
+      {{ govukButton({
+        text: "Filter results"
+      }) }}
+    </form>
   </div>
 
   <div class="govuk-grid-column-two-thirds">
@@ -106,7 +93,7 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
         <th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}} WTF</abbr></th>
         {% endif %}
         <td class="govuk-table__cell">{{ item.certificate_type }}</td>
-        <td class="govuk-table__cell"><a href="cert-certificate/{{item.reference}}">{{item.address}}</a></td>
+        <td class="govuk-table__cell"><a href="/certificate/results/{{item.reference}}">{{item.address}}</a></td>
         <td class="govuk-table__cell">{{item.category}}</td>
       </tr>
       {% endfor %}
