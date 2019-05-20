@@ -1,8 +1,31 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Energy performance of buildings
+  Energy performance of buildings register
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "https://www.gov.uk"
+      },
+      {
+        text: "Energy performance of buildings register"
+      }
+    ]
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -27,7 +50,7 @@
     <div class="govuk-grid-column-one-third">
       <h2 class="govuk-heading-l">Find an assessor</h2>
       <p class="govuk-body">Test our prototype to find a local assessor and check that they are registered with an accredited scheme.</p>
-      <p class="govuk-body"><a href="#" class="govuk-link govuk-!-font-weight-bold">Find an assessor</a></p>
+      <p class="govuk-body"><a href="/assessor" class="govuk-link govuk-!-font-weight-bold">Find an assessor</a></p>
     </div>
   </div>
 

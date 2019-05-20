@@ -16,9 +16,8 @@ Example usage:
 ============================================================================
 
 */
+const generator = require('./data-generator.js')
 
 module.exports = {
-
-  // Insert values here
-
+  assessors: generator.assessors(20)
 }
