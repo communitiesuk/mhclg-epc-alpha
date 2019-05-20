@@ -12,6 +12,12 @@
       <p class="govuk-body">To get an energy certificate you need to have your property assessed.</p>
       <p class="govuk-body"> Use this service to find a local assessor and check that they are registered with an accredited scheme. Contact them directly to arrange an assessment.</p>
 
+      {% from "inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        html: "There's a different way to <a href='https://www.saa.gov.uk/'>find an energy assessor in Scotland</a>."
+      }) }}
+
       <form action="/assessor/results" method="post" novalidate>
 
         {% from "input/macro.njk" import govukInput %}
