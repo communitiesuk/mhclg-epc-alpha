@@ -1,0 +1,113 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Energy performance of buildings
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['postcode'] %}
+        <h2 class="govuk-heading-xl">Assessors for {{ data['postcode'].toUpperCase() or 'SW1P 3BU' }}</h2>
+      {% else %}
+        <h2 class="govuk-heading-xl">Assessors for SW1P 3BU</h2>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+
+        <form action="" method="post" novalidate class="govuk-form-with-border">
+          {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+          {{ govukCheckboxes({
+            idPrefix: "type",
+            name: "type",
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+              legend: {
+                text: "Assessor type",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "residential",
+                text: "Residential",
+                checked: (data['type'] and 'residential' in data['type'])
+              },
+              {
+                value: "nonresidential",
+                text: "Non-residential",
+                checked: (data['type'] and 'nonresidential' in data['type'])
+              }
+            ]
+          }) }}
+
+          {{ govukCheckboxes({
+            idPrefix: "nonrestype",
+            name: "nonrestype",
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+              legend: {
+                text: "Non-residential certificate type",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "nonresepc",
+                text: "Energy performance certificates (EPC)",
+                checked: (data['type'] and data['nonrestype'] and 'nonresepc' in data['nonrestype'] and 'nonresidential' in data['type']),
+                disabled: (data['type'] and 'nonresidential' not in data['type'])
+              },
+              {
+                value: "displayenergy",
+                text: "Display energy certificates (DEC)",
+                checked: (data['type'] and data['nonrestype'] and 'displayenergy' in data['nonrestype'] and 'nonresidential' in data['type']),
+                disabled: (data['type'] and 'nonresidential' not in data['type'])
+              },
+              {
+                value: "accert",
+                text: "Air conditioning inspection certificates (AC-CERT)",
+                checked: (data['type'] and data['nonrestype'] and 'accert' in data['nonrestype'] and 'nonresidential' in data['type']),
+                disabled: (data['type'] and 'nonresidential' not in data['type'])
+              }
+            ]
+          }) }}
+
+          {% from "button/macro.njk" import govukButton %}
+
+          {{ govukButton({
+            text: "Filter results"
+          }) }}
+        </form>
+      </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">There are {{ results.length }} results for <strong>{{ data['type'] }} assessors</strong></p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      {% for assessor in results %}
+        <ul class="govuk-list">
+          <li>
+            <a class="govuk-link" href="/assessor/{{ loop.index0 }}">{{ assessor.full_name }}</a>
+          </li>
+          <li><strong>Accreditation number: {{ assessor.accreditation_number }}</strong></li>
+          <li>Certificate types: {{ assessor.certificatesString }}</li>
+          <li>Distance: within {{ assessor.distance }} miles</li>
+        </ul>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock %}
