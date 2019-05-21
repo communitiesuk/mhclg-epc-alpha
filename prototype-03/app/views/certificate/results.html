@@ -36,24 +36,24 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
         },
         items: [
           {
-            value: "residential-epc",
+            value: "EPC",
             text: "Residential energy performance certificate (EPC)",
-            checked: (data['certificate-type'] and 'residential-epc' in data['certificate-type'])
+            checked: (data['certificate-type'] and 'EPC' in data['certificate-type'])
           },
           {
-            value: "non-residential-epc",
+            value: "EPC3 or 4",
             text: "Non-residential energy performance certificate (EPC3 or 4)",
-            checked: (data['certificate-type'] and 'non-residential-epc' in data['certificate-type'])
+            checked: (data['certificate-type'] and 'EPC3 or 4' in data['certificate-type'])
           },
           {
-            value: "dec",
+            value: "DEC",
             text: "Display energy certificate (DEC)",
-            checked: (data['certificate-type'] and 'dec' in data['certificate-type'])
+            checked: (data['certificate-type'] and 'DEC' in data['certificate-type'])
           },
           {
-            value: "residential-epc",
+            value: "AC-CERT",
             text: "Air conditioning inspection certificate (AC-CERT)",
-            checked: (data['certificate-type'] and 'ac-cert' in data['certificate-type'])
+            checked: (data['certificate-type'] and 'AC-CERT' in data['certificate-type'])
           }
         ]
       }) }}
@@ -68,8 +68,9 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
 
   <div class="govuk-grid-column-two-thirds">
     {% if addresses.length %}
-    <p class="govuk-body">There are {{ addresses.length }} results for <span class="govuk-!-font-weight-bold">all energy performance
-        certificates</span></p>
+    <p class="govuk-body">There are {{ addresses.length }} results for <span class="govuk-!-font-weight-bold">
+      {{ certificates_description if certificates_description else "all energy performance
+        certificates" }}</span></p>
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
     <table class="govuk-table">
@@ -94,7 +95,7 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
         {% endif %}
         <td class="govuk-table__cell">{{ item.certificate_type }}</td>
         <td class="govuk-table__cell"><a href="/certificate/results/{{item.reference}}">{{item.address}}</a></td>
-        <td class="govuk-table__cell">{{item.category}}</td>
+        <td class="govuk-table__cell">{{item['current-energy-rating']}}</td>
       </tr>
       {% endfor %}
 
