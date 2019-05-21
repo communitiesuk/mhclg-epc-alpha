@@ -134,183 +134,157 @@
 
       {% from "accordion/macro.njk" import govukAccordion %}
 
-{{ govukAccordion({
-  id: "accordion-default",
-  items: [
-    {
-      heading: {
-        text: "Cavity wall insulation"
-      },
-      content: {
-        html: '<p class="govuk-body">
-                Many houses are built with walls made up of two layers - an outer and an inner leaf.
-                The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.
-               </p>
-               <table class="govuk-table">
-                 <tr>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Investment required</span>
-                       £1,000
-                     </p>
-                   </td>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Potential savings per year</span>
-                       £135 to £165
-                     </p>
-                   </td>
-                 </tr>
-               </table>
-              <p class="govuk-body"><a class="govuk-link" href="#">Find out more about cavity wall insulation</a></p>
-            '
-      }
-    },
-    {
-      heading: {
-        text: "Low energy lighting"
-      },
-      content: {
-        html: '<p class="govuk-body">
-                Fitting a low energy bulb whenever you change a lightbulb will cut your electricity bill without
-                having any other impact on your household.
-               </p>
-               <table class="govuk-table">
-                 <tr>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Investment required</span>
-                       £0
-                     </p>
-                   </td>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Potential savings per year</span>
-                       £10
-                     </p>
-                   </td>
-                 </tr>
-               </table>
-              <p class="govuk-body"><a class="govuk-link" href="#">Find out more about low energy lighting</a></p>
-            '
-      }
-    },
-      {
-      heading: {
-        text: "Increase hot water cylinder insulation"
-      },
-      content: {
-        html: '<p class="govuk-body">
-                You can increase insulation by fitting a hot water cylinder jacket, and by insulating pipes with a foam
-                tube that covers the exposed pipes between your hot water cylinder and boiler.
-               </p>
-               <table class="govuk-table">
-                 <tr>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Investment required</span>
-                       £30
-                     </p>
-                   </td>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Potential savings per year</span>
-                       £39
-                     </p>
-                   </td>
-                 </tr>
-               </table>
-              <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder insulation</a></p>
-            '
-      }
-    },
-      {
-      heading: {
-        text: "Fit a hot water cylinder thermostat"
-      },
-      content: {
-        html: '<p class="govuk-body">
-                Fitting a hot water cylinder thermostat will help keep your hot water at the right temperature and avoid
-                wasting energy keeping it hotter than you need.
-               </p>
-               <table class="govuk-table">
-                 <tr>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Investment required</span>
-                       £300
-                     </p>
-                   </td>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Potential savings per year</span>
-                       £75
-                     </p>
-                   </td>
-                 </tr>
-               </table>
-              <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder thermostats</a></p>
-            '
-      }
-    },
-      {
-      heading: {
-        text: "Replace boiler with new condensing boiler"
-      },
-      content: {
-        html: '<p class="govuk-body">
-                If you have a gas boiler that was fitted before 2005, then the chances are that it is an inefficient boiler.
-                If this is the case, then you could cut your heating bills significantly by replacing it with a modern efficient model.
-               </p>
-               <table class="govuk-table">
-                 <tr>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Investment required</span>
-                       £2,600
-                     </p>
-                   </td>
-                   <td>
-                     <p class="govuk-heading-m">
-                       <span class="govuk-caption-m">Potential savings per year</span>
-                       £45
-                     </p>
-                   </td>
-                 </tr>
-               </table>
-              <p class="govuk-body"><a class="govuk-link" href="#">Find out more about boiler replacement</a></p>
-            '
-      }
-    }
-  ]
-}) }}
+    {{ govukAccordion({
+      id: "accordion-default",
+      items: [
+        {
+          heading: {
+            text: "Cavity wall insulation"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Many houses are built with walls made up of two layers - an outer and an inner leaf.
+                    The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £1,000
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £135 to £165
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about cavity wall insulation</a></p>
+                '
+          }
+        },
+        {
+          heading: {
+            text: "Low energy lighting"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Fitting a low energy bulb whenever you change a lightbulb will cut your electricity bill without
+                    having any other impact on your household.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £0
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £10
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about low energy lighting</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Increase hot water cylinder insulation"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    You can increase insulation by fitting a hot water cylinder jacket, and by insulating pipes with a foam
+                    tube that covers the exposed pipes between your hot water cylinder and boiler.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £30
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £39
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder insulation</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Fit a hot water cylinder thermostat"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Fitting a hot water cylinder thermostat will help keep your hot water at the right temperature and avoid
+                    wasting energy keeping it hotter than you need.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £300
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £75
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder thermostats</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Replace boiler with new condensing boiler"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    If you have a gas boiler that was fitted before 2005, then the chances are that it is an inefficient boiler.
+                    If this is the case, then you could cut your heating bills significantly by replacing it with a modern efficient model.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £2,600
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £45
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about boiler replacement</a></p>
+                '
+          }
+        }
+      ]
+    }) }}
 
-
-
-
-
-<!--      <h2>Energy costs for running this property</h2>-->
-<!--      <table class="govuk-table">-->
-<!--        <caption class="govuk-table__caption">These estimates are based on costs assessed in 2015 over 3 year period.</caption>-->
-<!--        <thead class="govuk-table__head">-->
-<!--          <tr class="govuk-table__row">-->
-<!--            <th class="govuk-table__header" scope="col">Energy use</th>-->
-<!--            <th class="govuk-table__header" scope="col">Current costs</th>-->
-<!--            <th class="govuk-table__header" scope="col">Potential costs</th>-->
-<!--          </tr>-->
-<!--        </thead>-->
-<!--        <tbody class="govuk-table__body">-->
-<!--          {% for item in data.costs %}-->
-<!--              <tr class="govuk-table__row">-->
-<!--                <td class="govuk-table__cell" >{{item.energyType}}</td>-->
-<!--                <td class="govuk-table__cell">{{item.currentCost}}</td>-->
-<!--                <td class="govuk-table__cell">{{item.futureCost}}</td>-->
-<!--              </tr>-->
-<!--          {% endfor %}-->
-<!--        </tbody>-->
-<!--      </table>-->
-
-<!--      <hr class="govuk-section-break govuk-section-break&#45;&#45;xl ">-->
     </div>
   </div>
   <div class="govuk-grid-row">
