@@ -29,3 +29,266 @@ $govuk-global-styles: true;
     margin-left: 15px;
   }
 }
+
+
+// EPC chart format - taken verbatim from prototype 01
+.bars .noborder_bottom {
+  border-bottom: 0;
+}
+
+.bars .noborder_top {
+  border-top: 0;
+}
+
+.bars {
+  border-top: 0;
+  font-family: 'nta';
+  border: 1px solid #0b0c0c;
+  display: table;
+  position: relative;
+  width: 400px;
+}
+
+.bars .bar {
+  display: table-row;
+}
+
+.bars .bar .th {
+  font-size: 11px;
+  padding: 5px;
+}
+
+.bars .bar div {
+  display: table-cell;
+}
+
+.bars .bar .col_1 {
+  width: 64%;
+}
+
+.bars .bar .col_2,
+.bars .bar .col_3 {
+  width: 18%;
+}
+
+.bars .bar .block {
+  display: block;
+  font-size: 11px;
+  overflow: auto;
+  padding: 0 4px;
+}
+
+.bars .bar .block:last-child {
+  margin-bottom: 0;
+}
+
+.bars .range {
+  position: relative;
+  top: 9px;
+}
+
+.bars .title {
+  color: #fff;
+  float: right;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.bars .rating_a_plus {
+  background: #008054;
+  margin-right: 150px;
+}
+
+.bars .rating_a {
+  background: #008054;
+  margin-right: 130px;
+}
+
+.bars .rating_b {
+  background: #19b459;
+  margin-right: 110px;
+}
+
+.bars .rating_c {
+  background: #8dce46;
+  margin-right: 90px;
+}
+
+.bars .rating_d {
+  background: #ffd500;
+  margin-right: 70px;
+}
+
+.bars .rating_e {
+  background: #fcaa65;
+  margin-right: 50px;
+}
+
+.bars .rating_f {
+  background: #ef8023;
+  margin-right: 30px;
+}
+
+.bars small {
+  display: block;
+  line-height: 1em;
+  padding: 8px 4px;
+}
+
+.bars .pointer .current_only {
+  left: 80%;
+}
+
+.bars .pointer .current {
+  left: 70%;
+}
+
+.bars .pointer .potential {
+  left: 88%;
+}
+
+.bars .pointer {
+  display: block;
+  margin: 0;
+  position: absolute;
+}
+
+.bars .pointer span {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 2px 8px;
+  position: relative;
+}
+
+.bars .pointer span:after {
+  border: solid transparent;
+  border-width: 18px;
+  content: ' ';
+  height: 0;
+  margin-top: -18px;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 0;
+}
+
+
+.bars .rating_a_plus span:after,
+.bars .rating_a span:after {
+  border-right-color: #008054;
+}
+
+.bars .rating_b span:after {
+  border-right-color: #19b459;
+}
+
+.bars .rating_c span:after {
+  border-right-color: #8dce46;
+}
+
+.bars .rating_d span:after {
+  border-right-color: #ffd500;
+}
+
+.bars .rating_e span:after {
+  border-right-color: #fcaa65;
+}
+
+.bars .rating_f span:after {
+  border-right-color: #ef8023;
+}
+
+.bars .rating_g span:after {
+  border-right-color: #e9153b;
+}
+
+
+.rating_a {
+  background: #008054;
+  margin-right: 130px;
+}
+
+.rating_b {
+  background: #19b459;
+  margin-right: 110px;
+}
+
+.rating_c {
+  background: #8dce46;
+  margin-right: 90px;
+}
+
+.rating_d {
+  background: #ffd500;
+  margin-right: 70px;
+}
+
+.rating_e {
+  background: #fcaa65;
+  margin-right: 50px;
+}
+
+.rating_f {
+  background: #ef8023;
+  margin-right: 30px;
+}
+
+.rating_g {
+  background: #e9153b;
+  margin-right: 10px;
+}
+
+.rating_b,
+.rating_c,
+.rating_d,
+.rating_e,
+.rating_f {
+  color: #111;
+}
+.rating_a,
+.rating_g {
+  color: #fff;
+}
+
+.rating {
+  font-weight: 400;
+  line-height: 1em;
+  margin-bottom: 1px;
+  margin-bottom: .1rem;
+  padding: 5px;
+  padding: .5rem;
+}
+
+.rating input {
+  margin: 0;
+}
+
+.rating label {
+  cursor: pointer;
+  display: block;
+  padding-left: 4px;
+  padding-left: .4rem;
+  text-align: right;
+  width: 100%;
+}
+
+.rating label span {
+  display: inline-block;
+  float: left;
+}
+
+.rating strong {
+  color: #fff;
+  font-size: 20px;
+  font-size: 2rem;
+  -webkit-text-stroke: 1px #111;
+}
+
+.rating strong,
+[type=checkbox]:checked+.checkable {
+  font-weight: 700;
+}
+
