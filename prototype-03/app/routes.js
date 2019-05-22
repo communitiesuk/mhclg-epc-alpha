@@ -19,21 +19,30 @@ router.get('/certificate', function(req, res, next) {
 });
 
 
-var sortedArray = [];
-var lastCheckedPostcode = '';
+const MAX_POSTCODE_LENGTH = 7;
 
 router.post('/certificate/results', function(req, res) {
   if(req.session.data['postcode-or-reference']){
-      delete req.session.data['postcode-or-reference']
-      res.render('certificate/results', {
-        addresses: req.app.locals.data //static dummy data
-      });
-
+     postcodeOrRef = req.session.data['postcode-or-reference']
+     delete req.session.data['postcode-or-reference']
+     // Remove whitespace from submitted string and check length; if long treat it as a ref and go direct to certificate
+     if(postcodeOrRef.replace(/\s/g, "").length > MAX_POSTCODE_LENGTH) {
+         res.redirect("/certificate/results/" + randomIntFromInterval(1, req.app.locals.data.length))
+     }
+     else {
+        res.render('certificate/results', {
+          addresses: req.app.locals.data //static dummy data
+        });
+     }
   }else{
     filterCertTypes(req, res);
   }
 });
 
+function randomIntFromInterval(min,max) // min and max included
+{
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
 
 function filterCertTypes(req, res){
   var arr = [];
