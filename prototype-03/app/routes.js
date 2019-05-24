@@ -44,6 +44,11 @@ function filterAssessors(req, res){
   if (assessorTypes.includes("nonresidential") && !nonResTypes.length){
     nonResTypes = ["nonresepc","displayenergy","accert"];
   }
+  // If non-residential types chosen but not the high-level non-residential box then check the nonresidential box too
+  else if (nonResTypes.length && ! assessorTypes.includes("nonresidential")){
+    assessorTypes.push("nonresidential")
+  }
+
   var allSelectedTypes = assessorTypes.concat(nonResTypes);
 
   for (var i=0;i<req.session.data['assessors'].length;i++){

@@ -38,12 +38,12 @@
               {
                 value: "residential",
                 text: "Residential",
-                checked: (data['type'] and 'residential' in data['type'])
+                checked: (allSelectedTypes and 'residential' in allSelectedTypes)
               },
               {
                 value: "nonresidential",
                 text: "Non-residential",
-                checked: (data['type'] and 'nonresidential' in data['type'])
+                checked: (allSelectedTypes and 'nonresidential' in allSelectedTypes)
               }
             ]
           }) }}
