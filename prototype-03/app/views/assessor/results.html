@@ -63,19 +63,19 @@
               {
                 value: "nonresepc",
                 text: "Energy performance certificates (EPC)",
-                checked: (data['type'] and data['nonrestype'] and 'nonresepc' in data['nonrestype'] and 'nonresidential' in data['type']),
+                checked: (allSelectedTypes and 'nonresepc' in allSelectedTypes),
                 disabled: (data['type'] and 'nonresidential' not in data['type'])
               },
               {
                 value: "displayenergy",
                 text: "Display energy certificates (DEC)",
-                checked: (data['type'] and data['nonrestype'] and 'displayenergy' in data['nonrestype'] and 'nonresidential' in data['type']),
+                checked: (allSelectedTypes and 'displayenergy' in allSelectedTypes),
                 disabled: (data['type'] and 'nonresidential' not in data['type'])
               },
               {
                 value: "accert",
                 text: "Air conditioning inspection certificates (AC-CERT)",
-                checked: (data['type'] and data['nonrestype'] and 'accert' in data['nonrestype'] and 'nonresidential' in data['type']),
+                checked: (allSelectedTypes and 'accert' in allSelectedTypes),
                 disabled: (data['type'] and 'nonresidential' not in data['type'])
               }
             ]

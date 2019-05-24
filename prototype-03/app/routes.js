@@ -56,6 +56,7 @@ function filterAssessors(req, res){
   filterString = allSelectedTypes.filter(function(item) {return item !== "nonresidential"}).map(item => assessorNiceNames[item]).join(", ");
   res.render('assessor/results', {
     results: results,
+    allSelectedTypes: allSelectedTypes,
     filterString: filterString
   });
 }
