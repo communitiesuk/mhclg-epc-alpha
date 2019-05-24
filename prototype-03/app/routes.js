@@ -88,7 +88,12 @@ router.post('/certificate/results', function(req, res) {
           addresses: req.app.locals.data //static dummy data
         });
      }
-  }else{
+  }
+  // If all filters have been deselected and resubmitted fall back to full list
+  else if(typeof req.session.data['certificate-type'] == "undefined"){
+    res.render('certificate/results', { addresses: req.app.locals.data });
+  }
+  else{
     filterCertTypes(req, res);
   }
 });
