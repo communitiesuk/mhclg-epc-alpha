@@ -65,22 +65,19 @@
                 id: "nonresepc",
                 value: "nonresepc",
                 text: "Energy performance certificates (EPC)",
-                checked: (allSelectedTypes and 'nonresepc' in allSelectedTypes),
-                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
+                checked: (allSelectedTypes and 'nonresepc' in allSelectedTypes)
               },
               {
                 id: "displayenergy",
                 value: "displayenergy",
                 text: "Display energy certificates (DEC)",
-                checked: (allSelectedTypes and 'displayenergy' in allSelectedTypes),
-                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
+                checked: (allSelectedTypes and 'displayenergy' in allSelectedTypes)
               },
               {
                 id: "accert",
                 value: "accert",
                 text: "Air conditioning inspection certificates (AC-CERT)",
-                checked: (allSelectedTypes and 'accert' in allSelectedTypes),
-                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
+                checked: (allSelectedTypes and 'accert' in allSelectedTypes)
               }
             ]
           }) }}
@@ -129,5 +126,6 @@
     }
 
     checkbox.addEventListener('click', toggleNonResidentialFilters);
+    toggleNonResidentialFilters();
   </script>
 {% endblock %}
