@@ -115,7 +115,7 @@ function filterCertTypes(req, res){
 
   res.render('certificate/results', {
     addresses: arr,
-    certificates_description: selected_cert_types.join(", ")
+    certificates_description: selected_cert_types.length == 4 ? "all energy performance" : selected_cert_types.join(", ")
   });
 }
 
