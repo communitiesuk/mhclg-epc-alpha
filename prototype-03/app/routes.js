@@ -13,7 +13,8 @@ router.get('/assessor/results', (req, res) => {
     delete req.session.data['postcode'];
     // Remove whitespace from submitted string and check length; if long treat it as a ref and go direct to assessor
     if(postcodeOrRef.replace(/\s/g, "").length > MAX_POSTCODE_LENGTH) {
-        res.redirect("/assessor/" + randomIntFromInterval(0, req.session.data['assessors'].length -1));
+        var randomAssessorRef = req.session.data['assessors'].map(assessor => assessor.accreditation_number)[randomIntFromInterval(0, req.session.data['assessors'].length -1)];
+        res.redirect("/assessor/" + randomAssessorRef);
     } else {
         res.render('assessor/results', { results: req.session.data['assessors'] });
     }
