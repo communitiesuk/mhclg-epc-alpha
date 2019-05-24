@@ -11,15 +11,15 @@ module.exports = {
         type: 'residential'
       }, {
         title: 'non-residential EPC',
-        type: 'nonresidential'
+        type: 'nonresepc'
       },
       {
         title: 'DEC',
-        type: 'dec'
+        type: 'displayenergy'
       },
       {
         title: 'AC-CERT',
-        type: 'acu'
+        type: 'accert'
       }
     ]
 
