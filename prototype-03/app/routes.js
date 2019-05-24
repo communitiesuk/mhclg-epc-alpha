@@ -62,7 +62,7 @@ function filterAssessors(req, res){
 }
 
 router.get('/assessor/:id', (req, res) => {
-  res.render('assessor/view', { assessor: req.session.data['assessors'][req.params.id] })
+  res.render('assessor/view', { assessor: req.session.data['assessors'].filter(assessor => assessor.accreditation_number == req.params.id)[0] })
 })
 
 router.get('/certificate', function(req, res, next) {

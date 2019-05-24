@@ -97,7 +97,7 @@
       {% for assessor in results %}
         <ul class="govuk-list">
           <li>
-            <a class="govuk-link" href="/assessor/{{ loop.index0 }}">{{ assessor.full_name }}</a>
+            <a class="govuk-link" href="/assessor/{{ assessor.accreditation_number }}">{{ assessor.full_name }}</a>
           </li>
           <li><strong>Accreditation number: {{ assessor.accreditation_number }}</strong></li>
           <li>Certificate types: {{ assessor.certificatesString }}</li>

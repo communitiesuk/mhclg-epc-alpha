@@ -4,7 +4,7 @@ module.exports = {
 
     const firstNames = ['Alistair', 'Emily', 'Jake', 'Jessica', 'Katy', 'Kevin', 'Matt', 'Sudheer', 'Abi', 'Paul', 'Stephanie', 'Tom']
     const lastNames = ['Davidson', 'Hill', 'Docherty', 'Armstrong', 'Keenoy', 'Anderson', 'Edupuganti', 'Thorpe', 'Downey', 'Buck', 'Bates']
-    const schemes = ['EES/', 'STRO', 'ECMK']
+    const schemes = ['EES-', 'STRO', 'ECMK']
     const certificates = [
       {
         title: 'residential EPC',
