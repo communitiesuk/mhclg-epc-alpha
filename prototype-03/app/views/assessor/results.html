@@ -41,6 +41,7 @@
                 checked: (allSelectedTypes and 'residential' in allSelectedTypes)
               },
               {
+                id: "nonresidential-checkbox",
                 value: "nonresidential",
                 text: "Non-residential",
                 checked: (allSelectedTypes and 'nonresidential' in allSelectedTypes)
@@ -61,22 +62,25 @@
             },
             items: [
               {
+                id: "nonresepc",
                 value: "nonresepc",
                 text: "Energy performance certificates (EPC)",
                 checked: (allSelectedTypes and 'nonresepc' in allSelectedTypes),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
               },
               {
+                id: "displayenergy",
                 value: "displayenergy",
                 text: "Display energy certificates (DEC)",
                 checked: (allSelectedTypes and 'displayenergy' in allSelectedTypes),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
               },
               {
+                id: "accert",
                 value: "accert",
                 text: "Air conditioning inspection certificates (AC-CERT)",
                 checked: (allSelectedTypes and 'accert' in allSelectedTypes),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                disabled: (not (allSelectedTypes and 'nonresidential' in allSelectedTypes))
               }
             ]
           }) }}
@@ -110,4 +114,20 @@
 
   </div>
 
+  <script>
+    var checkbox = document.getElementById("nonresidential-checkbox");
+    function toggleNonResidentialFilters() {
+      if (checkbox.checked == false) {
+        document.getElementById('nonresepc').disabled = true;
+        document.getElementById('displayenergy').disabled = true;
+        document.getElementById('accert').disabled = true;
+      } else {
+        document.getElementById('nonresepc').disabled = false;
+        document.getElementById('displayenergy').disabled = false;
+        document.getElementById('accert').disabled = false;
+      }
+    }
+
+    checkbox.addEventListener('click', toggleNonResidentialFilters);
+  </script>
 {% endblock %}
