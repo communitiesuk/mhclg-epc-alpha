@@ -1,17 +1,74 @@
 const express = require('express')
 const request = require('request')
 const router = express.Router()
+const MAX_POSTCODE_LENGTH = 7;
 
 router.get('/assessor', (req, res) => {
   res.render('assessor/index')
 })
 
 router.get('/assessor/results', (req, res) => {
-  res.render('assessor/results', { results: req.session.data['assessors'] })
+  if(req.session.data['postcode']){
+    postcodeOrRef = req.session.data['postcode'];
+    delete req.session.data['postcode'];
+    // Remove whitespace from submitted string and check length; if long treat it as a ref and go direct to assessor
+    if(postcodeOrRef.replace(/\s/g, "").length > MAX_POSTCODE_LENGTH) {
+        var randomAssessorRef = req.session.data['assessors'].map(assessor => assessor.accreditation_number)[randomIntFromInterval(0, req.session.data['assessors'].length -1)];
+        res.redirect("/assessor/" + randomAssessorRef);
+    } else {
+        res.render('assessor/results', { results: req.session.data['assessors'] });
+    }
+  }
+  // If filters have been deselected and resubmitted fall back to full list
+  else if(typeof req.session.data['type'] == "undefined" && typeof req.session.data['nonrestype'] == "undefined"){
+    res.render('assessor/results', { results: req.session.data['assessors'] });
+  }
+  // Some filters have been submitted so filter
+  else {
+    filterAssessors(req, res);
+  }
 })
 
+var assessorNiceNames = {
+  "residential": "residential EPC",
+  "nonresepc":  "non-residential EPC",
+  "displayenergy": "DEC",
+  "accert": "AC-CERT"
+}
+
+function filterAssessors(req, res){
+  var results = [];
+  var assessorTypes = req.session.data['type'] || [];
+  var nonResTypes = req.session.data['nonrestype'] || [];
+
+  // If nothing chosen in the second set of filters, assume we want all nonresidential certs
+  if (assessorTypes.includes("nonresidential") && !nonResTypes.length){
+    nonResTypes = ["nonresepc","displayenergy","accert"];
+  }
+  // If non-residential types chosen but not the high-level non-residential box then check the nonresidential box too
+  else if (nonResTypes.length && ! assessorTypes.includes("nonresidential")){
+    assessorTypes.push("nonresidential")
+  }
+
+  var allSelectedTypes = assessorTypes.concat(nonResTypes);
+
+  for (var i=0;i<req.session.data['assessors'].length;i++){
+    current_assessor = req.session.data['assessors'][i]
+    assessorCerts = current_assessor.certificates.map(cert => cert.type);
+    if(allSelectedTypes.some(cert=> assessorCerts.includes(cert))){
+      results.push(current_assessor);
+    }
+  }
+  filterString = allSelectedTypes.filter(function(item) {return item !== "nonresidential"}).map(item => assessorNiceNames[item]).join(", ");
+  res.render('assessor/results', {
+    results: results,
+    allSelectedTypes: allSelectedTypes,
+    filterString: filterString
+  });
+}
+
 router.get('/assessor/:id', (req, res) => {
-  res.render('assessor/view', { assessor: req.session.data['assessors'][req.params.id] })
+  res.render('assessor/view', { assessor: req.session.data['assessors'].filter(assessor => assessor.accreditation_number == req.params.id)[0] })
 })
 
 router.get('/certificate', function(req, res, next) {
@@ -19,22 +76,25 @@ router.get('/certificate', function(req, res, next) {
 });
 
 
-const MAX_POSTCODE_LENGTH = 7;
-
 router.post('/certificate/results', function(req, res) {
   if(req.session.data['postcode-or-reference']){
-     postcodeOrRef = req.session.data['postcode-or-reference']
-     delete req.session.data['postcode-or-reference']
+     postcodeOrRef = req.session.data['postcode-or-reference'];
+     delete req.session.data['postcode-or-reference'];
      // Remove whitespace from submitted string and check length; if long treat it as a ref and go direct to certificate
      if(postcodeOrRef.replace(/\s/g, "").length > MAX_POSTCODE_LENGTH) {
-         res.redirect("/certificate/results/" + randomIntFromInterval(1, req.app.locals.data.length))
+         res.redirect("/certificate/results/" + randomIntFromInterval(1, req.app.locals.data.length));
      }
      else {
         res.render('certificate/results', {
           addresses: req.app.locals.data //static dummy data
         });
      }
-  }else{
+  }
+  // If all filters have been deselected and resubmitted fall back to full list
+  else if(typeof req.session.data['certificate-type'] == "undefined"){
+    res.render('certificate/results', { addresses: req.app.locals.data });
+  }
+  else{
     filterCertTypes(req, res);
   }
 });
@@ -56,7 +116,7 @@ function filterCertTypes(req, res){
 
   res.render('certificate/results', {
     addresses: arr,
-    certificates_description: selected_cert_types.join(", ")
+    certificates_description: selected_cert_types.length == 4 ? "all energy performance" : selected_cert_types.join(", ")
   });
 }
 

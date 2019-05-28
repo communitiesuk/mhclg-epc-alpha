@@ -4,22 +4,22 @@ module.exports = {
 
     const firstNames = ['Alistair', 'Emily', 'Jake', 'Jessica', 'Katy', 'Kevin', 'Matt', 'Sudheer', 'Abi', 'Paul', 'Stephanie', 'Tom']
     const lastNames = ['Davidson', 'Hill', 'Docherty', 'Armstrong', 'Keenoy', 'Anderson', 'Edupuganti', 'Thorpe', 'Downey', 'Buck', 'Bates']
-    const schemes = ['EES/', 'STRO', 'ECMK']
+    const schemes = ['EES-', 'STRO', 'ECMK']
     const certificates = [
       {
         title: 'residential EPC',
         type: 'residential'
       }, {
         title: 'non-residential EPC',
-        type: 'nonresidential'
+        type: 'nonresepc'
       },
       {
         title: 'DEC',
-        type: 'dec'
+        type: 'displayenergy'
       },
       {
         title: 'AC-CERT',
-        type: 'acu'
+        type: 'accert'
       }
     ]
 

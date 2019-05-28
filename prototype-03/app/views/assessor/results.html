@@ -38,12 +38,13 @@
               {
                 value: "residential",
                 text: "Residential",
-                checked: (data['type'] and 'residential' in data['type'])
+                checked: (allSelectedTypes and 'residential' in allSelectedTypes)
               },
               {
+                id: "nonresidential-checkbox",
                 value: "nonresidential",
                 text: "Non-residential",
-                checked: (data['type'] and 'nonresidential' in data['type'])
+                checked: (allSelectedTypes and 'nonresidential' in allSelectedTypes)
               }
             ]
           }) }}
@@ -61,22 +62,22 @@
             },
             items: [
               {
+                id: "nonresepc",
                 value: "nonresepc",
                 text: "Energy performance certificates (EPC)",
-                checked: (data['type'] and data['nonrestype'] and 'nonresepc' in data['nonrestype'] and 'nonresidential' in data['type']),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                checked: (allSelectedTypes and 'nonresepc' in allSelectedTypes)
               },
               {
+                id: "displayenergy",
                 value: "displayenergy",
                 text: "Display energy certificates (DEC)",
-                checked: (data['type'] and data['nonrestype'] and 'displayenergy' in data['nonrestype'] and 'nonresidential' in data['type']),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                checked: (allSelectedTypes and 'displayenergy' in allSelectedTypes)
               },
               {
+                id: "accert",
                 value: "accert",
                 text: "Air conditioning inspection certificates (AC-CERT)",
-                checked: (data['type'] and data['nonrestype'] and 'accert' in data['nonrestype'] and 'nonresidential' in data['type']),
-                disabled: (data['type'] and 'nonresidential' not in data['type'])
+                checked: (allSelectedTypes and 'accert' in allSelectedTypes)
               }
             ]
           }) }}
@@ -90,14 +91,14 @@
       </div>
 
     <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">There are {{ results.length }} results for <strong>{{ data['type'] }} assessors</strong></p>
+      <p class="govuk-body">There are {{ results.length }} results for <strong>{{ filterString or "all" }} assessors</strong></p>
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
       {% for assessor in results %}
         <ul class="govuk-list">
           <li>
-            <a class="govuk-link" href="/assessor/{{ loop.index0 }}">{{ assessor.full_name }}</a>
+            <a class="govuk-link" href="/assessor/{{ assessor.accreditation_number }}">{{ assessor.full_name }}</a>
           </li>
           <li><strong>Accreditation number: {{ assessor.accreditation_number }}</strong></li>
           <li>Certificate types: {{ assessor.certificatesString }}</li>
@@ -110,4 +111,21 @@
 
   </div>
 
+  <script>
+    var checkbox = document.getElementById("nonresidential-checkbox");
+    function toggleNonResidentialFilters() {
+      if (checkbox.checked == false) {
+        document.getElementById('nonresepc').disabled = true;
+        document.getElementById('displayenergy').disabled = true;
+        document.getElementById('accert').disabled = true;
+      } else {
+        document.getElementById('nonresepc').disabled = false;
+        document.getElementById('displayenergy').disabled = false;
+        document.getElementById('accert').disabled = false;
+      }
+    }
+
+    checkbox.addEventListener('click', toggleNonResidentialFilters);
+    toggleNonResidentialFilters();
+  </script>
 {% endblock %}
