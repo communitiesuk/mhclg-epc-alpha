@@ -10,7 +10,11 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-xl">Find an energy assessor</h2>
       <p class="govuk-body">To get an energy certificate you need to have your property assessed.</p>
-      <p class="govuk-body"> Use this service to find a local assessor and check that they are registered with an accredited scheme. Contact them directly to arrange an assessment.</p>
+      <p class="govuk-body">Use this service to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>find a local assessor (contact them directly to arrange an assessment)</li>
+        <li>check an assessor is registered with an accredited scheme</li>
+      </ul>
 
       {% from "inset-text/macro.njk" import govukInsetText %}
 
@@ -49,6 +53,14 @@
         {% endcall %}
 
       </form>
+
+      {% from "inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        text: "Contact the assessor to complain about your property assessment. If you’re still unhappy, contact the assessor’s accreditation scheme."
+      }) }}
+
+      <p class="govuk-body">This service is also available in <a href="#" class="govuk-link">Welsh (Cymraeg)</a>.
     </div>
 
     <div class="govuk-grid-column-one-third">
@@ -71,18 +83,6 @@
           </ul>
         </nav>
       </aside>
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% from "inset-text/macro.njk" import govukInsetText %}
-
-      {{ govukInsetText({
-        text: "If you are unhappy with your property assessment then you can complain to the assessor directly. If this does not resolve the problem, you can contact the assessor’s accreditation scheme."
-      }) }}
-
-      <p class="govuk-body">This service is also available in <a href="#" class="govuk-link">Welsh (Cymraeg)</a>.
     </div>
   </div>
 
