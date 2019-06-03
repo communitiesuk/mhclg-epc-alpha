@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Energy performance of buildings register
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "https://www.gov.uk"
+      },
+      {
+        text: "Energy performance of buildings register"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-xl">Energy performance of buildings</h2>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-l">Find an energy certificate</h2>
+      <p class="govuk-body">Use this service to find:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an energy performance certificates (EPCs)</li>
+        <li>a display energy certificates (DEC) for public authority buildings</li>
+        <li>an air conditioning inspection certificates (AC-CERT) for air conditioning systems over 12kW</li>
+      </ul>
+      <p class="govuk-body"><a href="/certificate" class="govuk-link govuk-!-font-weight-bold">Find an energy certificate</a></p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-l">Find an assessor</h2>
+      <p class="govuk-body">Use this service to find a local assessor and check that they are registered with an accredited scheme.</p>
+      <p class="govuk-body"><a href="/assessor" class="govuk-link govuk-!-font-weight-bold">Find an assessor</a></p>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row govuk-!-margin-top-9">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">This service is also available in <a href="#" class="govuk-link">Welsh (Cymraeg)</a>.
+    </div>
+  </div>
+
+{% endblock %}
