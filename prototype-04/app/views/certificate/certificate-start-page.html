@@ -9,48 +9,38 @@ Find an energy certificate
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">Find an energy certificate</h1>
+    <h1 class="govuk-heading-xl">Find an energy certificate</h1>
 
     <p class="govuk-body">Use this service to find:</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>an energy performance certificate (EPC)</li>
-      <li>a display energy certificate (DEC) for public authority buildings</li>
-      <li>an air conditioning inspection certificate (AC-CERT) for systems over 12kW</li>
+      <li>energy performance certificates (EPC)</li>
+      <li>display energy certificates (DEC) for public authority buildings</li>
+      <li>air conditioning inspection certificates (AC-CERT) for systems over 12kW</li>
     </ul>
 
-    <form action="/certificate/results" method="post" class="form">
-        {% from "input/macro.njk" import govukInput %}
-        {% from "fieldset/macro.njk" import govukFieldset %}
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p class="govuk-body">
+      You will need the postcode for the property.
+    </p>
+    <p class="govuk-body">
+      It will help if you know the type of certificate you are looking for. The type depends on the use of the property.
+      This guide explains the different type of energy performance certificates.
+    </p>
 
-        {% call govukFieldset({
-          legend: {
-            text: "Enter a postcode or certificate reference number",
-            classes: "govuk-fieldset__legend--m",
-            isPageHeading: false
-          }
-        }) %}
-        {{ govukInput({
-            label: {
-              text: "For example SW1P 3BU or 0123-5678-9101"
-            },
-            classes: "govuk-input--width-10",
-            id: "postcode-or-reference",
-            name: "postcode-or-reference"
-          }) }}
+      {% from "button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/certificate/certificate-is-residential",
+        classes: "govuk-button--start"
+      }) }}
 
 
-          {% from "button/macro.njk" import govukButton %}
-
-          {{ govukButton({
-            text: "Find"
-          }) }}
-
-        {% endcall %}
-    </form>
     <div role="note" aria-label="Information" class="govuk-details__text">
       <p class="govuk-body">
         If an owner or occupier of a property opted out of the EPC register, the property information can only be found
-        using the reference number on the certificate.
+        using the reference number on the certificate.</p>
+      <p class="govuk-body">
         You can <a class="govuk-link" href="#">opt out of the EPC register</a> if you do not want other people to see
         your EPC.
       </p>
@@ -66,7 +56,7 @@ Find an energy certificate
       <nav role="navigation" aria-labelledby="related-content">
         <ul class="govuk-list govuk-!-font-size-16">
           <li><a class="govuk-link" href="#">Find out more about EPCs</a></li>
-          <li><a class="govuk-link" href="#">Find an assessor</a></li>
+          <li><a class="govuk-link" href="/assessor">Find an assessor</a></li>
         </ul>
       </nav>
     </aside>

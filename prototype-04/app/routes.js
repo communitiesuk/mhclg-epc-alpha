@@ -72,7 +72,7 @@ router.get('/assessor/:id', (req, res) => {
 })
 
 router.get('/certificate', function(req, res, next) {
-  res.render('certificate/postcode-form');
+  res.render('certificate/certificate-start-page');
 });
 
 
