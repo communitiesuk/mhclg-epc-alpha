@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find an energy assessor
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-xl">{{ assessor.full_name }}</h2>
+
+      {% from "summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: assessor.full_name
+            }
+          },
+          {
+            key: {
+              text: "Accreditation number"
+            },
+            value: {
+              text: assessor.accreditation_number
+            }
+          },
+          {
+            key: {
+              text: "Contact address"
+            },
+            value: {
+              html: "93-94 Coventry Street, Kidderminster, DY10 2BH"
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: '<a href="tel:0790 323 6011">0790 323 6011</a>'
+            }
+          },
+          {
+            key: {
+              text: "Company name"
+            },
+            value: {
+              html: 'EPC Scheme One'
+            }
+          },
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: 'Registered'
+            }
+          },
+          {
+            key: {
+              text: "Certificate types"
+            },
+            value: {
+              html: assessor.certificatesString
+            }
+          }
+        ]
+      }) }}
+
+      <h3 class="govuk-heading-l govuk-!-margin-top-9">Scheme</h3>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "EPC Scheme One"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              text: "100 Windsor Gardens, London, W9 3RG"
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              html: "<a href=\"mailto:enquiries@epcschemeone.co.uk\">enquiries@epcschemeone.co.uk</a>"
+            }
+          },
+          {
+            key: {
+              text: "Telephone"
+            },
+            value: {
+              html: '<a href="tel:0303 444 0000">0303 444 0000</a>'
+            }
+          },
+          {
+            key: {
+              text: "Website"
+            },
+            value: {
+              html: '<a href="https://epcschemeone.co.uk">https://epcschemeone.co.uk</a>'
+            }
+          },
+          {
+            key: {
+              text: "Certificate types"
+            },
+            value: {
+              html: assessor.certificatesString
+            }
+          }
+        ]
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a class="govuk-link" href="#">
+                Find an energy performance certificate
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+  </div>
+
+{% endblock %}

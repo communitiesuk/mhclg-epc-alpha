@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Are you searching for a certificate for a residential address?
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/certificate/postcode-form" method="post" class="form">
+
+    {% from "radios/macro.njk" import govukRadios %}
+    {% from "button/macro.njk" import govukButton %}
+
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "is-residential",
+      name: "is-residential",
+      fieldset: {
+        legend: {
+          text: "Are you searching for a certificate for a residential address?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "If you are looking for a certificate for a residential address select yes. Select no to find another type or to show all certificates for that postcode."
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </form>
+  </div>
+
+
+{% endblock %}

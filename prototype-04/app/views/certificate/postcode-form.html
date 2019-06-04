@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Find an energy certificate
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Find a {{ 'non ' if data['is-residential'] == 'no' }} residential energy certificate</h1>
+
+    <form action="/certificate/results" method="post" class="form">
+        {% from "input/macro.njk" import govukInput %}
+        {% from "fieldset/macro.njk" import govukFieldset %}
+
+        {% call govukFieldset({
+          legend: {
+            text: "Enter a postcode or certificate reference number to find a certificate",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+        {{ govukInput({
+            label: {
+              text: "For example SW1P 3BU or 0123-5678-9101"
+            },
+            classes: "govuk-input--width-10",
+            id: "postcode-or-reference",
+            name: "postcode-or-reference"
+          }) }}
+
+
+          {% from "button/macro.njk" import govukButton %}
+
+          {{ govukButton({
+            text: "Find"
+          }) }}
+
+        {% endcall %}
+    </form>
+    <div role="note" aria-label="Information" class="govuk-details__text">
+      <p class="govuk-body">
+        If an owner or occupier of a property opted out of the EPC register, the property information can only be found
+        using the reference number on the certificate.
+        You can <a class="govuk-link" href="#">opt out of the EPC register</a> if you do not want other people to see
+        your EPC.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

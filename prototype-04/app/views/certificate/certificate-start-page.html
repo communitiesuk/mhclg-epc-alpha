@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Find an energy certificate
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Find an energy certificate</h1>
+
+    <p class="govuk-body">Use this service to find:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>energy performance certificates (EPC)</li>
+      <li>display energy certificates (DEC) for public authority buildings</li>
+      <li>air conditioning inspection certificates (AC-CERT) for systems over 12kW</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p class="govuk-body">
+      You will need the postcode for the property.
+    </p>
+    <p class="govuk-body">
+      It will help if you know the type of certificate you are looking for. The type depends on the use of the property.
+      This guide explains the different type of energy performance certificates.
+    </p>
+
+      {% from "button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/certificate/certificate-is-residential",
+        classes: "govuk-button--start"
+      }) }}
+
+
+    <div role="note" aria-label="Information" class="govuk-details__text">
+      <p class="govuk-body">
+        If an owner or occupier of a property opted out of the EPC register, the property information can only be found
+        using the reference number on the certificate.</p>
+      <p class="govuk-body">
+        You can <a class="govuk-link" href="#">opt out of the EPC register</a> if you do not want other people to see
+        your EPC.
+      </p>
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-6">This service is also available <a class="govuk-link" href="#">in Welsh
+      (Cymraeg)</a>.</p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m">Related content</h2>
+      <nav role="navigation" aria-labelledby="related-content">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li><a class="govuk-link" href="#">Find out more about EPCs</a></li>
+          <li><a class="govuk-link" href="/assessor">Find an assessor</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+
+{% endblock %}
