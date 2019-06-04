@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Energy Performance Information for {{ data.address | safe }}
+  Energy Performance Information for {{ data.address }}
 {% endblock %}
 
 
@@ -11,7 +11,7 @@
 
 
       <h1 class="govuk-heading-l">Energy Performance Information</h1>
-      <h2 class="govuk-heading-m">{{ data.address | safe }}</h2>
+      <h2 class="govuk-heading-m">{{ data.address }}</h2>
     </div>
   </div>
   <div class="govuk-grid-row">
@@ -48,19 +48,14 @@
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body"><a class="govuk-link govuk-heading-m" href="#">Download EPC Certificate</a></p>
 
-      <p class="govuk-body"><button type="submit" class="govuk-button">Download certificate</button></p>
-
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
       <h3 class="govuk-heading-m">Assessment result</h3>
 
       <div class="chart govuk-!-padding-bottom-6">
         <div class='bars'>
           <div class="bar">
-            <small>{{ data.address | safe }}</small>
+            <small>{{ data.address }}</small>
           </div>
         </div>
         <div class='bars noborder_bottom'>
@@ -123,50 +118,16 @@
       </div>
 
     </div>
-    <div class="govuk-grid-column-one-half govuk-!-margin-top-9 govuk-!-padding-top-9">
-      <p class="govuk-body">Over 3 years you could save<br /><span class="govuk-heading-m">£1,357</span></p>
-    </div>
   </div>
-  <div class="govuk-grid-row govuk-!-margin-bottom-6">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">You can embed this chart in other websites by <a href="#">copying the URL</a></p>
+      <h3 class="govuk-heading-m">Embed this chart</h3>
+        <p class="govuk-body">This chart is unique for this property and can be embedded in other websites.</p>
+        <button type="submit" class="govuk-button">
+          Copy the unique chart url
+        </button>
     </div>
   </div>
-
-  <div class="govuk-grid-row govuk-!-margin-bottom-6">
-    <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-m">Energy costs for running this property</h2>
-      <table class="govuk-table">
-        <caption class="govuk-table__caption">These estimates are based on costs assessed in 2015 over a 3 year period</caption>
-        <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th class="govuk-table__header" scope="col">Energy use</th>
-          <th class="govuk-table__header" scope="col">Current costs</th>
-          <th class="govuk-table__header" scope="col">Potential costs</th>
-        </tr>
-        </thead>
-
-        <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Lighting</td>
-          <td class="govuk-table__cell">£93</td>
-          <td class="govuk-table__cell">£46</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Heating</td>
-          <td class="govuk-table__cell">£322</td>
-          <td class="govuk-table__cell">£286</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Water</td>
-          <td class="govuk-table__cell">£95</td>
-          <td class="govuk-table__cell">£84</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h3 class="govuk-heading-m">Recommendations to improve this property's energy efficiency</h3>
@@ -340,7 +301,7 @@
         <p class="govuk-body">
           
         <strong>{{item.date}}</strong><br/>
-        {{item.address | safe }}<br/>
+        {{item.address}}<br/>
         <a href="#" class="govuk-link">PDF</a> {{item.type}}<br/>
         </p>
 

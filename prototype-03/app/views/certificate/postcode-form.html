@@ -9,7 +9,14 @@ Find an energy certificate
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">Find a {{ 'non ' if data['is-residential'] == 'no' }} residential energy certificate</h1>
+    <h1 class="govuk-heading-l">Find an energy certificate</h1>
+
+    <p class="govuk-body">Use this service to find:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>an energy performance certificate (EPC)</li>
+      <li>a display energy certificate (DEC) for public authority buildings</li>
+      <li>an air conditioning inspection certificate (AC-CERT) for systems over 12kW</li>
+    </ul>
 
     <form action="/certificate/results" method="post" class="form">
         {% from "input/macro.njk" import govukInput %}
@@ -17,7 +24,7 @@ Find an energy certificate
 
         {% call govukFieldset({
           legend: {
-            text: "Enter a postcode or certificate reference number to find a certificate",
+            text: "Enter a postcode or certificate reference number",
             classes: "govuk-fieldset__legend--m",
             isPageHeading: false
           }
@@ -48,8 +55,22 @@ Find an energy certificate
         your EPC.
       </p>
     </div>
+
+    <p class="govuk-body govuk-!-margin-top-6">This service is also available <a class="govuk-link" href="#">in Welsh
+      (Cymraeg)</a>.</p>
   </div>
 
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m">Related content</h2>
+      <nav role="navigation" aria-labelledby="related-content">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li><a class="govuk-link" href="#">Find out more about EPCs</a></li>
+          <li><a class="govuk-link" href="#">Find an assessor</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
 </div>
 
 {% endblock %}

@@ -13,12 +13,13 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-l">
-      Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} -->
+      {{ 'Residential' if data['is-residential'] == 'yes' else 'Non residential' }} energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} -->
     </h1>
   </div>
 </div>
 
 <div class="govuk-grid-row">
+  {% if data['is-residential'] == 'no' %}
   <div class="govuk-grid-column-one-third">
     <form action="" method="post" novalidate class="govuk-form-with-border">
       {% from "checkboxes/macro.njk" import govukCheckboxes %}
@@ -36,14 +37,9 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
         },
         items: [
           {
-            value: "EPC",
-            text: "Residential energy performance certificate (EPC)",
-            checked: (data['certificate-type'] and 'EPC' in data['certificate-type'])
-          },
-          {
-            value: "EPC3 or 4",
+            value: "EPC3&nbsp;or&nbsp;4",
             text: "Non-residential energy performance certificate (EPC3 or 4)",
-            checked: (data['certificate-type'] and 'EPC3 or 4' in data['certificate-type'])
+            checked: (data['certificate-type'] and 'EPC3&nbsp;or&nbsp;4' in data['certificate-type'])
           },
           {
             value: "DEC",
@@ -65,11 +61,12 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
       }) }}
     </form>
   </div>
+  {% endif %}
 
   <div class="govuk-grid-column-two-thirds">
     {% if addresses.length %}
     <p class="govuk-body">There are {{ addresses.length }} results for <span class="govuk-!-font-weight-bold">
-      {{ certificates_description if certificates_description else "all energy performance" }} certificates</span>
+      {{ certificates_description | safe if certificates_description else "all energy performance" }} certificates</span>
     </p>
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -77,12 +74,9 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
       <caption class="govuk-table__caption"></caption>
       <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        {% if (selection===0) %}
-        <th class="govuk-table__header" scope="col">Type</th>
-        {% endif %}
-        <th class="govuk-table__header" scope="col">Type</th>
         <th class="govuk-table__header" scope="col">Address</th>
-        <th class="govuk-table__header" scope="col">Grade</th>
+        <th class="govuk-table__header" scope="col">Type</th>
+        <th class="govuk-table__header" scope="col">Date issued</th>
       </tr>
       </thead>
 
@@ -90,12 +84,9 @@ Energy certificates for SW1P 3BU<!-- {{ data['postcode-or-reference'] | upper}} 
 
       {% for item in addresses %}
       <tr class="govuk-table__row">
-        {% if (selection===0) %}
-        <th class="govuk-table__header" scope="row"><abbr title="{{item.type}}">{{item.initials}} WTF</abbr></th>
-        {% endif %}
-        <td class="govuk-table__cell">{{ item.certificate_type }}</td>
-        <td class="govuk-table__cell"><a href="/certificate/results/{{item.reference}}">{{item.address}}</a></td>
-        <td class="govuk-table__cell">{{item['current-energy-rating']}}</td>
+        <td class="govuk-table__cell"><a href="/certificate/results/{{item.reference}}">{{ item.address | safe }}</a></td>
+        <td class="govuk-table__cell">{{item.certificate_type | safe}}</td>
+        <td class="govuk-table__cell">{{item.issue_date}}</td>
       </tr>
       {% endfor %}
 

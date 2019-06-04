@@ -72,7 +72,7 @@ router.get('/assessor/:id', (req, res) => {
 })
 
 router.get('/certificate', function(req, res, next) {
-  res.render('certificate/certificate-start-page');
+  res.render('certificate/postcode-form');
 });
 
 
@@ -86,37 +86,18 @@ router.post('/certificate/results', function(req, res) {
      }
      else {
         res.render('certificate/results', {
-          addresses: filterByResidentialOrNonresidential(req),
-          certificates_description: req.session.data['is-residential'] == 'yes' ? "all residential energy performance" : "all non residential energy performance"
+          addresses: req.app.locals.data //static dummy data
         });
      }
   }
   // If all filters have been deselected and resubmitted fall back to full list
   else if(typeof req.session.data['certificate-type'] == "undefined"){
-    res.render('certificate/results', { addresses: filterByResidentialOrNonresidential(req) });
+    res.render('certificate/results', { addresses: req.app.locals.data });
   }
   else{
     filterCertTypes(req, res);
   }
 });
-
-function filterByResidentialOrNonresidential(req) {
-  var residential = [];
-  var nonresidential = [];
-  for (var i=0;i<req.app.locals.data.length;i++){
-    current_cert = req.app.locals.data[i]
-    if(current_cert.certificate_type == 'EPC'){
-      residential.push(current_cert);
-    } else {
-      nonresidential.push(current_cert)
-    }
-  }
-  if(req.session.data['is-residential'] == 'yes'){
-    return residential;
-  } else {
-    return nonresidential;
-  }
-}
 
 function randomIntFromInterval(min,max) // min and max included
 {
@@ -126,9 +107,6 @@ function randomIntFromInterval(min,max) // min and max included
 function filterCertTypes(req, res){
   var arr = [];
   var selected_cert_types = req.session.data['certificate-type']
-  if(req.session.data['is-residential'] == 'yes') {
-    selected_cert_types.push('EPC');
-  }
   for (var i=0;i<req.app.locals.data.length;i++){
     current_cert = req.app.locals.data[i]
     if(selected_cert_types.indexOf(current_cert.certificate_type) > -1){
@@ -138,7 +116,7 @@ function filterCertTypes(req, res){
 
   res.render('certificate/results', {
     addresses: arr,
-    certificates_description: selected_cert_types.length == 3 ? "all non residential energy performance" : selected_cert_types.join(", ")
+    certificates_description: selected_cert_types.length == 4 ? "all energy performance" : selected_cert_types.join(", ")
   });
 }
 
