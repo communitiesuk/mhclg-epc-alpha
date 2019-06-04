@@ -53,7 +53,7 @@
             "type": "Flat",
             "address": "Flat 4, 28 Great Smith Street, SW1P&nbsp;3BU",
             "current-energy-rating": "C",
-            "potential-energy-rating": "C",
+            "potential-energy-rating": "B",
             "certificate_type": "EPC",
             "issue_date": "24 Oct 2014",
             "reference": "6"
@@ -63,7 +63,7 @@
             "type": "Flat",
             "address": "Flat 5, 28 Great Smith Street, SW1P&nbsp;3BU",
             "current-energy-rating": "C",
-            "potential-energy-rating": "C",
+            "potential-energy-rating": "A",
             "certificate_type": "EPC3&nbsp;or&nbsp;4",
             "issue_date": "24 Nov 2009",
             "reference": "7"
@@ -102,8 +102,8 @@
         {
             "type": "Flat",
             "address": "Flat 1, 32 Great Smith Street, SW1P&nbsp;3BU",
-            "current-energy-rating": "C",
-            "potential-energy-rating": "C",
+            "current-energy-rating": "D",
+            "potential-energy-rating": "B",
             "certificate_type": "DEC",
             "issue_date": "21 Oct 2017",
             "reference": "11"
@@ -152,8 +152,8 @@
         {
             "type": "Flat",
             "address": "Flat 6, 42 Great Smith Street, SW1P&nbsp;3BU",
-            "current-energy-rating": "B",
-            "potential-energy-rating": "B",
+            "current-energy-rating": "C",
+            "potential-energy-rating": "A",
             "certificate_type": "DEC",
             "issue_date": "25 Feb 2014",
             "reference": "16"
