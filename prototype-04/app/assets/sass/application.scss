@@ -292,3 +292,8 @@ $govuk-global-styles: true;
   font-weight: 700;
 }
 
+// Don't let images overspill their container
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
