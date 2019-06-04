@@ -200,10 +200,15 @@ router.get('/certificate/results/:reference', function(req, res) {
       ]
     });
 
-    res.render('certificate/certificate', {
-      data: property
-    });
-
+    if(parseInt(property.reference) % 2 == 0){
+        res.render('certificate/certificate-v2', {
+          data: property
+        });
+    } else {
+      res.render('certificate/certificate', {
+        data: property
+      });
+    }
   } else {
         res.redirect('/error');
   }

@@ -1,0 +1,315 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Energy Performance Information for {{ data.address | safe }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-l">Energy Performance Information</h1>
+      <h2 class="govuk-heading-m">{{ data.address | safe }}</h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table">
+        <tr>
+          <td>
+            <p class="govuk-heading-m">
+              <span class="govuk-caption-m">Date of certificate</span>
+              {{ data.date }}
+            </p>
+          </td>
+          <td>
+            <p class="govuk-heading-m">
+              <span class="govuk-caption-m">Rating</span>
+              31
+            </p>
+          </td>
+          <td>
+            <p class="govuk-heading-m">
+              <span class="govuk-caption-m">Property type</span>
+              {{ data.propertyType }}
+            </p>
+          </td>
+          <td>
+            <p class="govuk-heading-m">
+              <span class="govuk-caption-m">Floor area</span>
+              {{ data.floorArea }} m<sup>2</sup>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body"><button type="submit" class="govuk-button">Download certificate</button></p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <h3 class="govuk-heading-m">Assessment result</h3>
+      <img src="/public/images/circle-gauge.svg" alt="Circular dial with sections for very poor, poor, fair, good and excellent. An energy performance score of 31 out of 100 is shown, which is in the poor section of the dial." />
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-margin-top-9 govuk-!-padding-top-9">
+      <p class="govuk-body">You could improve your rating to <span class="govuk-!-font-weight-bold">62</span></p>
+      <p class="govuk-body">Which could save you <span class="govuk-!-font-weight-bold">£1,357</span> over three years</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row govuk-!-margin-bottom-6">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">You can embed this chart in other websites by <a href="#">copying the URL</a></p>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-6">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">Energy costs for running this property</h2>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption">These estimates are based on costs assessed in 2015 over a 3 year period</caption>
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">Energy use</th>
+          <th class="govuk-table__header" scope="col">Current costs</th>
+          <th class="govuk-table__header" scope="col">Potential costs</th>
+        </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Lighting</td>
+          <td class="govuk-table__cell">£93</td>
+          <td class="govuk-table__cell">£46</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Heating</td>
+          <td class="govuk-table__cell">£322</td>
+          <td class="govuk-table__cell">£286</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Water</td>
+          <td class="govuk-table__cell">£95</td>
+          <td class="govuk-table__cell">£84</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 class="govuk-heading-m">Recommendations to improve this property's energy efficiency</h3>
+
+      {% from "accordion/macro.njk" import govukAccordion %}
+
+    {{ govukAccordion({
+      id: "accordion-default",
+      items: [
+        {
+          heading: {
+            text: "Cavity wall insulation"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Many houses are built with walls made up of two layers - an outer and an inner leaf.
+                    The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £1,000
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £135 to £165
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Score change</span>
+                           +9
+                         </p>
+                       </td>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about cavity wall insulation</a></p>
+                '
+          }
+        },
+        {
+          heading: {
+            text: "Low energy lighting"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Fitting a low energy bulb whenever you change a lightbulb will cut your electricity bill without
+                    having any other impact on your household.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £0
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £10
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Score change</span>
+                           +2
+                         </p>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about low energy lighting</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Increase hot water cylinder insulation"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    You can increase insulation by fitting a hot water cylinder jacket, and by insulating pipes with a foam
+                    tube that covers the exposed pipes between your hot water cylinder and boiler.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £30
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £39
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Score change</span>
+                           +3
+                         </p>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder insulation</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Fit a hot water cylinder thermostat"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    Fitting a hot water cylinder thermostat will help keep your hot water at the right temperature and avoid
+                    wasting energy keeping it hotter than you need.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £300
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £75
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Score change</span>
+                           +7
+                         </p>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about hot water cylinder thermostats</a></p>
+                '
+          }
+        },
+          {
+          heading: {
+            text: "Replace boiler with new condensing boiler"
+          },
+          content: {
+            html: '<p class="govuk-body">
+                    If you have a gas boiler that was fitted before 2005, then the chances are that it is an inefficient boiler.
+                    If this is the case, then you could cut your heating bills significantly by replacing it with a modern efficient model.
+                   </p>
+                   <table class="govuk-table">
+                     <tr>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Investment required</span>
+                           £2,600
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Potential savings per year</span>
+                           £45
+                         </p>
+                       </td>
+                       <td>
+                         <p class="govuk-heading-m">
+                           <span class="govuk-caption-m">Score change</span>
+                           +6
+                         </p>
+                     </tr>
+                   </table>
+                  <p class="govuk-body"><a class="govuk-link" href="#">Find out more about boiler replacement</a></p>
+                '
+          }
+        }
+      ]
+    }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 class="govuk-heading-m">Previous version of certificates for this property</h3>
+
+      <p class="govuk-body">
+        The addresses for some or all of the previous versions may differ from the address shown above.
+        These certificates are no longer valid.
+      </p>
+
+      {% for item in data.documents %}
+  
+        <p class="govuk-body">
+          
+        <strong>{{item.date}}</strong><br/>
+        {{item.address | safe }}<br/>
+        <a href="#" class="govuk-link">PDF</a> {{item.type}}<br/>
+        </p>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock %}
